@@ -1,6 +1,7 @@
 {
   "name": "effect-teco-westinghouse-inverter",
   "version": "1.0.0",
+  "description": "",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
