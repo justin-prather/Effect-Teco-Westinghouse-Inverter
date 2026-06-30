@@ -421,6 +421,24 @@ export const decodeDigitalOutCommand = Schema.decodeUnknown(DigitalOutCommandSch
 export const encodeDigitalOutCommand = Schema.encode(DigitalOutCommandSchema);
 export const formattedDigitalOutCommand = Pretty.make(DigitalOutCommandSchema);
 
+export class DigitalOutCommandPatch extends Schema.Class<DigitalOutCommandPatch>(
+  "DigitalOutCommandPatch",
+)({
+  ry1: Schema.optional(Schema.Boolean),
+  ry2: Schema.optional(Schema.Boolean),
+  pulse: Schema.optional(Schema.Boolean),
+}) {}
+
+export const mergeDigitalOutCommandPatch = (
+  base: DigitalOutCommandFlags,
+  patch: DigitalOutCommandPatch,
+): DigitalOutCommandFlags =>
+  new DigitalOutCommandFlags({
+    ry1: patch.ry1 ?? base.ry1,
+    ry2: patch.ry2 ?? base.ry2,
+    pulse: patch.pulse ?? base.pulse,
+  });
+
 // NOTE: ==================================================================
 //  STATE MONITOR (Register 0x2520)
 // ========================================================================
