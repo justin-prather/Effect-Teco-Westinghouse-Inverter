@@ -6,7 +6,7 @@ import { formattedCommandWord } from "../src/schemas";
 
 const program = Effect.gen(function* () {
   const inverter = yield* TecoInverterService;
-  const ops = yield* inverter.readOperationRegister(1);
+  const ops = yield* inverter.operationCommand(1).read;
 
   yield* Console.log(formattedCommandWord(ops));
 });

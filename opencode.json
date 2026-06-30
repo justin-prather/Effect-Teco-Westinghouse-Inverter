@@ -5,6 +5,11 @@
       "enabled": true,
       "type": "local",
       "command": ["bunx", "fallow-mcp"]
+    },
+    "pymupdf4llm-mcp": {
+      "enabled": true,
+      "type": "local",
+      "command": ["uvx", "pymupdf4llm-mcp@latest", "stdio"]
     }
   }
 }
