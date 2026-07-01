@@ -63,7 +63,7 @@ const formatEnumMeta = (
  * Simple UInt16 pass-through parameter.
  * The wire value IS the parameter value (no scaling).
  */
-export const makeParam = <A extends number, I extends number>(
+const makeParam = <A extends number, I extends number>(
   register: number,
   meta: ParamMeta,
 ): Schema.Schema<A, I> =>
@@ -75,7 +75,7 @@ export const makeParam = <A extends number, I extends number>(
  * Scaled parameter where wire = domain / factor.
  * Example: 0.01 Hz → wire value 5000 decodes to 50.00 Hz
  */
-export const makeScaledParam = (
+const makeScaledParam = (
   register: number,
   factor: number,
   meta: ParamMeta,
@@ -96,7 +96,7 @@ export const makeScaledParam = (
  * Uses Int16 to support negative wire values.
  * Example: -100.0~100.0 % × 0.1 → wire range -1000~1000
  */
-export const makeSignedScaledParam = (
+const makeSignedScaledParam = (
   register: number,
   factor: number,
   meta: ParamMeta,
@@ -116,7 +116,7 @@ export const makeSignedScaledParam = (
  * Enum selection parameter.
  * Maps wire integers to human-readable labels and back.
  */
-export const makeEnumParam = <Domain extends string>(
+const makeEnumParam = <Domain extends string>(
   register: number,
   labels: Record<number, Domain>,
   meta: ParamMeta,
@@ -156,12 +156,70 @@ export const makeEnumParam = <Domain extends string>(
 
 // ── Convenience helpers ────────────────────────────────────
 
-export const makeDecode = <S extends Schema.Schema<any, any>>(schema: S) =>
+const makeDecode = <S extends Schema.Schema<any, any>>(schema: S) =>
   Schema.decodeUnknown(schema);
-export const makeEncode = <S extends Schema.Schema<any, any>>(schema: S) =>
+const makeEncode = <S extends Schema.Schema<any, any>>(schema: S) =>
   Schema.encode(schema);
-export const makeFormatted = <S extends Schema.Schema<any, any>>(schema: S) =>
+const makeFormatted = <S extends Schema.Schema<any, any>>(schema: S) =>
   Pretty.make(schema);
+
+// ── Bundle factories (produce schema + decode + encode + formatted) ──
+// These replace the duplicated local `p()`/`sp()` helpers in group files.
+
+export const p = <A extends number, I extends number>(
+  addr: number,
+  meta: ParamMeta,
+) => {
+  const schema = makeParam<A, I>(addr, meta);
+  return {
+    schema,
+    decode: makeDecode(schema),
+    encode: makeEncode(schema),
+    formatted: makeFormatted(schema),
+  };
+};
+
+export const sp = (
+  addr: number,
+  factor: number,
+  meta: ParamMeta,
+) => {
+  const schema = makeScaledParam(addr, factor, meta);
+  return {
+    schema,
+    decode: makeDecode(schema),
+    encode: makeEncode(schema),
+    formatted: makeFormatted(schema),
+  };
+};
+
+export const spSigned = (
+  addr: number,
+  factor: number,
+  meta: ParamMeta,
+) => {
+  const schema = makeSignedScaledParam(addr, factor, meta);
+  return {
+    schema,
+    decode: makeDecode(schema),
+    encode: makeEncode(schema),
+    formatted: makeFormatted(schema),
+  };
+};
+
+export const pe = <A extends string>(
+  addr: number,
+  labels: Record<number, A>,
+  meta: ParamMeta,
+) => {
+  const schema = makeEnumParam<A>(addr, labels, meta);
+  return {
+    schema,
+    decode: makeDecode(schema),
+    encode: makeEncode(schema),
+    formatted: makeFormatted(schema),
+  };
+};
 
 export type ParamEntry<S extends Schema.Schema<any, any>> = {
   readonly schema: S;
@@ -169,8 +227,3 @@ export type ParamEntry<S extends Schema.Schema<any, any>> = {
   readonly encode: ReturnType<typeof makeEncode<S>>;
 };
 
-export const param = <S extends Schema.Schema<any, any>>(
-  schema: S,
-  decode: ReturnType<typeof makeDecode<S>>,
-  encode: ReturnType<typeof makeEncode<S>>,
-): ParamEntry<S> => ({ schema, decode, encode });

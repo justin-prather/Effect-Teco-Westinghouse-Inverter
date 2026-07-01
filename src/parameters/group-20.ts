@@ -5,37 +5,14 @@
 
 import * as P from "./param-utils";
 import { GROUP_20_Speed_Control_Parameters } from "../Registers";
-import { Schema } from "effect";
 
 const group = 20 as const;
 const p480 = 480 as const;
 const p481 = 481 as const;
 const p482 = 482 as const;
 
-const p = <A extends number, I extends number>(
-  addr: number,
-  meta: P.ParamMeta,
-) => {
-  const schema = P.makeParam<A, I>(addr, meta);
-  return {
-    schema,
-    decode: P.makeDecode(schema),
-    encode: P.makeEncode(schema),
-    formatted: P.makeFormatted(schema),
-  };
-};
-const sp = (addr: number, factor: number, meta: P.ParamMeta) => {
-  const schema = P.makeScaledParam(addr, factor, meta);
-  return {
-    schema,
-    decode: P.makeDecode(schema),
-    encode: P.makeEncode(schema),
-    formatted: P.makeFormatted(schema),
-  };
-};
-
 const all = {
-  "20-00": sp(GROUP_20_Speed_Control_Parameters["20-00"], 0.01, {
+  "20-00": P.sp(GROUP_20_Speed_Control_Parameters["20-00"], 0.01, {
     group,
     code: "20-00",
     name: "ASR Gain 1",
@@ -44,7 +21,7 @@ const all = {
     unit: "-",
     page: p480,
   }),
-  "20-01": sp(GROUP_20_Speed_Control_Parameters["20-01"], 0.001, {
+  "20-01": P.sp(GROUP_20_Speed_Control_Parameters["20-01"], 0.001, {
     group,
     code: "20-01",
     name: "ASR Integral Time 1",
@@ -53,7 +30,7 @@ const all = {
     unit: "Sec",
     page: p480,
   }),
-  "20-02": sp(GROUP_20_Speed_Control_Parameters["20-02"], 0.01, {
+  "20-02": P.sp(GROUP_20_Speed_Control_Parameters["20-02"], 0.01, {
     group,
     code: "20-02",
     name: "ASR Gain 2",
@@ -62,7 +39,7 @@ const all = {
     unit: "-",
     page: p480,
   }),
-  "20-03": sp(GROUP_20_Speed_Control_Parameters["20-03"], 0.001, {
+  "20-03": P.sp(GROUP_20_Speed_Control_Parameters["20-03"], 0.001, {
     group,
     code: "20-03",
     name: "ASR Integral Time 2",
@@ -71,7 +48,7 @@ const all = {
     unit: "Sec",
     page: p480,
   }),
-  "20-04": p(GROUP_20_Speed_Control_Parameters["20-04"], {
+  "20-04": P.p(GROUP_20_Speed_Control_Parameters["20-04"], {
     group,
     code: "20-04",
     name: "ASR Integral Time Limit",
@@ -80,7 +57,7 @@ const all = {
     unit: "%",
     page: p480,
   }),
-  "20-05": sp(GROUP_20_Speed_Control_Parameters["20-05"], 0.1, {
+  "20-05": P.sp(GROUP_20_Speed_Control_Parameters["20-05"], 0.1, {
     group,
     code: "20-05",
     name: "ASR Positive Limit",
@@ -89,7 +66,7 @@ const all = {
     unit: "%",
     page: p480,
   }),
-  "20-06": sp(GROUP_20_Speed_Control_Parameters["20-06"], 0.1, {
+  "20-06": P.sp(GROUP_20_Speed_Control_Parameters["20-06"], 0.1, {
     group,
     code: "20-06",
     name: "ASR Negative Limit",
@@ -98,7 +75,7 @@ const all = {
     unit: "%",
     page: p480,
   }),
-  "20-07": p(GROUP_20_Speed_Control_Parameters["20-07"], {
+  "20-07": P.p(GROUP_20_Speed_Control_Parameters["20-07"], {
     group,
     code: "20-07",
     name: "Selection of Accel/Decel P/PI",
@@ -107,7 +84,7 @@ const all = {
     unit: "-",
     page: p480,
   }),
-  "20-08": sp(GROUP_20_Speed_Control_Parameters["20-08"], 0.001, {
+  "20-08": P.sp(GROUP_20_Speed_Control_Parameters["20-08"], 0.001, {
     group,
     code: "20-08",
     name: "ASR Delay Time",
@@ -116,7 +93,7 @@ const all = {
     unit: "Sec",
     page: p480,
   }),
-  "20-09": sp(GROUP_20_Speed_Control_Parameters["20-09"], 0.01, {
+  "20-09": P.sp(GROUP_20_Speed_Control_Parameters["20-09"], 0.01, {
     group,
     code: "20-09",
     name: "Speed Observer P Gain 1",
@@ -125,7 +102,7 @@ const all = {
     unit: "-",
     page: p480,
   }),
-  "20-10": sp(GROUP_20_Speed_Control_Parameters["20-10"], 0.01, {
+  "20-10": P.sp(GROUP_20_Speed_Control_Parameters["20-10"], 0.01, {
     group,
     code: "20-10",
     name: "Speed Observer I Time 1",
@@ -134,7 +111,7 @@ const all = {
     unit: "Sec",
     page: p480,
   }),
-  "20-11": sp(GROUP_20_Speed_Control_Parameters["20-11"], 0.01, {
+  "20-11": P.sp(GROUP_20_Speed_Control_Parameters["20-11"], 0.01, {
     group,
     code: "20-11",
     name: "Speed Observer P Gain 2",
@@ -143,7 +120,7 @@ const all = {
     unit: "-",
     page: p480,
   }),
-  "20-12": sp(GROUP_20_Speed_Control_Parameters["20-12"], 0.01, {
+  "20-12": P.sp(GROUP_20_Speed_Control_Parameters["20-12"], 0.01, {
     group,
     code: "20-12",
     name: "Speed Observer I Time 2",
@@ -152,7 +129,7 @@ const all = {
     unit: "Sec",
     page: p480,
   }),
-  "20-13": p(GROUP_20_Speed_Control_Parameters["20-13"], {
+  "20-13": P.p(GROUP_20_Speed_Control_Parameters["20-13"], {
     group,
     code: "20-13",
     name: "Low-pass Filter Time of Speed Feedback 1",
@@ -161,7 +138,7 @@ const all = {
     unit: "ms",
     page: p480,
   }),
-  "20-14": p(GROUP_20_Speed_Control_Parameters["20-14"], {
+  "20-14": P.p(GROUP_20_Speed_Control_Parameters["20-14"], {
     group,
     code: "20-14",
     name: "Low-pass Filter Time of Speed Feedback 2",
@@ -170,7 +147,7 @@ const all = {
     unit: "ms",
     page: p480,
   }),
-  "20-15": sp(GROUP_20_Speed_Control_Parameters["20-15"], 0.1, {
+  "20-15": P.sp(GROUP_20_Speed_Control_Parameters["20-15"], 0.1, {
     group,
     code: "20-15",
     name: "ASR Gain Change Frequency 1",
@@ -179,7 +156,7 @@ const all = {
     unit: "Hz",
     page: p481,
   }),
-  "20-16": sp(GROUP_20_Speed_Control_Parameters["20-16"], 0.1, {
+  "20-16": P.sp(GROUP_20_Speed_Control_Parameters["20-16"], 0.1, {
     group,
     code: "20-16",
     name: "ASR Gain Change Frequency 2",
@@ -188,7 +165,7 @@ const all = {
     unit: "Hz",
     page: p481,
   }),
-  "20-17": sp(GROUP_20_Speed_Control_Parameters["20-17"], 0.01, {
+  "20-17": P.sp(GROUP_20_Speed_Control_Parameters["20-17"], 0.01, {
     group,
     code: "20-17",
     name: "Torque Compensation Gain at Low Speed",
@@ -197,7 +174,7 @@ const all = {
     unit: "-",
     page: p481,
   }),
-  "20-18": p(GROUP_20_Speed_Control_Parameters["20-18"], {
+  "20-18": P.p(GROUP_20_Speed_Control_Parameters["20-18"], {
     group,
     code: "20-18",
     name: "Torque Compensation Gain at High Speed",
@@ -206,7 +183,7 @@ const all = {
     unit: "%",
     page: p481,
   }),
-  "20-19": p(GROUP_20_Speed_Control_Parameters["20-19"], {
+  "20-19": P.p(GROUP_20_Speed_Control_Parameters["20-19"], {
     group,
     code: "20-19",
     name: "Over Speed (OS) Selection",
@@ -215,7 +192,7 @@ const all = {
     unit: "-",
     page: p481,
   }),
-  "20-20": p(GROUP_20_Speed_Control_Parameters["20-20"], {
+  "20-20": P.p(GROUP_20_Speed_Control_Parameters["20-20"], {
     group,
     code: "20-20",
     name: "Over Speed (OS) Detection Level",
@@ -224,7 +201,7 @@ const all = {
     unit: "%",
     page: p481,
   }),
-  "20-21": sp(GROUP_20_Speed_Control_Parameters["20-21"], 0.1, {
+  "20-21": P.sp(GROUP_20_Speed_Control_Parameters["20-21"], 0.1, {
     group,
     code: "20-21",
     name: "Over Speed (OS) Detection Time",
@@ -233,7 +210,7 @@ const all = {
     unit: "Sec",
     page: p481,
   }),
-  "20-22": p(GROUP_20_Speed_Control_Parameters["20-22"], {
+  "20-22": P.p(GROUP_20_Speed_Control_Parameters["20-22"], {
     group,
     code: "20-22",
     name: "Speed Deviation (DEV) Selection",
@@ -242,7 +219,7 @@ const all = {
     unit: "-",
     page: p481,
   }),
-  "20-23": p(GROUP_20_Speed_Control_Parameters["20-23"], {
+  "20-23": P.p(GROUP_20_Speed_Control_Parameters["20-23"], {
     group,
     code: "20-23",
     name: "Speed Deviation (DEV) Detection Level",
@@ -251,7 +228,7 @@ const all = {
     unit: "%",
     page: p481,
   }),
-  "20-24": sp(GROUP_20_Speed_Control_Parameters["20-24"], 0.1, {
+  "20-24": P.sp(GROUP_20_Speed_Control_Parameters["20-24"], 0.1, {
     group,
     code: "20-24",
     name: "Speed Deviation (DEV) Detection Time",
@@ -260,7 +237,7 @@ const all = {
     unit: "Sec",
     page: p481,
   }),
-  "20-25": p(GROUP_20_Speed_Control_Parameters["20-25"], {
+  "20-25": P.p(GROUP_20_Speed_Control_Parameters["20-25"], {
     group,
     code: "20-25",
     name: "Selection of PG Open",
@@ -269,7 +246,7 @@ const all = {
     unit: "-",
     page: p481,
   }),
-  "20-26": sp(GROUP_20_Speed_Control_Parameters["20-26"], 0.1, {
+  "20-26": P.sp(GROUP_20_Speed_Control_Parameters["20-26"], 0.1, {
     group,
     code: "20-26",
     name: "Detection Time of PG Open",
@@ -278,7 +255,7 @@ const all = {
     unit: "Sec",
     page: p481,
   }),
-  "20-27": p(GROUP_20_Speed_Control_Parameters["20-27"], {
+  "20-27": P.p(GROUP_20_Speed_Control_Parameters["20-27"], {
     group,
     code: "20-27",
     name: "PG Pulse Number",
@@ -287,7 +264,7 @@ const all = {
     unit: "ppr",
     page: p481,
   }),
-  "20-28": p(GROUP_20_Speed_Control_Parameters["20-28"], {
+  "20-28": P.p(GROUP_20_Speed_Control_Parameters["20-28"], {
     group,
     code: "20-28",
     name: "Selection of PG Rotation Direction",
@@ -296,7 +273,7 @@ const all = {
     unit: "-",
     page: p481,
   }),
-  "20-29": p(GROUP_20_Speed_Control_Parameters["20-29"], {
+  "20-29": P.p(GROUP_20_Speed_Control_Parameters["20-29"], {
     group,
     code: "20-29",
     name: "PG Pulse Dividing Ratio",
@@ -305,7 +282,7 @@ const all = {
     unit: "-",
     page: p481,
   }),
-  "20-30": p(GROUP_20_Speed_Control_Parameters["20-30"], {
+  "20-30": P.p(GROUP_20_Speed_Control_Parameters["20-30"], {
     group,
     code: "20-30",
     name: "PG Gear Ratio 1",
@@ -314,7 +291,7 @@ const all = {
     unit: "-",
     page: p482,
   }),
-  "20-31": p(GROUP_20_Speed_Control_Parameters["20-31"], {
+  "20-31": P.p(GROUP_20_Speed_Control_Parameters["20-31"], {
     group,
     code: "20-31",
     name: "PG Gear Ratio 2",
@@ -323,7 +300,7 @@ const all = {
     unit: "-",
     page: p482,
   }),
-  "20-32": p(GROUP_20_Speed_Control_Parameters["20-32"], {
+  "20-32": P.p(GROUP_20_Speed_Control_Parameters["20-32"], {
     group,
     code: "20-32",
     name: "Selection of Specific Encoder",
@@ -332,7 +309,7 @@ const all = {
     unit: "-",
     page: p482,
   }),
-  "20-33": sp(GROUP_20_Speed_Control_Parameters["20-33"], 0.1, {
+  "20-33": P.sp(GROUP_20_Speed_Control_Parameters["20-33"], 0.1, {
     group,
     code: "20-33",
     name: "Detection Level at Constant Speed",
@@ -341,7 +318,7 @@ const all = {
     unit: "-",
     page: p482,
   }),
-  "20-34": p(GROUP_20_Speed_Control_Parameters["20-34"], {
+  "20-34": P.p(GROUP_20_Speed_Control_Parameters["20-34"], {
     group,
     code: "20-34",
     name: "Compensation Gain of Derating",
@@ -350,7 +327,7 @@ const all = {
     unit: "-",
     page: p482,
   }),
-  "20-35": p(GROUP_20_Speed_Control_Parameters["20-35"], {
+  "20-35": P.p(GROUP_20_Speed_Control_Parameters["20-35"], {
     group,
     code: "20-35",
     name: "Compensation Time of Derating",
@@ -359,7 +336,7 @@ const all = {
     unit: "ms",
     page: p482,
   }),
-  "20-43": p(GROUP_20_Speed_Control_Parameters["20-43"], {
+  "20-43": P.p(GROUP_20_Speed_Control_Parameters["20-43"], {
     group,
     code: "20-43",
     name: "MPG Speed Magnification Calculation",
@@ -368,7 +345,7 @@ const all = {
     unit: "-",
     page: p482,
   }),
-  "20-44": sp(GROUP_20_Speed_Control_Parameters["20-44"], 0.1, {
+  "20-44": P.sp(GROUP_20_Speed_Control_Parameters["20-44"], 0.1, {
     group,
     code: "20-44",
     name: "MPG Speed Command Limit",

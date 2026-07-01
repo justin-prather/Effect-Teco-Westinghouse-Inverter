@@ -19,5 +19,6 @@
     //   "**/generated/**"     // OpenAPI, Protobuf codegen
     // ]
   },
-  "rules": {}
+  "rules": {},
+  "ignoreDependencies": ["@effect/platform-bun"]
 }
