@@ -10,18 +10,24 @@ const program = Effect.gen(function* () {
   const inverter = yield* TecoInverterService;
   const params = inverter.parameters.group00;
 
-  const keys = Object.keys(P.group00.group00Params);
+  const dunno = yield* params["00-00"](1).read;
+
+  const keys = Object.keys(
+    P.group00.group00Params,
+  ) as (keyof typeof inverter.parameters.group00)[];
 
   const reads: Record<string, Effect.Effect<any, any, any>> = {};
   for (const key of keys) {
-    reads[key] = params[key](deviceId).read;
+    reads[key] = (inverter.parameters.group00[key] as any)(deviceId).read;
   }
 
   const values = yield* Effect.all(reads, { concurrency: "unbounded" });
 
   yield* Console.log("=== Group 00: Basic Parameters ===");
   for (const key of keys) {
-    const formatted = P.group00[`formatted${key.replace("-", "_")}` as keyof typeof P.group00] as (v: any) => string;
+    const formatted = P.group00[
+      `formatted${key.replace("-", "_")}` as keyof typeof P.group00
+    ] as (v: any) => string;
     yield* Console.log(`  ${key}: ${formatted(values[key])}`);
   }
 });

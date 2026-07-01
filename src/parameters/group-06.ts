@@ -21,7 +21,7 @@ const p443 = 443 as const;
 // ── Simple UInt16 parameters ───────────────────────────────
 
 /** @param 06-00 Automatic Operation Mode Selection — Range: 0-6, Default: 0, Manual p.4-40 */
-export const Param_06_00 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_00, {
+export const Param_06_00 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-00"], {
   group, code: "06-00", name: "Automatic Operation Mode Selection",
   range: "0-6", default: "0", unit: "-", page: p440,
 })
@@ -34,22 +34,22 @@ const dirMeta = (idx: number, page: number): P.ParamMeta => ({
   range: "0-2 (0:Stop / 1:Forward / 2:Reverse)", default: "0", unit: "-", page,
 })
 
-export const Param_06_32 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_32, dirMeta(0, p442))
-export const Param_06_33 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_33, dirMeta(1, p442))
-export const Param_06_34 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_34, dirMeta(2, p442))
-export const Param_06_35 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_35, dirMeta(3, p442))
-export const Param_06_36 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_36, dirMeta(4, p442))
-export const Param_06_37 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_37, dirMeta(5, p443))
-export const Param_06_38 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_38, dirMeta(6, p443))
-export const Param_06_39 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_39, dirMeta(7, p443))
-export const Param_06_40 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_40, dirMeta(8, p443))
-export const Param_06_41 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_41, dirMeta(9, p443))
-export const Param_06_42 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_42, dirMeta(10, p443))
-export const Param_06_43 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_43, dirMeta(11, p443))
-export const Param_06_44 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_44, dirMeta(12, p443))
-export const Param_06_45 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_45, dirMeta(13, p443))
-export const Param_06_46 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_46, dirMeta(14, p443))
-export const Param_06_47 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters._06_47, dirMeta(15, p443))
+export const Param_06_32 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-32"], dirMeta(0, p442))
+export const Param_06_33 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-33"], dirMeta(1, p442))
+export const Param_06_34 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-34"], dirMeta(2, p442))
+export const Param_06_35 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-35"], dirMeta(3, p442))
+export const Param_06_36 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-36"], dirMeta(4, p442))
+export const Param_06_37 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-37"], dirMeta(5, p443))
+export const Param_06_38 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-38"], dirMeta(6, p443))
+export const Param_06_39 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-39"], dirMeta(7, p443))
+export const Param_06_40 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-40"], dirMeta(8, p443))
+export const Param_06_41 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-41"], dirMeta(9, p443))
+export const Param_06_42 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-42"], dirMeta(10, p443))
+export const Param_06_43 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-43"], dirMeta(11, p443))
+export const Param_06_44 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-44"], dirMeta(12, p443))
+export const Param_06_45 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-45"], dirMeta(13, p443))
+export const Param_06_46 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-46"], dirMeta(14, p443))
+export const Param_06_47 = P.makeParam(GROUP_06_Automatic_Program_Operation_Parameters["06-47"], dirMeta(15, p443))
 
 // ── Frequency settings (×0.01 Hz) ──────────────────────────
 
@@ -59,21 +59,21 @@ const freqMeta = (stage: number, def: string, page: number): P.ParamMeta => ({
   range: "0.00~599.00", default: def, unit: "Hz", page,
 })
 
-export const Param_06_01 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_01, 0.01, freqMeta(1, "5.00", p440))
-export const Param_06_02 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_02, 0.01, freqMeta(2, "10.00", p440))
-export const Param_06_03 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_03, 0.01, freqMeta(3, "20.00", p440))
-export const Param_06_04 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_04, 0.01, freqMeta(4, "30.00", p441))
-export const Param_06_05 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_05, 0.01, freqMeta(5, "40.00", p441))
-export const Param_06_06 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_06, 0.01, freqMeta(6, "50.00", p441))
-export const Param_06_07 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_07, 0.01, freqMeta(7, "50.00", p441))
-export const Param_06_08 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_08, 0.01, freqMeta(8, "5.00", p441))
-export const Param_06_09 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_09, 0.01, freqMeta(9, "5.00", p441))
-export const Param_06_10 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_10, 0.01, freqMeta(10, "5.00", p441))
-export const Param_06_11 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_11, 0.01, freqMeta(11, "5.00", p441))
-export const Param_06_12 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_12, 0.01, freqMeta(12, "5.00", p441))
-export const Param_06_13 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_13, 0.01, freqMeta(13, "5.00", p441))
-export const Param_06_14 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_14, 0.01, freqMeta(14, "5.00", p441))
-export const Param_06_15 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_15, 0.01, freqMeta(15, "5.00", p441))
+export const Param_06_01 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-01"], 0.01, freqMeta(1, "5.00", p440))
+export const Param_06_02 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-02"], 0.01, freqMeta(2, "10.00", p440))
+export const Param_06_03 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-03"], 0.01, freqMeta(3, "20.00", p440))
+export const Param_06_04 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-04"], 0.01, freqMeta(4, "30.00", p441))
+export const Param_06_05 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-05"], 0.01, freqMeta(5, "40.00", p441))
+export const Param_06_06 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-06"], 0.01, freqMeta(6, "50.00", p441))
+export const Param_06_07 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-07"], 0.01, freqMeta(7, "50.00", p441))
+export const Param_06_08 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-08"], 0.01, freqMeta(8, "5.00", p441))
+export const Param_06_09 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-09"], 0.01, freqMeta(9, "5.00", p441))
+export const Param_06_10 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-10"], 0.01, freqMeta(10, "5.00", p441))
+export const Param_06_11 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-11"], 0.01, freqMeta(11, "5.00", p441))
+export const Param_06_12 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-12"], 0.01, freqMeta(12, "5.00", p441))
+export const Param_06_13 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-13"], 0.01, freqMeta(13, "5.00", p441))
+export const Param_06_14 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-14"], 0.01, freqMeta(14, "5.00", p441))
+export const Param_06_15 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-15"], 0.01, freqMeta(15, "5.00", p441))
 
 // ── Operation time settings (×0.1 s) ───────────────────────
 
@@ -83,22 +83,22 @@ const timeMeta = (stage: number, page: number): P.ParamMeta => ({
   range: "0.0~6000.0", default: "0.0", unit: "s", page,
 })
 
-export const Param_06_16 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_16, 0.1, timeMeta(0, p441))
-export const Param_06_17 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_17, 0.1, timeMeta(1, p441))
-export const Param_06_18 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_18, 0.1, timeMeta(2, p441))
-export const Param_06_19 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_19, 0.1, timeMeta(3, p441))
-export const Param_06_20 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_20, 0.1, timeMeta(4, p442))
-export const Param_06_21 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_21, 0.1, timeMeta(5, p442))
-export const Param_06_22 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_22, 0.1, timeMeta(6, p442))
-export const Param_06_23 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_23, 0.1, timeMeta(7, p442))
-export const Param_06_24 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_24, 0.1, timeMeta(8, p442))
-export const Param_06_25 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_25, 0.1, timeMeta(9, p442))
-export const Param_06_26 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_26, 0.1, timeMeta(10, p442))
-export const Param_06_27 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_27, 0.1, timeMeta(11, p442))
-export const Param_06_28 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_28, 0.1, timeMeta(12, p442))
-export const Param_06_29 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_29, 0.1, timeMeta(13, p442))
-export const Param_06_30 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_30, 0.1, timeMeta(14, p442))
-export const Param_06_31 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters._06_31, 0.1, timeMeta(15, p442))
+export const Param_06_16 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-16"], 0.1, timeMeta(0, p441))
+export const Param_06_17 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-17"], 0.1, timeMeta(1, p441))
+export const Param_06_18 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-18"], 0.1, timeMeta(2, p441))
+export const Param_06_19 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-19"], 0.1, timeMeta(3, p441))
+export const Param_06_20 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-20"], 0.1, timeMeta(4, p442))
+export const Param_06_21 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-21"], 0.1, timeMeta(5, p442))
+export const Param_06_22 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-22"], 0.1, timeMeta(6, p442))
+export const Param_06_23 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-23"], 0.1, timeMeta(7, p442))
+export const Param_06_24 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-24"], 0.1, timeMeta(8, p442))
+export const Param_06_25 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-25"], 0.1, timeMeta(9, p442))
+export const Param_06_26 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-26"], 0.1, timeMeta(10, p442))
+export const Param_06_27 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-27"], 0.1, timeMeta(11, p442))
+export const Param_06_28 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-28"], 0.1, timeMeta(12, p442))
+export const Param_06_29 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-29"], 0.1, timeMeta(13, p442))
+export const Param_06_30 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-30"], 0.1, timeMeta(14, p442))
+export const Param_06_31 = P.makeScaledParam(GROUP_06_Automatic_Program_Operation_Parameters["06-31"], 0.1, timeMeta(15, p442))
 
 // ── Decode / Encode / Formatted exports ────────────────────
 
@@ -296,65 +296,53 @@ export const formatted06_47 = P.makeFormatted(Param_06_47)
 
 // ── Group-level lookup ─────────────────────────────────────
 
-type ParamEntry = {
-  schema: Schema.Schema<any, any>
-  decode: ReturnType<typeof P.makeDecode>
-  encode: ReturnType<typeof P.makeEncode>
-}
-
-const param = (
-  schema: Schema.Schema<any, any>,
-  decode: ReturnType<typeof P.makeDecode>,
-  encode: ReturnType<typeof P.makeEncode>,
-): ParamEntry => ({ schema, decode, encode })
-
-export const group06Params: Record<string, ParamEntry> = {
-  "06-00": param(Param_06_00, decode06_00, encode06_00),
-  "06-01": param(Param_06_01, decode06_01, encode06_01),
-  "06-02": param(Param_06_02, decode06_02, encode06_02),
-  "06-03": param(Param_06_03, decode06_03, encode06_03),
-  "06-04": param(Param_06_04, decode06_04, encode06_04),
-  "06-05": param(Param_06_05, decode06_05, encode06_05),
-  "06-06": param(Param_06_06, decode06_06, encode06_06),
-  "06-07": param(Param_06_07, decode06_07, encode06_07),
-  "06-08": param(Param_06_08, decode06_08, encode06_08),
-  "06-09": param(Param_06_09, decode06_09, encode06_09),
-  "06-10": param(Param_06_10, decode06_10, encode06_10),
-  "06-11": param(Param_06_11, decode06_11, encode06_11),
-  "06-12": param(Param_06_12, decode06_12, encode06_12),
-  "06-13": param(Param_06_13, decode06_13, encode06_13),
-  "06-14": param(Param_06_14, decode06_14, encode06_14),
-  "06-15": param(Param_06_15, decode06_15, encode06_15),
-  "06-16": param(Param_06_16, decode06_16, encode06_16),
-  "06-17": param(Param_06_17, decode06_17, encode06_17),
-  "06-18": param(Param_06_18, decode06_18, encode06_18),
-  "06-19": param(Param_06_19, decode06_19, encode06_19),
-  "06-20": param(Param_06_20, decode06_20, encode06_20),
-  "06-21": param(Param_06_21, decode06_21, encode06_21),
-  "06-22": param(Param_06_22, decode06_22, encode06_22),
-  "06-23": param(Param_06_23, decode06_23, encode06_23),
-  "06-24": param(Param_06_24, decode06_24, encode06_24),
-  "06-25": param(Param_06_25, decode06_25, encode06_25),
-  "06-26": param(Param_06_26, decode06_26, encode06_26),
-  "06-27": param(Param_06_27, decode06_27, encode06_27),
-  "06-28": param(Param_06_28, decode06_28, encode06_28),
-  "06-29": param(Param_06_29, decode06_29, encode06_29),
-  "06-30": param(Param_06_30, decode06_30, encode06_30),
-  "06-31": param(Param_06_31, decode06_31, encode06_31),
-  "06-32": param(Param_06_32, decode06_32, encode06_32),
-  "06-33": param(Param_06_33, decode06_33, encode06_33),
-  "06-34": param(Param_06_34, decode06_34, encode06_34),
-  "06-35": param(Param_06_35, decode06_35, encode06_35),
-  "06-36": param(Param_06_36, decode06_36, encode06_36),
-  "06-37": param(Param_06_37, decode06_37, encode06_37),
-  "06-38": param(Param_06_38, decode06_38, encode06_38),
-  "06-39": param(Param_06_39, decode06_39, encode06_39),
-  "06-40": param(Param_06_40, decode06_40, encode06_40),
-  "06-41": param(Param_06_41, decode06_41, encode06_41),
-  "06-42": param(Param_06_42, decode06_42, encode06_42),
-  "06-43": param(Param_06_43, decode06_43, encode06_43),
-  "06-44": param(Param_06_44, decode06_44, encode06_44),
-  "06-45": param(Param_06_45, decode06_45, encode06_45),
-  "06-46": param(Param_06_46, decode06_46, encode06_46),
-  "06-47": param(Param_06_47, decode06_47, encode06_47),
+export const group06Params = {
+  "06-00": P.param(Param_06_00, decode06_00, encode06_00),
+  "06-01": P.param(Param_06_01, decode06_01, encode06_01),
+  "06-02": P.param(Param_06_02, decode06_02, encode06_02),
+  "06-03": P.param(Param_06_03, decode06_03, encode06_03),
+  "06-04": P.param(Param_06_04, decode06_04, encode06_04),
+  "06-05": P.param(Param_06_05, decode06_05, encode06_05),
+  "06-06": P.param(Param_06_06, decode06_06, encode06_06),
+  "06-07": P.param(Param_06_07, decode06_07, encode06_07),
+  "06-08": P.param(Param_06_08, decode06_08, encode06_08),
+  "06-09": P.param(Param_06_09, decode06_09, encode06_09),
+  "06-10": P.param(Param_06_10, decode06_10, encode06_10),
+  "06-11": P.param(Param_06_11, decode06_11, encode06_11),
+  "06-12": P.param(Param_06_12, decode06_12, encode06_12),
+  "06-13": P.param(Param_06_13, decode06_13, encode06_13),
+  "06-14": P.param(Param_06_14, decode06_14, encode06_14),
+  "06-15": P.param(Param_06_15, decode06_15, encode06_15),
+  "06-16": P.param(Param_06_16, decode06_16, encode06_16),
+  "06-17": P.param(Param_06_17, decode06_17, encode06_17),
+  "06-18": P.param(Param_06_18, decode06_18, encode06_18),
+  "06-19": P.param(Param_06_19, decode06_19, encode06_19),
+  "06-20": P.param(Param_06_20, decode06_20, encode06_20),
+  "06-21": P.param(Param_06_21, decode06_21, encode06_21),
+  "06-22": P.param(Param_06_22, decode06_22, encode06_22),
+  "06-23": P.param(Param_06_23, decode06_23, encode06_23),
+  "06-24": P.param(Param_06_24, decode06_24, encode06_24),
+  "06-25": P.param(Param_06_25, decode06_25, encode06_25),
+  "06-26": P.param(Param_06_26, decode06_26, encode06_26),
+  "06-27": P.param(Param_06_27, decode06_27, encode06_27),
+  "06-28": P.param(Param_06_28, decode06_28, encode06_28),
+  "06-29": P.param(Param_06_29, decode06_29, encode06_29),
+  "06-30": P.param(Param_06_30, decode06_30, encode06_30),
+  "06-31": P.param(Param_06_31, decode06_31, encode06_31),
+  "06-32": P.param(Param_06_32, decode06_32, encode06_32),
+  "06-33": P.param(Param_06_33, decode06_33, encode06_33),
+  "06-34": P.param(Param_06_34, decode06_34, encode06_34),
+  "06-35": P.param(Param_06_35, decode06_35, encode06_35),
+  "06-36": P.param(Param_06_36, decode06_36, encode06_36),
+  "06-37": P.param(Param_06_37, decode06_37, encode06_37),
+  "06-38": P.param(Param_06_38, decode06_38, encode06_38),
+  "06-39": P.param(Param_06_39, decode06_39, encode06_39),
+  "06-40": P.param(Param_06_40, decode06_40, encode06_40),
+  "06-41": P.param(Param_06_41, decode06_41, encode06_41),
+  "06-42": P.param(Param_06_42, decode06_42, encode06_42),
+  "06-43": P.param(Param_06_43, decode06_43, encode06_43),
+  "06-44": P.param(Param_06_44, decode06_44, encode06_44),
+  "06-45": P.param(Param_06_45, decode06_45, encode06_45),
+  "06-46": P.param(Param_06_46, decode06_46, encode06_46),
+  "06-47": P.param(Param_06_47, decode06_47, encode06_47),
 }

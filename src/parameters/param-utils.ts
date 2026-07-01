@@ -5,16 +5,17 @@ import { Int16, UInt16 } from "../schemas";
  * Structured metadata for a parameter extracted from the A510 instruction manual.
  */
 export interface ParamMeta {
-  readonly group: number
-  readonly code: string
-  readonly name: string
-  readonly range: string
-  readonly default: string
-  readonly unit: string
-  readonly page: number
+  readonly group: number;
+  readonly code: string;
+  readonly name: string;
+  readonly range: string;
+  readonly default: string;
+  readonly unit: string;
+  readonly page: number;
 }
 
-const formatRegister = (register: number): string => `0x${register.toString(16).toUpperCase().padStart(4, "0")}`
+const formatRegister = (register: number): string =>
+  `0x${register.toString(16).toUpperCase().padStart(4, "0")}`;
 
 const formatMeta = (register: number, meta: ParamMeta): string =>
   [
@@ -24,9 +25,13 @@ const formatMeta = (register: number, meta: ParamMeta): string =>
     `Default: ${meta.default}`,
     `Unit: ${meta.unit}`,
     `Manual Page: ${meta.page}`,
-  ].join("\n")
+  ].join("\n");
 
-const formatScaledMeta = (register: number, meta: ParamMeta, factor: number): string =>
+const formatScaledMeta = (
+  register: number,
+  meta: ParamMeta,
+  factor: number,
+): string =>
   [
     `${meta.code} ${meta.name}`,
     `Register: ${formatRegister(register)}`,
@@ -35,9 +40,13 @@ const formatScaledMeta = (register: number, meta: ParamMeta, factor: number): st
     `Default: ${meta.default}`,
     `Unit: ${meta.unit}`,
     `Manual Page: ${meta.page}`,
-  ].join("\n")
+  ].join("\n");
 
-const formatEnumMeta = (register: number, meta: ParamMeta, labels: Record<number, string>): string =>
+const formatEnumMeta = (
+  register: number,
+  meta: ParamMeta,
+  labels: Record<number, string>,
+): string =>
   [
     `${meta.code} ${meta.name}`,
     `Register: ${formatRegister(register)}`,
@@ -46,7 +55,7 @@ const formatEnumMeta = (register: number, meta: ParamMeta, labels: Record<number
     `Default: ${meta.default}`,
     `Unit: ${meta.unit}`,
     `Manual Page: ${meta.page}`,
-  ].join("\n")
+  ].join("\n");
 
 // ── Factories ──────────────────────────────────────────────
 
@@ -60,7 +69,7 @@ export const makeParam = <A extends number, I extends number>(
 ): Schema.Schema<A, I> =>
   UInt16.pipe(
     Schema.annotations({ description: formatMeta(register, meta) }),
-  ) as unknown as Schema.Schema<A, I>
+  ) as unknown as Schema.Schema<A, I>;
 
 /**
  * Scaled parameter where wire = domain / factor.
@@ -72,13 +81,15 @@ export const makeScaledParam = (
   meta: ParamMeta,
 ): Schema.Schema<number, number> =>
   UInt16.pipe(
-    Schema.annotations({ description: formatScaledMeta(register, meta, factor) }),
+    Schema.annotations({
+      description: formatScaledMeta(register, meta, factor),
+    }),
     Schema.transformOrFail(UInt16, {
       decode: (raw) => ParseResult.succeed(raw * factor),
       encode: (value) => ParseResult.succeed(Math.round(value / factor)),
       strict: false,
     }),
-  ) as unknown as Schema.Schema<number, number>
+  ) as unknown as Schema.Schema<number, number>;
 
 /**
  * Signed scaled parameter where wire = domain / factor.
@@ -91,13 +102,15 @@ export const makeSignedScaledParam = (
   meta: ParamMeta,
 ): Schema.Schema<number, number> =>
   Int16.pipe(
-    Schema.annotations({ description: formatScaledMeta(register, meta, factor) }),
+    Schema.annotations({
+      description: formatScaledMeta(register, meta, factor),
+    }),
     Schema.transformOrFail(Int16, {
       decode: (raw) => ParseResult.succeed(raw * factor),
       encode: (value) => ParseResult.succeed(Math.round(value / factor)),
       strict: false,
     }),
-  ) as unknown as Schema.Schema<number, number>
+  ) as unknown as Schema.Schema<number, number>;
 
 /**
  * Enum selection parameter.
@@ -108,31 +121,56 @@ export const makeEnumParam = <Domain extends string>(
   labels: Record<number, Domain>,
   meta: ParamMeta,
 ): Schema.Schema<Domain, number> => {
-  const values = [...new Set(Object.values(labels))] as [Domain, ...Domain[]]
+  const values = [...new Set(Object.values(labels))] as [Domain, ...Domain[]];
   return UInt16.pipe(
     Schema.annotations({ description: formatEnumMeta(register, meta, labels) }),
     Schema.transformOrFail(Schema.Literal(...values), {
       decode: (raw, _, ast) => {
-        const label = labels[raw as number]
+        const label = labels[raw as number];
         return label !== undefined
           ? ParseResult.succeed(label)
           : ParseResult.fail(
-              new ParseResult.Type(ast, raw, `Unknown enum value ${raw} for ${meta.code}`),
-            )
+              new ParseResult.Type(
+                ast,
+                raw,
+                `Unknown enum value ${raw} for ${meta.code}`,
+              ),
+            );
       },
       encode: (value, _, ast) => {
-        const entry = Object.entries(labels).find(([, v]) => v === value)
+        const entry = Object.entries(labels).find(([, v]) => v === value);
         return entry
           ? ParseResult.succeed(Number(entry[0]))
-          : ParseResult.fail(new ParseResult.Type(ast, value, `Invalid value "${value}" for ${meta.code}`))
+          : ParseResult.fail(
+              new ParseResult.Type(
+                ast,
+                value,
+                `Invalid value "${value}" for ${meta.code}`,
+              ),
+            );
       },
       strict: false,
     }),
-  ) as unknown as Schema.Schema<Domain, number>
-}
+  ) as unknown as Schema.Schema<Domain, number>;
+};
 
 // ── Convenience helpers ────────────────────────────────────
 
-export const makeDecode = (schema: Schema.Schema<any, any>) => Schema.decodeUnknown(schema)
-export const makeEncode = (schema: Schema.Schema<any, any>) => Schema.encode(schema)
-export const makeFormatted = (schema: Schema.Schema<any, any>) => Pretty.make(schema)
+export const makeDecode = <S extends Schema.Schema<any, any>>(schema: S) =>
+  Schema.decodeUnknown(schema);
+export const makeEncode = <S extends Schema.Schema<any, any>>(schema: S) =>
+  Schema.encode(schema);
+export const makeFormatted = <S extends Schema.Schema<any, any>>(schema: S) =>
+  Pretty.make(schema);
+
+export type ParamEntry<S extends Schema.Schema<any, any>> = {
+  readonly schema: S;
+  readonly decode: ReturnType<typeof makeDecode<S>>;
+  readonly encode: ReturnType<typeof makeEncode<S>>;
+};
+
+export const param = <S extends Schema.Schema<any, any>>(
+  schema: S,
+  decode: ReturnType<typeof makeDecode<S>>,
+  encode: ReturnType<typeof makeEncode<S>>,
+): ParamEntry<S> => ({ schema, decode, encode });
