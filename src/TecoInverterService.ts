@@ -1,5 +1,9 @@
-import { Effect, Schema } from "effect";
-import { AsciiTransportService, RtuTransportService } from "effect-modbus-rs";
+import { Effect, ParseResult, Schema } from "effect";
+import {
+  AsciiTransportService,
+  RtuTransportService,
+  type ModbusError,
+} from "effect-modbus-rs";
 import {
   COMMAND_REGISTERS,
   MONITOR_REGISTERS,
@@ -121,8 +125,21 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
         ) as unknown as {
           [K in keyof T]: T[K] extends { schema: Schema.Schema<infer A, any> }
             ? (deviceId: number) => {
-                read: Effect.Effect<A, any, any>;
-                update: (value: A) => Effect.Effect<void, any, any>;
+                // TODO: hardcoding the Error and Requirement channels here
+                //        because i cannot figure out how to infer them and i
+                //        know they are consistent
+                read: Effect.Effect<
+                  A,
+                  ParseResult.ParseError | ModbusError,
+                  never
+                >;
+                update: (
+                  value: A,
+                ) => Effect.Effect<
+                  void,
+                  ParseResult.ParseError | ModbusError,
+                  never
+                >;
               }
             : never;
         };

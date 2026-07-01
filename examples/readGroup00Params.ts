@@ -10,8 +10,6 @@ const program = Effect.gen(function* () {
   const inverter = yield* TecoInverterService;
   const params = inverter.parameters.group00;
 
-  const dunno = yield* params["00-00"](1).read;
-
   const keys = Object.keys(
     P.group00.group00Params,
   ) as (keyof typeof inverter.parameters.group00)[];
