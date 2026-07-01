@@ -1,4 +1,4 @@
-import { Console, Effect, Layer, Logger, LogLevel } from "effect";
+import { Console, Effect, Layer, Logger, LogLevel, Pretty } from "effect";
 import { TecoInverterService } from "../src/TecoInverterService";
 import { RtuTransportService } from "effect-modbus-rs";
 import { BunRuntime } from "@effect/platform-bun";
@@ -10,23 +10,17 @@ const program = Effect.gen(function* () {
   const inverter = yield* TecoInverterService;
   const params = inverter.parameters.group00;
 
-  const keys = Object.keys(
-    P.group00.group00Params,
-  ) as (keyof typeof inverter.parameters.group00)[];
-
   const reads: Record<string, Effect.Effect<any, any, any>> = {};
-  for (const key of keys) {
-    reads[key] = (inverter.parameters.group00[key] as any)(deviceId).read;
+  for (const [key, param] of Object.entries(params)) {
+    reads[key] = param(deviceId).read;
   }
 
   const values = yield* Effect.all(reads, { concurrency: "unbounded" });
 
   yield* Console.log("=== Group 00: Basic Parameters ===");
-  for (const key of keys) {
-    const formatted = P.group00[
-      `formatted${key.replace("-", "_")}` as keyof typeof P.group00
-    ] as (v: any) => string;
-    yield* Console.log(`  ${key}: ${formatted(values[key])}`);
+  for (const [key, entry] of Object.entries(P.group00.group00Params)) {
+    // @ts-expect-error - entry.schema is a union type; all schemas work with Pretty at runtime
+    yield* Console.log(`  ${key}: ${Pretty.make(entry.schema)(values[key])}`);
   }
 });
 
@@ -43,7 +37,7 @@ const layerLive = Layer.provideMerge(TecoLayer, RtuLayer);
 
 program.pipe(
   Effect.provide(layerLive),
-  // @ts-expect-error - Logger.withMinimumLogLevel produces type mismatch in pipe chain
+  // @ts-ignore
   Logger.withMinimumLogLevel(LogLevel.Debug),
   BunRuntime.runMain,
 );
