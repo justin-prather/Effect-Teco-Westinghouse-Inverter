@@ -525,6 +525,48 @@ const all = {
       page: p482,
     },
   },
+  "20-36": {
+    register: GROUP_20_Speed_Control_Parameters["20-36"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "20-36", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 },
+  },
+
+  "20-37": {
+    register: GROUP_20_Speed_Control_Parameters["20-37"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "20-37", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 },
+  },
+
+  "20-38": {
+    register: GROUP_20_Speed_Control_Parameters["20-38"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "20-38", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 },
+  },
+
+  "20-39": {
+    register: GROUP_20_Speed_Control_Parameters["20-39"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "20-39", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 },
+  },
+
+  "20-40": {
+    register: GROUP_20_Speed_Control_Parameters["20-40"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "20-40", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 },
+  },
+
+  "20-41": {
+    register: GROUP_20_Speed_Control_Parameters["20-41"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "20-41", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 },
+  },
+
+  "20-42": {
+    register: GROUP_20_Speed_Control_Parameters["20-42"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "20-42", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 },
+  },
+
 } as const satisfies Record<string, ParamConfig>;
 
 // ── Group-level lookup ─────────────────────────────────────

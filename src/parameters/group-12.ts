@@ -361,6 +361,12 @@ const all = {
     kind: ParamKind.UInt16,
     meta: { group, code: "12-85", name: "AI3 Input", range: "read-only", default: "-", unit: "%", page: p467 },
   },
+  "12-81": {
+    register: GROUP_12_Monitoring_Parameters["12-81"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "12-81", name: "Reserved", range: "-", default: "-", unit: "-", page: p467 },
+  },
+
 } as const satisfies Record<string, ParamConfig>;
 
 

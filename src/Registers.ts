@@ -384,6 +384,16 @@ export enum GROUP_07_Start_Stop_Parameters {
   "07-34" = 0x0722,
   "07-35" = 0x0723,
   "07-36" = 0x0724,
+  // NOTE: Register value inferred from sequential pattern
+  "07-37" = 0x0725,
+  // NOTE: Register value inferred from sequential pattern
+  "07-38" = 0x0726,
+  // NOTE: Register value inferred from sequential pattern
+  "07-39" = 0x0727,
+  // NOTE: Register value inferred from sequential pattern
+  "07-40" = 0x0728,
+  // NOTE: Register value inferred from sequential pattern
+  "07-41" = 0x0729,
   "07-42" = 0x072a,
   "07-43" = 0x072b,
   "07-44" = 0x072c,
@@ -437,6 +447,8 @@ export enum GROUP_08_Protection_Parameters {
   "08-42" = 0x082a,
   "08-43" = 0x082b,
   "08-44" = 0x082c,
+  // NOTE: Register value inferred from sequential pattern
+  "08-45" = 0x082d,
   "08-46" = 0x082e,
   "08-47" = 0x082f,
   "08-48" = 0x0830,
@@ -465,6 +477,8 @@ export enum GROUP_09_Communication_Parameters {
   "09-07" = 0x0907,
   "09-08" = 0x0908,
   "09-09" = 0x0909,
+  // NOTE: Register value inferred from sequential pattern
+  "09-10" = 0x090a,
 }
 
 export enum GROUP_10_PID_Parameters {
@@ -510,6 +524,8 @@ export enum GROUP_10_PID_Parameters {
   "10-39" = 0x0a27,
   "10-40" = 0x0a28,
   "10-41" = 0x0a29,
+  // NOTE: Register value inferred from sequential pattern
+  "10-42" = 0x0a2a,
   "10-47" = 0x0a2f,
   "10-48" = 0x0a30,
   "10-49" = 0x0a31,
@@ -582,6 +598,28 @@ export enum GROUP_11_Auxiliary_Parameters {
   "11-63" = 0x0b3f,
   "11-64" = 0x0b40,
   "11-65" = 0x0b41,
+  // NOTE: Register value inferred from sequential pattern
+  "11-66" = 0x0b42,
+  // NOTE: Register value inferred from sequential pattern
+  "11-67" = 0x0b43,
+  // NOTE: Register value inferred from sequential pattern
+  "11-68" = 0x0b44,
+  // NOTE: Register value inferred from sequential pattern
+  "11-69" = 0x0b45,
+  // NOTE: Register value inferred from sequential pattern
+  "11-70" = 0x0b46,
+  // NOTE: Register value inferred from sequential pattern
+  "11-71" = 0x0b47,
+  // NOTE: Register value inferred from sequential pattern
+  "11-72" = 0x0b48,
+  // NOTE: Register value inferred from sequential pattern
+  "11-73" = 0x0b49,
+  // NOTE: Register value inferred from sequential pattern
+  "11-76" = 0x0b4c,
+  // NOTE: Register value inferred from sequential pattern
+  "11-77" = 0x0b4d,
+  // NOTE: Register value inferred from sequential pattern
+  "11-78" = 0x0b4e,
 }
 
 export enum GROUP_12_Monitoring_Parameters {
@@ -666,6 +704,8 @@ export enum GROUP_12_Monitoring_Parameters {
   "12-78" = 0x0c4e,
   "12-79" = 0x0c4f,
   "12-80" = 0x0c50,
+  // NOTE: Register value inferred from sequential pattern
+  "12-81" = 0x0c51,
   "12-82" = 0x0c52,
   "12-85" = 0x0c55,
 }
@@ -923,6 +963,20 @@ export enum GROUP_20_Speed_Control_Parameters {
   "20-33" = 0x1421,
   "20-34" = 0x1422,
   "20-35" = 0x1423,
+  // NOTE: Register value inferred from sequential pattern
+  "20-36" = 0x1424,
+  // NOTE: Register value inferred from sequential pattern
+  "20-37" = 0x1425,
+  // NOTE: Register value inferred from sequential pattern
+  "20-38" = 0x1426,
+  // NOTE: Register value inferred from sequential pattern
+  "20-39" = 0x1427,
+  // NOTE: Register value inferred from sequential pattern
+  "20-40" = 0x1428,
+  // NOTE: Register value inferred from sequential pattern
+  "20-41" = 0x1429,
+  // NOTE: Register value inferred from sequential pattern
+  "20-42" = 0x142a,
   "20-43" = 0x142b,
   "20-44" = 0x142c,
 }
@@ -998,6 +1052,8 @@ export enum GROUP_22_PM_Motor_Parameters {
   "22-20" = 0x1614,
   "22-21" = 0x1615,
   "22-22" = 0x1616,
+  // NOTE: Register value inferred from sequential pattern
+  "22-23" = 0x1617,
   "22-25" = 0x1619,
   "22-26" = 0x161a,
   "22-27" = 0x161b,

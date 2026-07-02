@@ -214,7 +214,7 @@ export type ParamConfig =
 // ── Bundle factories (produce schema + decode + encode + formatted) ──
 // These replace the duplicated local `p()`/`sp()` helpers in group files.
 
-export const p = <A extends number, I extends number>(
+const p = <A extends number, I extends number>(
   addr: number,
   meta: ParamMeta,
 ) => {
@@ -227,7 +227,7 @@ export const p = <A extends number, I extends number>(
   };
 };
 
-export const sp = (addr: number, factor: number, meta: ParamMeta) => {
+const sp = (addr: number, factor: number, meta: ParamMeta) => {
   const schema = makeScaledParam(addr, factor, meta);
   return {
     schema,
@@ -237,7 +237,7 @@ export const sp = (addr: number, factor: number, meta: ParamMeta) => {
   };
 };
 
-export const spSigned = (addr: number, factor: number, meta: ParamMeta) => {
+const spSigned = (addr: number, factor: number, meta: ParamMeta) => {
   const schema = makeSignedScaledParam(addr, factor, meta);
   return {
     schema,
@@ -247,7 +247,7 @@ export const spSigned = (addr: number, factor: number, meta: ParamMeta) => {
   };
 };
 
-export const pe = <A extends string>(
+const pe = <A extends string>(
   addr: number,
   labels: Record<number, A>,
   meta: ParamMeta,
@@ -309,7 +309,7 @@ export type GroupParamOps<C extends Record<string, ParamConfig>> = {
   readonly [K in keyof C]: ParamCallableOfEntry<ParamEntryOfConfig<C[K]>>;
 };
 
-export type GroupParamAccessor<C extends Record<string, ParamConfig>> = <
+type GroupParamAccessor<C extends Record<string, ParamConfig>> = <
   K extends keyof C,
 >(
   param: K,

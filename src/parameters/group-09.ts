@@ -110,6 +110,12 @@ const all = {
       range: "5~65", default: "5", unit: "ms", page: p452,
     },
   },
+  "09-10": {
+    register: GROUP_09_Communication_Parameters["09-10"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "09-10", name: "Reserved", range: "-", default: "-", unit: "-", page: p452 },
+  },
+
 } as const satisfies Record<string, ParamConfig>;
 
 export const group09Params = all;

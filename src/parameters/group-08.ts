@@ -513,6 +513,12 @@ const all = {
       range: "0~65534", default: "0", unit: "-", page: p451,
     },
   },
+  "08-45": {
+    register: GROUP_08_Protection_Parameters["08-45"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "08-45", name: "Reserved", range: "-", default: "-", unit: "-", page: p447 },
+  },
+
 } as const satisfies Record<string, ParamConfig>;
 
 export const group08Params = all;

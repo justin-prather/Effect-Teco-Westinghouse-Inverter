@@ -398,6 +398,36 @@ const all = {
       range: "0~150", default: "100", unit: "%", page: p446,
     },
   },
+  "07-37": {
+    register: GROUP_07_Start_Stop_Parameters["07-37"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "07-37", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 },
+  },
+
+  "07-38": {
+    register: GROUP_07_Start_Stop_Parameters["07-38"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "07-38", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 },
+  },
+
+  "07-39": {
+    register: GROUP_07_Start_Stop_Parameters["07-39"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "07-39", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 },
+  },
+
+  "07-40": {
+    register: GROUP_07_Start_Stop_Parameters["07-40"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "07-40", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 },
+  },
+
+  "07-41": {
+    register: GROUP_07_Start_Stop_Parameters["07-41"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "07-41", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 },
+  },
+
 } as const satisfies Record<string, ParamConfig>;
 
 export const group07Params = all;
