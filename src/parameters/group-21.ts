@@ -3,7 +3,7 @@
  * Manual pages 4-82 to 4-85
  */
 
-import * as P from "./param-utils";
+import { ParamKind, type ParamConfig } from "./param-utils";
 import { GROUP_21_Torque_And_Position_Control_Parameters } from "../Registers";
 
 const group = 21 as const;
@@ -13,51 +13,229 @@ const p484 = 484 as const;
 const p485 = 485 as const;
 
 const all = {
-  "21-00": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-00"], { group, code: "21-00", name: "Torque Control Selection", range: "0-1 (0:Speed Control / 1:Torque Control)", default: "0", unit: "-", page: p482 }),
-  "21-01": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-01"], { group, code: "21-01", name: "Filter Time of Torque Reference", range: "0~1000", default: "0", unit: "ms", page: p482 }),
-  "21-02": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-02"], { group, code: "21-02", name: "Speed Limit Selection", range: "0-2 (0:AI input / 1:21-03 value / 2:Comm 2502H)", default: "0", unit: "-", page: p482 }),
-  "21-03": P.spSigned(GROUP_21_Torque_And_Position_Control_Parameters["21-03"], 0.1, { group, code: "21-03", name: "Speed Limit Value", range: "-120~120", default: "0", unit: "%", page: p482 }),
-  "21-04": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-04"], { group, code: "21-04", name: "Speed Limit Bias", range: "0~120", default: "10", unit: "%", page: p482 }),
-  "21-05": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-05"], { group, code: "21-05", name: "Positive Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 }),
-  "21-06": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-06"], { group, code: "21-06", name: "Negative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 }),
-  "21-07": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-07"], { group, code: "21-07", name: "Forward Regenerative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 }),
-  "21-08": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-08"], { group, code: "21-08", name: "Reversal Regenerative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 }),
-  "21-09": P.sp(GROUP_21_Torque_And_Position_Control_Parameters["21-09"], 0.1, { group, code: "21-09", name: "Maximum Frequency of Position Control", range: "0.1~100.0", default: "20.0", unit: "Hz", page: p482 }),
-  "21-10": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-10"], { group, code: "21-10", name: "Command of Rotation Cycle Number of Section 0", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-11": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-11"], { group, code: "21-11", name: "Command of the Pulse Number of Section 0", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-12": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-12"], { group, code: "21-12", name: "Command of Rotation Cycle Number of Section 1", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-13": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-13"], { group, code: "21-13", name: "Command of the Pulse Number of Section 1", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-14": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-14"], { group, code: "21-14", name: "Command of Rotation Cycle Number of Section 2", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-15": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-15"], { group, code: "21-15", name: "Command of the Pulse Number of Section 2", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-16": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-16"], { group, code: "21-16", name: "Command of Rotation Cycle Number of Section 3", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-17": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-17"], { group, code: "21-17", name: "Command of the Pulse Number of Section 3", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-18": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-18"], { group, code: "21-18", name: "Command of Rotation Cycle Number of Section 4", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-19": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-19"], { group, code: "21-19", name: "Command of the Pulse Number of Section 4", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-20": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-20"], { group, code: "21-20", name: "Command of Rotation Cycle Number of Section 5", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-21": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-21"], { group, code: "21-21", name: "Command of the Pulse Number of Section 5", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-22": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-22"], { group, code: "21-22", name: "Command of Rotation Cycle Number of Section 6", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-23": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-23"], { group, code: "21-23", name: "Command of the Pulse Number of Section 6", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-24": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-24"], { group, code: "21-24", name: "Command of Rotation Cycle Number of Section 7", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-25": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-25"], { group, code: "21-25", name: "Command of the Pulse Number of Section 7", range: "-9999~9999", default: "0", unit: "-", page: p483 }),
-  "21-26": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-26"], { group, code: "21-26", name: "Command of the Pulse Number of Section 8", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-27": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-27"], { group, code: "21-27", name: "Command of Rotation Cycle Number of Section 8", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-28": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-28"], { group, code: "21-28", name: "Command of the Pulse Number of Section 9", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-29": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-29"], { group, code: "21-29", name: "Command of Rotation Cycle Number of Section 9", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-30": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-30"], { group, code: "21-30", name: "Command of Rotation Cycle Number of Section 10", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-31": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-31"], { group, code: "21-31", name: "Command of the Pulse Number of Section 10", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-32": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-32"], { group, code: "21-32", name: "Command of Rotation Cycle Number of Section 11", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-33": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-33"], { group, code: "21-33", name: "Command of the Pulse Number of Section 11", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-34": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-34"], { group, code: "21-34", name: "Command of Rotation Cycle Number of Section 12", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-35": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-35"], { group, code: "21-35", name: "Command of the Pulse Number of Section 12", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-36": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-36"], { group, code: "21-36", name: "Command of Rotation Cycle Number of Section 13", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-37": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-37"], { group, code: "21-37", name: "Command of the Pulse Number of Section 13", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-38": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-38"], { group, code: "21-38", name: "Command of Rotation Cycle Number of Section 14", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-39": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-39"], { group, code: "21-39", name: "Command of the Pulse Number of Section 14", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-40": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-40"], { group, code: "21-40", name: "Command of Rotation Cycle Number of Section 15", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-41": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-41"], { group, code: "21-41", name: "Command of the Pulse Number of Section 15", range: "-9999~9999", default: "0", unit: "-", page: p484 }),
-  "21-42": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-42"], { group, code: "21-42", name: "Pos. Mode Sel", range: "0-1 (0:Switch to pos mode when freq<01-08 / 1:Z Phase Locked)", default: "0", unit: "-", page: p485 }),
-  "21-43": P.p(GROUP_21_Torque_And_Position_Control_Parameters["21-43"], { group, code: "21-43", name: "Offset Angle", range: "0~9999", default: "0", unit: "Pulse", page: p485 }),
-}
+  "21-00": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-00"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-00", name: "Torque Control Selection", range: "0-1 (0:Speed Control / 1:Torque Control)", default: "0", unit: "-", page: p482 },
+  },
+  "21-01": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-01"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-01", name: "Filter Time of Torque Reference", range: "0~1000", default: "0", unit: "ms", page: p482 },
+  },
+  "21-02": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-02"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-02", name: "Speed Limit Selection", range: "0-2 (0:AI input / 1:21-03 value / 2:Comm 2502H)", default: "0", unit: "-", page: p482 },
+  },
+  "21-03": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-03"],
+    kind: ParamKind.SignedScaled,
+    factor: 0.1,
+    meta: { group, code: "21-03", name: "Speed Limit Value", range: "-120~120", default: "0", unit: "%", page: p482 },
+  },
+  "21-04": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-04"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-04", name: "Speed Limit Bias", range: "0~120", default: "10", unit: "%", page: p482 },
+  },
+  "21-05": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-05"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-05", name: "Positive Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 },
+  },
+  "21-06": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-06"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-06", name: "Negative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 },
+  },
+  "21-07": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-07"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-07", name: "Forward Regenerative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 },
+  },
+  "21-08": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-08"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-08", name: "Reversal Regenerative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p482 },
+  },
+  "21-09": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-09"],
+    kind: ParamKind.Scaled,
+    factor: 0.1,
+    meta: { group, code: "21-09", name: "Maximum Frequency of Position Control", range: "0.1~100.0", default: "20.0", unit: "Hz", page: p482 },
+  },
+  "21-10": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-10"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-10", name: "Command of Rotation Cycle Number of Section 0", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-11": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-11"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-11", name: "Command of the Pulse Number of Section 0", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-12": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-12"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-12", name: "Command of Rotation Cycle Number of Section 1", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-13": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-13"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-13", name: "Command of the Pulse Number of Section 1", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-14": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-14"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-14", name: "Command of Rotation Cycle Number of Section 2", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-15": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-15"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-15", name: "Command of the Pulse Number of Section 2", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-16": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-16"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-16", name: "Command of Rotation Cycle Number of Section 3", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-17": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-17"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-17", name: "Command of the Pulse Number of Section 3", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-18": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-18"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-18", name: "Command of Rotation Cycle Number of Section 4", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-19": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-19"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-19", name: "Command of the Pulse Number of Section 4", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-20": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-20"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-20", name: "Command of Rotation Cycle Number of Section 5", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-21": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-21"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-21", name: "Command of the Pulse Number of Section 5", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-22": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-22"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-22", name: "Command of Rotation Cycle Number of Section 6", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-23": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-23"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-23", name: "Command of the Pulse Number of Section 6", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-24": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-24"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-24", name: "Command of Rotation Cycle Number of Section 7", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-25": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-25"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-25", name: "Command of the Pulse Number of Section 7", range: "-9999~9999", default: "0", unit: "-", page: p483 },
+  },
+  "21-26": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-26"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-26", name: "Command of the Pulse Number of Section 8", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-27": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-27"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-27", name: "Command of Rotation Cycle Number of Section 8", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-28": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-28"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-28", name: "Command of the Pulse Number of Section 9", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-29": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-29"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-29", name: "Command of Rotation Cycle Number of Section 9", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-30": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-30"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-30", name: "Command of Rotation Cycle Number of Section 10", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-31": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-31"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-31", name: "Command of the Pulse Number of Section 10", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-32": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-32"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-32", name: "Command of Rotation Cycle Number of Section 11", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-33": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-33"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-33", name: "Command of the Pulse Number of Section 11", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-34": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-34"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-34", name: "Command of Rotation Cycle Number of Section 12", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-35": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-35"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-35", name: "Command of the Pulse Number of Section 12", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-36": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-36"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-36", name: "Command of Rotation Cycle Number of Section 13", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-37": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-37"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-37", name: "Command of the Pulse Number of Section 13", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-38": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-38"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-38", name: "Command of Rotation Cycle Number of Section 14", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-39": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-39"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-39", name: "Command of the Pulse Number of Section 14", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-40": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-40"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-40", name: "Command of Rotation Cycle Number of Section 15", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-41": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-41"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-41", name: "Command of the Pulse Number of Section 15", range: "-9999~9999", default: "0", unit: "-", page: p484 },
+  },
+  "21-42": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-42"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-42", name: "Pos. Mode Sel", range: "0-1 (0:Switch to pos mode when freq<01-08 / 1:Z Phase Locked)", default: "0", unit: "-", page: p485 },
+  },
+  "21-43": {
+    register: GROUP_21_Torque_And_Position_Control_Parameters["21-43"],
+    kind: ParamKind.UInt16,
+    meta: { group, code: "21-43", name: "Offset Angle", range: "0~9999", default: "0", unit: "Pulse", page: p485 },
+  },
+} as const satisfies Record<string, ParamConfig>;
 
 // ── Static named exports ───────────────────────────────────
 

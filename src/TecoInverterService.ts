@@ -1,4 +1,4 @@
-import { Effect, ParseResult, Schema } from "effect";
+import { Effect, Record } from "effect";
 import {
   AsciiTransportService,
   RtuTransportService,
@@ -33,7 +33,6 @@ import {
 } from "./Registers";
 import * as S from "./schemas";
 import * as P from "./parameters";
-import type { ParamEntry } from "./parameters/param-utils";
 
 export class TecoInverterService extends Effect.Service<TecoInverterService>()(
   "TecoInverterService",
@@ -72,9 +71,9 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
           merge: (base: T, patch: P) => T,
         ) =>
         (deviceId: number) => {
-          const read = readHolding(address, decode)(deviceId);
+          const read = () => readHolding(address, decode)(deviceId);
           const update = Effect.fnUntraced(function* (patch: P) {
-            const current = yield* read;
+            const current = yield* read();
             const merged = merge(current, patch);
             const encoded = yield* encode(merged);
             cacheDevice(deviceId);
@@ -91,7 +90,7 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
           encode: (value: T) => Effect.Effect<number, E2, R2>,
         ) =>
         (deviceId: number) => {
-          const read = readHolding(address, decode)(deviceId);
+          const read = () => readHolding(address, decode)(deviceId);
           const update = Effect.fnUntraced(function* (value: T) {
             cacheDevice(deviceId);
             const client = yield* transport.withClient(deviceId);
@@ -107,44 +106,92 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
           decode: (raw: unknown) => Effect.Effect<T, E, R>,
         ) =>
         (deviceId: number) => ({
-          read: readHolding(address, decode)(deviceId),
+          read: () => readHolding(address, decode)(deviceId),
         });
 
-      const makeGroupParamOps = <
-        T extends Record<string, ParamEntry<any>>,
-        P extends { readonly [K in keyof T]: number },
-      >(
-        params: T,
-        registerMap: P,
-      ) => {
-        return Object.fromEntries(
-          Object.entries(params).map(([key, entry]) => {
-            const address = (registerMap as Record<string, number>)[key]!;
-            return [key, makeReadWrite(address, entry.decode, entry.encode)];
-          }),
-        ) as unknown as {
-          [K in keyof T]: T[K] extends { schema: Schema.Schema<infer A, any> }
-            ? (deviceId: number) => {
-                // TODO: hardcoding the Error and Requirement channels here
-                //        because i cannot figure out how to infer them and i
-                //        know they are consistent
-                read: Effect.Effect<
-                  A,
-                  ParseResult.ParseError | ModbusError,
-                  never
-                >;
-                update: (
-                  value: A,
-                ) => Effect.Effect<
-                  void,
-                  ParseResult.ParseError | ModbusError,
-                  never
-                >;
-              }
-            : never;
-        };
+      // const makeGroupParamOps = <
+      //   T extends Record<string, ParamEntry<any>>,
+      //   P extends { readonly [K in keyof T]: number },
+      // >(
+      //   params: T,
+      //   registerMap: P,
+      // ) => {
+      //   return Object.fromEntries(
+      //     Object.entries(params).map(([key, entry]) => {
+      //       const address = (registerMap as Record<string, number>)[key]!;
+      //       return [key, makeReadWrite(address, entry.decode, entry.encode)];
+      //     }),
+      //   ) as unknown as {
+      //     [K in keyof T]: T[K] extends { schema: Schema.Schema<infer A, any> }
+      //       ? (deviceId: number) => {
+      //           // TODO: hardcoding the Error and Requirement channels here
+      //           //        because i cannot figure out how to infer them and i
+      //           //        know they are consistent
+      //           read: Effect.Effect<
+      //             A,
+      //             ParseResult.ParseError | ModbusError,
+      //             never
+      //           >;
+      //           update: (
+      //             value: A,
+      //           ) => Effect.Effect<
+      //             void,
+      //             ParseResult.ParseError | ModbusError,
+      //             never
+      //           >;
+      //         }
+      //       : never;
+      //   };
+      // };
+
+      const makeParamOpsFromConfig = <C extends P.ParamConfig>(config: C) => {
+        const { decode, encode } = P.fromConfig(config);
+        const ops = makeReadWrite(config.register, decode, encode);
+        return Object.assign((deviceId: number) => ops(deviceId), {
+          meta: config.meta,
+        }) as P.ParamCallableOfEntry<P.ParamEntryOfConfig<C>>;
       };
 
+      const makeGroupParamOps = <C extends Record<string, P.ParamConfig>>(
+        configs: C,
+      ) => {
+        const entries = (
+          Object.keys(configs) as Array<Extract<keyof C, string>>
+        ).map((key) => [key, makeParamOpsFromConfig(configs[key]!)] as const);
+
+        return Record.fromEntries(entries) as P.GroupParamOps<C>;
+      };
+      //
+      // const getGroupParamOps = <C extends Record<string, P.ParamConfig>>(
+      //   configs: C,
+      // ) => {
+      //   return <K extends keyof C>(param: K) => {
+      //     const config = configs[param]!;
+      //     const { decode, encode } = P.fromConfig(config);
+      //     const read = (deviceId: number) => {
+      //       cacheDevice(deviceId);
+      //       return readHolding(config.register, decode)(deviceId);
+      //     };
+      //     const update = Effect.fnUntraced(function* (
+      //       deviceId: number,
+      //       value: Parameters<typeof encode>[0],
+      //     ) {
+      //       cacheDevice(deviceId);
+      //       const client = yield* transport.withClient(deviceId);
+      //       const encoded = yield* encode(value);
+      //       yield* client.writeSingleRegister({
+      //         address: config.register,
+      //         value: encoded,
+      //       });
+      //     });
+      //     return Object.assign({ read, update }, { meta: config.meta }) as {
+      //       readonly read: typeof read;
+      //       readonly update: typeof update;
+      //       readonly meta: C[K]["meta"];
+      //     };
+      //   };
+      // };
+      //
       return {
         operationCommand: makeReadModifyWrite(
           COMMAND_REGISTERS.OPERATION_COMMAND,
@@ -240,98 +287,29 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
           S.decodeA510CheckMonitor,
         ),
         parameters: {
-          group00: makeGroupParamOps(
-            P.group00.group00Params,
-            GROUP_00_Basic_Parameters,
-          ),
-          group01: makeGroupParamOps(
-            P.group01.group01Params,
-            GROUP_01_VF_Control_Parameters,
-          ),
-          group02: makeGroupParamOps(
-            P.group02.group02Params,
-            GROUP_02_IM_Motor_Parameters,
-          ),
-          group03: makeGroupParamOps(
-            P.group03.group03Params,
-            GROUP_03_External_Digital_Input_and_Output_Parameters,
-          ),
-          group04: makeGroupParamOps(
-            P.group04.group04Params,
-            GROUP_04_External_Analog_Input_and_Output_Parameters,
-          ),
-          group05: makeGroupParamOps(
-            P.group05.group05Params,
-            GROUP_05_Multi_Speed_Parameters,
-          ),
-          group06: makeGroupParamOps(
-            P.group06.group06Params,
-            GROUP_06_Automatic_Program_Operation_Parameters,
-          ),
-          group07: makeGroupParamOps(
-            P.group07.group07Params,
-            GROUP_07_Start_Stop_Parameters,
-          ),
-          group08: makeGroupParamOps(
-            P.group08.group08Params,
-            GROUP_08_Protection_Parameters,
-          ),
-          group09: makeGroupParamOps(
-            P.group09.group09Params,
-            GROUP_09_Communication_Parameters,
-          ),
-          group10: makeGroupParamOps(
-            P.group10.group10Params,
-            GROUP_10_PID_Parameters,
-          ),
-          group11: makeGroupParamOps(
-            P.group11.group11Params,
-            GROUP_11_Auxiliary_Parameters,
-          ),
-          group12: makeGroupParamOps(
-            P.group12.group12Params,
-            GROUP_12_Monitoring_Parameters,
-          ),
-          group13: makeGroupParamOps(
-            P.group13.group13Params,
-            GROUP_13_Maintenance_Parameters,
-          ),
-          group14: makeGroupParamOps(
-            P.group14.group14Params,
-            GROUP_14_PLC_Parameters,
-          ),
-          group15: makeGroupParamOps(
-            P.group15.group15Params,
-            GROUP_15_PLC_Monitoring_Parameters,
-          ),
-          group16: makeGroupParamOps(
-            P.group16.group16Params,
-            GROUP_16_LCD_Parameters,
-          ),
-          group17: makeGroupParamOps(
-            P.group17.group17Params,
-            GROUP_17_Automatic_Tuning_Parameters,
-          ),
-          group18: makeGroupParamOps(
-            P.group18.group18Params,
-            GROUP_18_Slip_Compensation_Parameters,
-          ),
-          group19: makeGroupParamOps(
-            P.group19.group19Params,
-            GROUP_19_Wobble_Frequency_Parameters,
-          ),
-          group20: makeGroupParamOps(
-            P.group20.group20Params,
-            GROUP_20_Speed_Control_Parameters,
-          ),
-          group21: makeGroupParamOps(
-            P.group21.group21Params,
-            GROUP_21_Torque_And_Position_Control_Parameters,
-          ),
-          group22: makeGroupParamOps(
-            P.group22.group22Params,
-            GROUP_22_PM_Motor_Parameters,
-          ),
+          group00: makeGroupParamOps(P.group00.group00Params),
+          group01: makeGroupParamOps(P.group01.group01Params),
+          group02: makeGroupParamOps(P.group02.group02Params),
+          group03: makeGroupParamOps(P.group03.group03Params),
+          group04: makeGroupParamOps(P.group04.group04Params),
+          group05: makeGroupParamOps(P.group05.group05Params),
+          group06: makeGroupParamOps(P.group06.group06Params),
+          group07: makeGroupParamOps(P.group07.group07Params),
+          group08: makeGroupParamOps(P.group08.group08Params),
+          group09: makeGroupParamOps(P.group09.group09Params),
+          group10: makeGroupParamOps(P.group10.group10Params),
+          group11: makeGroupParamOps(P.group11.group11Params),
+          group12: makeGroupParamOps(P.group12.group12Params),
+          group13: makeGroupParamOps(P.group13.group13Params),
+          group14: makeGroupParamOps(P.group14.group14Params),
+          group15: makeGroupParamOps(P.group15.group15Params),
+          group16: makeGroupParamOps(P.group16.group16Params),
+          group17: makeGroupParamOps(P.group17.group17Params),
+          group18: makeGroupParamOps(P.group18.group18Params),
+          group19: makeGroupParamOps(P.group19.group19Params),
+          group20: makeGroupParamOps(P.group20.group20Params),
+          group21: makeGroupParamOps(P.group21.group21Params),
+          group22: makeGroupParamOps(P.group22.group22Params),
         },
       };
     }),

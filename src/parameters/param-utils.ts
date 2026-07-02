@@ -1,4 +1,4 @@
-import { ParseResult, Pretty, Schema } from "effect";
+import { Effect, ParseResult, Pretty, Schema } from "effect";
 import { Int16, UInt16 } from "../schemas";
 
 /**
@@ -163,6 +163,53 @@ const makeEncode = <S extends Schema.Schema<any, any>>(schema: S) =>
 const makeFormatted = <S extends Schema.Schema<any, any>>(schema: S) =>
   Pretty.make(schema);
 
+// ── ParamKind enum ────────────────────────────────────────────
+// Identifies which schema factory created/would create the ParamEntry.
+
+export enum ParamKind {
+  UInt16 = "UInt16",
+  Scaled = "Scaled",
+  SignedScaled = "SignedScaled",
+  Enum = "Enum",
+}
+
+// ── Config object types ──────────────────────────────────────
+// Group files now store these configuration objects instead of calling
+// factories directly.  The factories in the section below consume
+// these same parameters and produce the full ParamEntry bundle.
+
+export interface ParamConfigBase {
+  readonly register: number;
+  readonly kind: ParamKind;
+  readonly meta: ParamMeta;
+}
+
+export interface UInt16ParamConfig extends ParamConfigBase {
+  readonly kind: ParamKind.UInt16;
+}
+
+export interface ScaledParamConfig extends ParamConfigBase {
+  readonly kind: ParamKind.Scaled;
+  readonly factor: number;
+}
+
+export interface SignedScaledParamConfig extends ParamConfigBase {
+  readonly kind: ParamKind.SignedScaled;
+  readonly factor: number;
+}
+
+export interface EnumParamConfig<Domain extends string = string>
+  extends ParamConfigBase {
+  readonly kind: ParamKind.Enum;
+  readonly labels: Record<number, Domain>;
+}
+
+export type ParamConfig =
+  | UInt16ParamConfig
+  | ScaledParamConfig
+  | SignedScaledParamConfig
+  | EnumParamConfig;
+
 // ── Bundle factories (produce schema + decode + encode + formatted) ──
 // These replace the duplicated local `p()`/`sp()` helpers in group files.
 
@@ -179,11 +226,7 @@ export const p = <A extends number, I extends number>(
   };
 };
 
-export const sp = (
-  addr: number,
-  factor: number,
-  meta: ParamMeta,
-) => {
+export const sp = (addr: number, factor: number, meta: ParamMeta) => {
   const schema = makeScaledParam(addr, factor, meta);
   return {
     schema,
@@ -193,11 +236,7 @@ export const sp = (
   };
 };
 
-export const spSigned = (
-  addr: number,
-  factor: number,
-  meta: ParamMeta,
-) => {
+export const spSigned = (addr: number, factor: number, meta: ParamMeta) => {
   const schema = makeSignedScaledParam(addr, factor, meta);
   return {
     schema,
@@ -225,5 +264,57 @@ export type ParamEntry<S extends Schema.Schema<any, any>> = {
   readonly schema: S;
   readonly decode: ReturnType<typeof makeDecode<S>>;
   readonly encode: ReturnType<typeof makeEncode<S>>;
+  readonly formatted: ReturnType<typeof makeFormatted<S>>;
 };
 
+export type ParamEntryOfConfig<C extends ParamConfig> =
+  C extends EnumParamConfig<infer Domain>
+    ? ParamEntry<Schema.Schema<Domain, number>>
+    : ParamEntry<Schema.Schema<number, number>>;
+
+export type ParamValueOfEntry<E extends ParamEntry<any>> = E extends ParamEntry<
+  Schema.Schema<infer A, any>
+>
+  ? A
+  : never;
+
+export type ParamOperationOfEntry<E extends ParamEntry<any>> = {
+  readonly read: () => Effect.Effect<ParamValueOfEntry<E>, unknown, unknown>;
+  readonly update: (
+    value: ParamValueOfEntry<E>,
+  ) => Effect.Effect<void, unknown, unknown>;
+};
+
+export type ParamCallableOfEntry<E extends ParamEntry<any>> = ((
+  deviceId: number,
+) => ParamOperationOfEntry<E>) & {
+  readonly meta: ParamMeta;
+};
+
+export type GroupParamOps<C extends Record<string, ParamConfig>> = {
+  readonly [K in keyof C]: ParamCallableOfEntry<ParamEntryOfConfig<C[K]>>;
+};
+
+export type GroupParamAccessor<C extends Record<string, ParamConfig>> = <
+  K extends keyof C,
+>(
+  param: K,
+) => ParamOperationOfEntry<ParamEntryOfConfig<C[K]>> & {
+  readonly meta: C[K]["meta"];
+};
+
+export function fromConfig<C extends ParamConfig>(
+  config: C,
+): ParamEntryOfConfig<C>;
+export function fromConfig(config: ParamConfig) {
+  switch (config.kind) {
+    case ParamKind.UInt16:
+      return p(config.register, config.meta);
+    case ParamKind.Scaled:
+      return sp(config.register, config.factor, config.meta);
+    case ParamKind.SignedScaled:
+      return spSigned(config.register, config.factor, config.meta);
+    case ParamKind.Enum:
+      return pe(config.register, config.labels, config.meta);
+  }
+};
