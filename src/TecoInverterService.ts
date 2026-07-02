@@ -7,7 +7,10 @@ import * as P from "./parameters";
 export class TecoInverterService extends Effect.Service<TecoInverterService>()(
   "TecoInverterService",
   {
-    scoped: Effect.fnUntraced(function* (transportVariant: "Rtu" | "Ascii") {
+    scoped: Effect.fnUntraced(function* (
+      transportVariant: "Rtu" | "Ascii",
+      safeShutdown: boolean = true,
+    ) {
       let transport: RtuTransportService | AsciiTransportService;
 
       if (transportVariant === "Rtu") {
@@ -97,13 +100,32 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
         return Record.fromEntries(entries) as P.GroupParamOps<C>;
       };
 
+      const operationCommand = makeReadModifyWrite(
+        COMMAND_REGISTERS.OPERATION_COMMAND,
+        S.decodeCommandWord,
+        S.encodeCommandWord,
+        S.mergeCommandWordPatch,
+      );
+
+      if (safeShutdown) {
+        yield* Effect.addFinalizer(() =>
+          Effect.forEach(deviceCache, (deviceId) => {
+            return operationCommand(deviceId)
+              .update(new S.CommandWordPatch({ run: false }))
+              .pipe(
+                Effect.catchAll((err) =>
+                  Effect.logWarning(
+                    "Error while stopping fan on exit: ",
+                    err,
+                  ).pipe(Effect.asVoid),
+                ),
+              );
+          }),
+        );
+      }
+
       return {
-        operationCommand: makeReadModifyWrite(
-          COMMAND_REGISTERS.OPERATION_COMMAND,
-          S.decodeCommandWord,
-          S.encodeCommandWord,
-          S.mergeCommandWordPatch,
-        ),
+        operationCommand,
         frequencyCommand: makeReadWrite(
           COMMAND_REGISTERS.FREQUENCY_COMMAND,
           S.decodeFrequencyCommand,
