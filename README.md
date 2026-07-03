@@ -140,3 +140,109 @@ yield* service.frequencyCommand(deviceId).update(50.0);
 const group00 = service.parameters.group00;
 const value = yield* group00.p00_01(deviceId).read();
 ```
+
+## Mock Generator (`effect-modbus-rs`)
+
+For testing without hardware or a serial port, use `RtuTransportService.makeMockTransport` with `TecoInverterService.mockDevice()` — a built-in generator that produces a full `SlaveDeviceDefinition` for the A510 inverter.
+
+### How it works
+
+`mockDevice(deviceId)` registers all A510 registers with default value `0`:
+
+| Register range | Description |
+|---------------|-------------|
+| `0x2501–0x2507` | Command registers (operation, frequency, torque, analog/digital out) |
+| `0x2520–0x252F` | Monitor registers (state, error, frequency, current, etc.) |
+| `0x0000–0x1623` | Parameter group registers (Groups 00–22) |
+
+### Full example
+
+```typescript
+import { Console, Effect, Layer, Logger, LogLevel } from "effect";
+import { TecoInverterService } from "./src/TecoInverterService";
+import { RtuTransportService } from "effect-modbus-rs";
+import { BunRuntime } from "@effect/platform-bun";
+
+const deviceId = 1;
+
+const program = Effect.gen(function* () {
+  const inverter = yield* TecoInverterService;
+
+  // Read — returns factory default (0 / stopped state)
+  const opCmd = yield* inverter.operationCommand(deviceId).read();
+  yield* Console.log(`Operation Command: ${opCmd}`);
+
+  // Write — mock persists the value in memory
+  yield* inverter.frequencyCommand(deviceId).update(50);
+  const freqCmd = yield* inverter.frequencyCommand(deviceId).read();
+  yield* Console.log(`Frequency Command: ${freqCmd}`);
+
+  // Read a parameter register (group 00, param 00-00)
+  const param00 = yield* inverter.parameters.group00["00-00"](deviceId).read();
+  yield* Console.log(`00-00 Control Mode: ${param00}`);
+});
+
+// Build mock transport with one or more devices
+const mockLayer = RtuTransportService.makeMockTransport([
+  TecoInverterService.mockDevice(1),
+  TecoInverterService.mockDevice(2),
+])({
+  portPath: "/dev/null",  // ignored by mock transport
+  baudRate: 9600,
+  stopBits: 1,
+  dataBits: 8,
+  parity: "None",
+});
+
+program.pipe(
+  Effect.provide(Layer.provideMerge(TecoInverterService.Default("Rtu"), mockLayer)),
+  Logger.withMinimumLogLevel(LogLevel.Debug),
+  BunRuntime.runMain,
+);
+```
+
+### Running the mock example
+
+```sh
+bun run examples/readAllRegistersMock.ts
+```
+
+### Customizing mock register values
+
+`mockDevice()` returns a standard `SlaveDeviceDefinition` from `effect-modbus-rs`. You can override individual register defaults before passing to `makeMockTransport`:
+
+```typescript
+import { RtuTransportService } from "effect-modbus-rs";
+
+const device = TecoInverterService.mockDevice(1);
+
+// Override specific holding registers
+const customHoldingRegisters = device.holdingRegisters.map((reg) => {
+  if (reg.address === 0x2501) return { address: reg.address, default: 5 }; // Running
+  if (reg.address === 0x2502) return { address: reg.address, default: 500 }; // 50.0 Hz
+  return reg;
+});
+
+const mockLayer = RtuTransportService.makeMockTransport([{
+  ...device,
+  holdingRegisters: customHoldingRegisters,
+}])({
+  portPath: "/dev/null",
+  baudRate: 9600,
+  stopBits: 1,
+  dataBits: 8,
+  parity: "None",
+});
+```
+
+### SlaveDeviceDefinition schema
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `unitId` | `number` | Modbus slave/unit ID (required) |
+| `coils` | `{ address: number, default: boolean }[]` | Coil registers |
+| `discreteInputs` | `{ address: number, default: boolean }[]` | Discrete input registers |
+| `holdingRegisters` | `{ address: number, default: number }[]` | Holding registers (command + monitor + params) |
+| `inputRegisters` | `{ address: number, default: number }[]` | Input registers |
+
+See `examples/readAllRegistersMock.ts` for a complete runnable example.
