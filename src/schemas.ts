@@ -1,3 +1,22 @@
+/**
+ * @fileoverview Bidirectional Effect schemas for A510 command and monitor register values.
+ *
+ * Provides {@link Schema} transformations between wire-format Modbus register values
+ * (UInt16/Int16) and domain types (FrequencyHz, TorquePercent, etc.) with proper
+ * scaling factors. Monitor registers are decode-only; command registers support
+ * both encode and decode.
+ *
+ * Key types:
+ * - {@link CommandWordFlags} / {@link CommandWordSchema} – Operation command word (0x2501)
+ * - {@link FrequencyHz} / {@link FrequencyCommandSchema} – Frequency command in Hz (0x2502)
+ * - {@link TorquePercent} / {@link TorqueCommandSchema} – Torque command as % (0x2503)
+ * - {@link StateMonitorFlags} / {@link StateMonitorSchema} – Inverter status flags (0x2520)
+ * - {@link ErrorDescriptionMonitor} / {@link ErrorDescriptionMonitorSchema} – Fault code (0x2521)
+ * - {@link WarningDescriptionMonitor} / {@link WarningDescriptionMonitorSchema} – Alarm code (0x2528)
+ *
+ * @module
+ */
+
 import { Brand, Effect, ParseResult, Pretty, Schema } from "effect";
 import { bit } from "./utils";
 import { readOnlyEncodeFailure } from "./errors";

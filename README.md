@@ -11,6 +11,7 @@ This library provides typed, runtime-validated schemas for every parameter in th
 ```sh
 bun install
 bun run typecheck   # Type-check the project
+bun run test        # Run tests
 bun run build       # Build to ./dist
 bun run index.ts    # Run the application
 ```
@@ -18,46 +19,56 @@ bun run index.ts    # Run the application
 ## Project Structure
 
 ```
-index.ts                          — Entry point (re-exports all modules)
-src/
-  Registers.ts                    — Modbus register address enums
-  schemas.ts                      — Command/monitor wire schemas (bit-field flags, scaled values)
-  TecoInverterService.ts          — Effect service for read/write operations
-  errors.ts                       — Error utilities
-  utils.ts                        — Bit helper
-  parameters/
-    param-utils.ts                — Factory functions (makeParam, makeScaledParam, etc.)
-    index.ts                      — Re-exports all parameter groups
-    group-00.ts ... group-22.ts   — Parameter schemas per group
+.
+├── index.ts                          — Entry point (re-exports core modules)
+├── src/
+│   ├── Registers.ts                  — Modbus register address enums
+│   ├── schemas.ts                    — Command/monitor wire schemas (bit-field flags, scaled values)
+│   ├── TecoInverterService.ts        — Effect service for read/write operations
+│   ├── errors.ts                     — Error utilities
+│   ├── utils.ts                      — Bit helpers
+│   └── parameters/
+│       ├── param-utils.ts            — Factory functions (makeParam, makeScaledParam, etc.)
+│       ├── param-utils.test.ts       — Tests for param utilities
+│       ├── schemas.test.ts           — Tests for schemas
+│       ├── index.ts                  — Re-exports all parameter groups
+│       └── group-00.ts ... group-22.ts — Parameter schemas per group
+├── examples/
+│   ├── readOpsRegister.ts            — Read operation registers example
+│   ├── readAllRegisters.ts            — Read all monitor registers example
+│   ├── readAllRegistersMock.ts       — Mocked read all registers example
+│   └── readGroup00Params.ts          — Read group 00 parameters example
+└── documentation/
+    └── pdf_references/               — A510 manuals and addenda (PDF + markdown)
 ```
 
 ## Parameter Groups
 
-| Group | Name | Params | Pages |
-|-------|------|--------|-------|
-| 00 | Basic Parameters | 49 | 4-34 – 4-36 |
-| 01 | Frequency Parameters | 22 | 4-37 – 4-38 |
-| 02 | Accel/Decel Parameters | 34 | 4-39 – 4-43 |
-| 03 | Multi-Function Input | 64 | 4-44 – 4-52 |
-| 04 | Multi-Function Digital Output | 40 | 4-53 – 4-59 |
-| 05 | Multi-Step/Speed | 44 | 4-60 – 4-66 |
-| 06 | VFD Protection | 28 | 4-67 – 4-71 |
-| 07 | Start/Stop | 37 | 4-72 – 4-74 |
-| 08 | Protection | 44 | 4-75 – 4-79 |
-| 09 | Communication | 10 | 4-80 |
-| 10 | PID Control | 40 | 4-81 – 4-84 |
-| 11 | Auxiliary Functions | 51 | 4-85 – 4-88 |
-| 12 | Monitoring | 55 | 4-62 – 4-67 |
-| 13 | Maintenance | 46 | 4-68 – 4-71 |
-| 14 | PLC Setting | 48 | 4-72 |
-| 15 | PLC Monitoring | 33 | 4-73 |
-| 16 | LCD Function | 36 | 4-74 – 4-77 |
-| 17 | Automatic Tuning | 15 | 4-78 – 4-79 |
-| 18 | Slip Compensation | 7 | 4-79 |
-| 19 | Wobble Frequency | 8 | 4-79 – 4-80 |
-| 20 | Speed Control | 36 | 4-80 – 4-82 |
-| 21 | Torque & Position Control | 44 | 4-82 – 4-85 |
-| 22 | PM Motor | 29 | 4-85 – 4-88 |
+| Group | Name | Pages |
+|-------|------|-------|
+| 00 | Basic Parameters | 4-19 – 4-22 |
+| 01 | Frequency Parameters | 4-37 – 4-38 |
+| 02 | Accel/Decel Parameters | 4-39 – 4-43 |
+| 03 | Multi-Function Input | 4-44 – 4-52 |
+| 04 | Multi-Function Digital Output | 4-53 – 4-59 |
+| 05 | Multi-Step/Speed | 4-60 – 4-66 |
+| 06 | VFD Protection | 4-67 – 4-71 |
+| 07 | Start/Stop | 4-72 – 4-74 |
+| 08 | Protection | 4-75 – 4-79 |
+| 09 | Communication | 4-80 |
+| 10 | PID Control | 4-81 – 4-84 |
+| 11 | Auxiliary Functions | 4-85 – 4-88 |
+| 12 | Monitoring | 4-62 – 4-67 |
+| 13 | Maintenance | 4-68 – 4-71 |
+| 14 | PLC Setting | 4-72 |
+| 15 | PLC Monitoring | 4-73 |
+| 16 | LCD Function | 4-74 – 4-77 |
+| 17 | Automatic Tuning | 4-78 – 4-79 |
+| 18 | Slip Compensation | 4-79 |
+| 19 | Wobble Frequency | 4-79 – 4-80 |
+| 20 | Speed Control | 4-80 – 4-82 |
+| 21 | Torque & Position Control | 4-82 – 4-85 |
+| 22 | PM Motor | 4-85 – 4-88 |
 
 ## Schema Factories
 
@@ -73,13 +84,35 @@ Each param carries structured metadata (`ParamMeta`) with group, code, name, ran
 ## Usage Example
 
 ```typescript
-import { Param_01_01, decode01_01, encode01_01 } from "./parameters";
+import { Effect, Layer } from "effect";
+import { TecoInverterService } from "./src/TecoInverterService";
+import { RtuTransportService } from "effect-modbus-rs";
+import { BunRuntime } from "@effect/platform-bun";
 
-// Decode raw modbus value (0.01 Hz scaling applied automatically)
-const decoded = decode01_01(5000)   // => 50.00 Hz
+const deviceId = 1;
 
-// Encode domain value back to wire format
-const encoded = encode01_01(60)     // => 6000
+const program = Effect.gen(function* () {
+  const inverter = yield* TecoInverterService;
+  const params = inverter.parameters.group00;
+
+  // Read a single parameter
+  const value = yield* params.p00_01(deviceId).read();
+  yield* Console.log(`Parameter 00-01 value: ${value}`);
+});
+
+const TecoLayer = TecoInverterService.Default("Rtu");
+const RtuLayer = RtuTransportService.Default({
+  portPath: "/dev/tty.usbserial-XXXXX",
+  baudRate: 19200,
+  stopBits: 1,
+  dataBits: 8,
+  parity: "None",
+});
+
+program.pipe(
+  Effect.provide(Layer.provideMerge(TecoLayer, RtuLayer)),
+  BunRuntime.runMain,
+);
 ```
 
 ## Register Map
@@ -96,5 +129,14 @@ Command and monitor registers are defined as TypeScript enums in `Registers.ts`:
 
 ```typescript
 const service = yield* TecoInverterService({ transportVariant: "Rtu" });
-const result = yield* service.frequencyCommand(deviceId).update(50.0);
+
+// Read frequency command
+const freq = yield* service.frequencyCommand(deviceId).read();
+
+// Update frequency command
+yield* service.frequencyCommand(deviceId).update(50.0);
+
+// Access parameter groups
+const group00 = service.parameters.group00;
+const value = yield* group00.p00_01(deviceId).read();
 ```

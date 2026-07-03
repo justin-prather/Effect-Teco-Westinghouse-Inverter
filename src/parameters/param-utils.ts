@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Parameter schema factories and type definitions for Groups 00–22.
+ *
+ * Provides four schema factories ({@link makeParam}, {@link makeScaledParam},
+ * {@link makeSignedScaledParam}, {@link makeEnumParam}) that produce decode/encode/format
+ * bundles from a register address and metadata. The {@link fromConfig} overload selects
+ * the correct factory based on the {@link ParamConfig} discriminant.
+ *
+ * Group files (group-00.ts … group-22.ts) store {@link ParamConfig} objects and use
+ * {@link fromConfig} to build the final {@link ParamEntry} bundles exposed via
+ * {@link TecoInverterService.parameters}.
+ *
+ * @module
+ */
+
 import { Effect, ParseResult, Pretty, Schema } from "effect";
 import type { ModbusError } from "effect-modbus-rs";
 import { Int16, UInt16 } from "../schemas";

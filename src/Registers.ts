@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Modbus register address constants for the Teco/Westinghouse A510 inverter.
+ *
+ * Defines numeric addresses for all command (write) registers, monitor (read-only) registers,
+ * and parameter group registers (Groups 00–22) as defined in the A510 instruction manual.
+ *
+ * @module
+ */
+
+/**
+ * Modbus holding-register addresses for command (write) operations.
+ * These registers control the inverter's operation, frequency, torque, and outputs.
+ *
+ * @see https://documentation.tesco-drives.com/
+ */
 export enum COMMAND_REGISTERS {
   OPERATION_COMMAND = 0x2501,
   FREQUENCY_COMMAND = 0x2502,
@@ -8,6 +23,12 @@ export enum COMMAND_REGISTERS {
   DIGITAL_OUT_COMMAND = 0x2507,
 }
 
+/**
+ * Modbus holding-register addresses for monitor (read-only) operations.
+ * These registers provide real-time status, fault codes, and sensor feedback.
+ *
+ * @see https://documentation.tesco-drives.com/
+ */
 export enum MONITOR_REGISTERS {
   STATE_MONITOR = 0x2520,
   ERROR_DESCRIPTION_MONITOR = 0x2521,
@@ -25,6 +46,12 @@ export enum MONITOR_REGISTERS {
   A510_CHECK_MONITOR = 0x252f,
 }
 
+/**
+ * Group 00: Basic Parameters
+ * Covers control mode, run command source, frequency source, acceleration/deceleration,
+ * jog operation, emergency stop, and application selection.
+ * Manual pages 4-19 to 4-22.
+ */
 export enum GROUP_00_Basic_Parameters {
   "00-00" = 0x0000,
   "00-01" = 0x0001,
@@ -77,6 +104,11 @@ export enum GROUP_00_Basic_Parameters {
   "00-57" = 0x0039,
 }
 
+/**
+ * Group 01: VF Control Parameters
+ * V/F pattern, torque boost, and frequency limits.
+ * Manual pages 4-37 to 4-38.
+ */
 export enum GROUP_01_VF_Control_Parameters {
   "01-00" = 0x0100,
   "01-02" = 0x0102,
@@ -106,6 +138,11 @@ export enum GROUP_01_VF_Control_Parameters {
   "01-26" = 0x011a,
 }
 
+/**
+ * Group 02: IM Motor Parameters
+ * Induction motor nameplate and protection settings.
+ * Manual pages 4-39 to 4-43.
+ */
 export enum GROUP_02_IM_Motor_Parameters {
   "02-00" = 0x0200,
   "02-01" = 0x0201,
@@ -134,6 +171,11 @@ export enum GROUP_02_IM_Motor_Parameters {
   "02-37" = 0x0225,
 }
 
+/**
+ * Group 03: External Digital Input and Output Parameters
+ * Multi-function digital input/output terminal configuration.
+ * Manual pages 4-44 to 4-52.
+ */
 export enum GROUP_03_External_Digital_Input_and_Output_Parameters {
   "03-00" = 0x0300,
   "03-01" = 0x0301,
@@ -185,6 +227,11 @@ export enum GROUP_03_External_Digital_Input_and_Output_Parameters {
   "03-53" = 0x0335,
 }
 
+/**
+ * Group 04: External Analog Input and Output Parameters
+ * Analog input/output scaling and filter settings.
+ * Manual pages 4-53 to 4-59.
+ */
 export enum GROUP_04_External_Analog_Input_and_Output_Parameters {
   "04-00" = 0x0400,
   "04-01" = 0x0401,
@@ -210,6 +257,11 @@ export enum GROUP_04_External_Analog_Input_and_Output_Parameters {
   "04-23" = 0x0417,
 }
 
+/**
+ * Group 05: Multi-Speed Parameters
+ * Up to 16 preset speeds for index-driven or program-run operation.
+ * Manual pages 4-60 to 4-66.
+ */
 export enum GROUP_05_Multi_Speed_Parameters {
   "05-00" = 0x0500,
   "05-01" = 0x0501,
@@ -262,6 +314,11 @@ export enum GROUP_05_Multi_Speed_Parameters {
   "05-48" = 0x0530,
 }
 
+/**
+ * Group 06: Automatic Program Operation Parameters
+ * PLC-style step sequences, dwell times, and repeat counters.
+ * Manual pages 4-67 to 4-71.
+ */
 export enum GROUP_06_Automatic_Program_Operation_Parameters {
   "06-00" = 0x0600,
   "06-01" = 0x0601,
@@ -313,6 +370,11 @@ export enum GROUP_06_Automatic_Program_Operation_Parameters {
   "06-47" = 0x062f,
 }
 
+/**
+ * Group 07: Start/Stop Parameters
+ * Start mode, stop mode, DC injection braking, and speed search.
+ * Manual pages 4-72 to 4-74.
+ */
 export enum GROUP_07_Start_Stop_Parameters {
   "07-00" = 0x0700,
   "07-01" = 0x0701,
@@ -363,6 +425,11 @@ export enum GROUP_07_Start_Stop_Parameters {
   "07-46" = 0x072e,
 }
 
+/**
+ * Group 08: Protection Parameters
+ * Over-current, over-voltage, under-voltage, over-torque, and stall prevention.
+ * Manual pages 4-75 to 4-79.
+ */
 export enum GROUP_08_Protection_Parameters {
   "08-00" = 0x0800,
   "08-01" = 0x0801,
@@ -417,6 +484,11 @@ export enum GROUP_08_Protection_Parameters {
   "08-60" = 0x083c,
 }
 
+/**
+ * Group 09: Communication Parameters
+ * Modbus RTU/ASCII address, baud rate, data format, and protocol selection.
+ * Manual page 4-80.
+ */
 export enum GROUP_09_Communication_Parameters {
   "09-00" = 0x0900,
   "09-01" = 0x0901,
@@ -432,6 +504,12 @@ export enum GROUP_09_Communication_Parameters {
   "09-10" = 0x090a,
 }
 
+/**
+ * Group 10: PID Parameters
+ * Setpoint source, feedback source, proportional/integral/derivative gains,
+ * sleep/wake thresholds, and processScaler.
+ * Manual pages 4-81 to 4-84.
+ */
 export enum GROUP_10_PID_Parameters {
   "10-00" = 0x0a00,
   "10-01" = 0x0a01,
@@ -476,6 +554,11 @@ export enum GROUP_10_PID_Parameters {
   "10-49" = 0x0a31,
 }
 
+/**
+ * Group 11: Auxiliary Parameters
+ * Second motors, multi-step resumes, speed/droop/torque limits, and braking.
+ * Manual pages 4-85 to 4-88.
+ */
 export enum GROUP_11_Auxiliary_Parameters {
   "11-00" = 0x0b00,
   "11-01" = 0x0b01,
@@ -559,6 +642,11 @@ export enum GROUP_11_Auxiliary_Parameters {
   "11-78" = 0x0b4e,
 }
 
+/**
+ * Group 12: Monitoring Parameters
+ * Real-time display of frequency, current, voltage, power, and PID feedback.
+ * Manual pages 4-62 to 4-67.
+ */
 export enum GROUP_12_Monitoring_Parameters {
   "12-00" = 0x2510,
   "12-01" = 0x0c01,
@@ -632,6 +720,11 @@ export enum GROUP_12_Monitoring_Parameters {
   "12-85" = 0x0c55,
 }
 
+/**
+ * Group 13: Maintenance Parameters
+ * Runtime counters, peak current/voltage logs, and thermal accumulations.
+ * Manual pages 4-68 to 4-71.
+ */
 export enum GROUP_13_Maintenance_Parameters {
   "13-00" = 0x0d00,
   "13-01" = 0x0d01,
@@ -681,6 +774,11 @@ export enum GROUP_13_Maintenance_Parameters {
   "13-50" = 0x0d32,
 }
 
+/**
+ * Group 14: PLC Parameters
+ * Internal PLC function block configuration.
+ * Manual page 4-72.
+ */
 export enum GROUP_14_PLC_Parameters {
   "14-00" = 0x0e00,
   "14-01" = 0x0e01,
@@ -732,6 +830,11 @@ export enum GROUP_14_PLC_Parameters {
   "14-47" = 0x0e2f,
 }
 
+/**
+ * Group 15: PLC Monitoring Parameters
+ * Internal PLC status and counter monitoring.
+ * Manual page 4-73.
+ */
 export enum GROUP_15_PLC_Monitoring_Parameters {
   "15-00" = 0x0f00,
   "15-01" = 0x0f01,
@@ -768,6 +871,11 @@ export enum GROUP_15_PLC_Monitoring_Parameters {
   "15-32" = 0x0f20,
 }
 
+/**
+ * Group 16: LCD Parameters
+ * LCD display language, contrast, and custom unit/decimal configuration.
+ * Manual pages 4-74 to 4-77.
+ */
 export enum GROUP_16_LCD_Parameters {
   "16-00" = 0x1000,
   "16-01" = 0x1001,
@@ -808,6 +916,11 @@ export enum GROUP_16_LCD_Parameters {
   "16-37" = 0x1025,
 }
 
+/**
+ * Group 17: Automatic Tuning Parameters
+ * Auto-tuning mode selection for induction motor or synchronous reluctance motor.
+ * Manual pages 4-78 to 4-79.
+ */
 export enum GROUP_17_Automatic_Tuning_Parameters {
   "17-00" = 0x1100,
   "17-01" = 0x1101,
@@ -826,6 +939,11 @@ export enum GROUP_17_Automatic_Tuning_Parameters {
   "17-14" = 0x110e,
 }
 
+/**
+ * Group 18: Slip Compensation Parameters
+ * Load-dependent speed补偿 for constant torque.
+ * Manual page 4-79.
+ */
 export enum GROUP_18_Slip_Compensation_Parameters {
   "18-00" = 0x1200,
   "18-01" = 0x1201,
@@ -836,6 +954,11 @@ export enum GROUP_18_Slip_Compensation_Parameters {
   "18-06" = 0x1206,
 }
 
+/**
+ * Group 19: Wobble Frequency Parameters
+ * Jitter/reflex drive for winding or traversing applications.
+ * Manual pages 4-79 to 4-80.
+ */
 export enum GROUP_19_Wobble_Frequency_Parameters {
   "19-00" = 0x1300,
   "19-01" = 0x1301,
@@ -847,6 +970,11 @@ export enum GROUP_19_Wobble_Frequency_Parameters {
   "19-07" = 0x1307,
 }
 
+/**
+ * Group 20: Speed Control Parameters
+ * ASR (automatic speed regulator) PI tuning and zero-speed hold.
+ * Manual pages 4-80 to 4-82.
+ */
 export enum GROUP_20_Speed_Control_Parameters {
   "20-00" = 0x1400,
   "20-01" = 0x1401,
@@ -902,6 +1030,11 @@ export enum GROUP_20_Speed_Control_Parameters {
   "20-44" = 0x142c,
 }
 
+/**
+ * Group 21: Torque & Position Control Parameters
+ * Torque limit, torque command, and simple positioning control.
+ * Manual pages 4-82 to 4-85.
+ */
 export enum GROUP_21_Torque_And_Position_Control_Parameters {
   "21-00" = 0x1500,
   "21-01" = 0x1501,
@@ -949,6 +1082,11 @@ export enum GROUP_21_Torque_And_Position_Control_Parameters {
   "21-43" = 0x152b,
 }
 
+/**
+ * Group 22: PM Motor Parameters
+ * Permanent magnet synchronous motor (PMSM) and IPM motor settings.
+ * Manual pages 4-85 to 4-88.
+ */
 export enum GROUP_22_PM_Motor_Parameters {
   "22-00" = 0x1600,
   "22-01" = 0x1601,
