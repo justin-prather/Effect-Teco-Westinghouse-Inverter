@@ -1,6 +1,15 @@
+/**
+ * Reads all command and monitor registers from an A510 inverter.
+ *
+ * Demonstrates concurrent reads of all command registers (write) and
+ * monitor registers (read-only) using Effect.all with unbounded concurrency.
+ *
+ * @example bun run examples/readAllRegisters.ts
+ */
+
 import { Console, Effect, Layer, Logger, LogLevel } from "effect";
 import { TecoInverterService } from "../src/TecoInverterService";
-import { RtuTransportService } from "effect-modbus-rs";
+import { SerialTransportService } from "effect-modbus-rs";
 import { BunRuntime } from "@effect/platform-bun";
 import {
   formattedCommandWord,
@@ -149,8 +158,8 @@ const program = Effect.gen(function* () {
   );
 });
 
-const TecoLayer = TecoInverterService.Default("Rtu");
-const RtuLayer = RtuTransportService.Default({
+const TecoLayer = TecoInverterService.Default(true);
+const SerialLayer = SerialTransportService.fromRtu({
   portPath: "/dev/tty.usbserial-A10OFLK2",
   baudRate: 19200,
   stopBits: 1,
@@ -158,7 +167,7 @@ const RtuLayer = RtuTransportService.Default({
   parity: "None",
 });
 
-const layerLive = Layer.provideMerge(TecoLayer, RtuLayer);
+const layerLive = Layer.provideMerge(TecoLayer, SerialLayer);
 
 program.pipe(
   Effect.provide(layerLive),

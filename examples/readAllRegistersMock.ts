@@ -1,6 +1,16 @@
+/**
+ * Demonstrates the mock transport layer for testing A510 inverters.
+ *
+ * Uses {@link TecoInverterService.mockDevice} to create a full A510 register map
+ * with default values, then demonstrates read/write operations on command registers
+ * and parameter groups with the in-memory mock transport.
+ *
+ * @example bun run examples/readAllRegistersMock.ts
+ */
+
 import { Console, Effect, Layer, Logger, LogLevel } from "effect";
 import { TecoInverterService } from "../src/TecoInverterService";
-import { RtuTransportService } from "effect-modbus-rs";
+import { SerialTransportService } from "effect-modbus-rs";
 import { BunRuntime } from "@effect/platform-bun";
 import {
   formattedCommandWord,
@@ -42,8 +52,8 @@ const program = Effect.gen(function* () {
   );
 });
 
-const TecoLayer = TecoInverterService.Default("Rtu");
-const mockRtuLayer = RtuTransportService.makeMockTransport([
+const TecoLayer = TecoInverterService.Default(true);
+const mockSerialLayer = SerialTransportService.makeMockTransport([
   TecoInverterService.mockDevice(1),
   TecoInverterService.mockDevice(2),
 ])({
@@ -54,7 +64,7 @@ const mockRtuLayer = RtuTransportService.makeMockTransport([
   parity: "None",
 });
 
-const layerLive = Layer.provideMerge(TecoLayer, mockRtuLayer);
+const layerLive = Layer.provideMerge(TecoLayer, mockSerialLayer);
 
 program.pipe(
   Effect.provide(layerLive),

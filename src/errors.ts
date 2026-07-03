@@ -1,18 +1,14 @@
-/**
- * @fileoverview Error utilities for the Teco/Westinghouse A510 inverter library.
- * @module
- */
-
 import { Effect, ParseResult } from "effect";
 
 /**
- * Constructs a read-only encode failure `Effect` for monitor registers that cannot
- * be written back to the inverter.
+ * Constructs a failure `Effect` for monitor registers that cannot be written.
  *
- * @param registerName - Human-readable name of the register (used in the error message)
- * @param actual - The actual value that was passed during encode (used for debugging)
- * @param ast - The Effect `AST` node describing the expected type
- * @returns An Effect that fails with a `ParseResult.Type` error
+ * Monitor registers are read-only. Calling `update()` on a monitor will fail
+ * with a `ParseResult.Type` error whose message indicates the register is read-only.
+ *
+ * @param registerName - Human-readable name of the register.
+ * @param actual - The value that was passed during encode.
+ * @param ast - The Effect `AST` describing the expected type.
  */
 export const readOnlyEncodeFailure = (
   registerName: string,

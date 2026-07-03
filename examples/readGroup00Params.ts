@@ -1,6 +1,15 @@
+/**
+ * Reads all parameters from Group 00 (Basic Parameters) of an A510 inverter.
+ *
+ * Demonstrates iterating over a parameter group, accessing metadata (name, code),
+ * and reading each parameter value concurrently.
+ *
+ * @example bun run examples/readGroup00Params.ts
+ */
+
 import { Console, Effect, Layer, Logger, LogLevel } from "effect";
 import { TecoInverterService } from "../src/TecoInverterService";
-import { RtuTransportService } from "effect-modbus-rs";
+import { SerialTransportService } from "effect-modbus-rs";
 import { BunRuntime } from "@effect/platform-bun";
 
 const deviceId = 1;
@@ -46,8 +55,8 @@ const program = Effect.gen(function* () {
   }
 });
 
-const TecoLayer = TecoInverterService.Default("Rtu");
-const RtuLayer = RtuTransportService.Default({
+const TecoLayer = TecoInverterService.Default(true);
+const SerialLayer = SerialTransportService.fromRtu({
   portPath: "/dev/tty.usbserial-A10OFLK2",
   baudRate: 19200,
   stopBits: 1,
@@ -55,7 +64,7 @@ const RtuLayer = RtuTransportService.Default({
   parity: "None",
 });
 
-const layerLive = Layer.provideMerge(TecoLayer, RtuLayer);
+const layerLive = Layer.provideMerge(TecoLayer, SerialLayer);
 
 program.pipe(
   Effect.provide(layerLive),

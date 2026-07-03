@@ -13,7 +13,7 @@
  * @example
  * import { Effect, Layer } from "effect";
  * import { TecoInverterService } from "./src/TecoInverterService";
- * import { RtuTransportService } from "effect-modbus-rs";
+ * import { SerialTransportService } from "effect-modbus-rs";
  *
  * const program = Effect.gen(function* () {
  *   const inverter = yield* TecoInverterService;
@@ -22,8 +22,8 @@
  * });
  *
  * const layer = Layer.provideMerge(
- *   TecoInverterService.Default("Rtu"),
- *   RtuTransportService.Default({ portPath: "/dev/ttyUSB0", baudRate: 19200 }),
+ *   TecoInverterService.Default(true),
+ *   SerialTransportService.fromRtu({ portPath: "/dev/ttyUSB0", baudRate: 19200 }),
  * );
  *
  * program.pipe(Effect.provide(layer), BunRuntime.runMain);
@@ -32,7 +32,10 @@
  */
 
 import { Effect, Record } from "effect";
-import { AsciiTransportService, RtuTransportService, type SlaveDeviceDefinition } from "effect-modbus-rs";
+import {
+  SerialTransportService,
+  type SlaveDeviceDefinition,
+} from "effect-modbus-rs";
 import { COMMAND_REGISTERS, MONITOR_REGISTERS } from "./Registers";
 import * as S from "./schemas";
 import * as P from "./parameters";
@@ -58,11 +61,29 @@ const paramDefault = (config: P.ParamConfig): number => {
 };
 
 const allParamGroups = [
-  P.group00, P.group01, P.group02, P.group03, P.group04,
-  P.group05, P.group06, P.group07, P.group08, P.group09,
-  P.group10, P.group11, P.group12, P.group13, P.group14,
-  P.group15, P.group16, P.group17, P.group18, P.group19,
-  P.group20, P.group21, P.group22,
+  P.group00,
+  P.group01,
+  P.group02,
+  P.group03,
+  P.group04,
+  P.group05,
+  P.group06,
+  P.group07,
+  P.group08,
+  P.group09,
+  P.group10,
+  P.group11,
+  P.group12,
+  P.group13,
+  P.group14,
+  P.group15,
+  P.group16,
+  P.group17,
+  P.group18,
+  P.group19,
+  P.group20,
+  P.group21,
+  P.group22,
 ] as const;
 
 const paramRegisterDefs: ReadonlyArray<{
@@ -86,17 +107,8 @@ const paramRegisterDefs: ReadonlyArray<{
 export class TecoInverterService extends Effect.Service<TecoInverterService>()(
   "TecoInverterService",
   {
-    scoped: Effect.fnUntraced(function* (
-      transportVariant: "Rtu" | "Ascii",
-      safeShutdown: boolean = true,
-    ) {
-      let transport: RtuTransportService | AsciiTransportService;
-
-      if (transportVariant === "Rtu") {
-        transport = yield* RtuTransportService;
-      } else if (transportVariant === "Ascii") {
-        transport = yield* AsciiTransportService;
-      }
+    scoped: Effect.fnUntraced(function* (safeShutdown: boolean = true) {
+      const transport = yield* SerialTransportService;
 
       const deviceCache = new Set<number>();
       const cacheDevice = (device: number) => deviceCache.add(device);
