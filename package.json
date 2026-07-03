@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "effect": "^3.21.4",
-    "effect-modbus-rs": "link:effect-modbus-rs"
+    "effect-modbus-rs": "github:justin-prather/Effect-modbus-rs"
   }
 }
