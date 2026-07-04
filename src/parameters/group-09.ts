@@ -15,8 +15,13 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-00"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-00", name: "INV Communication Station Address",
-      range: "1~31", default: "1", unit: "-", page: p452,
+      group,
+      code: "09-00",
+      name: "INV Communication Station Address",
+      range: "1~31",
+      default: "1",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -25,8 +30,13 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-01"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-01", name: "Communication Mode Selection",
-      range: "0 (MODBUS)", default: "0", unit: "-", page: p452,
+      group,
+      code: "09-01",
+      name: "Communication Mode Selection",
+      range: "0 (MODBUS)",
+      default: "0",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -35,8 +45,13 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-02"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-02", name: "Baud Rate Setting (bps)",
-      range: "0-5 (0:1200 / 1:2400 / 2:4800 / 3:9600 / 4:19200 / 5:38400)", default: "4", unit: "-", page: p452,
+      group,
+      code: "09-02",
+      name: "Baud Rate Setting (bps)",
+      range: "0-5 (0:1200 / 1:2400 / 2:4800 / 3:9600 / 4:19200 / 5:38400)",
+      default: "4",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -45,8 +60,13 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-03"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-03", name: "Stop Bit Selection",
-      range: "0-1 (0:1 StopBit / 1:2 StopBit)", default: "0", unit: "-", page: p452,
+      group,
+      code: "09-03",
+      name: "Stop Bit Selection",
+      range: "0-1 (0:1 StopBit / 1:2 StopBit)",
+      default: "0",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -55,8 +75,13 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-04"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-04", name: "Parity Selection",
-      range: "0-2 (0:No Parity / 1:Even Bit / 2:Odd Bit)", default: "0", unit: "-", page: p452,
+      group,
+      code: "09-04",
+      name: "Parity Selection",
+      range: "0-2 (0:No Parity / 1:Even Bit / 2:Odd Bit)",
+      default: "0",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -65,8 +90,13 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-05"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-05", name: "Communication DataBit Selection",
-      range: "0-1 (0:8 Bit Data / 1:7 Bit Data)", default: "0", unit: "-", page: p452,
+      group,
+      code: "09-05",
+      name: "Communication DataBit Selection",
+      range: "0-1 (0:8 Bit Data / 1:7 Bit Data)",
+      default: "0",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -76,8 +106,13 @@ const all = {
     kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
-      group, code: "09-06", name: "Communication Error Detection Time",
-      range: "0.0~25.5", default: "0.0", unit: "S", page: p452,
+      group,
+      code: "09-06",
+      name: "Communication Error Detection Time",
+      range: "0.0~25.5",
+      default: "0.0",
+      unit: "S",
+      page: p452,
     },
   },
 
@@ -86,8 +121,14 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-07"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-07", name: "Fault Stop Selection",
-      range: "0-3 (0:Decel stop DT1 / 1:Coast stop / 2:Decel stop DT2 / 3:Keep operating)", default: "3", unit: "-", page: p452,
+      group,
+      code: "09-07",
+      name: "Fault Stop Selection",
+      range:
+        "0-3 (0:Decel stop DT1 / 1:Coast stop / 2:Decel stop DT2 / 3:Keep operating)",
+      default: "3",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -96,8 +137,13 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-08"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-08", name: "Comm. Fault Tolerance Count",
-      range: "1~20", default: "1", unit: "-", page: p452,
+      group,
+      code: "09-08",
+      name: "Comm. Fault Tolerance Count",
+      range: "1~20",
+      default: "1",
+      unit: "-",
+      page: p452,
     },
   },
 
@@ -106,16 +152,15 @@ const all = {
     register: GROUP_09_Communication_Parameters["09-09"],
     kind: ParamKind.UInt16,
     meta: {
-      group, code: "09-09", name: "Waiting Time",
-      range: "5~65", default: "5", unit: "ms", page: p452,
+      group,
+      code: "09-09",
+      name: "Waiting Time",
+      range: "5~65",
+      default: "5",
+      unit: "ms",
+      page: p452,
     },
   },
-  "09-10": {
-    register: GROUP_09_Communication_Parameters["09-10"],
-    kind: ParamKind.UInt16,
-    meta: { group, code: "09-10", name: "Reserved", range: "-", default: "-", unit: "-", page: p452 },
-  },
-
 } as const satisfies Record<string, ParamConfig>;
 
 export const group09Params = all;

@@ -413,17 +413,9 @@ const all = {
       page: p488,
     },
   },
-  "22-23": {
-    register: GROUP_22_PM_Motor_Parameters["22-23"],
-    kind: ParamKind.UInt16,
-    meta: { group, code: "22-23", name: "Reserved", range: "-", default: "-", unit: "-", page: p488 },
-  },
-
 } as const satisfies Record<string, ParamConfig>;
 
 // ── Static named exports ───────────────────────────────────
-
-
 
 // ── Group-level lookup ─────────────────────────────────────
 
