@@ -100,7 +100,7 @@ const makeScaledParam = (
     Schema.annotations({
       description: formatScaledMeta(register, meta, factor),
     }),
-    Schema.transformOrFail(UInt16, {
+    Schema.transformOrFail(Schema.Number, {
       decode: (raw) => ParseResult.succeed(raw * factor),
       encode: (value) => ParseResult.succeed(Math.round(value / factor)),
       strict: false,
@@ -109,21 +109,29 @@ const makeScaledParam = (
 
 /**
  * Signed scaled parameter where wire = domain / factor.
- * Uses Int16 to support negative wire values.
- * Example: -100.0~100.0 % × 0.1 → wire range -1000~1000
+ * Uses UInt16 as the wire-side schema with two's complement conversion,
+ * since Modbus delivers unsigned 16-bit values (0–65535).
+ * Example: -100.0~100.0 % × 0.1 → wire range 64536~1000 (unsigned)
  */
 const makeSignedScaledParam = (
   register: number,
   factor: number,
   meta: ParamMeta,
 ): Schema.Schema<number, number> =>
-  Int16.pipe(
+  UInt16.pipe(
     Schema.annotations({
       description: formatScaledMeta(register, meta, factor),
     }),
-    Schema.transformOrFail(Int16, {
-      decode: (raw) => ParseResult.succeed(raw * factor),
-      encode: (value) => ParseResult.succeed(Math.round(value / factor)),
+    Schema.transformOrFail(Schema.Number, {
+      decode: (raw) => {
+        const signed = raw > 0x7fff ? raw - 0x10000 : raw;
+        return ParseResult.succeed(signed * factor);
+      },
+      encode: (value) => {
+        const raw = Math.round(value / factor);
+        const unsigned = raw < 0 ? raw + 0x10000 : raw;
+        return ParseResult.succeed(unsigned);
+      },
       strict: false,
     }),
   ) as unknown as Schema.Schema<number, number>;

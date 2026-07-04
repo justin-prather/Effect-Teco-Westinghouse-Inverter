@@ -269,6 +269,12 @@ const all = {
       page: p487,
     },
   },
+  /**
+   * PM motor tuning registers 22-25 through 22-35.
+   * @remarks Not listed in the A510 communication addendum (Group 22 register map ends at 22-22).
+   *          All returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "22-25": {
     register: GROUP_22_PM_Motor_Parameters["22-25"],
     kind: ParamKind.UInt16,

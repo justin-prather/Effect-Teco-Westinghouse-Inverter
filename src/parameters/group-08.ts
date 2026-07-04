@@ -535,7 +535,12 @@ const all = {
     },
   },
 
-  /** @param 08-46 Temperature Agree Level -- Range: 0~254, Default: 0, Unit: degree C, Manual p.4-50 */
+  /**
+   * @param 08-46 Temperature Agree Level -- Range: 0~254, Default: 0, Unit: degree C, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-46": {
     register: GROUP_08_Protection_Parameters["08-46"],
     kind: ParamKind.UInt16,
@@ -550,7 +555,12 @@ const all = {
     },
   },
 
-  /** @param 08-47 Temperature Reset Level -- Range: 0~254, Default: 0, Unit: degree C, Manual p.4-50 */
+  /**
+   * @param 08-47 Temperature Reset Level -- Range: 0~254, Default: 0, Unit: degree C, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-47": {
     register: GROUP_08_Protection_Parameters["08-47"],
     kind: ParamKind.UInt16,
@@ -565,7 +575,12 @@ const all = {
     },
   },
 
-  /** @param 08-48 Selection of Fire Mode -- Range: 0-1, Default: 0, Manual p.4-50 */
+  /**
+   * @param 08-48 Selection of Fire Mode -- Range: 0-1, Default: 0, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-48": {
     register: GROUP_08_Protection_Parameters["08-48"],
     kind: ParamKind.UInt16,
@@ -580,7 +595,12 @@ const all = {
     },
   },
 
-  /** @param 08-49 Multi-Function Input Terminal Status of Fire Mode -- Range: 0-1, Default: 0, Manual p.4-50 */
+  /**
+   * @param 08-49 Multi-Function Input Terminal Status of Fire Mode -- Range: 0-1, Default: 0, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-49": {
     register: GROUP_08_Protection_Parameters["08-49"],
     kind: ParamKind.UInt16,
@@ -595,7 +615,12 @@ const all = {
     },
   },
 
-  /** @param 08-50 Multi-Function Terminal Status of Fire Mode -- Bit field, Default: 0000b, Manual p.4-50 */
+  /**
+   * @param 08-50 Multi-Function Terminal Status of Fire Mode -- Bit field, Default: 0000b, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-50": {
     register: GROUP_08_Protection_Parameters["08-50"],
     kind: ParamKind.UInt16,
@@ -610,7 +635,12 @@ const all = {
     },
   },
 
-  /** @param 08-51 Motor Speed Setting Source of Fire Mode -- Range: 0-2, Default: 0, Manual p.4-50 */
+  /**
+   * @param 08-51 Motor Speed Setting Source of Fire Mode -- Range: 0-2, Default: 0, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-51": {
     register: GROUP_08_Protection_Parameters["08-51"],
     kind: ParamKind.UInt16,
@@ -625,7 +655,12 @@ const all = {
     },
   },
 
-  /** @param 08-52 Motor Speed of Fire Mode -- Range: 0.00~100.00, Default: 100.00, Unit: %, Manual p.4-50 */
+  /**
+   * @param 08-52 Motor Speed of Fire Mode -- Range: 0.00~100.00, Default: 100.00, Unit: %, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-52": {
     register: GROUP_08_Protection_Parameters["08-52"],
     kind: ParamKind.Scaled,
@@ -641,7 +676,12 @@ const all = {
     },
   },
 
-  /** @param 08-53 PID Detection Level of Fire Mode -- Range: 0~100, Default: 0, Unit: %, Manual p.4-50 */
+  /**
+   * @param 08-53 PID Detection Level of Fire Mode -- Range: 0~100, Default: 0, Unit: %, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-53": {
     register: GROUP_08_Protection_Parameters["08-53"],
     kind: ParamKind.UInt16,
@@ -656,7 +696,12 @@ const all = {
     },
   },
 
-  /** @param 08-54 Delay Time of Fire Mode PID Loss -- Range: 0.0~10.0, Default: 1.0, Unit: s, Manual p.4-50 */
+  /**
+   * @param 08-54 Delay Time of Fire Mode PID Loss -- Range: 0.0~10.0, Default: 1.0, Unit: s, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-54": {
     register: GROUP_08_Protection_Parameters["08-54"],
     kind: ParamKind.Scaled,
@@ -672,7 +717,12 @@ const all = {
     },
   },
 
-  /** @param 08-55 PID Feedback Loss Detection Selection of Fire Mode -- Range: 0-2, Default: 1, Manual p.4-50 */
+  /**
+   * @param 08-55 PID Feedback Loss Detection Selection of Fire Mode -- Range: 0-2, Default: 1, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-55": {
     register: GROUP_08_Protection_Parameters["08-55"],
     kind: ParamKind.UInt16,
@@ -687,7 +737,12 @@ const all = {
     },
   },
 
-  /** @param 08-56 Detection Level of Fire Mode AI2 Signal -- Range: 0.0~100.0, Default: 80.0, Unit: %, Manual p.4-50 */
+  /**
+   * @param 08-56 Detection Level of Fire Mode AI2 Signal -- Range: 0.0~100.0, Default: 80.0, Unit: %, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-56": {
     register: GROUP_08_Protection_Parameters["08-56"],
     kind: ParamKind.Scaled,
@@ -703,7 +758,12 @@ const all = {
     },
   },
 
-  /** @param 08-57 Delay Time of Fire Mode AI2 Signal Loss -- Range: 0.0~10.0, Default: 1.0, Unit: s, Manual p.4-50 */
+  /**
+   * @param 08-57 Delay Time of Fire Mode AI2 Signal Loss -- Range: 0.0~10.0, Default: 1.0, Unit: s, Manual p.4-50
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-57": {
     register: GROUP_08_Protection_Parameters["08-57"],
     kind: ParamKind.Scaled,
@@ -719,7 +779,12 @@ const all = {
     },
   },
 
-  /** @param 08-58 Selection of Fire Mode AI2 Signal Loss -- Range: 0-2, Default: 1, Manual p.4-51 */
+  /**
+   * @param 08-58 Selection of Fire Mode AI2 Signal Loss -- Range: 0-2, Default: 1, Manual p.4-51
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-58": {
     register: GROUP_08_Protection_Parameters["08-58"],
     kind: ParamKind.UInt16,
@@ -734,7 +799,12 @@ const all = {
     },
   },
 
-  /** @param 08-59 Fire Mode Motor Direction -- Range: 0-1, Default: 0, Manual p.4-51 */
+  /**
+   * @param 08-59 Fire Mode Motor Direction -- Range: 0-1, Default: 0, Manual p.4-51
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-59": {
     register: GROUP_08_Protection_Parameters["08-59"],
     kind: ParamKind.UInt16,
@@ -749,7 +819,12 @@ const all = {
     },
   },
 
-  /** @param 08-60 Fire Mode Password -- Range: 00000~65534, Default: 0, Manual p.4-51 */
+  /**
+   * @param 08-60 Fire Mode Password -- Range: 00000~65534, Default: 0, Manual p.4-51
+   * @remarks Not listed in the A510 communication addendum (Group 8 register map ends at 08-40).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "08-60": {
     register: GROUP_08_Protection_Parameters["08-60"],
     kind: ParamKind.UInt16,

@@ -459,7 +459,12 @@ const all = {
     },
   },
 
-  /** @param 07-34 Short-circuit Braking Time at Start — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-45 */
+  /**
+   * @param 07-34 Short-circuit Braking Time at Start — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-45
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-34": {
     register: GROUP_07_Start_Stop_Parameters["07-34"],
     kind: ParamKind.Scaled,
@@ -475,7 +480,12 @@ const all = {
     },
   },
 
-  /** @param 07-35 Short-circuit Braking Time at Stop — Range: 0.00~100.00, Default: 0.50, Unit: Sec, Manual p.4-45 */
+  /**
+   * @param 07-35 Short-circuit Braking Time at Stop — Range: 0.00~100.00, Default: 0.50, Unit: Sec, Manual p.4-45
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-35": {
     register: GROUP_07_Start_Stop_Parameters["07-35"],
     kind: ParamKind.Scaled,
@@ -491,7 +501,12 @@ const all = {
     },
   },
 
-  /** @param 07-36 Short-circuit Braking Current — Range: 0.0~200.0, Default: 100.0, Unit: %, Manual p.4-45 */
+  /**
+   * @param 07-36 Short-circuit Braking Current — Range: 0.0~200.0, Default: 100.0, Unit: %, Manual p.4-45
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-36": {
     register: GROUP_07_Start_Stop_Parameters["07-36"],
     kind: ParamKind.Scaled,
@@ -507,7 +522,12 @@ const all = {
     },
   },
 
-  /** @param 07-42 Voltage Limit Gain — Range: 0.0~50.0, Default: 0, Unit: %, Manual p.4-46 */
+  /**
+   * @param 07-42 Voltage Limit Gain — Range: 0.0~50.0, Default: 0, Unit: %, Manual p.4-46
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-42": {
     register: GROUP_07_Start_Stop_Parameters["07-42"],
     kind: ParamKind.Scaled,
@@ -523,7 +543,12 @@ const all = {
     },
   },
 
-  /** @param 07-43 Short-circuit Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46 */
+  /**
+   * @param 07-43 Short-circuit Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-43": {
     register: GROUP_07_Start_Stop_Parameters["07-43"],
     kind: ParamKind.Scaled,
@@ -539,7 +564,12 @@ const all = {
     },
   },
 
-  /** @param 07-44 DC Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46 */
+  /**
+   * @param 07-44 DC Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-44": {
     register: GROUP_07_Start_Stop_Parameters["07-44"],
     kind: ParamKind.Scaled,
@@ -555,7 +585,12 @@ const all = {
     },
   },
 
-  /** @param 07-45 STP2 Function Selection — Range: 0-1, Default: 0, Manual p.4-46 */
+  /**
+   * @param 07-45 STP2 Function Selection — Range: 0-1, Default: 0, Manual p.4-46
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-45": {
     register: GROUP_07_Start_Stop_Parameters["07-45"],
     kind: ParamKind.UInt16,
@@ -570,7 +605,12 @@ const all = {
     },
   },
 
-  /** @param 07-46 DC Injection Current Limit — Range: 0~150, Default: 100, Unit: %, Manual p.4-46 */
+  /**
+   * @param 07-46 DC Injection Current Limit — Range: 0~150, Default: 100, Unit: %, Manual p.4-46
+   * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "07-46": {
     register: GROUP_07_Start_Stop_Parameters["07-46"],
     kind: ParamKind.UInt16,

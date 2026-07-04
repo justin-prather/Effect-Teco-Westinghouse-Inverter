@@ -865,6 +865,12 @@ const all = {
       page: p467,
     },
   },
+  /**
+   * @param 12-80 AI1 Frequency Command -- Range: 0.0~599.0, Default: 0, Unit: Hz, Manual p.4-67
+   * @remarks Not listed in the A510 communication addendum (Group 12 register map ends at 12-79).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "12-80": {
     register: GROUP_12_Monitoring_Parameters["12-80"],
     kind: ParamKind.Scaled,
@@ -879,6 +885,12 @@ const all = {
       page: p467,
     },
   },
+  /**
+   * @param 12-82 Motor Load -- Range: 0~200.0, Default: -, Unit: %, Manual p.4-67
+   * @remarks Not listed in the A510 communication addendum (Group 12 register map ends at 12-79).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "12-82": {
     register: GROUP_12_Monitoring_Parameters["12-82"],
     kind: ParamKind.Scaled,
@@ -893,6 +905,12 @@ const all = {
       page: p467,
     },
   },
+  /**
+   * @param 12-85 AI3 Input -- Range: read-only, Default: -, Unit: %, Manual p.4-67
+   * @remarks Not listed in the A510 communication addendum (Group 12 register map ends at 12-79).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "12-85": {
     register: GROUP_12_Monitoring_Parameters["12-85"],
     kind: ParamKind.UInt16,

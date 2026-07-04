@@ -847,6 +847,12 @@ const all = {
     meta: { group, code: "11-73", name: "Gain of Preventing Oscillation for Switch Frequency 2", range: "0.01~300.00", default: "50.00", unit: "Hz", page: p459 },
   },
 
+  /**
+   * @param 11-76 Droop Frequency Level 1 -- Range: 0.00~599.00, Default: 0.00, Unit: Hz, Manual p.4-59
+   * @remarks Not listed in the A510 communication addendum (Group 11 register map ends at 11-65).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "11-76": {
     register: GROUP_11_Auxiliary_Parameters["11-76"],
     kind: ParamKind.Scaled,
@@ -854,6 +860,12 @@ const all = {
     meta: { group, code: "11-76", name: "Droop Frequency Level 1", range: "0.00~599.00", default: "0.00", unit: "Hz", page: p459 },
   },
 
+  /**
+   * @param 11-77 Droop Frequency Level 2 -- Range: 0.00~599.00, Default: 0.00, Unit: Hz, Manual p.4-59
+   * @remarks Not listed in the A510 communication addendum (Group 11 register map ends at 11-65).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "11-77": {
     register: GROUP_11_Auxiliary_Parameters["11-77"],
     kind: ParamKind.Scaled,
@@ -861,6 +873,12 @@ const all = {
     meta: { group, code: "11-77", name: "Droop Frequency Level 2", range: "0.00~599.00", default: "0.00", unit: "Hz", page: p459 },
   },
 
+  /**
+   * @param 11-78 Droop Torque Offset Value -- Range: 0.00~100.00, Default: 0.00, Unit: %, Manual p.4-59
+   * @remarks Not listed in the A510 communication addendum (Group 11 register map ends at 11-65).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "11-78": {
     register: GROUP_11_Auxiliary_Parameters["11-78"],
     kind: ParamKind.Scaled,

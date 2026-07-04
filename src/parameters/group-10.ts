@@ -416,7 +416,12 @@ const all = {
     },
   },
 
-  /** @param 10-47 Proportional Gain 3 (P) -- Range: 0.00~10.00, Default: 1.00, Unit: -, Manual p.4-56 */
+  /**
+   * @param 10-47 Proportional Gain 3 (P) -- Range: 0.00~10.00, Default: 1.00, Unit: -, Manual p.4-56
+   * @remarks Not listed in the A510 communication addendum (Group 10 register map ends at 10-41).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "10-47": {
     register: GROUP_10_PID_Parameters["10-47"],
     kind: ParamKind.Scaled,
@@ -427,7 +432,12 @@ const all = {
     },
   },
 
-  /** @param 10-48 Integral Time 3 (I) -- Range: 0.00~100.00, Default: 1.00, Unit: Sec, Manual p.4-56 */
+  /**
+   * @param 10-48 Integral Time 3 (I) -- Range: 0.00~100.00, Default: 1.00, Unit: Sec, Manual p.4-56
+   * @remarks Not listed in the A510 communication addendum (Group 10 register map ends at 10-41).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "10-48": {
     register: GROUP_10_PID_Parameters["10-48"],
     kind: ParamKind.Scaled,
@@ -438,7 +448,12 @@ const all = {
     },
   },
 
-  /** @param 10-49 Differential Time 3 (D) -- Range: 0.00~10.00, Default: 0.00, Unit: Sec, Manual p.4-56 */
+  /**
+   * @param 10-49 Differential Time 3 (D) -- Range: 0.00~10.00, Default: 0.00, Unit: Sec, Manual p.4-56
+   * @remarks Not listed in the A510 communication addendum (Group 10 register map ends at 10-41).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "10-49": {
     register: GROUP_10_PID_Parameters["10-49"],
     kind: ParamKind.Scaled,

@@ -504,7 +504,12 @@ const all = {
     },
   },
 
-  /** @param 03-48 Low Current Detection Level — Range: 0.0~999.9, Default: 0.1, Unit: A, Manual p.4-32 */
+  /**
+   * @param 03-48 Low Current Detection Level — Range: 0.0~999.9, Default: 0.1, Unit: A, Manual p.4-32
+   * @remarks Not listed in the A510 communication addendum (register map ends at 03-42).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "03-48": {
     register: GROUP_03_External_Digital_Input_and_Output_Parameters["03-48"],
     kind: ParamKind.Scaled,
@@ -515,7 +520,12 @@ const all = {
     },
   },
 
-  /** @param 03-49 Low Current Detection Delay Time — Range: 0.00~655.34, Default: 0.01, Unit: Sec, Manual p.4-32 */
+  /**
+   * @param 03-49 Low Current Detection Delay Time — Range: 0.00~655.34, Default: 0.01, Unit: Sec, Manual p.4-32
+   * @remarks Not listed in the A510 communication addendum (register map ends at 03-42).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "03-49": {
     register: GROUP_03_External_Digital_Input_and_Output_Parameters["03-49"],
     kind: ParamKind.Scaled,
@@ -526,7 +536,12 @@ const all = {
     },
   },
 
-  /** @param 03-50 Frequency Detection Level 4 — Range: 0.0~599.0, Default: 0.0, Unit: Hz, Manual p.4-32 */
+  /**
+   * @param 03-50 Frequency Detection Level 4 — Range: 0.0~599.0, Default: 0.0, Unit: Hz, Manual p.4-32
+   * @remarks Not listed in the A510 communication addendum (register map ends at 03-42).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "03-50": {
     register: GROUP_03_External_Digital_Input_and_Output_Parameters["03-50"],
     kind: ParamKind.Scaled,
@@ -537,7 +552,12 @@ const all = {
     },
   },
 
-  /** @param 03-51 Frequency Detection Level 5 — Range: 0.0~599.0, Default: 0.0, Unit: Hz, Manual p.4-32 */
+  /**
+   * @param 03-51 Frequency Detection Level 5 — Range: 0.0~599.0, Default: 0.0, Unit: Hz, Manual p.4-32
+   * @remarks Not listed in the A510 communication addendum (register map ends at 03-42).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "03-51": {
     register: GROUP_03_External_Digital_Input_and_Output_Parameters["03-51"],
     kind: ParamKind.Scaled,
@@ -548,7 +568,12 @@ const all = {
     },
   },
 
-  /** @param 03-52 Frequency Detection Level 6 — Range: 0.0~599.0, Default: 0.0, Unit: Hz, Manual p.4-33 */
+  /**
+   * @param 03-52 Frequency Detection Level 6 — Range: 0.0~599.0, Default: 0.0, Unit: Hz, Manual p.4-33
+   * @remarks Not listed in the A510 communication addendum (register map ends at 03-42).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "03-52": {
     register: GROUP_03_External_Digital_Input_and_Output_Parameters["03-52"],
     kind: ParamKind.Scaled,
@@ -559,7 +584,12 @@ const all = {
     },
   },
 
-  /** @param 03-53 Current Agree Level 2 — Range: 0.0~999.9, Default: 0.1, Unit: A, Manual p.4-33 */
+  /**
+   * @param 03-53 Current Agree Level 2 — Range: 0.0~999.9, Default: 0.1, Unit: A, Manual p.4-33
+   * @remarks Not listed in the A510 communication addendum (register map ends at 03-42).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "03-53": {
     register: GROUP_03_External_Digital_Input_and_Output_Parameters["03-53"],
     kind: ParamKind.Scaled,

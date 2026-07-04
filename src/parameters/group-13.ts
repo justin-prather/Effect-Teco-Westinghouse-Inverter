@@ -208,6 +208,12 @@ const all = {
       page: p469,
     },
   },
+  /**
+   * Fault History registers 13-21 through 13-50.
+   * @remarks Not listed in the A510 communication addendum (Group 13 register map ends at 13-14).
+   *          All returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "13-21": {
     register: GROUP_13_Maintenance_Parameters["13-21"],
     kind: ParamKind.UInt16,

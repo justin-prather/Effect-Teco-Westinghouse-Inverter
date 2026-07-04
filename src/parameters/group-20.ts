@@ -498,6 +498,12 @@ const all = {
       page: p482,
     },
   },
+  /**
+   * @param 20-43 MPG Speed Magnification Calculation -- Range: 1~500, Default: 20, Manual p.4-82
+   * @remarks Not listed in the A510 communication addendum (Group 20 register map ends at 20-35).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "20-43": {
     register: GROUP_20_Speed_Control_Parameters["20-43"],
     kind: ParamKind.UInt16,
@@ -511,6 +517,12 @@ const all = {
       page: p482,
     },
   },
+  /**
+   * @param 20-44 MPG Speed Command Limit -- Range: 0.1~30.0, Default: 6.0, Unit: Hz, Manual p.4-82
+   * @remarks Not listed in the A510 communication addendum (Group 20 register map ends at 20-35).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "20-44": {
     register: GROUP_20_Speed_Control_Parameters["20-44"],
     kind: ParamKind.Scaled,

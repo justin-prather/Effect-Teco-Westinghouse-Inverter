@@ -237,7 +237,12 @@ const all = {
     },
   },
 
-  /** @param 04-21 AI3 Signal Scanning and Filtering Time — Range: 0.00~2.00, Default: 0.03, Unit: s, Manual p.4-36 */
+  /**
+   * @param 04-21 AI3 Signal Scanning and Filtering Time — Range: 0.00~2.00, Default: 0.03, Unit: s, Manual p.4-36
+   * @remarks Not listed in the A510 communication addendum (Group 4 register map ends at 04-12).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "04-21": {
     register: GROUP_04_External_Analog_Input_and_Output_Parameters["04-21"],
     kind: ParamKind.Scaled,
@@ -248,7 +253,12 @@ const all = {
     },
   },
 
-  /** @param 04-22 AI3 Gain — Range: 0.0~1000.0, Default: 100.0, Unit: %, Manual p.4-36 */
+  /**
+   * @param 04-22 AI3 Gain — Range: 0.0~1000.0, Default: 100.0, Unit: %, Manual p.4-36
+   * @remarks Not listed in the A510 communication addendum (Group 4 register map ends at 04-12).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "04-22": {
     register: GROUP_04_External_Analog_Input_and_Output_Parameters["04-22"],
     kind: ParamKind.Scaled,
@@ -259,7 +269,12 @@ const all = {
     },
   },
 
-  /** @param 04-23 AI3 Bias — Range: -100.0~100.0, Default: 0, Unit: %, Manual p.4-36 */
+  /**
+   * @param 04-23 AI3 Bias — Range: -100.0~100.0, Default: 0, Unit: %, Manual p.4-36
+   * @remarks Not listed in the A510 communication addendum (Group 4 register map ends at 04-12).
+   *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+   *          Retained for completeness per the instruction manual parameter table.
+   */
   "04-23": {
     register: GROUP_04_External_Analog_Input_and_Output_Parameters["04-23"],
     kind: ParamKind.SignedScaled,
