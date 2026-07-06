@@ -57,6 +57,9 @@ const paramDefault = (config: P.ParamConfig): number => {
     case P.ParamKind.Scaled:
     case P.ParamKind.SignedScaled:
       return Math.round(raw / config.factor);
+    case P.ParamKind.Bitfield:
+    case P.ParamKind.Lookup:
+      return raw;
   }
 };
 

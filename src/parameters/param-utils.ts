@@ -1,87 +1,168 @@
 /**
- * @fileoverview Parameter schema factories and type definitions for Groups 00–22.
+ * @fileoverview Parameter & register schema factories and type definitions.
  *
- * Provides four schema factories ({@link makeParam}, {@link makeScaledParam},
- * {@link makeSignedScaledParam}, {@link makeEnumParam}) that produce decode/encode/format
- * bundles from a register address and metadata. The {@link fromConfig} overload selects
- * the correct factory based on the {@link ParamConfig} discriminant.
+ * Provides six schema factories ({@link makeParam}, {@link makeScaledParam},
+ * {@link makeSignedScaledParam}, {@link makeEnumParam}, {@link makeBitfieldParam},
+ * {@link makeLookupParam}) that produce decode/encode/format bundles from a
+ * register address and metadata. The {@link fromConfig} overload selects the
+ * correct factory based on the {@link ParamConfig} discriminant.
  *
- * Group files (group-00.ts … group-22.ts) store {@link ParamConfig} objects and use
- * {@link fromConfig} to build the final {@link ParamEntry} bundles exposed via
- * {@link TecoInverterService.parameters}.
+ * The engine is device-agnostic: it never names domain brands, register
+ * enums, or device error types. Domain schemas are passed in via the `domain`
+ * field on scaled/lookup configs; the read-only encoder is owned here so
+ * monitor registers can share the same primitives as command registers.
  *
  * @module
  */
 
-import { Effect, ParseResult, Pretty, Schema } from "effect";
+import { Brand, Effect, ParseResult, Pretty, Schema } from "effect";
 import type { ModbusError } from "effect-modbus-rs";
-import { Int16, UInt16 } from "../schemas";
+
+// ── Wire primitives ─────────────────────────────────────────
 
 /**
- * Structured metadata for a parameter extracted from the A510 instruction manual.
+ * Branded 16-bit unsigned word for Modbus register values.
  */
-export interface ParamMeta {
-  readonly group: number;
-  readonly code: string;
+export type UInt16 = number & Brand.Brand<"UInt16">;
+
+export const UInt16 = Schema.Number.pipe(
+  Schema.int(),
+  Schema.nonNegative(),
+  Schema.lessThanOrEqualTo(0xffff),
+  Schema.brand("UInt16"),
+);
+
+/**
+ * Branded 16-bit signed word for Modbus register values.
+ */
+export type Int16 = number & Brand.Brand<"Int16">;
+
+export const Int16 = Schema.Number.pipe(
+  Schema.int(),
+  Schema.greaterThanOrEqualTo(-0x8000),
+  Schema.lessThanOrEqualTo(0x7fff),
+  Schema.brand("Int16"),
+);
+
+// ── Read-only encoder ──────────────────────────────────────
+
+/**
+ * Constructs a failure `Effect` for monitor registers that cannot be written.
+ *
+ * Monitor registers are read-only. Calling `encode()` on a read-only schema
+ * fails with a `ParseResult.Type` error whose message indicates the register
+ * is read-only.
+ *
+ * @param registerName - Human-readable name of the register.
+ * @param actual - The value that was passed during encode.
+ * @param ast - The Effect `AST` describing the expected type.
+ */
+export const readOnlyEncodeFailure = (
+  registerName: string,
+  actual: unknown,
+  ast: ConstructorParameters<typeof ParseResult.Type>[0],
+) =>
+  Effect.fail(
+    new ParseResult.Type(ast, actual, `${registerName} is read only`),
+  );
+
+const bit = (n: number): number => 1 << n;
+
+// ── Metadata ───────────────────────────────────────────────
+
+/**
+ * Generic, device-agnostic register metadata used by the engine's description
+ * annotations. Domain libraries extend this with device-specific fields
+ * (e.g. {@link ParamMeta} adds `group`, `code`, `page`).
+ */
+export interface RegisterMeta {
   readonly name: string;
+  readonly unit: string;
   readonly range: string;
   readonly default: string;
-  readonly unit: string;
+  readonly description?: string;
+}
+
+/**
+ * Device-flavored metadata extracted from the A510 instruction manual.
+ */
+export interface ParamMeta extends RegisterMeta {
+  readonly group: number;
+  readonly code: string;
   readonly page: number;
 }
+
+const isParamMeta = (m: RegisterMeta): m is ParamMeta =>
+  "group" in m && "code" in m && "page" in m;
 
 const formatRegister = (register: number): string =>
   `0x${register.toString(16).toUpperCase().padStart(4, "0")}`;
 
-const formatMeta = (register: number, meta: ParamMeta): string =>
-  [
-    `${meta.code} ${meta.name}`,
+const formatMeta = (register: number, meta: RegisterMeta): string => {
+  const head = isParamMeta(meta) ? `${meta.code} ${meta.name}` : meta.name;
+  const lines = [
+    head,
     `Register: ${formatRegister(register)}`,
     `Setting Range: ${meta.range}`,
     `Default: ${meta.default}`,
     `Unit: ${meta.unit}`,
-    `Manual Page: ${meta.page}`,
-  ].join("\n");
+  ];
+  if (isParamMeta(meta)) lines.push(`Manual Page: ${meta.page}`);
+  return lines.join("\n");
+};
 
 const formatScaledMeta = (
   register: number,
-  meta: ParamMeta,
+  meta: RegisterMeta,
   factor: number,
-): string =>
-  [
-    `${meta.code} ${meta.name}`,
+): string => {
+  const head = isParamMeta(meta) ? `${meta.code} ${meta.name}` : meta.name;
+  const lines = [
+    head,
     `Register: ${formatRegister(register)}`,
     `Wire format: raw × ${factor}`,
     `Setting Range: ${meta.range}`,
     `Default: ${meta.default}`,
     `Unit: ${meta.unit}`,
-    `Manual Page: ${meta.page}`,
-  ].join("\n");
+  ];
+  if (isParamMeta(meta)) lines.push(`Manual Page: ${meta.page}`);
+  return lines.join("\n");
+};
 
 const formatEnumMeta = (
   register: number,
-  meta: ParamMeta,
+  meta: RegisterMeta,
   labels: Record<number, string>,
-): string =>
-  [
-    `${meta.code} ${meta.name}`,
+): string => {
+  const head = isParamMeta(meta) ? `${meta.code} ${meta.name}` : meta.name;
+  const lines = [
+    head,
     `Register: ${formatRegister(register)}`,
     `Options:`,
     ...Object.entries(labels).map(([k, v]) => `  ${k} = ${v}`),
     `Default: ${meta.default}`,
     `Unit: ${meta.unit}`,
-    `Manual Page: ${meta.page}`,
-  ].join("\n");
+  ];
+  if (isParamMeta(meta)) lines.push(`Manual Page: ${meta.page}`);
+  return lines.join("\n");
+};
 
-// ── Factories ──────────────────────────────────────────────
+const formatBitfieldMeta = (register: number, meta: RegisterMeta): string =>
+  formatMeta(register, meta);
+
+const formatLookupMeta = (register: number, meta: RegisterMeta): string =>
+  formatMeta(register, meta);
+
+// ── Schema factories ──────────────────────────────────────
 
 /**
  * Simple UInt16 pass-through parameter.
  * The wire value IS the parameter value (no scaling).
  */
-const makeParam = <A extends number, I extends number>(
+// fallow-ignore-next-line unused-export
+export const makeParam = <A extends number, I extends number>(
   register: number,
-  meta: ParamMeta,
+  meta: RegisterMeta,
 ): Schema.Schema<A, I> =>
   UInt16.pipe(
     Schema.annotations({ description: formatMeta(register, meta) }),
@@ -89,67 +170,98 @@ const makeParam = <A extends number, I extends number>(
 
 /**
  * Scaled parameter where wire = domain / factor.
- * Example: 0.01 Hz → wire value 5000 decodes to 50.00 Hz
+ * Decode validates through the optional branded `domain` schema so out-of-range
+ * wire values fail (strict). Set `readOnly` to make encode fail with
+ * {@link readOnlyEncodeFailure} (monitor registers).
  */
-const makeScaledParam = (
+export const makeScaledParam = <A = number>(
   register: number,
   factor: number,
-  meta: ParamMeta,
-): Schema.Schema<number, number> =>
-  UInt16.pipe(
-    Schema.annotations({
-      description: formatScaledMeta(register, meta, factor),
-    }),
-    Schema.transformOrFail(Schema.Number, {
-      decode: (raw) => ParseResult.succeed(raw * factor),
-      encode: (value) => ParseResult.succeed(Math.round(value / factor)),
+  meta: RegisterMeta,
+  opts?: {
+    readonly domain?: Schema.Schema<A, any, any>;
+    readonly readOnly?: boolean;
+  },
+): Schema.Schema<A, number> => {
+  const domain = (opts?.domain ?? Schema.Number) as unknown as Schema.Schema<
+    A,
+    A
+  >;
+  const readOnly = opts?.readOnly ?? false;
+  const description = formatScaledMeta(register, meta, factor);
+  return UInt16.pipe(
+    Schema.annotations({ description }),
+    Schema.transformOrFail(domain, {
+      decode: (raw: number) => ParseResult.succeed(raw * factor),
+      encode: readOnly
+        ? (value: A, _, ast) => readOnlyEncodeFailure(meta.name, value, ast)
+        : (value: A) =>
+            ParseResult.succeed(
+              Math.round((value as unknown as number) / factor),
+            ),
       strict: false,
     }),
-  ) as unknown as Schema.Schema<number, number>;
+  ) as unknown as Schema.Schema<A, number>;
+};
 
 /**
- * Signed scaled parameter where wire = domain / factor.
- * Uses UInt16 as the wire-side schema with two's complement conversion,
- * since Modbus delivers unsigned 16-bit values (0–65535).
- * Example: -100.0~100.0 % × 0.1 → wire range 64536~1000 (unsigned)
+ * Signed scaled parameter where wire = domain / factor, using UInt16 as the
+ * wire-side schema with two's-complement conversion (Modbus delivers unsigned
+ * 16-bit values). Decode validates through the optional branded `domain`.
  */
-const makeSignedScaledParam = (
+export const makeSignedScaledParam = <A = number>(
   register: number,
   factor: number,
-  meta: ParamMeta,
-): Schema.Schema<number, number> =>
-  UInt16.pipe(
-    Schema.annotations({
-      description: formatScaledMeta(register, meta, factor),
-    }),
-    Schema.transformOrFail(Schema.Number, {
-      decode: (raw) => {
-        const signed = raw > 0x7fff ? raw - 0x10000 : raw;
-        return ParseResult.succeed(signed * factor);
-      },
-      encode: (value) => {
-        const raw = Math.round(value / factor);
-        const unsigned = raw < 0 ? raw + 0x10000 : raw;
-        return ParseResult.succeed(unsigned);
-      },
+  meta: RegisterMeta,
+  opts?: {
+    readonly domain?: Schema.Schema<A, any, any>;
+    readonly readOnly?: boolean;
+  },
+): Schema.Schema<A, number> => {
+  const domain = (opts?.domain ?? Schema.Number) as unknown as Schema.Schema<
+    A,
+    A
+  >;
+  const readOnly = opts?.readOnly ?? false;
+  const description = formatScaledMeta(register, meta, factor);
+  return Int16.pipe(
+    Schema.annotations({ description }),
+    Schema.transformOrFail(domain, {
+      decode: (raw: number) => ParseResult.succeed(raw * factor),
+      encode: readOnly
+        ? (value: A, _, ast) => readOnlyEncodeFailure(meta.name, value, ast)
+        : (value: A) =>
+            ParseResult.succeed(
+              Math.round((value as unknown as number) / factor),
+            ),
       strict: false,
     }),
-  ) as unknown as Schema.Schema<number, number>;
+  ) as unknown as Schema.Schema<A, number>;
+};
 
 /**
  * Enum selection parameter.
  * Maps wire integers to human-readable labels and back.
  */
-const makeEnumParam = <Domain extends string>(
+// fallow-ignore-next-line unused-export
+export const makeEnumParam = <Domain extends string>(
   register: number,
   labels: Record<number, Domain>,
-  meta: ParamMeta,
+  meta: RegisterMeta,
+  opts?: { readonly readOnly?: boolean },
 ): Schema.Schema<Domain, number> => {
   const values = [...new Set(Object.values(labels))] as [Domain, ...Domain[]];
+  const readOnly = opts?.readOnly ?? false;
   return UInt16.pipe(
-    Schema.annotations({ description: formatEnumMeta(register, meta, labels) }),
+    Schema.annotations({
+      description: formatEnumMeta(
+        register,
+        meta,
+        labels as Record<number, string>,
+      ),
+    }),
     Schema.transformOrFail(Schema.Literal(...values), {
-      decode: (raw, _, ast) => {
+      decode: (raw: number, _, ast) => {
         const label = labels[raw as number];
         return label !== undefined
           ? ParseResult.succeed(label)
@@ -157,22 +269,190 @@ const makeEnumParam = <Domain extends string>(
               new ParseResult.Type(
                 ast,
                 raw,
-                `Unknown enum value ${raw} for ${meta.code}`,
+                `Unknown enum value ${raw} for ${meta.name}`,
               ),
             );
       },
-      encode: (value, _, ast) => {
-        const entry = Object.entries(labels).find(([, v]) => v === value);
-        return entry
-          ? ParseResult.succeed(Number(entry[0]))
-          : ParseResult.fail(
-              new ParseResult.Type(
-                ast,
-                value,
-                `Invalid value "${value}" for ${meta.code}`,
+      encode: readOnly
+        ? (value: Domain, _, ast) =>
+            readOnlyEncodeFailure(meta.name, value, ast)
+        : (value: Domain, _, ast) => {
+            const entry = Object.entries(labels).find(([, v]) => v === value);
+            return entry
+              ? ParseResult.succeed(Number(entry[0]))
+              : ParseResult.fail(
+                  new ParseResult.Type(
+                    ast,
+                    value,
+                    `Invalid value "${value}" for ${meta.name}`,
+                  ),
+                );
+          },
+      strict: false,
+    }),
+  ) as unknown as Schema.Schema<Domain, number>;
+};
+
+// ── Bitfield factory ──────────────────────────────────────
+
+/**
+ * A bitfield entry adds a generated `patch` schema (all-optional booleans) and
+ * a `merge` function for read-modify-write semantics.
+ */
+export type BitfieldParamEntry<F extends AnyBitfieldClass> = ParamEntry<
+  Schema.Schema<InstanceType<F>, number>
+> & {
+  readonly patch: AnyPatchClass;
+  readonly merge: (
+    base: InstanceType<F>,
+    patch: Readonly<Record<string, boolean | undefined>>,
+  ) => InstanceType<F>;
+};
+
+/**
+ * Minimal structural shape the bitfield factory needs from a
+ * {@link Schema.Class}-derived class: it is both a schema (so it can serve as
+ * the `to` of a `transformOrFail`) and an instantiable class.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyBitfieldClass = new (fields: any) => any;
+
+/**
+ * Constructor shape produced for the generated patch class. Allows `new`
+ * construction with a partial record of booleans.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyPatchClass = new (
+  props?: Partial<{ readonly [k: string]: boolean }>,
+) => any;
+
+/**
+ * Bitfield parameter: maps a 16-bit wire word to/from a boolean-flag
+ * {@link Schema.Class}. Honors arbitrary bit positions (gaps allowed).
+ *
+ * For writable registers, the factory also generates a `Patch` schema
+ * (all-optional booleans over the same keys) and a `merge` function suitable
+ * for read-modify-write semantics — the device keeps the original `Schema.Class`
+ * so its intent constructors (`CommandWordFlags.runForward`, etc.) survive.
+ *
+ * Pass `readOnly: true` for monitor registers; the encode path then fails with
+ * {@link readOnlyEncodeFailure} and patch/merge remain available but unused.
+ */
+export const makeBitfieldParam = <F extends AnyBitfieldClass>(
+  register: number,
+  flagsClass: F,
+  bitLayout: Record<keyof InstanceType<F>, number>,
+  meta: RegisterMeta,
+  opts?: { readonly readOnly?: boolean },
+): BitfieldParamEntry<F> => {
+  const readOnly = opts?.readOnly ?? false;
+  const keys = Object.keys(bitLayout) as Array<keyof InstanceType<F>>;
+  const layout = bitLayout as unknown as Record<string, number>;
+  type Flags = InstanceType<F>;
+
+  const schema = UInt16.pipe(
+    Schema.annotations({ description: formatBitfieldMeta(register, meta) }),
+    Schema.transformOrFail(
+      flagsClass as unknown as Schema.Schema<
+        Flags,
+        Schema.Schema<Flags, Flags> extends Schema.Schema<any, infer I, any>
+          ? I
+          : never
+      >,
+      {
+        decode: (word: number) =>
+          ParseResult.succeed(
+            new (flagsClass as unknown as new (
+              f: Record<string, boolean>,
+            ) => Flags)(
+              Object.fromEntries(
+                keys.map((k) => [k, (word & bit(layout[k as string]!)) !== 0]),
               ),
-            );
+            ),
+          ),
+        encode: readOnly
+          ? (value: Flags, _, ast) =>
+              readOnlyEncodeFailure(meta.name, value, ast)
+          : (value: Flags, _, ast) => {
+              let word = 0;
+              for (const k of keys) {
+                if ((value as any)[k]) word |= bit(layout[k as string]!);
+              }
+              return Number.isInteger(word) && word >= 0 && word <= 0xffff
+                ? ParseResult.succeed(word)
+                : ParseResult.fail(
+                    new ParseResult.Type(
+                      ast,
+                      value,
+                      `${meta.name} is out of UInt16 range`,
+                    ),
+                  );
+            },
+        strict: false,
       },
+    ),
+  ) as unknown as Schema.Schema<Flags, number>;
+
+  const patchFields: Record<string, Schema.Struct.Field> = {};
+  for (const k of keys)
+    patchFields[k as string] = Schema.optional(Schema.Boolean);
+  const patchIdentifier = `${
+    (flagsClass as { name?: string }).name ?? "Bitfield"
+  }Patch`;
+  const patchSchema = Schema.Class<any>(patchIdentifier)(
+    patchFields as unknown as Schema.Struct.Fields,
+  ) as unknown as AnyPatchClass;
+
+  const merge = (
+    base: Flags,
+    patchObj: Readonly<Record<string, boolean | undefined>>,
+  ): Flags => {
+    const fields: Record<string, boolean> = {};
+    for (const k of keys) {
+      const p = patchObj[k as string];
+      fields[k as string] = p === undefined ? (base as any)[k] : p;
+    }
+    return new (flagsClass as unknown as new (
+      f: Record<string, boolean>,
+    ) => Flags)(fields);
+  };
+
+  return {
+    schema,
+    decode: makeDecode(schema),
+    encode: makeEncode(schema),
+    formatted: makeFormatted(schema),
+    patch: patchSchema,
+    merge,
+  } as BitfieldParamEntry<F>;
+};
+
+// ── Lookup factory ────────────────────────────────────────
+
+/**
+ * Lookup parameter: maps a wire integer → branded `Domain` string via a fixed
+ * `labels` table, routing unknown codes through a `fallback`. Inherently
+ * decode-only (encode always fails with {@link readOnlyEncodeFailure}); use for
+ * monitor registers that report fault/alarm/model codes as human-readable text.
+ */
+export const makeLookupParam = <Domain extends string>(
+  register: number,
+  labels: Record<number, Domain>,
+  fallback: (raw: number) => Domain,
+  meta: RegisterMeta,
+  opts?: { readonly domain?: Schema.Schema<Domain, any, any> },
+): Schema.Schema<Domain, number> => {
+  const domain = (opts?.domain ?? Schema.String) as unknown as Schema.Schema<
+    Domain,
+    Domain
+  >;
+  return UInt16.pipe(
+    Schema.annotations({ description: formatLookupMeta(register, meta) }),
+    Schema.transformOrFail(domain, {
+      decode: (raw: number) => Effect.succeed(labels[raw] ?? fallback(raw)),
+      encode: (value: Domain, _, ast) =>
+        readOnlyEncodeFailure(meta.name, value, ast),
       strict: false,
     }),
   ) as unknown as Schema.Schema<Domain, number>;
@@ -187,21 +467,36 @@ const makeEncode = <S extends Schema.Schema<any, any>>(schema: S) =>
 const makeFormatted = <S extends Schema.Schema<any, any>>(schema: S) =>
   Pretty.make(schema);
 
-// ── ParamKind enum ────────────────────────────────────────────
-// Identifies which schema factory created/would create the ParamEntry.
+// ── ParamKind enum ─────────────────────────────────────────
 
+/**
+ * Identifies which schema factory created/would create the ParamEntry.
+ */
 export enum ParamKind {
   UInt16 = "UInt16",
   Scaled = "Scaled",
   SignedScaled = "SignedScaled",
   Enum = "Enum",
+  Bitfield = "Bitfield",
+  Lookup = "Lookup",
 }
 
 // ── Config object types ──────────────────────────────────────
-// Group files now store these configuration objects instead of calling
-// factories directly.  The factories in the section below consume
-// these same parameters and produce the full ParamEntry bundle.
 
+/**
+ * Generic base shared by all config variants. Device-flavored group files
+ * use {@link ParamConfig} (whose `meta` is the stricter {@link ParamMeta});
+ * command/monitor registers may use plain {@link RegisterMeta}.
+ */
+export interface ConfigBase {
+  readonly register: number;
+  readonly kind: ParamKind;
+  readonly meta: RegisterMeta;
+}
+
+/**
+ * Device-flavored base used by the group parameter configs ({@link ParamConfig}).
+ */
 export interface ParamConfigBase {
   readonly register: number;
   readonly kind: ParamKind;
@@ -210,36 +505,60 @@ export interface ParamConfigBase {
 
 export interface UInt16ParamConfig extends ParamConfigBase {
   readonly kind: ParamKind.UInt16;
+  readonly readOnly?: boolean;
 }
 
-export interface ScaledParamConfig extends ParamConfigBase {
+export interface ScaledParamConfig<A = number> extends ParamConfigBase {
   readonly kind: ParamKind.Scaled;
   readonly factor: number;
+  readonly domain?: Schema.Schema<A, any, any>;
+  readonly readOnly?: boolean;
 }
 
-export interface SignedScaledParamConfig extends ParamConfigBase {
+export interface SignedScaledParamConfig<A = number> extends ParamConfigBase {
   readonly kind: ParamKind.SignedScaled;
   readonly factor: number;
+  readonly domain?: Schema.Schema<A, any, any>;
+  readonly readOnly?: boolean;
 }
 
 export interface EnumParamConfig<Domain extends string = string>
   extends ParamConfigBase {
   readonly kind: ParamKind.Enum;
   readonly labels: Record<number, Domain>;
+  readonly readOnly?: boolean;
+}
+
+export interface BitfieldParamConfig<
+  F extends AnyBitfieldClass = AnyBitfieldClass,
+> extends ConfigBase {
+  readonly kind: ParamKind.Bitfield;
+  readonly flagsClass: F;
+  readonly bitLayout: Record<keyof InstanceType<F>, number>;
+  readonly readOnly?: boolean;
+}
+
+export interface LookupParamConfig<Domain extends string = string>
+  extends ConfigBase {
+  readonly kind: ParamKind.Lookup;
+  readonly labels: Record<number, Domain>;
+  readonly fallback: (raw: number) => Domain;
+  readonly domain?: Schema.Schema<Domain, any, any>;
 }
 
 export type ParamConfig =
   | UInt16ParamConfig
   | ScaledParamConfig
   | SignedScaledParamConfig
-  | EnumParamConfig;
+  | EnumParamConfig
+  | BitfieldParamConfig
+  | LookupParamConfig;
 
-// ── Bundle factories (produce schema + decode + encode + formatted) ──
-// These replace the duplicated local `p()`/`sp()` helpers in group files.
+// ── Bundle factories ────────────────────────────────────────
 
 const p = <A extends number, I extends number>(
   addr: number,
-  meta: ParamMeta,
+  meta: RegisterMeta,
 ) => {
   const schema = makeParam<A, I>(addr, meta);
   return {
@@ -250,8 +569,16 @@ const p = <A extends number, I extends number>(
   };
 };
 
-const sp = (addr: number, factor: number, meta: ParamMeta) => {
-  const schema = makeScaledParam(addr, factor, meta);
+const sp = <A = number>(
+  addr: number,
+  factor: number,
+  meta: RegisterMeta,
+  opts?: {
+    readonly domain?: Schema.Schema<A, any, any>;
+    readonly readOnly?: boolean;
+  },
+) => {
+  const schema = makeScaledParam<A>(addr, factor, meta, opts);
   return {
     schema,
     decode: makeDecode(schema),
@@ -260,8 +587,16 @@ const sp = (addr: number, factor: number, meta: ParamMeta) => {
   };
 };
 
-const spSigned = (addr: number, factor: number, meta: ParamMeta) => {
-  const schema = makeSignedScaledParam(addr, factor, meta);
+const spSigned = <A = number>(
+  addr: number,
+  factor: number,
+  meta: RegisterMeta,
+  opts?: {
+    readonly domain?: Schema.Schema<A, any, any>;
+    readonly readOnly?: boolean;
+  },
+) => {
+  const schema = makeSignedScaledParam<A>(addr, factor, meta, opts);
   return {
     schema,
     decode: makeDecode(schema),
@@ -273,9 +608,35 @@ const spSigned = (addr: number, factor: number, meta: ParamMeta) => {
 const pe = <A extends string>(
   addr: number,
   labels: Record<number, A>,
-  meta: ParamMeta,
+  meta: RegisterMeta,
+  opts?: { readonly readOnly?: boolean },
 ) => {
-  const schema = makeEnumParam<A>(addr, labels, meta);
+  const schema = makeEnumParam<A>(addr, labels, meta, opts);
+  return {
+    schema,
+    decode: makeDecode(schema),
+    encode: makeEncode(schema),
+    formatted: makeFormatted(schema),
+  };
+};
+
+const pb = <F extends AnyBitfieldClass>(
+  addr: number,
+  flagsClass: F,
+  bitLayout: Record<keyof InstanceType<F>, number>,
+  meta: RegisterMeta,
+  opts?: { readonly readOnly?: boolean },
+): BitfieldParamEntry<F> =>
+  makeBitfieldParam<F>(addr, flagsClass, bitLayout, meta, opts);
+
+const pl = <Domain extends string>(
+  addr: number,
+  labels: Record<number, Domain>,
+  fallback: (raw: number) => Domain,
+  meta: RegisterMeta,
+  opts?: { readonly domain?: Schema.Schema<Domain, any, any> },
+) => {
+  const schema = makeLookupParam<Domain>(addr, labels, fallback, meta, opts);
   return {
     schema,
     decode: makeDecode(schema),
@@ -292,20 +653,24 @@ export type ParamEntry<S extends Schema.Schema<any, any>> = {
 };
 
 export type ParamEntryOfConfig<C extends ParamConfig> =
-  C extends EnumParamConfig<infer Domain>
-    ? ParamEntry<Schema.Schema<Domain, number>>
-    : ParamEntry<Schema.Schema<number, number>>;
+  C extends ScaledParamConfig<infer A>
+    ? ParamEntry<Schema.Schema<A, number>>
+    : C extends SignedScaledParamConfig<infer A>
+      ? ParamEntry<Schema.Schema<A, number>>
+      : C extends EnumParamConfig<infer Domain>
+        ? ParamEntry<Schema.Schema<Domain, number>>
+        : C extends BitfieldParamConfig<infer F>
+          ? BitfieldParamEntry<F>
+          : C extends LookupParamConfig<infer Domain>
+            ? ParamEntry<Schema.Schema<Domain, number>>
+            : ParamEntry<Schema.Schema<number, number>>;
 
-export type ParamValueOfEntry<E extends ParamEntry<any>> = E extends ParamEntry<
-  Schema.Schema<infer A, any>
->
-  ? A
-  : never;
+export type ParamValueOfEntry<E extends ParamEntry<any>> =
+  E extends ParamEntry<Schema.Schema<infer A, any>> ? A : never;
 
 type EffectErrorOf<F> = F extends Effect.Effect<any, infer E, any> ? E : never;
-type EffectRequirementsOf<F> = F extends Effect.Effect<any, any, infer R>
-  ? R
-  : never;
+type EffectRequirementsOf<F> =
+  F extends Effect.Effect<any, any, infer R> ? R : never;
 
 export type ParamOperationOfEntry<E extends ParamEntry<any>> = {
   readonly read: () => Effect.Effect<
@@ -325,33 +690,49 @@ export type ParamOperationOfEntry<E extends ParamEntry<any>> = {
 export type ParamCallableOfEntry<E extends ParamEntry<any>> = ((
   deviceId: number,
 ) => ParamOperationOfEntry<E>) & {
-  readonly meta: ParamMeta;
+  readonly meta: RegisterMeta;
 };
 
 export type GroupParamOps<C extends Record<string, ParamConfig>> = {
   readonly [K in keyof C]: ParamCallableOfEntry<ParamEntryOfConfig<C[K]>>;
 };
 
-type GroupParamAccessor<C extends Record<string, ParamConfig>> = <
-  K extends keyof C,
->(
-  param: K,
-) => ParamOperationOfEntry<ParamEntryOfConfig<C[K]>> & {
-  readonly meta: C[K]["meta"];
-};
+// ── fromConfig dispatch ──────────────────────────────────────
 
 export function fromConfig<C extends ParamConfig>(
   config: C,
 ): ParamEntryOfConfig<C>;
-export function fromConfig(config: ParamConfig) {
+export function fromConfig(config: ParamConfig): unknown {
   switch (config.kind) {
     case ParamKind.UInt16:
       return p(config.register, config.meta);
     case ParamKind.Scaled:
-      return sp(config.register, config.factor, config.meta);
+      return sp(config.register, config.factor, config.meta, {
+        domain: config.domain,
+        readOnly: config.readOnly,
+      });
     case ParamKind.SignedScaled:
-      return spSigned(config.register, config.factor, config.meta);
+      return spSigned(config.register, config.factor, config.meta, {
+        domain: config.domain,
+        readOnly: config.readOnly,
+      });
     case ParamKind.Enum:
-      return pe(config.register, config.labels, config.meta);
+      return pe(config.register, config.labels, config.meta, {
+        readOnly: config.readOnly,
+      });
+    case ParamKind.Bitfield:
+      return pb(
+        config.register,
+        config.flagsClass,
+        config.bitLayout,
+        config.meta,
+        { readOnly: config.readOnly },
+      );
+    case ParamKind.Lookup:
+      return pl(config.register, config.labels, config.fallback, config.meta, {
+        domain: config.domain,
+      });
+    default:
+      return undefined;
   }
-};
+}

@@ -6,6 +6,11 @@
  * scaling factors. Monitor registers are decode-only; command registers support
  * both encode and decode.
  *
+ * Schema factories from {@link ./parameters/param-utils} are reused:
+ * - **Scaled commands/monitors** → {@link makeScaledParam} / {@link makeSignedScaledParam}
+ * - **Bitfield commands/monitors** → {@link makeBitfieldParam} (generated Patch + merge)
+ * - **Lookup monitors** → {@link makeLookupParam} (with fallback for unknown codes)
+ *
  * Key types:
  * - {@link CommandWordFlags} / {@link CommandWordSchema} – Operation command word (0x2501)
  * - {@link FrequencyHz} / {@link FrequencyCommandSchema} – Frequency command in Hz (0x2502)
@@ -17,29 +22,99 @@
  * @module
  */
 
-import { Brand, Effect, ParseResult, Pretty, Schema } from "effect";
-import { bit } from "./utils";
-import { readOnlyEncodeFailure } from "./errors";
+import { Brand, Pretty, Schema } from "effect";
+import {
+  type RegisterMeta,
+  makeBitfieldParam,
+  makeLookupParam,
+  makeScaledParam,
+  makeSignedScaledParam,
+} from "./parameters/param-utils";
 
-/**
- * Branded 16-bit unsigned word for Modbus register values.
- */
-export type UInt16 = number & Brand.Brand<"UInt16">;
+// Re-export wire primitives (public surface preserved)
+export { Int16, UInt16 } from "./parameters/param-utils";
 
-export const UInt16 = Schema.Number.pipe(
-  Schema.int(),
+// ── Domain brands (device-side) ──────────────────────────
+
+export type FrequencyHz = number & Brand.Brand<"FrequencyHz">;
+export const FrequencyHz = Schema.Number.pipe(
   Schema.nonNegative(),
-  Schema.lessThanOrEqualTo(0xffff),
-  Schema.brand("UInt16"),
+  Schema.lessThanOrEqualTo(600),
+  Schema.brand("FrequencyHz"),
 );
 
-// NOTE: ==================================================================
+export type TorquePercent = number & Brand.Brand<"TorquePercent">;
+export const TorquePercent = Schema.Number.pipe(
+  Schema.greaterThanOrEqualTo(-100),
+  Schema.lessThanOrEqualTo(100),
+  Schema.brand("TorquePercent"),
+);
+
+export type SpeedLimitPercent = number & Brand.Brand<"SpeedLimitPercent">;
+export const SpeedLimitPercent = Schema.Number.pipe(
+  Schema.greaterThanOrEqualTo(-120),
+  Schema.lessThanOrEqualTo(120),
+  Schema.brand("SpeedLimitPercent"),
+);
+
+export type Voltage = number & Brand.Brand<"Voltage">;
+export const Voltage = Schema.Number.pipe(
+  Schema.nonNegative(),
+  Schema.lessThanOrEqualTo(10),
+  Schema.brand("Voltage"),
+);
+
+export type DCBusVoltage = number & Brand.Brand<"DCBusVoltage">;
+export const DCBusVoltage = Schema.Number.pipe(
+  Schema.nonNegative(),
+  Schema.lessThanOrEqualTo(1000),
+  Schema.brand("DCBusVoltage"),
+);
+
+export type CurrentAmps = number & Brand.Brand<"CurrentAmps">;
+export const CurrentAmps = Schema.Number.pipe(
+  Schema.nonNegative(),
+  Schema.lessThanOrEqualTo(6553.5),
+  Schema.brand("CurrentAmps"),
+);
+
+export type AnalogInputPercent = number & Brand.Brand<"AnalogInputPercent">;
+export const AnalogInputPercent = Schema.Number.pipe(
+  Schema.nonNegative(),
+  Schema.lessThanOrEqualTo(100),
+  Schema.brand("AnalogInputPercent"),
+);
+
+export type ErrorDescriptionMonitor = string &
+  Brand.Brand<"ErrorDescriptionMonitor">;
+export const ErrorDescriptionMonitor = Schema.String.pipe(
+  Schema.brand("ErrorDescriptionMonitor"),
+);
+
+export type WarningDescriptionMonitor = string &
+  Brand.Brand<"WarningDescriptionMonitor">;
+export const WarningDescriptionMonitor = Schema.String.pipe(
+  Schema.brand("WarningDescriptionMonitor"),
+);
+
+export type A510CheckMonitor = string & Brand.Brand<"A510CheckMonitor">;
+export const A510CheckMonitor = Schema.String.pipe(
+  Schema.brand("A510CheckMonitor"),
+);
+
+// ── Metadata helpers ──────────────────────────────────────
+
+const meta = (
+  name: string,
+  unit: string,
+  range: string,
+  def: string,
+): RegisterMeta => ({ name, unit, range, default: def });
+
+// NOTE: ====================================================================
 //  OPERATION COMMAND (Register 0x2501)
 // ========================================================================
 
-/**
- * Human-readable command word shape.
- */
 export class CommandWordFlags extends Schema.Class<CommandWordFlags>(
   "CommandWordFlags",
 )({
@@ -60,158 +135,47 @@ export class CommandWordFlags extends Schema.Class<CommandWordFlags>(
 }) {
   static get empty() {
     return new CommandWordFlags({
-      run: false,
-      reverse: false,
-      externalFault: false,
-      faultReset: false,
-      commS1: false,
-      commS2: false,
-      commS3: false,
-      commS4: false,
-      commS5: false,
-      commS6: false,
-      commS7: false,
-      commS8: false,
-      inverterMode: false,
-      torqueByComm: false,
+      run: false, reverse: false, externalFault: false, faultReset: false,
+      commS1: false, commS2: false, commS3: false, commS4: false,
+      commS5: false, commS6: false, commS7: false, commS8: false,
+      inverterMode: false, torqueByComm: false,
     });
   }
-
   static get runForward() {
-    return new CommandWordFlags({
-      ...CommandWordFlags.empty,
-      run: true,
-    });
+    return new CommandWordFlags({ ...CommandWordFlags.empty, run: true });
   }
-
   static get runReverse() {
-    return new CommandWordFlags({
-      ...CommandWordFlags.empty,
-      run: true,
-      reverse: true,
-    });
+    return new CommandWordFlags({ ...CommandWordFlags.empty, run: true, reverse: true });
   }
-
-  static get stop() {
-    return CommandWordFlags.empty;
-  }
-
+  static get stop() { return CommandWordFlags.empty; }
   static get resetFaultPulse() {
-    return new CommandWordFlags({
-      ...CommandWordFlags.empty,
-      faultReset: true,
-    });
+    return new CommandWordFlags({ ...CommandWordFlags.empty, faultReset: true });
   }
 }
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16
- * domain format = CommandWordFlags
- */
-export const CommandWordSchema = UInt16.pipe(
-  Schema.transformOrFail(CommandWordFlags, {
-    decode: (word) =>
-      ParseResult.succeed(
-        new CommandWordFlags({
-          run: (word & bit(0)) !== 0,
-          reverse: (word & bit(1)) !== 0,
-          externalFault: (word & bit(2)) !== 0,
-          faultReset: (word & bit(3)) !== 0,
-          commS1: (word & bit(6)) !== 0,
-          commS2: (word & bit(7)) !== 0,
-          commS3: (word & bit(8)) !== 0,
-          commS4: (word & bit(9)) !== 0,
-          commS5: (word & bit(10)) !== 0,
-          commS6: (word & bit(11)) !== 0,
-          commS7: (word & bit(12)) !== 0,
-          commS8: (word & bit(13)) !== 0,
-          inverterMode: (word & bit(14)) !== 0,
-          torqueByComm: (word & bit(15)) !== 0,
-        }),
-      ),
-    encode: (flags, _, ast) => {
-      const word =
-        (flags.run ? bit(0) : 0) |
-        (flags.reverse ? bit(1) : 0) |
-        (flags.externalFault ? bit(2) : 0) |
-        (flags.faultReset ? bit(3) : 0) |
-        (flags.commS1 ? bit(6) : 0) |
-        (flags.commS2 ? bit(7) : 0) |
-        (flags.commS3 ? bit(8) : 0) |
-        (flags.commS4 ? bit(9) : 0) |
-        (flags.commS5 ? bit(10) : 0) |
-        (flags.commS6 ? bit(11) : 0) |
-        (flags.commS7 ? bit(12) : 0) |
-        (flags.commS8 ? bit(13) : 0) |
-        (flags.inverterMode ? bit(14) : 0) |
-        (flags.torqueByComm ? bit(15) : 0);
+const commandWordLayout = {
+  run: 0, reverse: 1, externalFault: 2, faultReset: 3,
+  commS1: 6, commS2: 7, commS3: 8, commS4: 9,
+  commS5: 10, commS6: 11, commS7: 12, commS8: 13,
+  inverterMode: 14, torqueByComm: 15,
+} as const satisfies Record<keyof CommandWordFlags, number>;
 
-      return Number.isInteger(word) && word >= 0 && word <= 0xffff
-        ? ParseResult.succeed(word as UInt16)
-        : ParseResult.fail(
-            new ParseResult.Type(
-              ast,
-              flags,
-              "Command word is out of UInt16 range",
-            ),
-          );
-    },
-  }),
+const _commandWordParam = makeBitfieldParam(
+  0x2501,
+  CommandWordFlags,
+  commandWordLayout,
+  meta("Operation Command", "-", "bitfield", "0"),
 );
-
-/**
- * Decoders / encoders
- */
-export const decodeCommandWord = Schema.decodeUnknown(CommandWordSchema);
-export const encodeCommandWord = Schema.encode(CommandWordSchema);
+export const CommandWordSchema = _commandWordParam.schema;
+export const decodeCommandWord = _commandWordParam.decode;
+export const encodeCommandWord = _commandWordParam.encode;
 export const formattedCommandWord = Pretty.make(CommandWordSchema);
+export const CommandWordPatch = _commandWordParam.patch;
+export type CommandWordPatch = InstanceType<typeof CommandWordPatch>;
+export const mergeCommandWordPatch = _commandWordParam.merge;
 
 /**
- * Patch-friendly input for library ergonomics.
- */
-export class CommandWordPatch extends Schema.Class<CommandWordPatch>(
-  "CommandWordPatch",
-)({
-  run: Schema.optional(Schema.Boolean),
-  reverse: Schema.optional(Schema.Boolean),
-  externalFault: Schema.optional(Schema.Boolean),
-  faultReset: Schema.optional(Schema.Boolean),
-  commS1: Schema.optional(Schema.Boolean),
-  commS2: Schema.optional(Schema.Boolean),
-  commS3: Schema.optional(Schema.Boolean),
-  commS4: Schema.optional(Schema.Boolean),
-  commS5: Schema.optional(Schema.Boolean),
-  commS6: Schema.optional(Schema.Boolean),
-  commS7: Schema.optional(Schema.Boolean),
-  commS8: Schema.optional(Schema.Boolean),
-  inverterMode: Schema.optional(Schema.Boolean),
-  torqueByComm: Schema.optional(Schema.Boolean),
-}) {}
-
-export const mergeCommandWordPatch = (
-  base: CommandWordFlags,
-  patch: CommandWordPatch,
-): CommandWordFlags =>
-  new CommandWordFlags({
-    run: patch.run ?? base.run,
-    reverse: patch.reverse ?? base.reverse,
-    externalFault: patch.externalFault ?? base.externalFault,
-    faultReset: patch.faultReset ?? base.faultReset,
-    commS1: patch.commS1 ?? base.commS1,
-    commS2: patch.commS2 ?? base.commS2,
-    commS3: patch.commS3 ?? base.commS3,
-    commS4: patch.commS4 ?? base.commS4,
-    commS5: patch.commS5 ?? base.commS5,
-    commS6: patch.commS6 ?? base.commS6,
-    commS7: patch.commS7 ?? base.commS7,
-    commS8: patch.commS8 ?? base.commS8,
-    inverterMode: patch.inverterMode ?? base.inverterMode,
-    torqueByComm: patch.torqueByComm ?? base.torqueByComm,
-  });
-
-/**
- * Intent-level constructors
+ * Intent-level constructors for the operation command word.
  */
 export const commandWord = {
   stop: (): CommandWordFlags => CommandWordFlags.stop,
@@ -219,174 +183,79 @@ export const commandWord = {
   runReverse: (): CommandWordFlags => CommandWordFlags.runReverse,
   resetFaultPulse: (): CommandWordFlags => CommandWordFlags.resetFaultPulse,
   withInverterMode: (base: CommandWordFlags): CommandWordFlags =>
-    new CommandWordFlags({
-      ...base,
-      inverterMode: true,
-    }),
+    new CommandWordFlags({ ...base, inverterMode: true }),
 };
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  FREQUENCY COMMAND (Register 0x2502)
 // ========================================================================
 
-/**
- * Frequency in Hertz (domain representation for frequency command).
- */
-export type FrequencyHz = number & Brand.Brand<"FrequencyHz">;
-
-export const FrequencyHz = Schema.Number.pipe(
-  Schema.nonNegative(),
-  Schema.lessThanOrEqualTo(600),
-  Schema.brand("FrequencyHz"),
+export const FrequencyCommandSchema = makeScaledParam<FrequencyHz>(
+  0x2502,
+  0.01,
+  meta("Frequency Command", "Hz", "0.00–599.00", "0.00"),
+  { domain: FrequencyHz },
 );
-
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0.01 Hz per count, range 0-6000 → 0-600.00 Hz)
- * domain format = FrequencyHz
- */
-export const FrequencyCommandSchema = UInt16.pipe(
-  Schema.transform(FrequencyHz, {
-    decode: (word) => (word * 0.01) as FrequencyHz,
-    encode: (hz) => Math.round(hz * 100) as UInt16,
-  }),
-);
-
-export const decodeFrequencyCommand = Schema.decodeUnknown(
-  FrequencyCommandSchema,
-);
+export const decodeFrequencyCommand = Schema.decodeUnknown(FrequencyCommandSchema);
 export const encodeFrequencyCommand = Schema.encode(FrequencyCommandSchema);
 export const formattedFrequencyCommand = Pretty.make(FrequencyCommandSchema);
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  TORQUE COMMAND (Register 0x2503)
 // ========================================================================
 
-/**
- * Branded 16-bit signed word for Modbus register values.
- */
-export type Int16 = number & Brand.Brand<"Int16">;
-
-export const Int16 = Schema.Number.pipe(
-  Schema.int(),
-  Schema.greaterThanOrEqualTo(-0x8000),
-  Schema.lessThanOrEqualTo(0x7fff),
-  Schema.brand("Int16"),
+export const TorqueCommandSchema = makeSignedScaledParam<TorquePercent>(
+  0x2503,
+  1 / 81.92,
+  meta("Torque Command", "%", "–100.0–100.0", "0.0"),
+  { domain: TorquePercent },
 );
-
-/**
- * Torque as a percentage of rated torque (domain representation).
- */
-export type TorquePercent = number & Brand.Brand<"TorquePercent">;
-
-export const TorquePercent = Schema.Number.pipe(
-  Schema.greaterThanOrEqualTo(-100),
-  Schema.lessThanOrEqualTo(100),
-  Schema.brand("TorquePercent"),
-);
-
-/**
- * Bidirectional transformation:
- * wire format = Int16 (±8192 = ±100% rated torque)
- * domain format = TorquePercent
- */
-export const TorqueCommandSchema = Int16.pipe(
-  Schema.transform(TorquePercent, {
-    decode: (word) => (word / 81.92) as TorquePercent,
-    encode: (percent) => Math.round(percent * 81.92) as Int16,
-  }),
-);
-
 export const decodeTorqueCommand = Schema.decodeUnknown(TorqueCommandSchema);
 export const encodeTorqueCommand = Schema.encode(TorqueCommandSchema);
 export const formattedTorqueCommand = Pretty.make(TorqueCommandSchema);
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  SPEED LIMIT COMMAND (Register 0x2504)
 // ========================================================================
 
-/**
- * Speed limit as a percentage of nominal speed (domain representation).
- */
-export type SpeedLimitPercent = number & Brand.Brand<"SpeedLimitPercent">;
-
-export const SpeedLimitPercent = Schema.Number.pipe(
-  Schema.greaterThanOrEqualTo(-120),
-  Schema.lessThanOrEqualTo(120),
-  Schema.brand("SpeedLimitPercent"),
+export const SpeedLimitCommandSchema = makeSignedScaledParam<SpeedLimitPercent>(
+  0x2504,
+  1,
+  meta("Speed Limit Command", "%", "–120–120", "0"),
+  { domain: SpeedLimitPercent },
 );
-
-/**
- * Bidirectional transformation:
- * wire format = Int16 (±120 = ±120% of nominal speed, 1:1 mapping)
- * domain format = SpeedLimitPercent
- */
-export const SpeedLimitCommandSchema = Int16.pipe(
-  Schema.transform(SpeedLimitPercent, {
-    decode: (word) => word as unknown as SpeedLimitPercent,
-    encode: (percent) => percent as unknown as Int16,
-  }),
-);
-
-export const decodeSpeedLimitCommand = Schema.decodeUnknown(
-  SpeedLimitCommandSchema,
-);
+export const decodeSpeedLimitCommand = Schema.decodeUnknown(SpeedLimitCommandSchema);
 export const encodeSpeedLimitCommand = Schema.encode(SpeedLimitCommandSchema);
 export const formattedSpeedLimitCommand = Pretty.make(SpeedLimitCommandSchema);
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  ANALOG OUTPUT COMMANDS (Registers 0x2505-0x2506)
 // ========================================================================
 
-/**
- * Voltage in volts (domain representation for analog output commands).
- */
-export type Voltage = number & Brand.Brand<"Voltage">;
-
-export const Voltage = Schema.Number.pipe(
-  Schema.nonNegative(),
-  Schema.lessThanOrEqualTo(10),
-  Schema.brand("Voltage"),
+export const AnalogOut1CommandSchema = makeScaledParam<Voltage>(
+  0x2505,
+  0.01,
+  meta("Analog Out 1 Command", "V", "0.00–10.00", "0.00"),
+  { domain: Voltage },
 );
-
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0-1000 → 0.00V-10.00V, 0.01V per count)
- * domain format = Voltage
- */
-export const AnalogOut1CommandSchema = UInt16.pipe(
-  Schema.transform(Voltage, {
-    decode: (word) => (word / 100) as Voltage,
-    encode: (volts) => Math.round(volts * 100) as UInt16,
-  }),
-);
-
-export const decodeAnalogOut1Command = Schema.decodeUnknown(
-  AnalogOut1CommandSchema,
-);
+export const decodeAnalogOut1Command = Schema.decodeUnknown(AnalogOut1CommandSchema);
 export const encodeAnalogOut1Command = Schema.encode(AnalogOut1CommandSchema);
 export const formattedAnalogOut1Command = Pretty.make(AnalogOut1CommandSchema);
 
-export const AnalogOut2CommandSchema = UInt16.pipe(
-  Schema.transform(Voltage, {
-    decode: (word) => (word / 100) as Voltage,
-    encode: (volts) => Math.round(volts * 100) as UInt16,
-  }),
+export const AnalogOut2CommandSchema = makeScaledParam<Voltage>(
+  0x2506,
+  0.01,
+  meta("Analog Out 2 Command", "V", "0.00–10.00", "0.00"),
+  { domain: Voltage },
 );
-
-export const decodeAnalogOut2Command = Schema.decodeUnknown(
-  AnalogOut2CommandSchema,
-);
+export const decodeAnalogOut2Command = Schema.decodeUnknown(AnalogOut2CommandSchema);
 export const encodeAnalogOut2Command = Schema.encode(AnalogOut2CommandSchema);
 export const formattedAnalogOut2Command = Pretty.make(AnalogOut2CommandSchema);
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  DIGITAL OUTPUT COMMAND (Register 0x2507)
 // ========================================================================
 
-/**
- * Human-readable digital output control word shape.
- */
 export class DigitalOutCommandFlags extends Schema.Class<DigitalOutCommandFlags>(
   "DigitalOutCommandFlags",
 )({
@@ -395,77 +264,32 @@ export class DigitalOutCommandFlags extends Schema.Class<DigitalOutCommandFlags>
   pulse: Schema.Boolean,
 }) {
   static get empty() {
-    return new DigitalOutCommandFlags({
-      ry1: false,
-      ry2: false,
-      pulse: false,
-    });
+    return new DigitalOutCommandFlags({ ry1: false, ry2: false, pulse: false });
   }
 }
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16
- * domain format = DigitalOutCommandFlags
- */
-export const DigitalOutCommandSchema = UInt16.pipe(
-  Schema.transformOrFail(DigitalOutCommandFlags, {
-    decode: (word) =>
-      ParseResult.succeed(
-        new DigitalOutCommandFlags({
-          ry1: (word & bit(0)) !== 0,
-          ry2: (word & bit(1)) !== 0,
-          pulse: (word & bit(2)) !== 0,
-        }),
-      ),
-    encode: (flags, _, ast) => {
-      const word =
-        (flags.ry1 ? bit(0) : 0) |
-        (flags.ry2 ? bit(1) : 0) |
-        (flags.pulse ? bit(2) : 0);
-      return Number.isInteger(word) && word >= 0 && word <= 0xffff
-        ? ParseResult.succeed(word as UInt16)
-        : ParseResult.fail(
-            new ParseResult.Type(
-              ast,
-              flags,
-              "Digital output word is out of UInt16 range",
-            ),
-          );
-    },
-  }),
+const digitalOutLayout = {
+  ry1: 0, ry2: 1, pulse: 2,
+} as const satisfies Record<keyof DigitalOutCommandFlags, number>;
+
+const _digitalOutParam = makeBitfieldParam(
+  0x2507,
+  DigitalOutCommandFlags,
+  digitalOutLayout,
+  meta("Digital Out Command", "-", "bitfield", "0"),
 );
-
-export const decodeDigitalOutCommand = Schema.decodeUnknown(DigitalOutCommandSchema);
-export const encodeDigitalOutCommand = Schema.encode(DigitalOutCommandSchema);
+export const DigitalOutCommandSchema = _digitalOutParam.schema;
+export const decodeDigitalOutCommand = _digitalOutParam.decode;
+export const encodeDigitalOutCommand = _digitalOutParam.encode;
 export const formattedDigitalOutCommand = Pretty.make(DigitalOutCommandSchema);
+export const DigitalOutCommandPatch = _digitalOutParam.patch;
+export type DigitalOutCommandPatch = InstanceType<typeof DigitalOutCommandPatch>;
+export const mergeDigitalOutCommandPatch = _digitalOutParam.merge;
 
-export class DigitalOutCommandPatch extends Schema.Class<DigitalOutCommandPatch>(
-  "DigitalOutCommandPatch",
-)({
-  ry1: Schema.optional(Schema.Boolean),
-  ry2: Schema.optional(Schema.Boolean),
-  pulse: Schema.optional(Schema.Boolean),
-}) {}
-
-export const mergeDigitalOutCommandPatch = (
-  base: DigitalOutCommandFlags,
-  patch: DigitalOutCommandPatch,
-): DigitalOutCommandFlags =>
-  new DigitalOutCommandFlags({
-    ry1: patch.ry1 ?? base.ry1,
-    ry2: patch.ry2 ?? base.ry2,
-    pulse: patch.pulse ?? base.pulse,
-  });
-
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  STATE MONITOR (Register 0x2520)
 // ========================================================================
 
-/**
- * Human-readable state monitor word shape.
- * Maps to the A510 Operation Status register (0x2520).
- */
 export class StateMonitorFlags extends Schema.Class<StateMonitorFlags>(
   "StateMonitorFlags",
 )({
@@ -488,221 +312,110 @@ export class StateMonitorFlags extends Schema.Class<StateMonitorFlags>(
 }) {
   static get empty() {
     return new StateMonitorFlags({
-      operation: false,
-      direction: false,
-      inverterReady: false,
-      fault: false,
-      warning: false,
-      zeroSpeed: false,
-      is440V: false,
-      frequencyAgree: false,
-      setFrequencyAgree: false,
-      frequencyDetection1: false,
-      frequencyDetection2: false,
-      underVoltage: false,
-      baseblock: false,
-      freqRefNotFromComm: false,
-      seqNotFromComm: false,
-      overTorque: false,
+      operation: false, direction: false, inverterReady: false, fault: false,
+      warning: false, zeroSpeed: false, is440V: false, frequencyAgree: false,
+      setFrequencyAgree: false, frequencyDetection1: false, frequencyDetection2: false,
+      underVoltage: false, baseblock: false, freqRefNotFromComm: false,
+      seqNotFromComm: false, overTorque: false,
     });
   }
 }
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16
- * domain format = StateMonitorFlags
- */
-export const StateMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(StateMonitorFlags, {
-    decode: (word) =>
-      ParseResult.succeed(
-        new StateMonitorFlags({
-          operation: (word & bit(0)) !== 0,
-          direction: (word & bit(1)) !== 0,
-          inverterReady: (word & bit(2)) !== 0,
-          fault: (word & bit(3)) !== 0,
-          warning: (word & bit(4)) !== 0,
-          zeroSpeed: (word & bit(5)) !== 0,
-          is440V: (word & bit(6)) !== 0,
-          frequencyAgree: (word & bit(7)) !== 0,
-          setFrequencyAgree: (word & bit(8)) !== 0,
-          frequencyDetection1: (word & bit(9)) !== 0,
-          frequencyDetection2: (word & bit(10)) !== 0,
-          underVoltage: (word & bit(11)) !== 0,
-          baseblock: (word & bit(12)) !== 0,
-          freqRefNotFromComm: (word & bit(13)) !== 0,
-          seqNotFromComm: (word & bit(14)) !== 0,
-          overTorque: (word & bit(15)) !== 0,
-        }),
-      ),
-    encode: (flags, _, ast) =>
-      readOnlyEncodeFailure("State monitor register 0x2520", flags, ast),
-  }),
-);
+const stateMonitorLayout = {
+  operation: 0, direction: 1, inverterReady: 2, fault: 3, warning: 4,
+  zeroSpeed: 5, is440V: 6, frequencyAgree: 7, setFrequencyAgree: 8,
+  frequencyDetection1: 9, frequencyDetection2: 10, underVoltage: 11,
+  baseblock: 12, freqRefNotFromComm: 13, seqNotFromComm: 14, overTorque: 15,
+} as const satisfies Record<keyof StateMonitorFlags, number>;
 
-export const decodeStateMonitor = Schema.decodeUnknown(StateMonitorSchema);
+const _stateMonitorParam = makeBitfieldParam(
+  0x2520,
+  StateMonitorFlags,
+  stateMonitorLayout,
+  meta("State Monitor", "-", "bitfield", "0"),
+  { readOnly: true },
+);
+export const StateMonitorSchema = _stateMonitorParam.schema;
+export const decodeStateMonitor = _stateMonitorParam.decode;
 export const formattedStateMonitor = Pretty.make(StateMonitorSchema);
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  ERROR DESCRIPTION MONITOR (Register 0x2521)
 // ========================================================================
 
-/**
- * Branded string for the resolved error description text.
- */
-export type ErrorDescriptionMonitor = string & Brand.Brand<"ErrorDescriptionMonitor">;
-
-export const ErrorDescriptionMonitor = Schema.String.pipe(
-  Schema.brand("ErrorDescriptionMonitor"),
-);
-
-/**
- * Human-readable labels for known A510 error codes from register 0x2521.
- */
 const errorDescriptionLabels: Record<number, string> = {
-  1: "UV (Under-voltage)",
-  2: "OC (Over-current)",
-  3: "OV (Over-voltage)",
-  4: "OH1 (Overheat 1)",
-  5: "OL1 (Electronic thermal overload)",
-  6: "OL2 (Motor overload)",
-  7: "OT (Over-torque)",
-  8: "UT (Under-torque)",
-  9: "SC (Short circuit)",
-  10: "Ground OC (Ground fault)",
-  11: "Fuse broken",
-  12: "Input Phase Loss",
-  13: "Output Phase Loss",
-  14: "PG Overspeed",
-  15: "PG Open",
-  16: "PG Speed Deviation",
-  17: "External Fault 01",
-  18: "External Fault 02",
-  19: "External Fault 03",
-  20: "External Fault 04",
-  21: "External Fault 05",
-  22: "External Fault 06",
-  23: "External Fault 07",
-  24: "External Fault 08",
-  25: "FB (Feedback)",
-  26: "OPR (Option)",
-  27: "Reserved",
-  28: "CE (Communication error)",
-  29: "STO (Safe torque off)",
-  30: "Over Torque 2",
-  38: "CF07 (Configuration error 07)",
-  41: "OLDOP",
-  46: "OH4 (Motor overheat)",
-  47: "SS1",
-  48: "CF20 (Configuration error 20)",
+  1: "UV (Under-voltage)", 2: "OC (Over-current)", 3: "OV (Over-voltage)",
+  4: "OH1 (Overheat 1)", 5: "OL1 (Electronic thermal overload)",
+  6: "OL2 (Motor overload)", 7: "OT (Over-torque)", 8: "UT (Under-torque)",
+  9: "SC (Short circuit)", 10: "Ground OC (Ground fault)", 11: "Fuse broken",
+  12: "Input Phase Loss", 13: "Output Phase Loss", 14: "PG Overspeed",
+  15: "PG Open", 16: "PG Speed Deviation", 17: "External Fault 01",
+  18: "External Fault 02", 19: "External Fault 03", 20: "External Fault 04",
+  21: "External Fault 05", 22: "External Fault 06", 23: "External Fault 07",
+  24: "External Fault 08", 25: "FB (Feedback)", 26: "OPR (Option)",
+  27: "Reserved", 28: "CE (Communication error)", 29: "STO (Safe torque off)",
+  30: "Over Torque 2", 38: "CF07 (Configuration error 07)", 41: "OLDOP",
+  46: "OH4 (Motor overheat)", 47: "SS1", 48: "CF20 (Configuration error 20)",
   49: "RUN",
 };
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (raw fault code)
- * domain format = ErrorDescriptionMonitor (resolved description text)
- */
-export const ErrorDescriptionMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(ErrorDescriptionMonitor, {
-    decode: (word) =>
-      Effect.succeed(
-        (errorDescriptionLabels[word] ??
-          `Unknown (${word})`) as ErrorDescriptionMonitor,
-      ),
-    encode: (value, _, ast) =>
-      readOnlyEncodeFailure("Error description monitor register 0x2521", value, ast),
-    strict: false,
-  }),
+export const ErrorDescriptionMonitorSchema = makeLookupParam<ErrorDescriptionMonitor>(
+  0x2521,
+  errorDescriptionLabels as Record<number, ErrorDescriptionMonitor>,
+  (raw) => `Unknown (${raw})` as ErrorDescriptionMonitor,
+  meta("Error Description Monitor", "-", "0–49", "0"),
+  { domain: ErrorDescriptionMonitor },
 );
-
 export const decodeErrorDescriptionMonitor = Schema.decodeUnknown(
   ErrorDescriptionMonitorSchema,
 );
-export const formattedErrorDescriptionMonitor = Pretty.make(ErrorDescriptionMonitorSchema);
+export const formattedErrorDescriptionMonitor = Pretty.make(
+  ErrorDescriptionMonitorSchema,
+);
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  DIGITAL INPUT STATE MONITOR (Register 0x2522)
 // ========================================================================
 
-/**
- * Human-readable digital input state word shape.
- * Maps to the A510 Digital Input State register (0x2522).
- */
 export class DigitalInStateMonitorFlags extends Schema.Class<DigitalInStateMonitorFlags>(
   "DigitalInStateMonitorFlags",
 )({
-  s1: Schema.Boolean,
-  s2: Schema.Boolean,
-  s3: Schema.Boolean,
-  s4: Schema.Boolean,
-  s5: Schema.Boolean,
-  s6: Schema.Boolean,
-  s7: Schema.Boolean,
-  s8: Schema.Boolean,
+  s1: Schema.Boolean, s2: Schema.Boolean, s3: Schema.Boolean, s4: Schema.Boolean,
+  s5: Schema.Boolean, s6: Schema.Boolean, s7: Schema.Boolean, s8: Schema.Boolean,
 }) {
   static get empty() {
     return new DigitalInStateMonitorFlags({
-      s1: false,
-      s2: false,
-      s3: false,
-      s4: false,
-      s5: false,
-      s6: false,
-      s7: false,
-      s8: false,
+      s1: false, s2: false, s3: false, s4: false,
+      s5: false, s6: false, s7: false, s8: false,
     });
   }
 }
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16
- * domain format = DigitalInStateMonitorFlags
- */
-export const DigitalInStateMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(DigitalInStateMonitorFlags, {
-    decode: (word) =>
-      ParseResult.succeed(
-        new DigitalInStateMonitorFlags({
-          s1: (word & bit(0)) !== 0,
-          s2: (word & bit(1)) !== 0,
-          s3: (word & bit(2)) !== 0,
-          s4: (word & bit(3)) !== 0,
-          s5: (word & bit(4)) !== 0,
-          s6: (word & bit(5)) !== 0,
-          s7: (word & bit(6)) !== 0,
-          s8: (word & bit(7)) !== 0,
-        }),
-      ),
-    encode: (flags, _, ast) =>
-      readOnlyEncodeFailure("Digital input state register 0x2522", flags, ast),
-    strict: false,
-  }),
-);
+const digitalInLayout = {
+  s1: 0, s2: 1, s3: 2, s4: 3, s5: 4, s6: 5, s7: 6, s8: 7,
+} as const satisfies Record<keyof DigitalInStateMonitorFlags, number>;
 
-export const decodeDigitalInStateMonitor = Schema.decodeUnknown(DigitalInStateMonitorSchema);
+const _digitalInParam = makeBitfieldParam(
+  0x2522,
+  DigitalInStateMonitorFlags,
+  digitalInLayout,
+  meta("Digital In State Monitor", "-", "bitfield", "0"),
+  { readOnly: true },
+);
+export const DigitalInStateMonitorSchema = _digitalInParam.schema;
+export const decodeDigitalInStateMonitor = _digitalInParam.decode;
 export const formattedDigitalInStateMonitor = Pretty.make(DigitalInStateMonitorSchema);
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  FREQUENCY COMMAND MONITOR (Register 0x2523)
 // ========================================================================
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0.01 Hz per count)
- * domain format = FrequencyHz
- */
-export const FrequencyCommandMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(FrequencyHz, {
-    decode: (word) => Effect.succeed((word * 0.01) as FrequencyHz),
-    encode: (hz, _, ast) =>
-      readOnlyEncodeFailure("Frequency command monitor register 0x2523", hz, ast),
-    strict: false,
-  }),
+export const FrequencyCommandMonitorSchema = makeScaledParam<FrequencyHz>(
+  0x2523,
+  0.01,
+  meta("Frequency Command Monitor", "Hz", "0.00–599.00", "0.00"),
+  { domain: FrequencyHz, readOnly: true },
 );
-
 export const decodeFrequencyCommandMonitor = Schema.decodeUnknown(
   FrequencyCommandMonitorSchema,
 );
@@ -710,24 +423,16 @@ export const formattedFrequencyCommandMonitor = Pretty.make(
   FrequencyCommandMonitorSchema,
 );
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  OUTPUT FREQUENCY MONITOR (Register 0x2524)
 // ========================================================================
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0.01 Hz per count)
- * domain format = FrequencyHz
- */
-export const OutputFrequencyMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(FrequencyHz, {
-    decode: (word) => Effect.succeed((word * 0.01) as FrequencyHz),
-    encode: (hz, _, ast) =>
-      readOnlyEncodeFailure("Output frequency monitor register 0x2524", hz, ast),
-    strict: false,
-  }),
+export const OutputFrequencyMonitorSchema = makeScaledParam<FrequencyHz>(
+  0x2524,
+  0.01,
+  meta("Output Frequency Monitor", "Hz", "0.00–599.00", "0.00"),
+  { domain: FrequencyHz, readOnly: true },
 );
-
 export const decodeOutputFrequencyMonitor = Schema.decodeUnknown(
   OutputFrequencyMonitorSchema,
 );
@@ -735,35 +440,16 @@ export const formattedOutputFrequencyMonitor = Pretty.make(
   OutputFrequencyMonitorSchema,
 );
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  DC BUS VOLTAGE COMMAND MONITOR (Register 0x2526)
 // ========================================================================
 
-/**
- * DC bus voltage in volts (domain representation).
- */
-export type DCBusVoltage = number & Brand.Brand<"DCBusVoltage">;
-
-export const DCBusVoltage = Schema.Number.pipe(
-  Schema.nonNegative(),
-  Schema.lessThanOrEqualTo(1000),
-  Schema.brand("DCBusVoltage"),
+export const DCBusVoltageCommandMonitorSchema = makeScaledParam<DCBusVoltage>(
+  0x2526,
+  0.1,
+  meta("DC Bus Voltage Monitor", "V", "0.0–1000.0", "0.0"),
+  { domain: DCBusVoltage, readOnly: true },
 );
-
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0.1V per count, range 0-10000 → 0.0V-1000.0V)
- * domain format = DCBusVoltage
- */
-export const DCBusVoltageCommandMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(DCBusVoltage, {
-    decode: (word) => Effect.succeed((word * 0.1) as DCBusVoltage),
-    encode: (voltage, _, ast) =>
-      readOnlyEncodeFailure("DC voltage command monitor register 0x2526", voltage, ast),
-    strict: false,
-  }),
-);
-
 export const decodeDCBusVoltageCommandMonitor = Schema.decodeUnknown(
   DCBusVoltageCommandMonitorSchema,
 );
@@ -771,35 +457,16 @@ export const formattedDCBusVoltageCommandMonitor = Pretty.make(
   DCBusVoltageCommandMonitorSchema,
 );
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  OUTPUT CURRENT MONITOR (Register 0x2527)
 // ========================================================================
 
-/**
- * Current in amps (domain representation).
- */
-export type CurrentAmps = number & Brand.Brand<"CurrentAmps">;
-
-export const CurrentAmps = Schema.Number.pipe(
-  Schema.nonNegative(),
-  Schema.lessThanOrEqualTo(6553.5),
-  Schema.brand("CurrentAmps"),
+export const OutputCurrentMonitorSchema = makeScaledParam<CurrentAmps>(
+  0x2527,
+  0.1,
+  meta("Output Current Monitor", "A", "0.0–6553.5", "0.0"),
+  { domain: CurrentAmps, readOnly: true },
 );
-
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0.1A per count)
- * domain format = CurrentAmps
- */
-export const OutputCurrentMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(CurrentAmps, {
-    decode: (word) => Effect.succeed((word * 0.1) as CurrentAmps),
-    encode: (current, _, ast) =>
-      readOnlyEncodeFailure("Output current monitor register 0x2527", current, ast),
-    strict: false,
-  }),
-);
-
 export const decodeOutputCurrentMonitor = Schema.decodeUnknown(
   OutputCurrentMonitorSchema,
 );
@@ -807,124 +474,39 @@ export const formattedOutputCurrentMonitor = Pretty.make(
   OutputCurrentMonitorSchema,
 );
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  WARNING DESCRIPTION MONITOR (Register 0x2528)
 // ========================================================================
 
-/**
- * Branded string for the resolved warning description text.
- */
-export type WarningDescriptionMonitor = string & Brand.Brand<"WarningDescriptionMonitor">;
-
-export const WarningDescriptionMonitor = Schema.String.pipe(
-  Schema.brand("WarningDescriptionMonitor"),
-);
-
-/**
- * Human-readable labels for known A510 warning codes from register 0x2528.
- */
 const warningDescriptionLabels: Record<number, string> = {
-  0: "No alarm",
-  1: "OV (Overvoltage)",
-  2: "UV (Undervoltage)",
-  3: "OL2 (Overload 2)",
-  4: "OH2 (Overheat 2)",
-  5: "Reserved",
-  6: "OT (Over-torque)",
-  7: "Reserved",
-  8: "Reserved",
-  9: "UT (Under-torque)",
-  10: "OS (Overspeed)",
-  11: "PGO (PG open)",
-  12: "DEV (Speed deviation)",
-  13: "CE (Communication error)",
-  14: "CALL (Communication call)",
-  15: "Reserved",
-  16: "EF0 (External fault 0)",
-  17: "EF1 (External fault 1)",
-  18: "EF2 (External fault 2)",
-  19: "EF3 (External fault 3)",
-  20: "EF4 (External fault 4)",
-  21: "EF5 (External fault 5)",
-  22: "EF6 (External fault 6)",
-  23: "EF7 (External fault 7)",
-  24: "EF8 (External fault 8)",
-  25: "Reserved",
-  26: "CLB",
-  27: "Reserved",
-  28: "CT",
-  29: "USP",
-  30: "RDE",
-  31: "WRE",
-  32: "FB",
-  33: "VRYE",
-  34: "SE01",
-  35: "SE02",
-  36: "SE03",
-  37: "Reserved",
-  38: "SE05",
-  39: "HPERR",
-  40: "EF",
-  41: "Reserved",
-  42: "Reserved",
-  43: "RDP",
-  44: "Reserved",
-  45: "OL1 (Overload 1)",
-  46: "HP_ER",
-  47: "SE10",
-  48: "Reserved",
-  49: "BB1 (Baseblock 1)",
-  50: "BB2 (Baseblock 2)",
-  51: "BB3 (Baseblock 3)",
-  52: "BB4 (Baseblock 4)",
-  53: "BB5 (Baseblock 5)",
-  54: "BB6 (Baseblock 6)",
-  55: "BB7 (Baseblock 7)",
-  56: "BB8 (Baseblock 8)",
-  57: "Reserved",
-  58: "Reserved",
-  59: "Reserved",
-  60: "Reserved",
-  61: "RETRY",
-  62: "SE07",
-  63: "SE08",
-  64: "Reserved",
-  65: "OH1 (Overheat 1)",
-  66: "FIRE",
-  67: "ES",
-  68: "STP1",
-  69: "BDERR",
-  70: "EPERR",
-  71: "ADCER",
-  72: "Reserved",
-  73: "STP0",
-  74: "ENC",
-  75: "STP2",
-  76: "RUNER",
-  77: "LOC",
-  78: "PTCLS",
-  79: "Sys Init",
-  80: "FBLSS",
+  0: "No alarm", 1: "OV (Overvoltage)", 2: "UV (Undervoltage)", 3: "OL2 (Overload 2)",
+  4: "OH2 (Overheat 2)", 5: "Reserved", 6: "OT (Over-torque)", 7: "Reserved",
+  8: "Reserved", 9: "UT (Under-torque)", 10: "OS (Overspeed)", 11: "PGO (PG open)",
+  12: "DEV (Speed deviation)", 13: "CE (Communication error)", 14: "CALL (Communication call)",
+  15: "Reserved", 16: "EF0 (External fault 0)", 17: "EF1 (External fault 1)",
+  18: "EF2 (External fault 2)", 19: "EF3 (External fault 3)", 20: "EF4 (External fault 4)",
+  21: "EF5 (External fault 5)", 22: "EF6 (External fault 6)", 23: "EF7 (External fault 7)",
+  24: "EF8 (External fault 8)", 25: "Reserved", 26: "CLB", 27: "Reserved", 28: "CT",
+  29: "USP", 30: "RDE", 31: "WRE", 32: "FB", 33: "VRYE", 34: "SE01", 35: "SE02",
+  36: "SE03", 37: "Reserved", 38: "SE05", 39: "HPERR", 40: "EF", 41: "Reserved",
+  42: "Reserved", 43: "RDP", 44: "Reserved", 45: "OL1 (Overload 1)", 46: "HP_ER",
+  47: "SE10", 48: "Reserved", 49: "BB1 (Baseblock 1)", 50: "BB2 (Baseblock 2)",
+  51: "BB3 (Baseblock 3)", 52: "BB4 (Baseblock 4)", 53: "BB5 (Baseblock 5)",
+  54: "BB6 (Baseblock 6)", 55: "BB7 (Baseblock 7)", 56: "BB8 (Baseblock 8)",
+  57: "Reserved", 58: "Reserved", 59: "Reserved", 60: "Reserved", 61: "RETRY",
+  62: "SE07", 63: "SE08", 64: "Reserved", 65: "OH1 (Overheat 1)", 66: "FIRE",
+  67: "ES", 68: "STP1", 69: "BDERR", 70: "EPERR", 71: "ADCER", 72: "Reserved",
+  73: "STP0", 74: "ENC", 75: "STP2", 76: "RUNER", 77: "LOC", 78: "PTCLS",
+  79: "Sys Init", 80: "FBLSS",
 };
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (raw warning code)
- * domain format = WarningDescriptionMonitor (resolved description text)
- */
-export const WarningDescriptionMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(WarningDescriptionMonitor, {
-    decode: (word) =>
-      Effect.succeed(
-        (warningDescriptionLabels[word] ??
-          `Unknown warning (${word})`) as WarningDescriptionMonitor,
-      ),
-    encode: (value, _, ast) =>
-      readOnlyEncodeFailure("Warning description monitor register 0x2528", value, ast),
-    strict: false,
-  }),
+export const WarningDescriptionMonitorSchema = makeLookupParam<WarningDescriptionMonitor>(
+  0x2528,
+  warningDescriptionLabels as Record<number, WarningDescriptionMonitor>,
+  (raw) => `Unknown warning (${raw})` as WarningDescriptionMonitor,
+  meta("Warning Description Monitor", "-", "0–80", "0"),
+  { domain: WarningDescriptionMonitor },
 );
-
 export const decodeWarningDescriptionMonitor = Schema.decodeUnknown(
   WarningDescriptionMonitorSchema,
 );
@@ -932,14 +514,10 @@ export const formattedWarningDescriptionMonitor = Pretty.make(
   WarningDescriptionMonitorSchema,
 );
 
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  DIGITAL OUTPUT STATE MONITOR (Register 0x2529)
 // ========================================================================
 
-/**
- * Human-readable digital output state word shape.
- * Maps to the A510 Digital Output State register (0x2529).
- */
 export class DigitalOutStateMonitorFlags extends Schema.Class<DigitalOutStateMonitorFlags>(
   "DigitalOutStateMonitorFlags",
 )({
@@ -948,197 +526,87 @@ export class DigitalOutStateMonitorFlags extends Schema.Class<DigitalOutStateMon
   pulse: Schema.Boolean,
 }) {
   static get empty() {
-    return new DigitalOutStateMonitorFlags({
-      ry1: false,
-      ry2: false,
-      pulse: false,
-    });
+    return new DigitalOutStateMonitorFlags({ ry1: false, ry2: false, pulse: false });
   }
 }
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16
- * domain format = DigitalOutStateMonitorFlags
- */
-export const DigitalOutStateMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(DigitalOutStateMonitorFlags, {
-    decode: (word) =>
-      ParseResult.succeed(
-        new DigitalOutStateMonitorFlags({
-          ry1: (word & bit(0)) !== 0,
-          ry2: (word & bit(1)) !== 0,
-          pulse: (word & bit(2)) !== 0,
-        }),
-      ),
-    encode: (flags, _, ast) =>
-      readOnlyEncodeFailure("Digital output state register 0x2529", flags, ast),
-    strict: false,
-  }),
+const _digitalOutStateParam = makeBitfieldParam(
+  0x2529,
+  DigitalOutStateMonitorFlags,
+  digitalOutLayout,
+  meta("Digital Out State Monitor", "-", "bitfield", "0"),
+  { readOnly: true },
 );
+export const DigitalOutStateMonitorSchema = _digitalOutStateParam.schema;
+export const decodeDigitalOutStateMonitor = _digitalOutStateParam.decode;
+export const formattedDigitalOutStateMonitor = Pretty.make(DigitalOutStateMonitorSchema);
 
-export const decodeDigitalOutStateMonitor = Schema.decodeUnknown(
-  DigitalOutStateMonitorSchema,
-);
-export const formattedDigitalOutStateMonitor = Pretty.make(
-  DigitalOutStateMonitorSchema,
-);
-
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  ANALOG OUT 1 MONITOR (Register 0x252A)
 // ========================================================================
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0-1000 → 0.00V-10.00V, 0.01V per count)
- * domain format = Voltage
- */
-export const AnalogOut1MonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(Voltage, {
-    decode: (word) => Effect.succeed((word / 100) as Voltage),
-    encode: (voltage, _, ast) =>
-      readOnlyEncodeFailure("Analog out 1 monitor register 0x252A", voltage, ast),
-    strict: false,
-  }),
+export const AnalogOut1MonitorSchema = makeScaledParam<Voltage>(
+  0x252a,
+  0.01,
+  meta("Analog Out 1 Monitor", "V", "0.00–10.00", "0.00"),
+  { domain: Voltage, readOnly: true },
 );
+export const decodeAnalogOut1Monitor = Schema.decodeUnknown(AnalogOut1MonitorSchema);
+export const formattedAnalogOut1Monitor = Pretty.make(AnalogOut1MonitorSchema);
 
-export const decodeAnalogOut1Monitor = Schema.decodeUnknown(
-  AnalogOut1MonitorSchema,
-);
-export const formattedAnalogOut1Monitor = Pretty.make(
-  AnalogOut1MonitorSchema,
-);
-
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  ANALOG OUT 2 MONITOR (Register 0x252B)
 // ========================================================================
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0-1000 → 0.00V-10.00V, 0.01V per count)
- * domain format = Voltage
- */
-export const AnalogOut2MonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(Voltage, {
-    decode: (word) => Effect.succeed((word / 100) as Voltage),
-    encode: (voltage, _, ast) =>
-      readOnlyEncodeFailure("Analog out 2 monitor register 0x252B", voltage, ast),
-    strict: false,
-  }),
+export const AnalogOut2MonitorSchema = makeScaledParam<Voltage>(
+  0x252b,
+  0.01,
+  meta("Analog Out 2 Monitor", "V", "0.00–10.00", "0.00"),
+  { domain: Voltage, readOnly: true },
 );
+export const decodeAnalogOut2Monitor = Schema.decodeUnknown(AnalogOut2MonitorSchema);
+export const formattedAnalogOut2Monitor = Pretty.make(AnalogOut2MonitorSchema);
 
-export const decodeAnalogOut2Monitor = Schema.decodeUnknown(
-  AnalogOut2MonitorSchema,
-);
-export const formattedAnalogOut2Monitor = Pretty.make(
-  AnalogOut2MonitorSchema,
-);
-
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  ANALOG IN 1 MONITOR (Register 0x252C)
 // ========================================================================
 
-/**
- * Analog input as a percentage (domain representation).
- * 0.1% per count, range 0-1000 → 0.0%-100.0%.
- */
-export type AnalogInputPercent = number & Brand.Brand<"AnalogInputPercent">;
-
-export const AnalogInputPercent = Schema.Number.pipe(
-  Schema.nonNegative(),
-  Schema.lessThanOrEqualTo(100),
-  Schema.brand("AnalogInputPercent"),
+export const AnalogIn1MonitorSchema = makeScaledParam<AnalogInputPercent>(
+  0x252c,
+  0.1,
+  meta("Analog In 1 Monitor", "%", "0.0–100.0", "0.0"),
+  { domain: AnalogInputPercent, readOnly: true },
 );
+export const decodeAnalogIn1Monitor = Schema.decodeUnknown(AnalogIn1MonitorSchema);
+export const formattedAnalogIn1Monitor = Pretty.make(AnalogIn1MonitorSchema);
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0.1% per count)
- * domain format = AnalogInputPercent
- */
-export const AnalogIn1MonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(AnalogInputPercent, {
-    decode: (word) => Effect.succeed((word * 0.1) as AnalogInputPercent),
-    encode: (percent, _, ast) =>
-      readOnlyEncodeFailure("Analog in 1 monitor register 0x252C", percent, ast),
-    strict: false,
-  }),
-);
-
-export const decodeAnalogIn1Monitor = Schema.decodeUnknown(
-  AnalogIn1MonitorSchema,
-);
-export const formattedAnalogIn1Monitor = Pretty.make(
-  AnalogIn1MonitorSchema,
-);
-
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  ANALOG IN 2 MONITOR (Register 0x252D)
 // ========================================================================
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (0.1% per count)
- * domain format = AnalogInputPercent
- */
-export const AnalogIn2MonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(AnalogInputPercent, {
-    decode: (word) => Effect.succeed((word * 0.1) as AnalogInputPercent),
-    encode: (percent, _, ast) =>
-      readOnlyEncodeFailure("Analog in 2 monitor register 0x252D", percent, ast),
-    strict: false,
-  }),
+export const AnalogIn2MonitorSchema = makeScaledParam<AnalogInputPercent>(
+  0x252d,
+  0.1,
+  meta("Analog In 2 Monitor", "%", "0.0–100.0", "0.0"),
+  { domain: AnalogInputPercent, readOnly: true },
 );
+export const decodeAnalogIn2Monitor = Schema.decodeUnknown(AnalogIn2MonitorSchema);
+export const formattedAnalogIn2Monitor = Pretty.make(AnalogIn2MonitorSchema);
 
-export const decodeAnalogIn2Monitor = Schema.decodeUnknown(
-  AnalogIn2MonitorSchema,
-);
-export const formattedAnalogIn2Monitor = Pretty.make(
-  AnalogIn2MonitorSchema,
-);
-
-// NOTE: ==================================================================
+// NOTE: ====================================================================
 //  A510 CHECK MONITOR (Register 0x252F)
 // ========================================================================
 
-/**
- * Branded string for the resolved drive series identification.
- */
-export type A510CheckMonitor = string & Brand.Brand<"A510CheckMonitor">;
-
-export const A510CheckMonitor = Schema.String.pipe(
-  Schema.brand("A510CheckMonitor"),
-);
-
-/**
- * Human-readable labels for known A510 check codes.
- */
 const a510CheckLabels: Record<number, string> = {
-  0x01: "L510(s)",
-  0x02: "E510(s)",
-  0x03: "A510(s)",
-  0x04: "F510",
+  0x01: "L510(s)", 0x02: "E510(s)", 0x03: "A510(s)", 0x04: "F510",
 };
 
-/**
- * Bidirectional transformation:
- * wire format = UInt16 (model identification code)
- * domain format = A510CheckMonitor (resolved model name)
- */
-export const A510CheckMonitorSchema = UInt16.pipe(
-  Schema.transformOrFail(A510CheckMonitor, {
-    decode: (word) =>
-      Effect.succeed(
-        (a510CheckLabels[word] ?? `Unknown (0x${word.toString(16)})`) as A510CheckMonitor,
-      ),
-    encode: (value, _, ast) =>
-      readOnlyEncodeFailure("A510 check monitor register 0x252F", value, ast),
-    strict: false,
-  }),
+export const A510CheckMonitorSchema = makeLookupParam<A510CheckMonitor>(
+  0x252f,
+  a510CheckLabels as Record<number, A510CheckMonitor>,
+  (raw) => `Unknown (0x${raw.toString(16)})` as A510CheckMonitor,
+  meta("A510 Check Monitor", "-", "0x01–0x04", "0"),
+  { domain: A510CheckMonitor },
 );
-
-export const decodeA510CheckMonitor = Schema.decodeUnknown(
-  A510CheckMonitorSchema,
-);
-export const formattedA510CheckMonitor = Pretty.make(
-  A510CheckMonitorSchema,
-);
+export const decodeA510CheckMonitor = Schema.decodeUnknown(A510CheckMonitorSchema);
+export const formattedA510CheckMonitor = Pretty.make(A510CheckMonitorSchema);
