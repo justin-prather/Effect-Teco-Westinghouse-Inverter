@@ -188,7 +188,7 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
         const ops = makeReadWrite(config.register, decode, encode);
         return Object.assign((deviceId: number) => ops(deviceId), {
           meta: config.meta,
-        }) as ParamCallableOfEntry<ParamEntryOfConfig<C>>;
+        }) as unknown as ParamCallableOfEntry<ParamEntryOfConfig<C>>;
       };
 
       const makeGroupParamOps = <C extends Record<string, ParamConfig>>(

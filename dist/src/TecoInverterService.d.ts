@@ -53,8 +53,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.operationCommand(1).update({ run: false });
          */
         operationCommand: (deviceId: number) => {
-            read: () => Effect.Effect<S.CommandWordFlags, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (patch: Readonly<Record<string, boolean | undefined>>) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.CommandWordFlags, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
+            update: (patch: Readonly<Record<string, boolean | undefined>>) => Effect.Effect<void, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Set the target output frequency in Hz.
@@ -65,31 +65,31 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const freq = yield* inverter.frequencyCommand(1).read(); // FrequencyHz
          */
         frequencyCommand: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.FrequencyHz, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
+            update: (value: S.FrequencyHz) => Effect.Effect<void, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Set the torque limit / torque command as a percentage of rated torque.
-         * Register 0x2503. Range –100.0–100.0% (wire: Int16, ÷81.92).
+         * Register 0x2503. Range –100.0–100.0% (wire: UInt16 two's complement, ÷81.92).
          *
          * @example
          * yield* inverter.torqueCommand(1).update(75.0); // 75% torque
          * const torque = yield* inverter.torqueCommand(1).read(); // TorquePercent
          */
         torqueCommand: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.TorquePercent, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
+            update: (value: S.TorquePercent) => Effect.Effect<void, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Set the speed limit as a percentage of nominal speed.
-         * Register 0x2504. Range –120–120% (wire: Int16, 1:1 mapping).
+         * Register 0x2504. Range –120–120% (wire: UInt16 two's complement, 1:1 mapping).
          *
          * @example
          * yield* inverter.speedLimitCommand(1).update(100); // 100% speed limit
          */
         speedLimitCommand: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.SpeedLimitPercent, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
+            update: (value: S.SpeedLimitPercent) => Effect.Effect<void, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Set analog output 1 target voltage.
@@ -99,8 +99,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.analogOut1Command(1).update(5.0); // 5.00 V
          */
         analogOut1Command: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.Voltage, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
+            update: (value: S.Voltage) => Effect.Effect<void, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Set analog output 2 target voltage.
@@ -110,8 +110,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.analogOut2Command(1).update(7.5); // 7.50 V
          */
         analogOut2Command: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.Voltage, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
+            update: (value: S.Voltage) => Effect.Effect<void, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Control digital output terminals (RY1, RY2, pulse train).
@@ -124,8 +124,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.digitalOutCommand(1).update({ ry1: true, ry2: false });
          */
         digitalOutCommand: (deviceId: number) => {
-            read: () => Effect.Effect<S.DigitalOutCommandFlags, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (patch: Readonly<Record<string, boolean | undefined>>) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.DigitalOutCommandFlags, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
+            update: (patch: Readonly<Record<string, boolean | undefined>>) => Effect.Effect<void, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the current inverter operating state as individual flag fields.
@@ -138,7 +138,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * if (state.run && !state.reverse) { /* running forward *\/ }
          */
         stateMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.StateMonitorFlags, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the current fault/error code and get a human-readable description.
@@ -148,7 +148,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const err = yield* inverter.errorDescriptionMonitor(1).read(); // "OC (Over-current)"
          */
         errorDescriptionMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.ErrorDescriptionMonitor, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the state of the eight digital input terminals S1–S8.
@@ -159,7 +159,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * if (inputs.s1) { /* S1 is active *\/ }
          */
         digitalInStateMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.DigitalInStateMonitorFlags, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the frequency command currently in effect (after ramps, limits, etc.).
@@ -169,7 +169,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const freq = yield* inverter.frequencyCommandMonitor(1).read(); // FrequencyHz
          */
         frequencyCommandMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.FrequencyHz, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the actual inverter output frequency.
@@ -179,7 +179,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const outFreq = yield* inverter.outputFrequencyMonitor(1).read(); // FrequencyHz
          */
         outputFrequencyMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.FrequencyHz, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the DC bus voltage in volts.
@@ -189,7 +189,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const dcBus = yield* inverter.dcBusVoltageCommandMonitor(1).read(); // DCBusVoltage
          */
         dcBusVoltageCommandMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.DCBusVoltage, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the inverter output current in amps.
@@ -199,7 +199,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const current = yield* inverter.outputCurrentMonitor(1).read(); // CurrentAmps
          */
         outputCurrentMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.CurrentAmps, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the current warning/alarm code and get a human-readable description.
@@ -209,7 +209,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const warn = yield* inverter.warningDescriptionMonitor(1).read(); // "No alarm"
          */
         warningDescriptionMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.WarningDescriptionMonitor, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the state of the digital output terminals (RY1, RY2, pulse).
@@ -220,7 +220,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * if (outputs.ry1) { /* RY1 relay is energized *\/ }
          */
         digitalOutStateMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.DigitalOutStateMonitorFlags, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the actual voltage on analog output 1.
@@ -230,7 +230,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const voltage = yield* inverter.analogOut1Monitor(1).read(); // Voltage
          */
         analogOut1Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.Voltage, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the actual voltage on analog output 2.
@@ -240,7 +240,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const voltage = yield* inverter.analogOut2Monitor(1).read(); // Voltage
          */
         analogOut2Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.Voltage, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read analog input 1 as a percentage of full scale.
@@ -250,7 +250,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const ai1 = yield* inverter.analogIn1Monitor(1).read(); // AnalogInputPercent
          */
         analogIn1Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.AnalogInputPercent, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read analog input 2 as a percentage of full scale.
@@ -260,7 +260,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const ai2 = yield* inverter.analogIn2Monitor(1).read(); // AnalogInputPercent
          */
         analogIn2Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.AnalogInputPercent, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Read the drive series/model identification.
@@ -270,7 +270,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const model = yield* inverter.a510CheckMonitor(1).read(); // "A510(s)"
          */
         a510CheckMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<S.A510CheckMonitor, import("effect-modbus-rs").ModbusError | import("effect/ParseResult").ParseError, never>;
         };
         /**
          * Typed access to all parameter groups (Groups 00–22).

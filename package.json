@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "effect-modbus-rs": "github:justin-prather/Effect-modbus-rs",
-    "modbus-schema": "link:modbus-schema"
+    "modbus-schema": "github:justin-prather/modbus-schema"
   }
 }

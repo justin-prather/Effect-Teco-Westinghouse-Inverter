@@ -10906,6 +10906,26 @@ class TecoInverterService extends Effect.Service()("TecoInverterService", {
       return Record.fromEntries(entries);
     };
     const operationCommand = makeReadModifyWrite(9473 /* OPERATION_COMMAND */, decodeCommandWord, encodeCommandWord, mergeCommandWordPatch);
+    const frequencyCommand = makeReadWrite(9474 /* FREQUENCY_COMMAND */, decodeFrequencyCommand, encodeFrequencyCommand);
+    const torqueCommand = makeReadWrite(9475 /* TORQUE_COMMAND */, decodeTorqueCommand, encodeTorqueCommand);
+    const speedLimitCommand = makeReadWrite(9476 /* SPEED_LIMIT_COMMAND */, decodeSpeedLimitCommand, encodeSpeedLimitCommand);
+    const analogOut1Command = makeReadWrite(9477 /* ANALOG_OUT_1_COMMAND */, decodeAnalogOut1Command, encodeAnalogOut1Command);
+    const analogOut2Command = makeReadWrite(9478 /* ANALOG_OUT_2_COMMAND */, decodeAnalogOut2Command, encodeAnalogOut2Command);
+    const digitalOutCommand = makeReadModifyWrite(9479 /* DIGITAL_OUT_COMMAND */, decodeDigitalOutCommand, encodeDigitalOutCommand, mergeDigitalOutCommandPatch);
+    const stateMonitor = makeMonitor(9504 /* STATE_MONITOR */, decodeStateMonitor);
+    const errorDescriptionMonitor = makeMonitor(9505 /* ERROR_DESCRIPTION_MONITOR */, decodeErrorDescriptionMonitor);
+    const digitalInStateMonitor = makeMonitor(9506 /* DIGITAL_IN_STATE_MONITOR */, decodeDigitalInStateMonitor);
+    const frequencyCommandMonitor = makeMonitor(9507 /* FREQUENCY_COMMAND_MONITOR */, decodeFrequencyCommandMonitor);
+    const outputFrequencyMonitor = makeMonitor(9508 /* OUTPUT_FREQUENCY_MONITOR */, decodeOutputFrequencyMonitor);
+    const dcBusVoltageCommandMonitor = makeMonitor(9510 /* DC_VOLTAGE_COMMAND_MONITOR */, decodeDCBusVoltageCommandMonitor);
+    const outputCurrentMonitor = makeMonitor(9511 /* OUTPUT_CURRENT_MONITOR */, decodeOutputCurrentMonitor);
+    const warningDescriptionMonitor = makeMonitor(9512 /* WARNING_DESCRIPTION_MONITOR */, decodeWarningDescriptionMonitor);
+    const digitalOutStateMonitor = makeMonitor(9513 /* DIGITAL_OUTPUT_STATE_MONITOR */, decodeDigitalOutStateMonitor);
+    const analogOut1Monitor = makeMonitor(9514 /* ANALOG_OUT_1_MONITOR */, decodeAnalogOut1Monitor);
+    const analogOut2Monitor = makeMonitor(9515 /* ANALOG_OUT_2_MONITOR */, decodeAnalogOut2Monitor);
+    const analogIn1Monitor = makeMonitor(9516 /* ANALOG_IN_1_MONITOR */, decodeAnalogIn1Monitor);
+    const analogIn2Monitor = makeMonitor(9517 /* ANALOG_IN_2_MONITOR */, decodeAnalogIn2Monitor);
+    const a510CheckMonitor = makeMonitor(9519 /* A510_CHECK_MONITOR */, decodeA510CheckMonitor);
     if (safeShutdown) {
       yield* Effect.addFinalizer(() => Effect.forEach(deviceCache, (deviceId) => {
         return operationCommand(deviceId).update(new CommandWordPatch({ run: false })).pipe(Effect.catchAll((err) => Effect.logWarning("Error while stopping fan on exit: ", err).pipe(Effect.asVoid)));
@@ -10913,26 +10933,26 @@ class TecoInverterService extends Effect.Service()("TecoInverterService", {
     }
     return {
       operationCommand,
-      frequencyCommand: makeReadWrite(9474 /* FREQUENCY_COMMAND */, decodeFrequencyCommand, encodeFrequencyCommand),
-      torqueCommand: makeReadWrite(9475 /* TORQUE_COMMAND */, decodeTorqueCommand, encodeTorqueCommand),
-      speedLimitCommand: makeReadWrite(9476 /* SPEED_LIMIT_COMMAND */, decodeSpeedLimitCommand, encodeSpeedLimitCommand),
-      analogOut1Command: makeReadWrite(9477 /* ANALOG_OUT_1_COMMAND */, decodeAnalogOut1Command, encodeAnalogOut1Command),
-      analogOut2Command: makeReadWrite(9478 /* ANALOG_OUT_2_COMMAND */, decodeAnalogOut2Command, encodeAnalogOut2Command),
-      digitalOutCommand: makeReadModifyWrite(9479 /* DIGITAL_OUT_COMMAND */, decodeDigitalOutCommand, encodeDigitalOutCommand, mergeDigitalOutCommandPatch),
-      stateMonitor: makeMonitor(9504 /* STATE_MONITOR */, decodeStateMonitor),
-      errorDescriptionMonitor: makeMonitor(9505 /* ERROR_DESCRIPTION_MONITOR */, decodeErrorDescriptionMonitor),
-      digitalInStateMonitor: makeMonitor(9506 /* DIGITAL_IN_STATE_MONITOR */, decodeDigitalInStateMonitor),
-      frequencyCommandMonitor: makeMonitor(9507 /* FREQUENCY_COMMAND_MONITOR */, decodeFrequencyCommandMonitor),
-      outputFrequencyMonitor: makeMonitor(9508 /* OUTPUT_FREQUENCY_MONITOR */, decodeOutputFrequencyMonitor),
-      dcBusVoltageCommandMonitor: makeMonitor(9510 /* DC_VOLTAGE_COMMAND_MONITOR */, decodeDCBusVoltageCommandMonitor),
-      outputCurrentMonitor: makeMonitor(9511 /* OUTPUT_CURRENT_MONITOR */, decodeOutputCurrentMonitor),
-      warningDescriptionMonitor: makeMonitor(9512 /* WARNING_DESCRIPTION_MONITOR */, decodeWarningDescriptionMonitor),
-      digitalOutStateMonitor: makeMonitor(9513 /* DIGITAL_OUTPUT_STATE_MONITOR */, decodeDigitalOutStateMonitor),
-      analogOut1Monitor: makeMonitor(9514 /* ANALOG_OUT_1_MONITOR */, decodeAnalogOut1Monitor),
-      analogOut2Monitor: makeMonitor(9515 /* ANALOG_OUT_2_MONITOR */, decodeAnalogOut2Monitor),
-      analogIn1Monitor: makeMonitor(9516 /* ANALOG_IN_1_MONITOR */, decodeAnalogIn1Monitor),
-      analogIn2Monitor: makeMonitor(9517 /* ANALOG_IN_2_MONITOR */, decodeAnalogIn2Monitor),
-      a510CheckMonitor: makeMonitor(9519 /* A510_CHECK_MONITOR */, decodeA510CheckMonitor),
+      frequencyCommand,
+      torqueCommand,
+      speedLimitCommand,
+      analogOut1Command,
+      analogOut2Command,
+      digitalOutCommand,
+      stateMonitor,
+      errorDescriptionMonitor,
+      digitalInStateMonitor,
+      frequencyCommandMonitor,
+      outputFrequencyMonitor,
+      dcBusVoltageCommandMonitor,
+      outputCurrentMonitor,
+      warningDescriptionMonitor,
+      digitalOutStateMonitor,
+      analogOut1Monitor,
+      analogOut2Monitor,
+      analogIn1Monitor,
+      analogIn2Monitor,
+      a510CheckMonitor,
       parameters: {
         group00: makeGroupParamOps(group00Params),
         group01: makeGroupParamOps(group01Params),

@@ -6,7 +6,7 @@
       "name": "effect-teco-westinghouse-inverter",
       "dependencies": {
         "effect-modbus-rs": "github:justin-prather/Effect-modbus-rs",
-        "modbus-schema": "link:modbus-schema",
+        "modbus-schema": "github:justin-prather/modbus-schema",
       },
       "devDependencies": {
         "@effect/language-service": "^0.86.3",
@@ -132,7 +132,7 @@
 
     "modbus-rs-win32-x64-msvc": ["modbus-rs-win32-x64-msvc@0.15.3", "", { "os": "win32", "cpu": "x64" }, "sha512-279czpR0f2Fnrea9P3V/RmahNdOFFGqddXxx2bLu6YxxQXEbpEvBrT6zjGfy32JRKvBFjadbX9GAr//g1J482g=="],
 
-    "modbus-schema": ["modbus-schema@link:modbus-schema", {}],
+    "modbus-schema": ["modbus-schema@github:justin-prather/modbus-schema#97b3936", { "peerDependencies": { "effect": "^3.21.4" } }, "justin-prather-Modbus-Schema-97b3936", "sha512-OI5t5B/UieQ7ateAzxPVwaVAW5qC6r2C43oCfzL2YEiCIG4/qwr5hhKq/kJKWqnK97xn2zMjOaK2LWuV4TCXcg=="],
 
     "msgpackr": ["msgpackr@1.12.1", "", { "optionalDependencies": { "msgpackr-extract": "^3.0.2" } }, "sha512-4EUH9tQHnMmEgzW/MdAP0KIfa1T9AF+htl0ffe2n5vb2EKn9y2co8ccpgWko6S52Jy1PQZKwRnx5/KkYjtd9MQ=="],
 
