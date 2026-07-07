@@ -2,7 +2,7 @@
  * Group 13: Maintenance Parameters
  * Manual pages 4-68 to 4-70
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_13_Maintenance_Parameters } from "../Registers";
 export declare const group13Params: {
     readonly "13-00": {
@@ -200,19 +200,12 @@ export declare const group13Params: {
             readonly page: 469;
         };
     };
-    readonly "13-15": {
-        readonly register: (typeof GROUP_13_Maintenance_Parameters)["13-15"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 13;
-            readonly code: "13-15";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 469;
-        };
-    };
+    /**
+     * Fault History registers 13-21 through 13-50.
+     * @remarks Not listed in the A510 communication addendum (Group 13 register map ends at 13-14).
+     *          All returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "13-21": {
         readonly register: (typeof GROUP_13_Maintenance_Parameters)["13-21"];
         readonly kind: ParamKind.UInt16;

@@ -2,7 +2,7 @@
  * Group 18: Slip Compensation Parameters
  * Manual page 4-79
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_18_Slip_Compensation_Parameters } from "../Registers";
 export declare const group18Params: {
     readonly "18-00": {

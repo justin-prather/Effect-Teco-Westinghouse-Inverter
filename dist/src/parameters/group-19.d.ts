@@ -2,7 +2,7 @@
  * Group 19: Wobble Frequency Parameters
  * Manual pages 4-79 to 4-80
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_19_Wobble_Frequency_Parameters } from "../Registers";
 export declare const group19Params: {
     readonly "19-00": {

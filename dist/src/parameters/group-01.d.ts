@@ -30,7 +30,7 @@
  * 01-25  Base Output Voltage Motor 2  | 0.0~255.0 (230V)   | -             | V    | 0x0119
  * 01-26  V/F Curve Selection Motor 2  | 0~FF (hex)         | F             | -    | 0x011A
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_01_VF_Control_Parameters } from "../Registers";
 export declare const group01Params: {
     /** @param 01-00 V/F Curve Selection — Range: 0~FF (hex), Default: F, Manual p.4-22 */

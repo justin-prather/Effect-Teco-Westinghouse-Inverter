@@ -26,7 +26,7 @@
  * 04-22  AI3 Gain                          | 0.0~1000.0                  | 100.0         | %    | 4-36
  * 04-23  AI3 Bias                          | -100.0~100.0                | 0             | %    | 4-36
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_04_External_Analog_Input_and_Output_Parameters } from "../Registers";
 export declare const group04Params: {
     /** @param 04-00 AI Input Signal Type — Range: 0-5, Default: 1, Manual p.4-34 */
@@ -306,7 +306,12 @@ export declare const group04Params: {
             readonly page: 436;
         };
     };
-    /** @param 04-21 AI3 Signal Scanning and Filtering Time — Range: 0.00~2.00, Default: 0.03, Unit: s, Manual p.4-36 */
+    /**
+     * @param 04-21 AI3 Signal Scanning and Filtering Time — Range: 0.00~2.00, Default: 0.03, Unit: s, Manual p.4-36
+     * @remarks Not listed in the A510 communication addendum (Group 4 register map ends at 04-12).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "04-21": {
         readonly register: (typeof GROUP_04_External_Analog_Input_and_Output_Parameters)["04-21"];
         readonly kind: ParamKind.Scaled;
@@ -321,7 +326,12 @@ export declare const group04Params: {
             readonly page: 436;
         };
     };
-    /** @param 04-22 AI3 Gain — Range: 0.0~1000.0, Default: 100.0, Unit: %, Manual p.4-36 */
+    /**
+     * @param 04-22 AI3 Gain — Range: 0.0~1000.0, Default: 100.0, Unit: %, Manual p.4-36
+     * @remarks Not listed in the A510 communication addendum (Group 4 register map ends at 04-12).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "04-22": {
         readonly register: (typeof GROUP_04_External_Analog_Input_and_Output_Parameters)["04-22"];
         readonly kind: ParamKind.Scaled;
@@ -336,7 +346,12 @@ export declare const group04Params: {
             readonly page: 436;
         };
     };
-    /** @param 04-23 AI3 Bias — Range: -100.0~100.0, Default: 0, Unit: %, Manual p.4-36 */
+    /**
+     * @param 04-23 AI3 Bias — Range: -100.0~100.0, Default: 0, Unit: %, Manual p.4-36
+     * @remarks Not listed in the A510 communication addendum (Group 4 register map ends at 04-12).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "04-23": {
         readonly register: (typeof GROUP_04_External_Analog_Input_and_Output_Parameters)["04-23"];
         readonly kind: ParamKind.SignedScaled;

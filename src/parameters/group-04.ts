@@ -27,7 +27,7 @@
  * 04-23  AI3 Bias                          | -100.0~100.0                | 0             | %    | 4-36
  */
 
-import { ParamKind, type ParamConfig } from "./param-utils";
+import { ParamKind, type ParamConfig } from "modbus-schema";
 import { GROUP_04_External_Analog_Input_and_Output_Parameters } from "../Registers";
 
 const group = 4 as const;

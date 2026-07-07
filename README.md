@@ -15,7 +15,7 @@
 bun add effect-teco-westinghouse-inverter
 ```
 
-Requires `effect` and `effect-modbus-rs` as peer dependencies.
+Requires `effect`, `effect-modbus-rs`, and `modbus-schema` as peer dependencies.
 
 ## Quick start
 
@@ -109,16 +109,18 @@ Typed access to all Groups 00–22 via `inverter.parameters.group##`:
 
 Each parameter callable returns `{ read(), update(value) }` for a given `deviceId`.
 
-### Schema factories
+### Schema engine
 
-Four factory functions in `src/parameters/param-utils.ts`:
+The device-agnostic schema factories now live in the [`modbus-schema`](../Modbus-Schema/) package:
 
 - **`makeParam(register, meta)`** — Simple UInt16 pass-through
 - **`makeScaledParam(register, factor, meta)`** — Scaled value (e.g., 0.01 Hz)
-- **`makeSignedScaledParam(register, factor, meta)`** — Signed Int16 with scaling
+- **`makeSignedScaledParam(register, factor, meta)`** — Signed scaled value using two's complement over UInt16 wire
 - **`makeEnumParam(register, labels, meta)`** — Labeled selection values
+- **`makeBitfieldParam(register, flagsClass, bitLayout, meta)`** — Boolean flags packed into a word
+- **`makeLookupParam(register, labels, fallback, meta)`** — Decode-only lookup table with fallback
 
-Each param carries structured metadata (`ParamMeta`) with group, code, name, range, default, unit, and manual page reference.
+Each factory returns a `ParamEntry` with both Effect-native and synchronous decode/encode APIs. Parameter group files import `ParamKind` and `ParamConfig` directly from `modbus-schema`, and `src/parameters/operations.ts` hosts the inverter-specific `ModbusError`-coupled operation types.
 
 ## Testing with mocks
 
@@ -214,8 +216,8 @@ src/
   utils.ts                   — Bit helpers (bit)
   parameters/
     index.ts                 — Re-exports all parameter groups
-    param-utils.ts           — Factory functions (makeParam, makeScaledParam, etc.)
-    group-00.ts … group-22.ts — Parameter schemas per group
+    operations.ts            — Inverter-specific operation types that couple modbus-schema with effect-modbus-rs
+    group-00.ts … group-22.ts — Parameter configs per group
 examples/
   readOpsRegister.ts         — Read/write operation command register
   readAllRegisters.ts        — Read all command + monitor registers

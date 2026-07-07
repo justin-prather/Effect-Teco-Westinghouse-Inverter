@@ -39,7 +39,7 @@
  * ...
  * 00-57  SV High Speed Mode       | 0-1              | 0       | -     | 0x0039
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_00_Basic_Parameters } from "../Registers";
 export declare const group00Params: {
     /** @param 00-00 Control Mode Selection — Range: 0-6, Default: 0, Manual p.4-19 */

@@ -348,11 +348,6 @@ var GROUP_07_Start_Stop_Parameters;
   GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-34"] = 1826] = "07-34";
   GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-35"] = 1827] = "07-35";
   GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-36"] = 1828] = "07-36";
-  GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-37"] = 1829] = "07-37";
-  GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-38"] = 1830] = "07-38";
-  GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-39"] = 1831] = "07-39";
-  GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-40"] = 1832] = "07-40";
-  GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-41"] = 1833] = "07-41";
   GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-42"] = 1834] = "07-42";
   GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-43"] = 1835] = "07-43";
   GROUP_07_Start_Stop_Parameters2[GROUP_07_Start_Stop_Parameters2["07-44"] = 1836] = "07-44";
@@ -395,7 +390,6 @@ var GROUP_08_Protection_Parameters;
   GROUP_08_Protection_Parameters2[GROUP_08_Protection_Parameters2["08-42"] = 2090] = "08-42";
   GROUP_08_Protection_Parameters2[GROUP_08_Protection_Parameters2["08-43"] = 2091] = "08-43";
   GROUP_08_Protection_Parameters2[GROUP_08_Protection_Parameters2["08-44"] = 2092] = "08-44";
-  GROUP_08_Protection_Parameters2[GROUP_08_Protection_Parameters2["08-45"] = 2093] = "08-45";
   GROUP_08_Protection_Parameters2[GROUP_08_Protection_Parameters2["08-46"] = 2094] = "08-46";
   GROUP_08_Protection_Parameters2[GROUP_08_Protection_Parameters2["08-47"] = 2095] = "08-47";
   GROUP_08_Protection_Parameters2[GROUP_08_Protection_Parameters2["08-48"] = 2096] = "08-48";
@@ -424,7 +418,6 @@ var GROUP_09_Communication_Parameters;
   GROUP_09_Communication_Parameters2[GROUP_09_Communication_Parameters2["09-07"] = 2311] = "09-07";
   GROUP_09_Communication_Parameters2[GROUP_09_Communication_Parameters2["09-08"] = 2312] = "09-08";
   GROUP_09_Communication_Parameters2[GROUP_09_Communication_Parameters2["09-09"] = 2313] = "09-09";
-  GROUP_09_Communication_Parameters2[GROUP_09_Communication_Parameters2["09-10"] = 2314] = "09-10";
 })(GROUP_09_Communication_Parameters ||= {});
 var GROUP_10_PID_Parameters;
 ((GROUP_10_PID_Parameters2) => {
@@ -610,7 +603,6 @@ var GROUP_12_Monitoring_Parameters;
   GROUP_12_Monitoring_Parameters2[GROUP_12_Monitoring_Parameters2["12-78"] = 3150] = "12-78";
   GROUP_12_Monitoring_Parameters2[GROUP_12_Monitoring_Parameters2["12-79"] = 3151] = "12-79";
   GROUP_12_Monitoring_Parameters2[GROUP_12_Monitoring_Parameters2["12-80"] = 3152] = "12-80";
-  GROUP_12_Monitoring_Parameters2[GROUP_12_Monitoring_Parameters2["12-81"] = 3153] = "12-81";
   GROUP_12_Monitoring_Parameters2[GROUP_12_Monitoring_Parameters2["12-82"] = 3154] = "12-82";
   GROUP_12_Monitoring_Parameters2[GROUP_12_Monitoring_Parameters2["12-85"] = 3157] = "12-85";
 })(GROUP_12_Monitoring_Parameters ||= {});
@@ -631,7 +623,6 @@ var GROUP_13_Maintenance_Parameters;
   GROUP_13_Maintenance_Parameters2[GROUP_13_Maintenance_Parameters2["13-12"] = 3340] = "13-12";
   GROUP_13_Maintenance_Parameters2[GROUP_13_Maintenance_Parameters2["13-13"] = 3341] = "13-13";
   GROUP_13_Maintenance_Parameters2[GROUP_13_Maintenance_Parameters2["13-14"] = 3342] = "13-14";
-  GROUP_13_Maintenance_Parameters2[GROUP_13_Maintenance_Parameters2["13-15"] = 3343] = "13-15";
   GROUP_13_Maintenance_Parameters2[GROUP_13_Maintenance_Parameters2["13-21"] = 3349] = "13-21";
   GROUP_13_Maintenance_Parameters2[GROUP_13_Maintenance_Parameters2["13-22"] = 3350] = "13-22";
   GROUP_13_Maintenance_Parameters2[GROUP_13_Maintenance_Parameters2["13-23"] = 3351] = "13-23";
@@ -867,13 +858,6 @@ var GROUP_20_Speed_Control_Parameters;
   GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-33"] = 5153] = "20-33";
   GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-34"] = 5154] = "20-34";
   GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-35"] = 5155] = "20-35";
-  GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-36"] = 5156] = "20-36";
-  GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-37"] = 5157] = "20-37";
-  GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-38"] = 5158] = "20-38";
-  GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-39"] = 5159] = "20-39";
-  GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-40"] = 5160] = "20-40";
-  GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-41"] = 5161] = "20-41";
-  GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-42"] = 5162] = "20-42";
   GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-43"] = 5163] = "20-43";
   GROUP_20_Speed_Control_Parameters2[GROUP_20_Speed_Control_Parameters2["20-44"] = 5164] = "20-44";
 })(GROUP_20_Speed_Control_Parameters ||= {});
@@ -945,7 +929,6 @@ var GROUP_22_PM_Motor_Parameters;
   GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-20"] = 5652] = "22-20";
   GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-21"] = 5653] = "22-21";
   GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-22"] = 5654] = "22-22";
-  GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-23"] = 5655] = "22-23";
   GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-25"] = 5657] = "22-25";
   GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-26"] = 5658] = "22-26";
   GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-27"] = 5659] = "22-27";
@@ -959,16 +942,27 @@ var GROUP_22_PM_Motor_Parameters;
   GROUP_22_PM_Motor_Parameters2[GROUP_22_PM_Motor_Parameters2["22-35"] = 5667] = "22-35";
 })(GROUP_22_PM_Motor_Parameters ||= {});
 // src/errors.ts
-import { Effect, ParseResult } from "effect";
-var readOnlyEncodeFailure = (registerName, actual, ast) => Effect.fail(new ParseResult.Type(ast, actual, `${registerName} is read only`));
+import { readOnlyEncodeFailure } from "modbus-schema";
 // src/schemas.ts
-import { Effect as Effect2, ParseResult as ParseResult2, Pretty, Schema } from "effect";
-
-// src/utils.ts
-var bit = (n) => 1 << n;
-
-// src/schemas.ts
-var UInt16 = Schema.Number.pipe(Schema.int(), Schema.nonNegative(), Schema.lessThanOrEqualTo(65535), Schema.brand("UInt16"));
+import { Schema } from "effect";
+import {
+  makeBitfieldParam,
+  makeLookupParam,
+  makeScaledParam,
+  makeSignedScaledParam
+} from "modbus-schema";
+import { Int16, UInt16 } from "modbus-schema";
+var FrequencyHz = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(600), Schema.brand("FrequencyHz"));
+var TorquePercent = Schema.Number.pipe(Schema.greaterThanOrEqualTo(-100), Schema.lessThanOrEqualTo(100), Schema.brand("TorquePercent"));
+var SpeedLimitPercent = Schema.Number.pipe(Schema.greaterThanOrEqualTo(-120), Schema.lessThanOrEqualTo(120), Schema.brand("SpeedLimitPercent"));
+var Voltage = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(10), Schema.brand("Voltage"));
+var DCBusVoltage = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(1000), Schema.brand("DCBusVoltage"));
+var CurrentAmps = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(6553.5), Schema.brand("CurrentAmps"));
+var AnalogInputPercent = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(100), Schema.brand("AnalogInputPercent"));
+var ErrorDescriptionMonitor = Schema.String.pipe(Schema.brand("ErrorDescriptionMonitor"));
+var WarningDescriptionMonitor = Schema.String.pipe(Schema.brand("WarningDescriptionMonitor"));
+var A510CheckMonitor = Schema.String.pipe(Schema.brand("A510CheckMonitor"));
+var meta = (name, unit, range, def) => ({ name, unit, range, default: def });
 
 class CommandWordFlags extends Schema.Class("CommandWordFlags")({
   run: Schema.Boolean,
@@ -1005,137 +999,73 @@ class CommandWordFlags extends Schema.Class("CommandWordFlags")({
     });
   }
   static get runForward() {
-    return new CommandWordFlags({
-      ...CommandWordFlags.empty,
-      run: true
-    });
+    return new CommandWordFlags({ ...CommandWordFlags.empty, run: true });
   }
   static get runReverse() {
-    return new CommandWordFlags({
-      ...CommandWordFlags.empty,
-      run: true,
-      reverse: true
-    });
+    return new CommandWordFlags({ ...CommandWordFlags.empty, run: true, reverse: true });
   }
   static get stop() {
     return CommandWordFlags.empty;
   }
   static get resetFaultPulse() {
-    return new CommandWordFlags({
-      ...CommandWordFlags.empty,
-      faultReset: true
-    });
+    return new CommandWordFlags({ ...CommandWordFlags.empty, faultReset: true });
   }
 }
-var CommandWordSchema = UInt16.pipe(Schema.transformOrFail(CommandWordFlags, {
-  decode: (word) => ParseResult2.succeed(new CommandWordFlags({
-    run: (word & bit(0)) !== 0,
-    reverse: (word & bit(1)) !== 0,
-    externalFault: (word & bit(2)) !== 0,
-    faultReset: (word & bit(3)) !== 0,
-    commS1: (word & bit(6)) !== 0,
-    commS2: (word & bit(7)) !== 0,
-    commS3: (word & bit(8)) !== 0,
-    commS4: (word & bit(9)) !== 0,
-    commS5: (word & bit(10)) !== 0,
-    commS6: (word & bit(11)) !== 0,
-    commS7: (word & bit(12)) !== 0,
-    commS8: (word & bit(13)) !== 0,
-    inverterMode: (word & bit(14)) !== 0,
-    torqueByComm: (word & bit(15)) !== 0
-  })),
-  encode: (flags, _, ast) => {
-    const word = (flags.run ? bit(0) : 0) | (flags.reverse ? bit(1) : 0) | (flags.externalFault ? bit(2) : 0) | (flags.faultReset ? bit(3) : 0) | (flags.commS1 ? bit(6) : 0) | (flags.commS2 ? bit(7) : 0) | (flags.commS3 ? bit(8) : 0) | (flags.commS4 ? bit(9) : 0) | (flags.commS5 ? bit(10) : 0) | (flags.commS6 ? bit(11) : 0) | (flags.commS7 ? bit(12) : 0) | (flags.commS8 ? bit(13) : 0) | (flags.inverterMode ? bit(14) : 0) | (flags.torqueByComm ? bit(15) : 0);
-    return Number.isInteger(word) && word >= 0 && word <= 65535 ? ParseResult2.succeed(word) : ParseResult2.fail(new ParseResult2.Type(ast, flags, "Command word is out of UInt16 range"));
-  }
-}));
-var decodeCommandWord = Schema.decodeUnknown(CommandWordSchema);
-var encodeCommandWord = Schema.encode(CommandWordSchema);
-var formattedCommandWord = Pretty.make(CommandWordSchema);
-
-class CommandWordPatch extends Schema.Class("CommandWordPatch")({
-  run: Schema.optional(Schema.Boolean),
-  reverse: Schema.optional(Schema.Boolean),
-  externalFault: Schema.optional(Schema.Boolean),
-  faultReset: Schema.optional(Schema.Boolean),
-  commS1: Schema.optional(Schema.Boolean),
-  commS2: Schema.optional(Schema.Boolean),
-  commS3: Schema.optional(Schema.Boolean),
-  commS4: Schema.optional(Schema.Boolean),
-  commS5: Schema.optional(Schema.Boolean),
-  commS6: Schema.optional(Schema.Boolean),
-  commS7: Schema.optional(Schema.Boolean),
-  commS8: Schema.optional(Schema.Boolean),
-  inverterMode: Schema.optional(Schema.Boolean),
-  torqueByComm: Schema.optional(Schema.Boolean)
-}) {
-}
-var mergeCommandWordPatch = (base, patch) => new CommandWordFlags({
-  run: patch.run ?? base.run,
-  reverse: patch.reverse ?? base.reverse,
-  externalFault: patch.externalFault ?? base.externalFault,
-  faultReset: patch.faultReset ?? base.faultReset,
-  commS1: patch.commS1 ?? base.commS1,
-  commS2: patch.commS2 ?? base.commS2,
-  commS3: patch.commS3 ?? base.commS3,
-  commS4: patch.commS4 ?? base.commS4,
-  commS5: patch.commS5 ?? base.commS5,
-  commS6: patch.commS6 ?? base.commS6,
-  commS7: patch.commS7 ?? base.commS7,
-  commS8: patch.commS8 ?? base.commS8,
-  inverterMode: patch.inverterMode ?? base.inverterMode,
-  torqueByComm: patch.torqueByComm ?? base.torqueByComm
-});
+var commandWordLayout = {
+  run: 0,
+  reverse: 1,
+  externalFault: 2,
+  faultReset: 3,
+  commS1: 6,
+  commS2: 7,
+  commS3: 8,
+  commS4: 9,
+  commS5: 10,
+  commS6: 11,
+  commS7: 12,
+  commS8: 13,
+  inverterMode: 14,
+  torqueByComm: 15
+};
+var _commandWordParam = makeBitfieldParam(9473, CommandWordFlags, commandWordLayout, meta("Operation Command", "-", "bitfield", "0"));
+var CommandWordSchema = _commandWordParam.schema;
+var decodeCommandWord = _commandWordParam.decode;
+var encodeCommandWord = _commandWordParam.encode;
+var formattedCommandWord = _commandWordParam.formatted;
+var CommandWordPatch = _commandWordParam.patch;
+var mergeCommandWordPatch = _commandWordParam.merge;
 var commandWord = {
   stop: () => CommandWordFlags.stop,
   runForward: () => CommandWordFlags.runForward,
   runReverse: () => CommandWordFlags.runReverse,
   resetFaultPulse: () => CommandWordFlags.resetFaultPulse,
-  withInverterMode: (base) => new CommandWordFlags({
-    ...base,
-    inverterMode: true
-  })
+  withInverterMode: (base) => new CommandWordFlags({ ...base, inverterMode: true })
 };
-var FrequencyHz = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(600), Schema.brand("FrequencyHz"));
-var FrequencyCommandSchema = UInt16.pipe(Schema.transform(FrequencyHz, {
-  decode: (word) => word * 0.01,
-  encode: (hz) => Math.round(hz * 100)
-}));
-var decodeFrequencyCommand = Schema.decodeUnknown(FrequencyCommandSchema);
-var encodeFrequencyCommand = Schema.encode(FrequencyCommandSchema);
-var formattedFrequencyCommand = Pretty.make(FrequencyCommandSchema);
-var Int16 = Schema.Number.pipe(Schema.int(), Schema.greaterThanOrEqualTo(-32768), Schema.lessThanOrEqualTo(32767), Schema.brand("Int16"));
-var TorquePercent = Schema.Number.pipe(Schema.greaterThanOrEqualTo(-100), Schema.lessThanOrEqualTo(100), Schema.brand("TorquePercent"));
-var TorqueCommandSchema = Int16.pipe(Schema.transform(TorquePercent, {
-  decode: (word) => word / 81.92,
-  encode: (percent) => Math.round(percent * 81.92)
-}));
-var decodeTorqueCommand = Schema.decodeUnknown(TorqueCommandSchema);
-var encodeTorqueCommand = Schema.encode(TorqueCommandSchema);
-var formattedTorqueCommand = Pretty.make(TorqueCommandSchema);
-var SpeedLimitPercent = Schema.Number.pipe(Schema.greaterThanOrEqualTo(-120), Schema.lessThanOrEqualTo(120), Schema.brand("SpeedLimitPercent"));
-var SpeedLimitCommandSchema = Int16.pipe(Schema.transform(SpeedLimitPercent, {
-  decode: (word) => word,
-  encode: (percent) => percent
-}));
-var decodeSpeedLimitCommand = Schema.decodeUnknown(SpeedLimitCommandSchema);
-var encodeSpeedLimitCommand = Schema.encode(SpeedLimitCommandSchema);
-var formattedSpeedLimitCommand = Pretty.make(SpeedLimitCommandSchema);
-var Voltage = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(10), Schema.brand("Voltage"));
-var AnalogOut1CommandSchema = UInt16.pipe(Schema.transform(Voltage, {
-  decode: (word) => word / 100,
-  encode: (volts) => Math.round(volts * 100)
-}));
-var decodeAnalogOut1Command = Schema.decodeUnknown(AnalogOut1CommandSchema);
-var encodeAnalogOut1Command = Schema.encode(AnalogOut1CommandSchema);
-var formattedAnalogOut1Command = Pretty.make(AnalogOut1CommandSchema);
-var AnalogOut2CommandSchema = UInt16.pipe(Schema.transform(Voltage, {
-  decode: (word) => word / 100,
-  encode: (volts) => Math.round(volts * 100)
-}));
-var decodeAnalogOut2Command = Schema.decodeUnknown(AnalogOut2CommandSchema);
-var encodeAnalogOut2Command = Schema.encode(AnalogOut2CommandSchema);
-var formattedAnalogOut2Command = Pretty.make(AnalogOut2CommandSchema);
+var _frequencyCommandEntry = makeScaledParam(9474, 0.01, meta("Frequency Command", "Hz", "0.00–599.00", "0.00"), { domain: FrequencyHz });
+var decodeFrequencyCommand = _frequencyCommandEntry.decode;
+var encodeFrequencyCommand = _frequencyCommandEntry.encode;
+var formattedFrequencyCommand = _frequencyCommandEntry.formatted;
+var FrequencyCommandSchema = _frequencyCommandEntry.schema;
+var _torqueCommandEntry = makeSignedScaledParam(9475, 1 / 81.92, meta("Torque Command", "%", "–100.0–100.0", "0.0"), { domain: TorquePercent });
+var decodeTorqueCommand = _torqueCommandEntry.decode;
+var encodeTorqueCommand = _torqueCommandEntry.encode;
+var formattedTorqueCommand = _torqueCommandEntry.formatted;
+var TorqueCommandSchema = _torqueCommandEntry.schema;
+var _speedLimitCommandEntry = makeSignedScaledParam(9476, 1, meta("Speed Limit Command", "%", "–120–120", "0"), { domain: SpeedLimitPercent });
+var decodeSpeedLimitCommand = _speedLimitCommandEntry.decode;
+var encodeSpeedLimitCommand = _speedLimitCommandEntry.encode;
+var formattedSpeedLimitCommand = _speedLimitCommandEntry.formatted;
+var SpeedLimitCommandSchema = _speedLimitCommandEntry.schema;
+var _analogOut1CommandEntry = makeScaledParam(9477, 0.01, meta("Analog Out 1 Command", "V", "0.00–10.00", "0.00"), { domain: Voltage });
+var decodeAnalogOut1Command = _analogOut1CommandEntry.decode;
+var encodeAnalogOut1Command = _analogOut1CommandEntry.encode;
+var formattedAnalogOut1Command = _analogOut1CommandEntry.formatted;
+var AnalogOut1CommandSchema = _analogOut1CommandEntry.schema;
+var _analogOut2CommandEntry = makeScaledParam(9478, 0.01, meta("Analog Out 2 Command", "V", "0.00–10.00", "0.00"), { domain: Voltage });
+var decodeAnalogOut2Command = _analogOut2CommandEntry.decode;
+var encodeAnalogOut2Command = _analogOut2CommandEntry.encode;
+var formattedAnalogOut2Command = _analogOut2CommandEntry.formatted;
+var AnalogOut2CommandSchema = _analogOut2CommandEntry.schema;
 
 class DigitalOutCommandFlags extends Schema.Class("DigitalOutCommandFlags")({
   ry1: Schema.Boolean,
@@ -1143,39 +1073,21 @@ class DigitalOutCommandFlags extends Schema.Class("DigitalOutCommandFlags")({
   pulse: Schema.Boolean
 }) {
   static get empty() {
-    return new DigitalOutCommandFlags({
-      ry1: false,
-      ry2: false,
-      pulse: false
-    });
+    return new DigitalOutCommandFlags({ ry1: false, ry2: false, pulse: false });
   }
 }
-var DigitalOutCommandSchema = UInt16.pipe(Schema.transformOrFail(DigitalOutCommandFlags, {
-  decode: (word) => ParseResult2.succeed(new DigitalOutCommandFlags({
-    ry1: (word & bit(0)) !== 0,
-    ry2: (word & bit(1)) !== 0,
-    pulse: (word & bit(2)) !== 0
-  })),
-  encode: (flags, _, ast) => {
-    const word = (flags.ry1 ? bit(0) : 0) | (flags.ry2 ? bit(1) : 0) | (flags.pulse ? bit(2) : 0);
-    return Number.isInteger(word) && word >= 0 && word <= 65535 ? ParseResult2.succeed(word) : ParseResult2.fail(new ParseResult2.Type(ast, flags, "Digital output word is out of UInt16 range"));
-  }
-}));
-var decodeDigitalOutCommand = Schema.decodeUnknown(DigitalOutCommandSchema);
-var encodeDigitalOutCommand = Schema.encode(DigitalOutCommandSchema);
-var formattedDigitalOutCommand = Pretty.make(DigitalOutCommandSchema);
-
-class DigitalOutCommandPatch extends Schema.Class("DigitalOutCommandPatch")({
-  ry1: Schema.optional(Schema.Boolean),
-  ry2: Schema.optional(Schema.Boolean),
-  pulse: Schema.optional(Schema.Boolean)
-}) {
-}
-var mergeDigitalOutCommandPatch = (base, patch) => new DigitalOutCommandFlags({
-  ry1: patch.ry1 ?? base.ry1,
-  ry2: patch.ry2 ?? base.ry2,
-  pulse: patch.pulse ?? base.pulse
-});
+var digitalOutLayout = {
+  ry1: 0,
+  ry2: 1,
+  pulse: 2
+};
+var _digitalOutParam = makeBitfieldParam(9479, DigitalOutCommandFlags, digitalOutLayout, meta("Digital Out Command", "-", "bitfield", "0"));
+var DigitalOutCommandSchema = _digitalOutParam.schema;
+var decodeDigitalOutCommand = _digitalOutParam.decode;
+var encodeDigitalOutCommand = _digitalOutParam.encode;
+var formattedDigitalOutCommand = _digitalOutParam.formatted;
+var DigitalOutCommandPatch = _digitalOutParam.patch;
+var mergeDigitalOutCommandPatch = _digitalOutParam.merge;
 
 class StateMonitorFlags extends Schema.Class("StateMonitorFlags")({
   operation: Schema.Boolean,
@@ -1216,30 +1128,28 @@ class StateMonitorFlags extends Schema.Class("StateMonitorFlags")({
     });
   }
 }
-var StateMonitorSchema = UInt16.pipe(Schema.transformOrFail(StateMonitorFlags, {
-  decode: (word) => ParseResult2.succeed(new StateMonitorFlags({
-    operation: (word & bit(0)) !== 0,
-    direction: (word & bit(1)) !== 0,
-    inverterReady: (word & bit(2)) !== 0,
-    fault: (word & bit(3)) !== 0,
-    warning: (word & bit(4)) !== 0,
-    zeroSpeed: (word & bit(5)) !== 0,
-    is440V: (word & bit(6)) !== 0,
-    frequencyAgree: (word & bit(7)) !== 0,
-    setFrequencyAgree: (word & bit(8)) !== 0,
-    frequencyDetection1: (word & bit(9)) !== 0,
-    frequencyDetection2: (word & bit(10)) !== 0,
-    underVoltage: (word & bit(11)) !== 0,
-    baseblock: (word & bit(12)) !== 0,
-    freqRefNotFromComm: (word & bit(13)) !== 0,
-    seqNotFromComm: (word & bit(14)) !== 0,
-    overTorque: (word & bit(15)) !== 0
-  })),
-  encode: (flags, _, ast) => readOnlyEncodeFailure("State monitor register 0x2520", flags, ast)
-}));
-var decodeStateMonitor = Schema.decodeUnknown(StateMonitorSchema);
-var formattedStateMonitor = Pretty.make(StateMonitorSchema);
-var ErrorDescriptionMonitor = Schema.String.pipe(Schema.brand("ErrorDescriptionMonitor"));
+var stateMonitorLayout = {
+  operation: 0,
+  direction: 1,
+  inverterReady: 2,
+  fault: 3,
+  warning: 4,
+  zeroSpeed: 5,
+  is440V: 6,
+  frequencyAgree: 7,
+  setFrequencyAgree: 8,
+  frequencyDetection1: 9,
+  frequencyDetection2: 10,
+  underVoltage: 11,
+  baseblock: 12,
+  freqRefNotFromComm: 13,
+  seqNotFromComm: 14,
+  overTorque: 15
+};
+var _stateMonitorParam = makeBitfieldParam(9504, StateMonitorFlags, stateMonitorLayout, meta("State Monitor", "-", "bitfield", "0"), { readOnly: true });
+var StateMonitorSchema = _stateMonitorParam.schema;
+var decodeStateMonitor = _stateMonitorParam.decode;
+var formattedStateMonitor = _stateMonitorParam.formatted;
 var errorDescriptionLabels = {
   1: "UV (Under-voltage)",
   2: "OC (Over-current)",
@@ -1278,13 +1188,10 @@ var errorDescriptionLabels = {
   48: "CF20 (Configuration error 20)",
   49: "RUN"
 };
-var ErrorDescriptionMonitorSchema = UInt16.pipe(Schema.transformOrFail(ErrorDescriptionMonitor, {
-  decode: (word) => Effect2.succeed(errorDescriptionLabels[word] ?? `Unknown (${word})`),
-  encode: (value, _, ast) => readOnlyEncodeFailure("Error description monitor register 0x2521", value, ast),
-  strict: false
-}));
-var decodeErrorDescriptionMonitor = Schema.decodeUnknown(ErrorDescriptionMonitorSchema);
-var formattedErrorDescriptionMonitor = Pretty.make(ErrorDescriptionMonitorSchema);
+var _errorDescriptionMonitorEntry = makeLookupParam(9505, errorDescriptionLabels, (raw) => `Unknown (${raw})`, meta("Error Description Monitor", "-", "0–49", "0"), { domain: ErrorDescriptionMonitor });
+var decodeErrorDescriptionMonitor = _errorDescriptionMonitorEntry.decode;
+var formattedErrorDescriptionMonitor = _errorDescriptionMonitorEntry.formatted;
+var ErrorDescriptionMonitorSchema = _errorDescriptionMonitorEntry.schema;
 
 class DigitalInStateMonitorFlags extends Schema.Class("DigitalInStateMonitorFlags")({
   s1: Schema.Boolean,
@@ -1309,53 +1216,36 @@ class DigitalInStateMonitorFlags extends Schema.Class("DigitalInStateMonitorFlag
     });
   }
 }
-var DigitalInStateMonitorSchema = UInt16.pipe(Schema.transformOrFail(DigitalInStateMonitorFlags, {
-  decode: (word) => ParseResult2.succeed(new DigitalInStateMonitorFlags({
-    s1: (word & bit(0)) !== 0,
-    s2: (word & bit(1)) !== 0,
-    s3: (word & bit(2)) !== 0,
-    s4: (word & bit(3)) !== 0,
-    s5: (word & bit(4)) !== 0,
-    s6: (word & bit(5)) !== 0,
-    s7: (word & bit(6)) !== 0,
-    s8: (word & bit(7)) !== 0
-  })),
-  encode: (flags, _, ast) => readOnlyEncodeFailure("Digital input state register 0x2522", flags, ast),
-  strict: false
-}));
-var decodeDigitalInStateMonitor = Schema.decodeUnknown(DigitalInStateMonitorSchema);
-var formattedDigitalInStateMonitor = Pretty.make(DigitalInStateMonitorSchema);
-var FrequencyCommandMonitorSchema = UInt16.pipe(Schema.transformOrFail(FrequencyHz, {
-  decode: (word) => Effect2.succeed(word * 0.01),
-  encode: (hz, _, ast) => readOnlyEncodeFailure("Frequency command monitor register 0x2523", hz, ast),
-  strict: false
-}));
-var decodeFrequencyCommandMonitor = Schema.decodeUnknown(FrequencyCommandMonitorSchema);
-var formattedFrequencyCommandMonitor = Pretty.make(FrequencyCommandMonitorSchema);
-var OutputFrequencyMonitorSchema = UInt16.pipe(Schema.transformOrFail(FrequencyHz, {
-  decode: (word) => Effect2.succeed(word * 0.01),
-  encode: (hz, _, ast) => readOnlyEncodeFailure("Output frequency monitor register 0x2524", hz, ast),
-  strict: false
-}));
-var decodeOutputFrequencyMonitor = Schema.decodeUnknown(OutputFrequencyMonitorSchema);
-var formattedOutputFrequencyMonitor = Pretty.make(OutputFrequencyMonitorSchema);
-var DCBusVoltage = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(1000), Schema.brand("DCBusVoltage"));
-var DCBusVoltageCommandMonitorSchema = UInt16.pipe(Schema.transformOrFail(DCBusVoltage, {
-  decode: (word) => Effect2.succeed(word * 0.1),
-  encode: (voltage, _, ast) => readOnlyEncodeFailure("DC voltage command monitor register 0x2526", voltage, ast),
-  strict: false
-}));
-var decodeDCBusVoltageCommandMonitor = Schema.decodeUnknown(DCBusVoltageCommandMonitorSchema);
-var formattedDCBusVoltageCommandMonitor = Pretty.make(DCBusVoltageCommandMonitorSchema);
-var CurrentAmps = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(6553.5), Schema.brand("CurrentAmps"));
-var OutputCurrentMonitorSchema = UInt16.pipe(Schema.transformOrFail(CurrentAmps, {
-  decode: (word) => Effect2.succeed(word * 0.1),
-  encode: (current, _, ast) => readOnlyEncodeFailure("Output current monitor register 0x2527", current, ast),
-  strict: false
-}));
-var decodeOutputCurrentMonitor = Schema.decodeUnknown(OutputCurrentMonitorSchema);
-var formattedOutputCurrentMonitor = Pretty.make(OutputCurrentMonitorSchema);
-var WarningDescriptionMonitor = Schema.String.pipe(Schema.brand("WarningDescriptionMonitor"));
+var digitalInLayout = {
+  s1: 0,
+  s2: 1,
+  s3: 2,
+  s4: 3,
+  s5: 4,
+  s6: 5,
+  s7: 6,
+  s8: 7
+};
+var _digitalInParam = makeBitfieldParam(9506, DigitalInStateMonitorFlags, digitalInLayout, meta("Digital In State Monitor", "-", "bitfield", "0"), { readOnly: true });
+var DigitalInStateMonitorSchema = _digitalInParam.schema;
+var decodeDigitalInStateMonitor = _digitalInParam.decode;
+var formattedDigitalInStateMonitor = _digitalInParam.formatted;
+var _frequencyCommandMonitorEntry = makeScaledParam(9507, 0.01, meta("Frequency Command Monitor", "Hz", "0.00–599.00", "0.00"), { domain: FrequencyHz, readOnly: true });
+var decodeFrequencyCommandMonitor = _frequencyCommandMonitorEntry.decode;
+var formattedFrequencyCommandMonitor = _frequencyCommandMonitorEntry.formatted;
+var FrequencyCommandMonitorSchema = _frequencyCommandMonitorEntry.schema;
+var _outputFrequencyMonitorEntry = makeScaledParam(9508, 0.01, meta("Output Frequency Monitor", "Hz", "0.00–599.00", "0.00"), { domain: FrequencyHz, readOnly: true });
+var decodeOutputFrequencyMonitor = _outputFrequencyMonitorEntry.decode;
+var formattedOutputFrequencyMonitor = _outputFrequencyMonitorEntry.formatted;
+var OutputFrequencyMonitorSchema = _outputFrequencyMonitorEntry.schema;
+var _dcBusVoltageCommandMonitorEntry = makeScaledParam(9510, 0.1, meta("DC Bus Voltage Monitor", "V", "0.0–1000.0", "0.0"), { domain: DCBusVoltage, readOnly: true });
+var decodeDCBusVoltageCommandMonitor = _dcBusVoltageCommandMonitorEntry.decode;
+var formattedDCBusVoltageCommandMonitor = _dcBusVoltageCommandMonitorEntry.formatted;
+var DCBusVoltageCommandMonitorSchema = _dcBusVoltageCommandMonitorEntry.schema;
+var _outputCurrentMonitorEntry = makeScaledParam(9511, 0.1, meta("Output Current Monitor", "A", "0.0–6553.5", "0.0"), { domain: CurrentAmps, readOnly: true });
+var decodeOutputCurrentMonitor = _outputCurrentMonitorEntry.decode;
+var formattedOutputCurrentMonitor = _outputCurrentMonitorEntry.formatted;
+var OutputCurrentMonitorSchema = _outputCurrentMonitorEntry.schema;
 var warningDescriptionLabels = {
   0: "No alarm",
   1: "OV (Overvoltage)",
@@ -1439,13 +1329,10 @@ var warningDescriptionLabels = {
   79: "Sys Init",
   80: "FBLSS"
 };
-var WarningDescriptionMonitorSchema = UInt16.pipe(Schema.transformOrFail(WarningDescriptionMonitor, {
-  decode: (word) => Effect2.succeed(warningDescriptionLabels[word] ?? `Unknown warning (${word})`),
-  encode: (value, _, ast) => readOnlyEncodeFailure("Warning description monitor register 0x2528", value, ast),
-  strict: false
-}));
-var decodeWarningDescriptionMonitor = Schema.decodeUnknown(WarningDescriptionMonitorSchema);
-var formattedWarningDescriptionMonitor = Pretty.make(WarningDescriptionMonitorSchema);
+var _warningDescriptionMonitorEntry = makeLookupParam(9512, warningDescriptionLabels, (raw) => `Unknown warning (${raw})`, meta("Warning Description Monitor", "-", "0–80", "0"), { domain: WarningDescriptionMonitor });
+var decodeWarningDescriptionMonitor = _warningDescriptionMonitorEntry.decode;
+var formattedWarningDescriptionMonitor = _warningDescriptionMonitorEntry.formatted;
+var WarningDescriptionMonitorSchema = _warningDescriptionMonitorEntry.schema;
 
 class DigitalOutStateMonitorFlags extends Schema.Class("DigitalOutStateMonitorFlags")({
   ry1: Schema.Boolean,
@@ -1453,186 +1340,47 @@ class DigitalOutStateMonitorFlags extends Schema.Class("DigitalOutStateMonitorFl
   pulse: Schema.Boolean
 }) {
   static get empty() {
-    return new DigitalOutStateMonitorFlags({
-      ry1: false,
-      ry2: false,
-      pulse: false
-    });
+    return new DigitalOutStateMonitorFlags({ ry1: false, ry2: false, pulse: false });
   }
 }
-var DigitalOutStateMonitorSchema = UInt16.pipe(Schema.transformOrFail(DigitalOutStateMonitorFlags, {
-  decode: (word) => ParseResult2.succeed(new DigitalOutStateMonitorFlags({
-    ry1: (word & bit(0)) !== 0,
-    ry2: (word & bit(1)) !== 0,
-    pulse: (word & bit(2)) !== 0
-  })),
-  encode: (flags, _, ast) => readOnlyEncodeFailure("Digital output state register 0x2529", flags, ast),
-  strict: false
-}));
-var decodeDigitalOutStateMonitor = Schema.decodeUnknown(DigitalOutStateMonitorSchema);
-var formattedDigitalOutStateMonitor = Pretty.make(DigitalOutStateMonitorSchema);
-var AnalogOut1MonitorSchema = UInt16.pipe(Schema.transformOrFail(Voltage, {
-  decode: (word) => Effect2.succeed(word / 100),
-  encode: (voltage, _, ast) => readOnlyEncodeFailure("Analog out 1 monitor register 0x252A", voltage, ast),
-  strict: false
-}));
-var decodeAnalogOut1Monitor = Schema.decodeUnknown(AnalogOut1MonitorSchema);
-var formattedAnalogOut1Monitor = Pretty.make(AnalogOut1MonitorSchema);
-var AnalogOut2MonitorSchema = UInt16.pipe(Schema.transformOrFail(Voltage, {
-  decode: (word) => Effect2.succeed(word / 100),
-  encode: (voltage, _, ast) => readOnlyEncodeFailure("Analog out 2 monitor register 0x252B", voltage, ast),
-  strict: false
-}));
-var decodeAnalogOut2Monitor = Schema.decodeUnknown(AnalogOut2MonitorSchema);
-var formattedAnalogOut2Monitor = Pretty.make(AnalogOut2MonitorSchema);
-var AnalogInputPercent = Schema.Number.pipe(Schema.nonNegative(), Schema.lessThanOrEqualTo(100), Schema.brand("AnalogInputPercent"));
-var AnalogIn1MonitorSchema = UInt16.pipe(Schema.transformOrFail(AnalogInputPercent, {
-  decode: (word) => Effect2.succeed(word * 0.1),
-  encode: (percent, _, ast) => readOnlyEncodeFailure("Analog in 1 monitor register 0x252C", percent, ast),
-  strict: false
-}));
-var decodeAnalogIn1Monitor = Schema.decodeUnknown(AnalogIn1MonitorSchema);
-var formattedAnalogIn1Monitor = Pretty.make(AnalogIn1MonitorSchema);
-var AnalogIn2MonitorSchema = UInt16.pipe(Schema.transformOrFail(AnalogInputPercent, {
-  decode: (word) => Effect2.succeed(word * 0.1),
-  encode: (percent, _, ast) => readOnlyEncodeFailure("Analog in 2 monitor register 0x252D", percent, ast),
-  strict: false
-}));
-var decodeAnalogIn2Monitor = Schema.decodeUnknown(AnalogIn2MonitorSchema);
-var formattedAnalogIn2Monitor = Pretty.make(AnalogIn2MonitorSchema);
-var A510CheckMonitor = Schema.String.pipe(Schema.brand("A510CheckMonitor"));
+var _digitalOutStateParam = makeBitfieldParam(9513, DigitalOutStateMonitorFlags, digitalOutLayout, meta("Digital Out State Monitor", "-", "bitfield", "0"), { readOnly: true });
+var DigitalOutStateMonitorSchema = _digitalOutStateParam.schema;
+var decodeDigitalOutStateMonitor = _digitalOutStateParam.decode;
+var formattedDigitalOutStateMonitor = _digitalOutStateParam.formatted;
+var _analogOut1MonitorEntry = makeScaledParam(9514, 0.01, meta("Analog Out 1 Monitor", "V", "0.00–10.00", "0.00"), { domain: Voltage, readOnly: true });
+var decodeAnalogOut1Monitor = _analogOut1MonitorEntry.decode;
+var formattedAnalogOut1Monitor = _analogOut1MonitorEntry.formatted;
+var AnalogOut1MonitorSchema = _analogOut1MonitorEntry.schema;
+var _analogOut2MonitorEntry = makeScaledParam(9515, 0.01, meta("Analog Out 2 Monitor", "V", "0.00–10.00", "0.00"), { domain: Voltage, readOnly: true });
+var decodeAnalogOut2Monitor = _analogOut2MonitorEntry.decode;
+var formattedAnalogOut2Monitor = _analogOut2MonitorEntry.formatted;
+var AnalogOut2MonitorSchema = _analogOut2MonitorEntry.schema;
+var _analogIn1MonitorEntry = makeScaledParam(9516, 0.1, meta("Analog In 1 Monitor", "%", "0.0–100.0", "0.0"), { domain: AnalogInputPercent, readOnly: true });
+var decodeAnalogIn1Monitor = _analogIn1MonitorEntry.decode;
+var formattedAnalogIn1Monitor = _analogIn1MonitorEntry.formatted;
+var AnalogIn1MonitorSchema = _analogIn1MonitorEntry.schema;
+var _analogIn2MonitorEntry = makeScaledParam(9517, 0.1, meta("Analog In 2 Monitor", "%", "0.0–100.0", "0.0"), { domain: AnalogInputPercent, readOnly: true });
+var decodeAnalogIn2Monitor = _analogIn2MonitorEntry.decode;
+var formattedAnalogIn2Monitor = _analogIn2MonitorEntry.formatted;
+var AnalogIn2MonitorSchema = _analogIn2MonitorEntry.schema;
 var a510CheckLabels = {
   1: "L510(s)",
   2: "E510(s)",
   3: "A510(s)",
   4: "F510"
 };
-var A510CheckMonitorSchema = UInt16.pipe(Schema.transformOrFail(A510CheckMonitor, {
-  decode: (word) => Effect2.succeed(a510CheckLabels[word] ?? `Unknown (0x${word.toString(16)})`),
-  encode: (value, _, ast) => readOnlyEncodeFailure("A510 check monitor register 0x252F", value, ast),
-  strict: false
-}));
-var decodeA510CheckMonitor = Schema.decodeUnknown(A510CheckMonitorSchema);
-var formattedA510CheckMonitor = Pretty.make(A510CheckMonitorSchema);
+var _a510CheckMonitorEntry = makeLookupParam(9519, a510CheckLabels, (raw) => `Unknown (0x${raw.toString(16)})`, meta("A510 Check Monitor", "-", "0x01–0x04", "0"), { domain: A510CheckMonitor });
+var decodeA510CheckMonitor = _a510CheckMonitorEntry.decode;
+var formattedA510CheckMonitor = _a510CheckMonitorEntry.formatted;
+var A510CheckMonitorSchema = _a510CheckMonitorEntry.schema;
 // src/TecoInverterService.ts
-import { Effect as Effect4, Record } from "effect";
+import { Effect, Record } from "effect";
 import {
   SerialTransportService
 } from "effect-modbus-rs";
 
-// src/parameters/param-utils.ts
-import { ParseResult as ParseResult3, Pretty as Pretty2, Schema as Schema2 } from "effect";
-var formatRegister = (register) => `0x${register.toString(16).toUpperCase().padStart(4, "0")}`;
-var formatMeta = (register, meta) => [
-  `${meta.code} ${meta.name}`,
-  `Register: ${formatRegister(register)}`,
-  `Setting Range: ${meta.range}`,
-  `Default: ${meta.default}`,
-  `Unit: ${meta.unit}`,
-  `Manual Page: ${meta.page}`
-].join(`
-`);
-var formatScaledMeta = (register, meta, factor) => [
-  `${meta.code} ${meta.name}`,
-  `Register: ${formatRegister(register)}`,
-  `Wire format: raw × ${factor}`,
-  `Setting Range: ${meta.range}`,
-  `Default: ${meta.default}`,
-  `Unit: ${meta.unit}`,
-  `Manual Page: ${meta.page}`
-].join(`
-`);
-var formatEnumMeta = (register, meta, labels) => [
-  `${meta.code} ${meta.name}`,
-  `Register: ${formatRegister(register)}`,
-  `Options:`,
-  ...Object.entries(labels).map(([k, v]) => `  ${k} = ${v}`),
-  `Default: ${meta.default}`,
-  `Unit: ${meta.unit}`,
-  `Manual Page: ${meta.page}`
-].join(`
-`);
-var makeParam = (register, meta) => UInt16.pipe(Schema2.annotations({ description: formatMeta(register, meta) }));
-var makeScaledParam = (register, factor, meta) => UInt16.pipe(Schema2.annotations({
-  description: formatScaledMeta(register, meta, factor)
-}), Schema2.transformOrFail(UInt16, {
-  decode: (raw) => ParseResult3.succeed(raw * factor),
-  encode: (value) => ParseResult3.succeed(Math.round(value / factor)),
-  strict: false
-}));
-var makeSignedScaledParam = (register, factor, meta) => Int16.pipe(Schema2.annotations({
-  description: formatScaledMeta(register, meta, factor)
-}), Schema2.transformOrFail(Int16, {
-  decode: (raw) => ParseResult3.succeed(raw * factor),
-  encode: (value) => ParseResult3.succeed(Math.round(value / factor)),
-  strict: false
-}));
-var makeEnumParam = (register, labels, meta) => {
-  const values = [...new Set(Object.values(labels))];
-  return UInt16.pipe(Schema2.annotations({ description: formatEnumMeta(register, meta, labels) }), Schema2.transformOrFail(Schema2.Literal(...values), {
-    decode: (raw, _, ast) => {
-      const label = labels[raw];
-      return label !== undefined ? ParseResult3.succeed(label) : ParseResult3.fail(new ParseResult3.Type(ast, raw, `Unknown enum value ${raw} for ${meta.code}`));
-    },
-    encode: (value, _, ast) => {
-      const entry = Object.entries(labels).find(([, v]) => v === value);
-      return entry ? ParseResult3.succeed(Number(entry[0])) : ParseResult3.fail(new ParseResult3.Type(ast, value, `Invalid value "${value}" for ${meta.code}`));
-    },
-    strict: false
-  }));
-};
-var makeDecode = (schema) => Schema2.decodeUnknown(schema);
-var makeEncode = (schema) => Schema2.encode(schema);
-var makeFormatted = (schema) => Pretty2.make(schema);
-var p = (addr, meta) => {
-  const schema = makeParam(addr, meta);
-  return {
-    schema,
-    decode: makeDecode(schema),
-    encode: makeEncode(schema),
-    formatted: makeFormatted(schema)
-  };
-};
-var sp = (addr, factor, meta) => {
-  const schema = makeScaledParam(addr, factor, meta);
-  return {
-    schema,
-    decode: makeDecode(schema),
-    encode: makeEncode(schema),
-    formatted: makeFormatted(schema)
-  };
-};
-var spSigned = (addr, factor, meta) => {
-  const schema = makeSignedScaledParam(addr, factor, meta);
-  return {
-    schema,
-    decode: makeDecode(schema),
-    encode: makeEncode(schema),
-    formatted: makeFormatted(schema)
-  };
-};
-var pe = (addr, labels, meta) => {
-  const schema = makeEnumParam(addr, labels, meta);
-  return {
-    schema,
-    decode: makeDecode(schema),
-    encode: makeEncode(schema),
-    formatted: makeFormatted(schema)
-  };
-};
-function fromConfig(config) {
-  switch (config.kind) {
-    case "UInt16" /* UInt16 */:
-      return p(config.register, config.meta);
-    case "Scaled" /* Scaled */:
-      return sp(config.register, config.factor, config.meta);
-    case "SignedScaled" /* SignedScaled */:
-      return spSigned(config.register, config.factor, config.meta);
-    case "Enum" /* Enum */:
-      return pe(config.register, config.labels, config.meta);
-  }
-}
 // src/parameters/group-00.ts
+import { ParamKind } from "modbus-schema";
 var group = 0;
 var p419 = 419;
 var p420 = 420;
@@ -1640,7 +1388,7 @@ var p421 = 421;
 var all = {
   "00-00": {
     register: 0 /* 00-00 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "V/F",
       1: "V/F+PG",
@@ -1662,7 +1410,7 @@ var all = {
   },
   "00-01": {
     register: 1 /* 00-01 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Forward",
       1: "Reverse"
@@ -1679,7 +1427,7 @@ var all = {
   },
   "00-02": {
     register: 2 /* 00-02 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Keypad",
       1: "External Terminal",
@@ -1698,7 +1446,7 @@ var all = {
   },
   "00-03": {
     register: 3 /* 00-03 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Keypad",
       1: "External Terminal",
@@ -1717,7 +1465,7 @@ var all = {
   },
   "00-04": {
     register: 4 /* 00-04 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "English",
       1: "Simplified Chinese",
@@ -1736,7 +1484,7 @@ var all = {
   },
   "00-05": {
     register: 5 /* 00-05 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Keypad",
       1: "External Terminal (Analog1)",
@@ -1758,7 +1506,7 @@ var all = {
   },
   "00-06": {
     register: 6 /* 00-06 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Keypad",
       1: "External Terminal (Analog1)",
@@ -1779,7 +1527,7 @@ var all = {
   },
   "00-07": {
     register: 7 /* 00-07 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Main Frequency",
       1: "Main frequency + Alternative Frequency"
@@ -1796,7 +1544,7 @@ var all = {
   },
   "00-09": {
     register: 9 /* 00-09 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Don't save when power supply is off (00-08)",
       1: "Save when power is off (00-08)"
@@ -1813,7 +1561,7 @@ var all = {
   },
   "00-10": {
     register: 10 /* 00-10 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Show warning if lower than minimum frequency",
       1: "Run as minimum frequency if lower than minimum frequency"
@@ -1830,7 +1578,7 @@ var all = {
   },
   "00-11": {
     register: 11 /* 00-11 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "PID Sleep Limit is Lower Limit of Frequency",
       1: "PID Sleep Limit is 0Hz"
@@ -1847,7 +1595,7 @@ var all = {
   },
   "00-27": {
     register: 27 /* 00-27 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "HD (Heavy Duty Mode)",
       1: "ND (Normal Duty Mode)"
@@ -1864,7 +1612,7 @@ var all = {
   },
   "00-28": {
     register: 28 /* 00-28 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Positive Characteristic (0~10V/4~20mA → 0~100%)",
       1: "Negative Characteristic (0~10V/4~20mA → 100~0%)"
@@ -1881,7 +1629,7 @@ var all = {
   },
   "00-29": {
     register: 29 /* 00-29 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Operation Based on Frequency Command",
       1: "Stop",
@@ -1900,7 +1648,7 @@ var all = {
   },
   "00-32": {
     register: 32 /* 00-32 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "General",
       2: "Conveyor",
@@ -1922,7 +1670,7 @@ var all = {
   },
   "00-33": {
     register: 33 /* 00-33 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "Disable",
       1: "Enable"
@@ -1939,7 +1687,7 @@ var all = {
   },
   "00-57": {
     register: 57 /* 00-57 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind.Enum,
     labels: {
       0: "SV High Speed Mode 1",
       1: "SV High Speed Mode 2"
@@ -1956,7 +1704,7 @@ var all = {
   },
   "00-08": {
     register: 8 /* 00-08 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.01,
     meta: {
       group,
@@ -1970,7 +1718,7 @@ var all = {
   },
   "00-18": {
     register: 18 /* 00-18 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.01,
     meta: {
       group,
@@ -1984,7 +1732,7 @@ var all = {
   },
   "00-25": {
     register: 25 /* 00-25 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.01,
     meta: {
       group,
@@ -1998,7 +1746,7 @@ var all = {
   },
   "00-12": {
     register: 12 /* 00-12 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2012,7 +1760,7 @@ var all = {
   },
   "00-13": {
     register: 13 /* 00-13 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2026,7 +1774,7 @@ var all = {
   },
   "00-14": {
     register: 14 /* 00-14 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2040,7 +1788,7 @@ var all = {
   },
   "00-15": {
     register: 15 /* 00-15 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2054,7 +1802,7 @@ var all = {
   },
   "00-16": {
     register: 16 /* 00-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2068,7 +1816,7 @@ var all = {
   },
   "00-17": {
     register: 17 /* 00-17 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2082,7 +1830,7 @@ var all = {
   },
   "00-19": {
     register: 19 /* 00-19 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2096,7 +1844,7 @@ var all = {
   },
   "00-20": {
     register: 20 /* 00-20 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2110,7 +1858,7 @@ var all = {
   },
   "00-21": {
     register: 21 /* 00-21 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2124,7 +1872,7 @@ var all = {
   },
   "00-22": {
     register: 22 /* 00-22 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2138,7 +1886,7 @@ var all = {
   },
   "00-23": {
     register: 23 /* 00-23 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2152,7 +1900,7 @@ var all = {
   },
   "00-24": {
     register: 24 /* 00-24 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2166,7 +1914,7 @@ var all = {
   },
   "00-26": {
     register: 26 /* 00-26 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind.Scaled,
     factor: 0.1,
     meta: {
       group,
@@ -2180,7 +1928,7 @@ var all = {
   },
   "00-41": {
     register: 41 /* 00-41 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-41",
@@ -2193,7 +1941,7 @@ var all = {
   },
   "00-42": {
     register: 42 /* 00-42 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-42",
@@ -2206,7 +1954,7 @@ var all = {
   },
   "00-43": {
     register: 43 /* 00-43 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-43",
@@ -2219,7 +1967,7 @@ var all = {
   },
   "00-44": {
     register: 44 /* 00-44 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-44",
@@ -2232,7 +1980,7 @@ var all = {
   },
   "00-45": {
     register: 45 /* 00-45 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-45",
@@ -2245,7 +1993,7 @@ var all = {
   },
   "00-46": {
     register: 46 /* 00-46 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-46",
@@ -2258,7 +2006,7 @@ var all = {
   },
   "00-47": {
     register: 47 /* 00-47 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-47",
@@ -2271,7 +2019,7 @@ var all = {
   },
   "00-48": {
     register: 48 /* 00-48 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-48",
@@ -2284,7 +2032,7 @@ var all = {
   },
   "00-49": {
     register: 49 /* 00-49 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-49",
@@ -2297,7 +2045,7 @@ var all = {
   },
   "00-50": {
     register: 50 /* 00-50 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-50",
@@ -2310,7 +2058,7 @@ var all = {
   },
   "00-51": {
     register: 51 /* 00-51 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-51",
@@ -2323,7 +2071,7 @@ var all = {
   },
   "00-52": {
     register: 52 /* 00-52 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-52",
@@ -2336,7 +2084,7 @@ var all = {
   },
   "00-53": {
     register: 53 /* 00-53 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-53",
@@ -2349,7 +2097,7 @@ var all = {
   },
   "00-54": {
     register: 54 /* 00-54 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-54",
@@ -2362,7 +2110,7 @@ var all = {
   },
   "00-55": {
     register: 55 /* 00-55 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-55",
@@ -2375,7 +2123,7 @@ var all = {
   },
   "00-56": {
     register: 56 /* 00-56 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind.UInt16,
     meta: {
       group,
       code: "00-56",
@@ -2389,6 +2137,7 @@ var all = {
 };
 var group00Params = all;
 // src/parameters/group-01.ts
+import { ParamKind as ParamKind2 } from "modbus-schema";
 var group2 = 1;
 var p422 = 422;
 var p423 = 423;
@@ -2396,7 +2145,7 @@ var p424 = 424;
 var all2 = {
   "01-00": {
     register: 256 /* 01-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind2.UInt16,
     meta: {
       group: group2,
       code: "01-00",
@@ -2409,7 +2158,7 @@ var all2 = {
   },
   "01-02": {
     register: 258 /* 01-02 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2423,7 +2172,7 @@ var all2 = {
   },
   "01-03": {
     register: 259 /* 01-03 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2437,7 +2186,7 @@ var all2 = {
   },
   "01-04": {
     register: 260 /* 01-04 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2451,7 +2200,7 @@ var all2 = {
   },
   "01-05": {
     register: 261 /* 01-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2465,7 +2214,7 @@ var all2 = {
   },
   "01-06": {
     register: 262 /* 01-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2479,7 +2228,7 @@ var all2 = {
   },
   "01-07": {
     register: 263 /* 01-07 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2493,7 +2242,7 @@ var all2 = {
   },
   "01-08": {
     register: 264 /* 01-08 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2507,7 +2256,7 @@ var all2 = {
   },
   "01-09": {
     register: 265 /* 01-09 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2521,7 +2270,7 @@ var all2 = {
   },
   "01-10": {
     register: 266 /* 01-10 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2535,7 +2284,7 @@ var all2 = {
   },
   "01-11": {
     register: 267 /* 01-11 */,
-    kind: "Enum" /* Enum */,
+    kind: ParamKind2.Enum,
     labels: {
       0: "Torque Compensation Mode 0",
       1: "Torque Compensation Mode 1"
@@ -2552,7 +2301,7 @@ var all2 = {
   },
   "01-12": {
     register: 268 /* 01-12 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2566,7 +2315,7 @@ var all2 = {
   },
   "01-13": {
     register: 269 /* 01-13 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2580,7 +2329,7 @@ var all2 = {
   },
   "01-14": {
     register: 270 /* 01-14 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2594,7 +2343,7 @@ var all2 = {
   },
   "01-15": {
     register: 271 /* 01-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind2.UInt16,
     meta: {
       group: group2,
       code: "01-15",
@@ -2607,7 +2356,7 @@ var all2 = {
   },
   "01-16": {
     register: 272 /* 01-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2621,7 +2370,7 @@ var all2 = {
   },
   "01-17": {
     register: 273 /* 01-17 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2635,7 +2384,7 @@ var all2 = {
   },
   "01-18": {
     register: 274 /* 01-18 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2649,7 +2398,7 @@ var all2 = {
   },
   "01-19": {
     register: 275 /* 01-19 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2663,7 +2412,7 @@ var all2 = {
   },
   "01-20": {
     register: 276 /* 01-20 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2677,7 +2426,7 @@ var all2 = {
   },
   "01-21": {
     register: 277 /* 01-21 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2691,7 +2440,7 @@ var all2 = {
   },
   "01-22": {
     register: 278 /* 01-22 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2705,7 +2454,7 @@ var all2 = {
   },
   "01-23": {
     register: 279 /* 01-23 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2719,7 +2468,7 @@ var all2 = {
   },
   "01-24": {
     register: 280 /* 01-24 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2733,7 +2482,7 @@ var all2 = {
   },
   "01-25": {
     register: 281 /* 01-25 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind2.Scaled,
     factor: 0.1,
     meta: {
       group: group2,
@@ -2747,7 +2496,7 @@ var all2 = {
   },
   "01-26": {
     register: 282 /* 01-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind2.UInt16,
     meta: {
       group: group2,
       code: "01-26",
@@ -2761,13 +2510,14 @@ var all2 = {
 };
 var group01Params = all2;
 // src/parameters/group-02.ts
+import { ParamKind as ParamKind3 } from "modbus-schema";
 var group3 = 2;
 var p425 = 425;
 var p426 = 426;
 var all3 = {
   "02-00": {
     register: 512 /* 02-00 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.01,
     meta: {
       group: group3,
@@ -2781,7 +2531,7 @@ var all3 = {
   },
   "02-01": {
     register: 513 /* 02-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-01",
@@ -2794,7 +2544,7 @@ var all3 = {
   },
   "02-03": {
     register: 515 /* 02-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-03",
@@ -2807,7 +2557,7 @@ var all3 = {
   },
   "02-04": {
     register: 516 /* 02-04 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.1,
     meta: {
       group: group3,
@@ -2821,7 +2571,7 @@ var all3 = {
   },
   "02-05": {
     register: 517 /* 02-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.01,
     meta: {
       group: group3,
@@ -2835,7 +2585,7 @@ var all3 = {
   },
   "02-06": {
     register: 518 /* 02-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.1,
     meta: {
       group: group3,
@@ -2849,7 +2599,7 @@ var all3 = {
   },
   "02-07": {
     register: 519 /* 02-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-07",
@@ -2862,7 +2612,7 @@ var all3 = {
   },
   "02-09": {
     register: 521 /* 02-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-09",
@@ -2875,7 +2625,7 @@ var all3 = {
   },
   "02-10": {
     register: 522 /* 02-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-10",
@@ -2888,7 +2638,7 @@ var all3 = {
   },
   "02-11": {
     register: 523 /* 02-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-11",
@@ -2901,7 +2651,7 @@ var all3 = {
   },
   "02-12": {
     register: 524 /* 02-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-12",
@@ -2914,7 +2664,7 @@ var all3 = {
   },
   "02-13": {
     register: 525 /* 02-13 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.1,
     meta: {
       group: group3,
@@ -2928,7 +2678,7 @@ var all3 = {
   },
   "02-15": {
     register: 527 /* 02-15 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.001,
     meta: {
       group: group3,
@@ -2942,7 +2692,7 @@ var all3 = {
   },
   "02-19": {
     register: 531 /* 02-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-19",
@@ -2955,7 +2705,7 @@ var all3 = {
   },
   "02-20": {
     register: 532 /* 02-20 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.01,
     meta: {
       group: group3,
@@ -2969,7 +2719,7 @@ var all3 = {
   },
   "02-21": {
     register: 533 /* 02-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-21",
@@ -2982,7 +2732,7 @@ var all3 = {
   },
   "02-22": {
     register: 534 /* 02-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-22",
@@ -2995,7 +2745,7 @@ var all3 = {
   },
   "02-23": {
     register: 535 /* 02-23 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.1,
     meta: {
       group: group3,
@@ -3009,7 +2759,7 @@ var all3 = {
   },
   "02-24": {
     register: 536 /* 02-24 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.01,
     meta: {
       group: group3,
@@ -3023,7 +2773,7 @@ var all3 = {
   },
   "02-25": {
     register: 537 /* 02-25 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.1,
     meta: {
       group: group3,
@@ -3037,7 +2787,7 @@ var all3 = {
   },
   "02-26": {
     register: 538 /* 02-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind3.UInt16,
     meta: {
       group: group3,
       code: "02-26",
@@ -3050,7 +2800,7 @@ var all3 = {
   },
   "02-32": {
     register: 544 /* 02-32 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.001,
     meta: {
       group: group3,
@@ -3064,7 +2814,7 @@ var all3 = {
   },
   "02-33": {
     register: 545 /* 02-33 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.1,
     meta: {
       group: group3,
@@ -3078,7 +2828,7 @@ var all3 = {
   },
   "02-34": {
     register: 546 /* 02-34 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.01,
     meta: {
       group: group3,
@@ -3092,7 +2842,7 @@ var all3 = {
   },
   "02-37": {
     register: 549 /* 02-37 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind3.Scaled,
     factor: 0.1,
     meta: {
       group: group3,
@@ -3107,6 +2857,7 @@ var all3 = {
 };
 var group02Params = all3;
 // src/parameters/group-03.ts
+import { ParamKind as ParamKind4 } from "modbus-schema";
 var group4 = 3;
 var p427 = 427;
 var p428 = 428;
@@ -3118,7 +2869,7 @@ var p433 = 433;
 var all4 = {
   "03-00": {
     register: 768 /* 03-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-00",
@@ -3131,7 +2882,7 @@ var all4 = {
   },
   "03-01": {
     register: 769 /* 03-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-01",
@@ -3144,7 +2895,7 @@ var all4 = {
   },
   "03-02": {
     register: 770 /* 03-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-02",
@@ -3157,7 +2908,7 @@ var all4 = {
   },
   "03-03": {
     register: 771 /* 03-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-03",
@@ -3170,7 +2921,7 @@ var all4 = {
   },
   "03-04": {
     register: 772 /* 03-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-04",
@@ -3183,7 +2934,7 @@ var all4 = {
   },
   "03-05": {
     register: 773 /* 03-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-05",
@@ -3196,7 +2947,7 @@ var all4 = {
   },
   "03-06": {
     register: 774 /* 03-06 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-06",
@@ -3209,7 +2960,7 @@ var all4 = {
   },
   "03-07": {
     register: 775 /* 03-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-07",
@@ -3222,7 +2973,7 @@ var all4 = {
   },
   "03-08": {
     register: 776 /* 03-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-08",
@@ -3235,7 +2986,7 @@ var all4 = {
   },
   "03-09": {
     register: 777 /* 03-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-09",
@@ -3248,7 +2999,7 @@ var all4 = {
   },
   "03-10": {
     register: 778 /* 03-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-10",
@@ -3261,7 +3012,7 @@ var all4 = {
   },
   "03-11": {
     register: 779 /* 03-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-11",
@@ -3274,7 +3025,7 @@ var all4 = {
   },
   "03-12": {
     register: 780 /* 03-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-12",
@@ -3287,7 +3038,7 @@ var all4 = {
   },
   "03-13": {
     register: 781 /* 03-13 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3301,7 +3052,7 @@ var all4 = {
   },
   "03-14": {
     register: 782 /* 03-14 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3315,7 +3066,7 @@ var all4 = {
   },
   "03-15": {
     register: 783 /* 03-15 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3329,7 +3080,7 @@ var all4 = {
   },
   "03-16": {
     register: 784 /* 03-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3343,7 +3094,7 @@ var all4 = {
   },
   "03-17": {
     register: 785 /* 03-17 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.01,
     meta: {
       group: group4,
@@ -3357,7 +3108,7 @@ var all4 = {
   },
   "03-18": {
     register: 786 /* 03-18 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.01,
     meta: {
       group: group4,
@@ -3371,7 +3122,7 @@ var all4 = {
   },
   "03-19": {
     register: 787 /* 03-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-19",
@@ -3384,7 +3135,7 @@ var all4 = {
   },
   "03-20": {
     register: 788 /* 03-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-20",
@@ -3397,7 +3148,7 @@ var all4 = {
   },
   "03-21": {
     register: 789 /* 03-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-21",
@@ -3410,7 +3161,7 @@ var all4 = {
   },
   "03-27": {
     register: 795 /* 03-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-27",
@@ -3423,7 +3174,7 @@ var all4 = {
   },
   "03-28": {
     register: 796 /* 03-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-28",
@@ -3436,7 +3187,7 @@ var all4 = {
   },
   "03-29": {
     register: 797 /* 03-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-29",
@@ -3449,7 +3200,7 @@ var all4 = {
   },
   "03-30": {
     register: 798 /* 03-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-30",
@@ -3462,7 +3213,7 @@ var all4 = {
   },
   "03-31": {
     register: 799 /* 03-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-31",
@@ -3475,7 +3226,7 @@ var all4 = {
   },
   "03-32": {
     register: 800 /* 03-32 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3489,7 +3240,7 @@ var all4 = {
   },
   "03-33": {
     register: 801 /* 03-33 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind4.SignedScaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3503,7 +3254,7 @@ var all4 = {
   },
   "03-34": {
     register: 802 /* 03-34 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.01,
     meta: {
       group: group4,
@@ -3517,7 +3268,7 @@ var all4 = {
   },
   "03-35": {
     register: 803 /* 03-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-35",
@@ -3530,7 +3281,7 @@ var all4 = {
   },
   "03-36": {
     register: 804 /* 03-36 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-36",
@@ -3543,7 +3294,7 @@ var all4 = {
   },
   "03-37": {
     register: 805 /* 03-37 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3557,7 +3308,7 @@ var all4 = {
   },
   "03-38": {
     register: 806 /* 03-38 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3571,7 +3322,7 @@ var all4 = {
   },
   "03-40": {
     register: 808 /* 03-40 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.01,
     meta: {
       group: group4,
@@ -3585,7 +3336,7 @@ var all4 = {
   },
   "03-41": {
     register: 809 /* 03-41 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-41",
@@ -3598,7 +3349,7 @@ var all4 = {
   },
   "03-42": {
     register: 810 /* 03-42 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.01,
     meta: {
       group: group4,
@@ -3612,7 +3363,7 @@ var all4 = {
   },
   "03-43": {
     register: 811 /* 03-43 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind4.UInt16,
     meta: {
       group: group4,
       code: "03-43",
@@ -3625,7 +3376,7 @@ var all4 = {
   },
   "03-44": {
     register: 812 /* 03-44 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3639,7 +3390,7 @@ var all4 = {
   },
   "03-45": {
     register: 813 /* 03-45 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3653,7 +3404,7 @@ var all4 = {
   },
   "03-46": {
     register: 814 /* 03-46 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3667,7 +3418,7 @@ var all4 = {
   },
   "03-47": {
     register: 815 /* 03-47 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3681,7 +3432,7 @@ var all4 = {
   },
   "03-48": {
     register: 816 /* 03-48 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3695,7 +3446,7 @@ var all4 = {
   },
   "03-49": {
     register: 817 /* 03-49 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.01,
     meta: {
       group: group4,
@@ -3709,7 +3460,7 @@ var all4 = {
   },
   "03-50": {
     register: 818 /* 03-50 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3723,7 +3474,7 @@ var all4 = {
   },
   "03-51": {
     register: 819 /* 03-51 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3737,7 +3488,7 @@ var all4 = {
   },
   "03-52": {
     register: 820 /* 03-52 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3751,7 +3502,7 @@ var all4 = {
   },
   "03-53": {
     register: 821 /* 03-53 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind4.Scaled,
     factor: 0.1,
     meta: {
       group: group4,
@@ -3766,6 +3517,7 @@ var all4 = {
 };
 var group03Params = all4;
 // src/parameters/group-04.ts
+import { ParamKind as ParamKind5 } from "modbus-schema";
 var group5 = 4;
 var p434 = 434;
 var p435 = 435;
@@ -3773,7 +3525,7 @@ var p436 = 436;
 var all5 = {
   "04-00": {
     register: 1024 /* 04-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-00",
@@ -3786,7 +3538,7 @@ var all5 = {
   },
   "04-01": {
     register: 1025 /* 04-01 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.01,
     meta: {
       group: group5,
@@ -3800,7 +3552,7 @@ var all5 = {
   },
   "04-02": {
     register: 1026 /* 04-02 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -3814,7 +3566,7 @@ var all5 = {
   },
   "04-03": {
     register: 1027 /* 04-03 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind5.SignedScaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -3828,7 +3580,7 @@ var all5 = {
   },
   "04-04": {
     register: 1028 /* 04-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-04",
@@ -3841,7 +3593,7 @@ var all5 = {
   },
   "04-05": {
     register: 1029 /* 04-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-05",
@@ -3854,7 +3606,7 @@ var all5 = {
   },
   "04-06": {
     register: 1030 /* 04-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.01,
     meta: {
       group: group5,
@@ -3868,7 +3620,7 @@ var all5 = {
   },
   "04-07": {
     register: 1031 /* 04-07 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -3882,7 +3634,7 @@ var all5 = {
   },
   "04-08": {
     register: 1032 /* 04-08 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind5.SignedScaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -3896,7 +3648,7 @@ var all5 = {
   },
   "04-09": {
     register: 1033 /* 04-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-09",
@@ -3909,7 +3661,7 @@ var all5 = {
   },
   "04-10": {
     register: 1034 /* 04-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-10",
@@ -3922,7 +3674,7 @@ var all5 = {
   },
   "04-11": {
     register: 1035 /* 04-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-11",
@@ -3935,7 +3687,7 @@ var all5 = {
   },
   "04-12": {
     register: 1036 /* 04-12 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -3949,7 +3701,7 @@ var all5 = {
   },
   "04-13": {
     register: 1037 /* 04-13 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind5.SignedScaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -3963,7 +3715,7 @@ var all5 = {
   },
   "04-16": {
     register: 1040 /* 04-16 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-16",
@@ -3976,7 +3728,7 @@ var all5 = {
   },
   "04-17": {
     register: 1041 /* 04-17 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -3990,7 +3742,7 @@ var all5 = {
   },
   "04-18": {
     register: 1042 /* 04-18 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind5.SignedScaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -4004,7 +3756,7 @@ var all5 = {
   },
   "04-19": {
     register: 1043 /* 04-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind5.UInt16,
     meta: {
       group: group5,
       code: "04-19",
@@ -4017,7 +3769,7 @@ var all5 = {
   },
   "04-20": {
     register: 1044 /* 04-20 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.01,
     meta: {
       group: group5,
@@ -4031,7 +3783,7 @@ var all5 = {
   },
   "04-21": {
     register: 1045 /* 04-21 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.01,
     meta: {
       group: group5,
@@ -4045,7 +3797,7 @@ var all5 = {
   },
   "04-22": {
     register: 1046 /* 04-22 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind5.Scaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -4059,7 +3811,7 @@ var all5 = {
   },
   "04-23": {
     register: 1047 /* 04-23 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind5.SignedScaled,
     factor: 0.1,
     meta: {
       group: group5,
@@ -4074,6 +3826,7 @@ var all5 = {
 };
 var group04Params = all5;
 // src/parameters/group-05.ts
+import { ParamKind as ParamKind6 } from "modbus-schema";
 var group6 = 5;
 var p437 = 437;
 var p438 = 438;
@@ -4081,7 +3834,7 @@ var p439 = 439;
 var all6 = {
   "05-00": {
     register: 1280 /* 05-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind6.UInt16,
     meta: {
       group: group6,
       code: "05-00",
@@ -4094,7 +3847,7 @@ var all6 = {
   },
   "05-01": {
     register: 1281 /* 05-01 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4108,7 +3861,7 @@ var all6 = {
   },
   "05-02": {
     register: 1282 /* 05-02 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4122,7 +3875,7 @@ var all6 = {
   },
   "05-03": {
     register: 1283 /* 05-03 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4136,7 +3889,7 @@ var all6 = {
   },
   "05-04": {
     register: 1284 /* 05-04 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4150,7 +3903,7 @@ var all6 = {
   },
   "05-05": {
     register: 1285 /* 05-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4164,7 +3917,7 @@ var all6 = {
   },
   "05-06": {
     register: 1286 /* 05-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4178,7 +3931,7 @@ var all6 = {
   },
   "05-07": {
     register: 1287 /* 05-07 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4192,7 +3945,7 @@ var all6 = {
   },
   "05-08": {
     register: 1288 /* 05-08 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4206,7 +3959,7 @@ var all6 = {
   },
   "05-09": {
     register: 1289 /* 05-09 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4220,7 +3973,7 @@ var all6 = {
   },
   "05-10": {
     register: 1290 /* 05-10 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4234,7 +3987,7 @@ var all6 = {
   },
   "05-11": {
     register: 1291 /* 05-11 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4248,7 +4001,7 @@ var all6 = {
   },
   "05-12": {
     register: 1292 /* 05-12 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4262,7 +4015,7 @@ var all6 = {
   },
   "05-13": {
     register: 1293 /* 05-13 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4276,7 +4029,7 @@ var all6 = {
   },
   "05-14": {
     register: 1294 /* 05-14 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4290,7 +4043,7 @@ var all6 = {
   },
   "05-15": {
     register: 1295 /* 05-15 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4304,7 +4057,7 @@ var all6 = {
   },
   "05-16": {
     register: 1296 /* 05-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.01,
     meta: {
       group: group6,
@@ -4318,7 +4071,7 @@ var all6 = {
   },
   "05-17": {
     register: 1297 /* 05-17 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4332,7 +4085,7 @@ var all6 = {
   },
   "05-18": {
     register: 1298 /* 05-18 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4346,7 +4099,7 @@ var all6 = {
   },
   "05-19": {
     register: 1299 /* 05-19 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4360,7 +4113,7 @@ var all6 = {
   },
   "05-20": {
     register: 1300 /* 05-20 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4374,7 +4127,7 @@ var all6 = {
   },
   "05-21": {
     register: 1301 /* 05-21 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4388,7 +4141,7 @@ var all6 = {
   },
   "05-22": {
     register: 1302 /* 05-22 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4402,7 +4155,7 @@ var all6 = {
   },
   "05-23": {
     register: 1303 /* 05-23 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4416,7 +4169,7 @@ var all6 = {
   },
   "05-24": {
     register: 1304 /* 05-24 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4430,7 +4183,7 @@ var all6 = {
   },
   "05-25": {
     register: 1305 /* 05-25 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4444,7 +4197,7 @@ var all6 = {
   },
   "05-26": {
     register: 1306 /* 05-26 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4458,7 +4211,7 @@ var all6 = {
   },
   "05-27": {
     register: 1307 /* 05-27 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4472,7 +4225,7 @@ var all6 = {
   },
   "05-28": {
     register: 1308 /* 05-28 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4486,7 +4239,7 @@ var all6 = {
   },
   "05-29": {
     register: 1309 /* 05-29 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4500,7 +4253,7 @@ var all6 = {
   },
   "05-30": {
     register: 1310 /* 05-30 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4514,7 +4267,7 @@ var all6 = {
   },
   "05-31": {
     register: 1311 /* 05-31 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4528,7 +4281,7 @@ var all6 = {
   },
   "05-32": {
     register: 1312 /* 05-32 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4542,7 +4295,7 @@ var all6 = {
   },
   "05-33": {
     register: 1313 /* 05-33 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4556,7 +4309,7 @@ var all6 = {
   },
   "05-34": {
     register: 1314 /* 05-34 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4570,7 +4323,7 @@ var all6 = {
   },
   "05-35": {
     register: 1315 /* 05-35 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4584,7 +4337,7 @@ var all6 = {
   },
   "05-36": {
     register: 1316 /* 05-36 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4598,7 +4351,7 @@ var all6 = {
   },
   "05-37": {
     register: 1317 /* 05-37 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4612,7 +4365,7 @@ var all6 = {
   },
   "05-38": {
     register: 1318 /* 05-38 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4626,7 +4379,7 @@ var all6 = {
   },
   "05-39": {
     register: 1319 /* 05-39 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4640,7 +4393,7 @@ var all6 = {
   },
   "05-40": {
     register: 1320 /* 05-40 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4654,7 +4407,7 @@ var all6 = {
   },
   "05-41": {
     register: 1321 /* 05-41 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4668,7 +4421,7 @@ var all6 = {
   },
   "05-42": {
     register: 1322 /* 05-42 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4682,7 +4435,7 @@ var all6 = {
   },
   "05-43": {
     register: 1323 /* 05-43 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4696,7 +4449,7 @@ var all6 = {
   },
   "05-44": {
     register: 1324 /* 05-44 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4710,7 +4463,7 @@ var all6 = {
   },
   "05-45": {
     register: 1325 /* 05-45 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4724,7 +4477,7 @@ var all6 = {
   },
   "05-46": {
     register: 1326 /* 05-46 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4738,7 +4491,7 @@ var all6 = {
   },
   "05-47": {
     register: 1327 /* 05-47 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4752,7 +4505,7 @@ var all6 = {
   },
   "05-48": {
     register: 1328 /* 05-48 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind6.Scaled,
     factor: 0.1,
     meta: {
       group: group6,
@@ -4767,6 +4520,7 @@ var all6 = {
 };
 var group05Params = all6;
 // src/parameters/group-06.ts
+import { ParamKind as ParamKind7 } from "modbus-schema";
 var group7 = 6;
 var p440 = 440;
 var p441 = 441;
@@ -4802,7 +4556,7 @@ var timeMeta = (stage, page) => ({
 var all7 = {
   "06-00": {
     register: 1536 /* 06-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind7.UInt16,
     meta: {
       group: group7,
       code: "06-00",
@@ -4813,56 +4567,57 @@ var all7 = {
       page: p440
     }
   },
-  "06-32": { register: 1568 /* 06-32 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(0, p442) },
-  "06-33": { register: 1569 /* 06-33 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(1, p442) },
-  "06-34": { register: 1570 /* 06-34 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(2, p442) },
-  "06-35": { register: 1571 /* 06-35 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(3, p442) },
-  "06-36": { register: 1572 /* 06-36 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(4, p442) },
-  "06-37": { register: 1573 /* 06-37 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(5, p443) },
-  "06-38": { register: 1574 /* 06-38 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(6, p443) },
-  "06-39": { register: 1575 /* 06-39 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(7, p443) },
-  "06-40": { register: 1576 /* 06-40 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(8, p443) },
-  "06-41": { register: 1577 /* 06-41 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(9, p443) },
-  "06-42": { register: 1578 /* 06-42 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(10, p443) },
-  "06-43": { register: 1579 /* 06-43 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(11, p443) },
-  "06-44": { register: 1580 /* 06-44 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(12, p443) },
-  "06-45": { register: 1581 /* 06-45 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(13, p443) },
-  "06-46": { register: 1582 /* 06-46 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(14, p443) },
-  "06-47": { register: 1583 /* 06-47 */, kind: "UInt16" /* UInt16 */, meta: dirMeta(15, p443) },
-  "06-01": { register: 1537 /* 06-01 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(1, "5.00", p440) },
-  "06-02": { register: 1538 /* 06-02 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(2, "10.00", p440) },
-  "06-03": { register: 1539 /* 06-03 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(3, "20.00", p440) },
-  "06-04": { register: 1540 /* 06-04 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(4, "30.00", p441) },
-  "06-05": { register: 1541 /* 06-05 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(5, "40.00", p441) },
-  "06-06": { register: 1542 /* 06-06 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(6, "50.00", p441) },
-  "06-07": { register: 1543 /* 06-07 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(7, "50.00", p441) },
-  "06-08": { register: 1544 /* 06-08 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(8, "5.00", p441) },
-  "06-09": { register: 1545 /* 06-09 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(9, "5.00", p441) },
-  "06-10": { register: 1546 /* 06-10 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(10, "5.00", p441) },
-  "06-11": { register: 1547 /* 06-11 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(11, "5.00", p441) },
-  "06-12": { register: 1548 /* 06-12 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(12, "5.00", p441) },
-  "06-13": { register: 1549 /* 06-13 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(13, "5.00", p441) },
-  "06-14": { register: 1550 /* 06-14 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(14, "5.00", p441) },
-  "06-15": { register: 1551 /* 06-15 */, kind: "Scaled" /* Scaled */, factor: 0.01, meta: freqMeta(15, "5.00", p441) },
-  "06-16": { register: 1552 /* 06-16 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(0, p441) },
-  "06-17": { register: 1553 /* 06-17 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(1, p441) },
-  "06-18": { register: 1554 /* 06-18 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(2, p441) },
-  "06-19": { register: 1555 /* 06-19 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(3, p441) },
-  "06-20": { register: 1556 /* 06-20 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(4, p442) },
-  "06-21": { register: 1557 /* 06-21 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(5, p442) },
-  "06-22": { register: 1558 /* 06-22 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(6, p442) },
-  "06-23": { register: 1559 /* 06-23 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(7, p442) },
-  "06-24": { register: 1560 /* 06-24 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(8, p442) },
-  "06-25": { register: 1561 /* 06-25 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(9, p442) },
-  "06-26": { register: 1562 /* 06-26 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(10, p442) },
-  "06-27": { register: 1563 /* 06-27 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(11, p442) },
-  "06-28": { register: 1564 /* 06-28 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(12, p442) },
-  "06-29": { register: 1565 /* 06-29 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(13, p442) },
-  "06-30": { register: 1566 /* 06-30 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(14, p442) },
-  "06-31": { register: 1567 /* 06-31 */, kind: "Scaled" /* Scaled */, factor: 0.1, meta: timeMeta(15, p442) }
+  "06-32": { register: 1568 /* 06-32 */, kind: ParamKind7.UInt16, meta: dirMeta(0, p442) },
+  "06-33": { register: 1569 /* 06-33 */, kind: ParamKind7.UInt16, meta: dirMeta(1, p442) },
+  "06-34": { register: 1570 /* 06-34 */, kind: ParamKind7.UInt16, meta: dirMeta(2, p442) },
+  "06-35": { register: 1571 /* 06-35 */, kind: ParamKind7.UInt16, meta: dirMeta(3, p442) },
+  "06-36": { register: 1572 /* 06-36 */, kind: ParamKind7.UInt16, meta: dirMeta(4, p442) },
+  "06-37": { register: 1573 /* 06-37 */, kind: ParamKind7.UInt16, meta: dirMeta(5, p443) },
+  "06-38": { register: 1574 /* 06-38 */, kind: ParamKind7.UInt16, meta: dirMeta(6, p443) },
+  "06-39": { register: 1575 /* 06-39 */, kind: ParamKind7.UInt16, meta: dirMeta(7, p443) },
+  "06-40": { register: 1576 /* 06-40 */, kind: ParamKind7.UInt16, meta: dirMeta(8, p443) },
+  "06-41": { register: 1577 /* 06-41 */, kind: ParamKind7.UInt16, meta: dirMeta(9, p443) },
+  "06-42": { register: 1578 /* 06-42 */, kind: ParamKind7.UInt16, meta: dirMeta(10, p443) },
+  "06-43": { register: 1579 /* 06-43 */, kind: ParamKind7.UInt16, meta: dirMeta(11, p443) },
+  "06-44": { register: 1580 /* 06-44 */, kind: ParamKind7.UInt16, meta: dirMeta(12, p443) },
+  "06-45": { register: 1581 /* 06-45 */, kind: ParamKind7.UInt16, meta: dirMeta(13, p443) },
+  "06-46": { register: 1582 /* 06-46 */, kind: ParamKind7.UInt16, meta: dirMeta(14, p443) },
+  "06-47": { register: 1583 /* 06-47 */, kind: ParamKind7.UInt16, meta: dirMeta(15, p443) },
+  "06-01": { register: 1537 /* 06-01 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(1, "5.00", p440) },
+  "06-02": { register: 1538 /* 06-02 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(2, "10.00", p440) },
+  "06-03": { register: 1539 /* 06-03 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(3, "20.00", p440) },
+  "06-04": { register: 1540 /* 06-04 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(4, "30.00", p441) },
+  "06-05": { register: 1541 /* 06-05 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(5, "40.00", p441) },
+  "06-06": { register: 1542 /* 06-06 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(6, "50.00", p441) },
+  "06-07": { register: 1543 /* 06-07 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(7, "50.00", p441) },
+  "06-08": { register: 1544 /* 06-08 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(8, "5.00", p441) },
+  "06-09": { register: 1545 /* 06-09 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(9, "5.00", p441) },
+  "06-10": { register: 1546 /* 06-10 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(10, "5.00", p441) },
+  "06-11": { register: 1547 /* 06-11 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(11, "5.00", p441) },
+  "06-12": { register: 1548 /* 06-12 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(12, "5.00", p441) },
+  "06-13": { register: 1549 /* 06-13 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(13, "5.00", p441) },
+  "06-14": { register: 1550 /* 06-14 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(14, "5.00", p441) },
+  "06-15": { register: 1551 /* 06-15 */, kind: ParamKind7.Scaled, factor: 0.01, meta: freqMeta(15, "5.00", p441) },
+  "06-16": { register: 1552 /* 06-16 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(0, p441) },
+  "06-17": { register: 1553 /* 06-17 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(1, p441) },
+  "06-18": { register: 1554 /* 06-18 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(2, p441) },
+  "06-19": { register: 1555 /* 06-19 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(3, p441) },
+  "06-20": { register: 1556 /* 06-20 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(4, p442) },
+  "06-21": { register: 1557 /* 06-21 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(5, p442) },
+  "06-22": { register: 1558 /* 06-22 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(6, p442) },
+  "06-23": { register: 1559 /* 06-23 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(7, p442) },
+  "06-24": { register: 1560 /* 06-24 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(8, p442) },
+  "06-25": { register: 1561 /* 06-25 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(9, p442) },
+  "06-26": { register: 1562 /* 06-26 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(10, p442) },
+  "06-27": { register: 1563 /* 06-27 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(11, p442) },
+  "06-28": { register: 1564 /* 06-28 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(12, p442) },
+  "06-29": { register: 1565 /* 06-29 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(13, p442) },
+  "06-30": { register: 1566 /* 06-30 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(14, p442) },
+  "06-31": { register: 1567 /* 06-31 */, kind: ParamKind7.Scaled, factor: 0.1, meta: timeMeta(15, p442) }
 };
 var group06Params = all7;
 // src/parameters/group-07.ts
+import { ParamKind as ParamKind8 } from "modbus-schema";
 var group8 = 7;
 var p444 = 444;
 var p445 = 445;
@@ -4870,7 +4625,7 @@ var p446 = 446;
 var all8 = {
   "07-00": {
     register: 1792 /* 07-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-00",
@@ -4883,7 +4638,7 @@ var all8 = {
   },
   "07-01": {
     register: 1793 /* 07-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-01",
@@ -4896,7 +4651,7 @@ var all8 = {
   },
   "07-02": {
     register: 1794 /* 07-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-02",
@@ -4909,7 +4664,7 @@ var all8 = {
   },
   "07-04": {
     register: 1796 /* 07-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-04",
@@ -4922,7 +4677,7 @@ var all8 = {
   },
   "07-05": {
     register: 1797 /* 07-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -4936,7 +4691,7 @@ var all8 = {
   },
   "07-06": {
     register: 1798 /* 07-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -4950,7 +4705,7 @@ var all8 = {
   },
   "07-07": {
     register: 1799 /* 07-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-07",
@@ -4963,7 +4718,7 @@ var all8 = {
   },
   "07-08": {
     register: 1800 /* 07-08 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -4977,7 +4732,7 @@ var all8 = {
   },
   "07-09": {
     register: 1801 /* 07-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-09",
@@ -4990,7 +4745,7 @@ var all8 = {
   },
   "07-13": {
     register: 1805 /* 07-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-13",
@@ -5003,7 +4758,7 @@ var all8 = {
   },
   "07-14": {
     register: 1806 /* 07-14 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5017,7 +4772,7 @@ var all8 = {
   },
   "07-15": {
     register: 1807 /* 07-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-15",
@@ -5030,7 +4785,7 @@ var all8 = {
   },
   "07-16": {
     register: 1808 /* 07-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5044,7 +4799,7 @@ var all8 = {
   },
   "07-18": {
     register: 1810 /* 07-18 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -5058,7 +4813,7 @@ var all8 = {
   },
   "07-19": {
     register: 1811 /* 07-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-19",
@@ -5071,7 +4826,7 @@ var all8 = {
   },
   "07-20": {
     register: 1812 /* 07-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-20",
@@ -5084,7 +4839,7 @@ var all8 = {
   },
   "07-21": {
     register: 1813 /* 07-21 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -5098,7 +4853,7 @@ var all8 = {
   },
   "07-22": {
     register: 1814 /* 07-22 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -5112,7 +4867,7 @@ var all8 = {
   },
   "07-23": {
     register: 1815 /* 07-23 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -5126,7 +4881,7 @@ var all8 = {
   },
   "07-24": {
     register: 1816 /* 07-24 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-24",
@@ -5139,7 +4894,7 @@ var all8 = {
   },
   "07-25": {
     register: 1817 /* 07-25 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5153,7 +4908,7 @@ var all8 = {
   },
   "07-26": {
     register: 1818 /* 07-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-26",
@@ -5166,7 +4921,7 @@ var all8 = {
   },
   "07-27": {
     register: 1819 /* 07-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-27",
@@ -5179,7 +4934,7 @@ var all8 = {
   },
   "07-28": {
     register: 1820 /* 07-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-28",
@@ -5192,7 +4947,7 @@ var all8 = {
   },
   "07-29": {
     register: 1821 /* 07-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-29",
@@ -5205,7 +4960,7 @@ var all8 = {
   },
   "07-30": {
     register: 1822 /* 07-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-30",
@@ -5218,7 +4973,7 @@ var all8 = {
   },
   "07-31": {
     register: 1823 /* 07-31 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5232,7 +4987,7 @@ var all8 = {
   },
   "07-32": {
     register: 1824 /* 07-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-32",
@@ -5245,7 +5000,7 @@ var all8 = {
   },
   "07-33": {
     register: 1825 /* 07-33 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-33",
@@ -5258,7 +5013,7 @@ var all8 = {
   },
   "07-34": {
     register: 1826 /* 07-34 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5272,7 +5027,7 @@ var all8 = {
   },
   "07-35": {
     register: 1827 /* 07-35 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5286,7 +5041,7 @@ var all8 = {
   },
   "07-36": {
     register: 1828 /* 07-36 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -5300,7 +5055,7 @@ var all8 = {
   },
   "07-42": {
     register: 1834 /* 07-42 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.1,
     meta: {
       group: group8,
@@ -5314,7 +5069,7 @@ var all8 = {
   },
   "07-43": {
     register: 1835 /* 07-43 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5328,7 +5083,7 @@ var all8 = {
   },
   "07-44": {
     register: 1836 /* 07-44 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind8.Scaled,
     factor: 0.01,
     meta: {
       group: group8,
@@ -5342,7 +5097,7 @@ var all8 = {
   },
   "07-45": {
     register: 1837 /* 07-45 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-45",
@@ -5355,7 +5110,7 @@ var all8 = {
   },
   "07-46": {
     register: 1838 /* 07-46 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind8.UInt16,
     meta: {
       group: group8,
       code: "07-46",
@@ -5365,35 +5120,11 @@ var all8 = {
       unit: "%",
       page: p446
     }
-  },
-  "07-37": {
-    register: 1829 /* 07-37 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group8, code: "07-37", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 }
-  },
-  "07-38": {
-    register: 1830 /* 07-38 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group8, code: "07-38", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 }
-  },
-  "07-39": {
-    register: 1831 /* 07-39 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group8, code: "07-39", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 }
-  },
-  "07-40": {
-    register: 1832 /* 07-40 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group8, code: "07-40", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 }
-  },
-  "07-41": {
-    register: 1833 /* 07-41 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group8, code: "07-41", name: "Reserved", range: "-", default: "-", unit: "-", page: p446 }
   }
 };
 var group07Params = all8;
 // src/parameters/group-08.ts
+import { ParamKind as ParamKind9 } from "modbus-schema";
 var group9 = 8;
 var p447 = 447;
 var p448 = 448;
@@ -5403,7 +5134,7 @@ var p451 = 451;
 var all9 = {
   "08-00": {
     register: 2048 /* 08-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-00",
@@ -5416,7 +5147,7 @@ var all9 = {
   },
   "08-01": {
     register: 2049 /* 08-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-01",
@@ -5429,7 +5160,7 @@ var all9 = {
   },
   "08-02": {
     register: 2050 /* 08-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-02",
@@ -5442,7 +5173,7 @@ var all9 = {
   },
   "08-03": {
     register: 2051 /* 08-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-03",
@@ -5455,7 +5186,7 @@ var all9 = {
   },
   "08-05": {
     register: 2053 /* 08-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-05",
@@ -5468,7 +5199,7 @@ var all9 = {
   },
   "08-06": {
     register: 2054 /* 08-06 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-06",
@@ -5481,7 +5212,7 @@ var all9 = {
   },
   "08-07": {
     register: 2055 /* 08-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-07",
@@ -5494,7 +5225,7 @@ var all9 = {
   },
   "08-08": {
     register: 2056 /* 08-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-08",
@@ -5507,7 +5238,7 @@ var all9 = {
   },
   "08-09": {
     register: 2057 /* 08-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-09",
@@ -5520,7 +5251,7 @@ var all9 = {
   },
   "08-10": {
     register: 2058 /* 08-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-10",
@@ -5533,7 +5264,7 @@ var all9 = {
   },
   "08-13": {
     register: 2061 /* 08-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-13",
@@ -5546,7 +5277,7 @@ var all9 = {
   },
   "08-14": {
     register: 2062 /* 08-14 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-14",
@@ -5559,7 +5290,7 @@ var all9 = {
   },
   "08-15": {
     register: 2063 /* 08-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-15",
@@ -5572,7 +5303,7 @@ var all9 = {
   },
   "08-16": {
     register: 2064 /* 08-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -5586,7 +5317,7 @@ var all9 = {
   },
   "08-17": {
     register: 2065 /* 08-17 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-17",
@@ -5599,7 +5330,7 @@ var all9 = {
   },
   "08-18": {
     register: 2066 /* 08-18 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-18",
@@ -5612,7 +5343,7 @@ var all9 = {
   },
   "08-19": {
     register: 2067 /* 08-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-19",
@@ -5625,7 +5356,7 @@ var all9 = {
   },
   "08-20": {
     register: 2068 /* 08-20 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -5639,7 +5370,7 @@ var all9 = {
   },
   "08-21": {
     register: 2069 /* 08-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-21",
@@ -5652,7 +5383,7 @@ var all9 = {
   },
   "08-22": {
     register: 2070 /* 08-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-22",
@@ -5665,7 +5396,7 @@ var all9 = {
   },
   "08-23": {
     register: 2071 /* 08-23 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-23",
@@ -5678,7 +5409,7 @@ var all9 = {
   },
   "08-24": {
     register: 2072 /* 08-24 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-24",
@@ -5691,7 +5422,7 @@ var all9 = {
   },
   "08-25": {
     register: 2073 /* 08-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-25",
@@ -5704,7 +5435,7 @@ var all9 = {
   },
   "08-30": {
     register: 2078 /* 08-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-30",
@@ -5717,7 +5448,7 @@ var all9 = {
   },
   "08-35": {
     register: 2083 /* 08-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-35",
@@ -5730,7 +5461,7 @@ var all9 = {
   },
   "08-36": {
     register: 2084 /* 08-36 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.01,
     meta: {
       group: group9,
@@ -5744,7 +5475,7 @@ var all9 = {
   },
   "08-37": {
     register: 2085 /* 08-37 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-37",
@@ -5757,7 +5488,7 @@ var all9 = {
   },
   "08-38": {
     register: 2086 /* 08-38 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-38",
@@ -5770,7 +5501,7 @@ var all9 = {
   },
   "08-39": {
     register: 2087 /* 08-39 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-39",
@@ -5783,7 +5514,7 @@ var all9 = {
   },
   "08-40": {
     register: 2088 /* 08-40 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-40",
@@ -5796,7 +5527,7 @@ var all9 = {
   },
   "08-41": {
     register: 2089 /* 08-41 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-41",
@@ -5809,7 +5540,7 @@ var all9 = {
   },
   "08-42": {
     register: 2090 /* 08-42 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -5823,7 +5554,7 @@ var all9 = {
   },
   "08-43": {
     register: 2091 /* 08-43 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -5837,7 +5568,7 @@ var all9 = {
   },
   "08-44": {
     register: 2092 /* 08-44 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -5851,7 +5582,7 @@ var all9 = {
   },
   "08-46": {
     register: 2094 /* 08-46 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-46",
@@ -5864,7 +5595,7 @@ var all9 = {
   },
   "08-47": {
     register: 2095 /* 08-47 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-47",
@@ -5877,7 +5608,7 @@ var all9 = {
   },
   "08-48": {
     register: 2096 /* 08-48 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-48",
@@ -5890,7 +5621,7 @@ var all9 = {
   },
   "08-49": {
     register: 2097 /* 08-49 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-49",
@@ -5903,7 +5634,7 @@ var all9 = {
   },
   "08-50": {
     register: 2098 /* 08-50 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-50",
@@ -5916,7 +5647,7 @@ var all9 = {
   },
   "08-51": {
     register: 2099 /* 08-51 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-51",
@@ -5929,7 +5660,7 @@ var all9 = {
   },
   "08-52": {
     register: 2100 /* 08-52 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.01,
     meta: {
       group: group9,
@@ -5943,7 +5674,7 @@ var all9 = {
   },
   "08-53": {
     register: 2101 /* 08-53 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-53",
@@ -5956,7 +5687,7 @@ var all9 = {
   },
   "08-54": {
     register: 2102 /* 08-54 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -5970,7 +5701,7 @@ var all9 = {
   },
   "08-55": {
     register: 2103 /* 08-55 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-55",
@@ -5983,7 +5714,7 @@ var all9 = {
   },
   "08-56": {
     register: 2104 /* 08-56 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -5997,7 +5728,7 @@ var all9 = {
   },
   "08-57": {
     register: 2105 /* 08-57 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind9.Scaled,
     factor: 0.1,
     meta: {
       group: group9,
@@ -6011,7 +5742,7 @@ var all9 = {
   },
   "08-58": {
     register: 2106 /* 08-58 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-58",
@@ -6024,7 +5755,7 @@ var all9 = {
   },
   "08-59": {
     register: 2107 /* 08-59 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-59",
@@ -6037,7 +5768,7 @@ var all9 = {
   },
   "08-60": {
     register: 2108 /* 08-60 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind9.UInt16,
     meta: {
       group: group9,
       code: "08-60",
@@ -6047,21 +5778,17 @@ var all9 = {
       unit: "-",
       page: p451
     }
-  },
-  "08-45": {
-    register: 2093 /* 08-45 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group9, code: "08-45", name: "Reserved", range: "-", default: "-", unit: "-", page: p447 }
   }
 };
 var group08Params = all9;
 // src/parameters/group-09.ts
+import { ParamKind as ParamKind10 } from "modbus-schema";
 var group10 = 9;
 var p452 = 452;
 var all10 = {
   "09-00": {
     register: 2304 /* 09-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-00",
@@ -6074,7 +5801,7 @@ var all10 = {
   },
   "09-01": {
     register: 2305 /* 09-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-01",
@@ -6087,7 +5814,7 @@ var all10 = {
   },
   "09-02": {
     register: 2306 /* 09-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-02",
@@ -6100,7 +5827,7 @@ var all10 = {
   },
   "09-03": {
     register: 2307 /* 09-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-03",
@@ -6113,7 +5840,7 @@ var all10 = {
   },
   "09-04": {
     register: 2308 /* 09-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-04",
@@ -6126,7 +5853,7 @@ var all10 = {
   },
   "09-05": {
     register: 2309 /* 09-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-05",
@@ -6139,7 +5866,7 @@ var all10 = {
   },
   "09-06": {
     register: 2310 /* 09-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind10.Scaled,
     factor: 0.1,
     meta: {
       group: group10,
@@ -6153,7 +5880,7 @@ var all10 = {
   },
   "09-07": {
     register: 2311 /* 09-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-07",
@@ -6166,7 +5893,7 @@ var all10 = {
   },
   "09-08": {
     register: 2312 /* 09-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-08",
@@ -6179,7 +5906,7 @@ var all10 = {
   },
   "09-09": {
     register: 2313 /* 09-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind10.UInt16,
     meta: {
       group: group10,
       code: "09-09",
@@ -6189,15 +5916,11 @@ var all10 = {
       unit: "ms",
       page: p452
     }
-  },
-  "09-10": {
-    register: 2314 /* 09-10 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group10, code: "09-10", name: "Reserved", range: "-", default: "-", unit: "-", page: p452 }
   }
 };
 var group09Params = all10;
 // src/parameters/group-10.ts
+import { ParamKind as ParamKind11 } from "modbus-schema";
 var group11 = 10;
 var p453 = 453;
 var p454 = 454;
@@ -6206,7 +5929,7 @@ var p456 = 456;
 var all11 = {
   "10-00": {
     register: 2560 /* 10-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-00",
@@ -6219,7 +5942,7 @@ var all11 = {
   },
   "10-01": {
     register: 2561 /* 10-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-01",
@@ -6232,7 +5955,7 @@ var all11 = {
   },
   "10-02": {
     register: 2562 /* 10-02 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6246,7 +5969,7 @@ var all11 = {
   },
   "10-03": {
     register: 2563 /* 10-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-03",
@@ -6259,7 +5982,7 @@ var all11 = {
   },
   "10-04": {
     register: 2564 /* 10-04 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6273,7 +5996,7 @@ var all11 = {
   },
   "10-05": {
     register: 2565 /* 10-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6287,7 +6010,7 @@ var all11 = {
   },
   "10-06": {
     register: 2566 /* 10-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6301,7 +6024,7 @@ var all11 = {
   },
   "10-07": {
     register: 2567 /* 10-07 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6315,7 +6038,7 @@ var all11 = {
   },
   "10-08": {
     register: 2568 /* 10-08 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6329,7 +6052,7 @@ var all11 = {
   },
   "10-09": {
     register: 2569 /* 10-09 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind11.SignedScaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6343,7 +6066,7 @@ var all11 = {
   },
   "10-10": {
     register: 2570 /* 10-10 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6357,7 +6080,7 @@ var all11 = {
   },
   "10-11": {
     register: 2571 /* 10-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-11",
@@ -6370,7 +6093,7 @@ var all11 = {
   },
   "10-12": {
     register: 2572 /* 10-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-12",
@@ -6383,7 +6106,7 @@ var all11 = {
   },
   "10-13": {
     register: 2573 /* 10-13 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6397,7 +6120,7 @@ var all11 = {
   },
   "10-14": {
     register: 2574 /* 10-14 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6411,7 +6134,7 @@ var all11 = {
   },
   "10-15": {
     register: 2575 /* 10-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-15",
@@ -6424,7 +6147,7 @@ var all11 = {
   },
   "10-16": {
     register: 2576 /* 10-16 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-16",
@@ -6437,7 +6160,7 @@ var all11 = {
   },
   "10-17": {
     register: 2577 /* 10-17 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6451,7 +6174,7 @@ var all11 = {
   },
   "10-18": {
     register: 2578 /* 10-18 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6465,7 +6188,7 @@ var all11 = {
   },
   "10-19": {
     register: 2579 /* 10-19 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6479,7 +6202,7 @@ var all11 = {
   },
   "10-20": {
     register: 2580 /* 10-20 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6493,7 +6216,7 @@ var all11 = {
   },
   "10-23": {
     register: 2583 /* 10-23 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6507,7 +6230,7 @@ var all11 = {
   },
   "10-24": {
     register: 2584 /* 10-24 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6521,7 +6244,7 @@ var all11 = {
   },
   "10-25": {
     register: 2585 /* 10-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-25",
@@ -6534,7 +6257,7 @@ var all11 = {
   },
   "10-26": {
     register: 2586 /* 10-26 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6548,7 +6271,7 @@ var all11 = {
   },
   "10-27": {
     register: 2587 /* 10-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-27",
@@ -6561,7 +6284,7 @@ var all11 = {
   },
   "10-29": {
     register: 2589 /* 10-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-29",
@@ -6574,7 +6297,7 @@ var all11 = {
   },
   "10-30": {
     register: 2590 /* 10-30 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6588,7 +6311,7 @@ var all11 = {
   },
   "10-31": {
     register: 2591 /* 10-31 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.1,
     meta: {
       group: group11,
@@ -6602,7 +6325,7 @@ var all11 = {
   },
   "10-33": {
     register: 2593 /* 10-33 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-33",
@@ -6615,7 +6338,7 @@ var all11 = {
   },
   "10-34": {
     register: 2594 /* 10-34 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-34",
@@ -6628,7 +6351,7 @@ var all11 = {
   },
   "10-35": {
     register: 2595 /* 10-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-35",
@@ -6641,7 +6364,7 @@ var all11 = {
   },
   "10-36": {
     register: 2596 /* 10-36 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6655,7 +6378,7 @@ var all11 = {
   },
   "10-37": {
     register: 2597 /* 10-37 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6669,7 +6392,7 @@ var all11 = {
   },
   "10-38": {
     register: 2598 /* 10-38 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6683,7 +6406,7 @@ var all11 = {
   },
   "10-39": {
     register: 2599 /* 10-39 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6697,7 +6420,7 @@ var all11 = {
   },
   "10-40": {
     register: 2600 /* 10-40 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-40",
@@ -6710,7 +6433,7 @@ var all11 = {
   },
   "10-41": {
     register: 2601 /* 10-41 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind11.UInt16,
     meta: {
       group: group11,
       code: "10-41",
@@ -6723,7 +6446,7 @@ var all11 = {
   },
   "10-47": {
     register: 2607 /* 10-47 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6737,7 +6460,7 @@ var all11 = {
   },
   "10-48": {
     register: 2608 /* 10-48 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6751,7 +6474,7 @@ var all11 = {
   },
   "10-49": {
     register: 2609 /* 10-49 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind11.Scaled,
     factor: 0.01,
     meta: {
       group: group11,
@@ -6766,6 +6489,7 @@ var all11 = {
 };
 var group10Params = all11;
 // src/parameters/group-11.ts
+import { ParamKind as ParamKind12 } from "modbus-schema";
 var group12 = 11;
 var p4562 = 456;
 var p457 = 457;
@@ -6774,7 +6498,7 @@ var p459 = 459;
 var all12 = {
   "11-00": {
     register: 2816 /* 11-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-00",
@@ -6787,7 +6511,7 @@ var all12 = {
   },
   "11-01": {
     register: 2817 /* 11-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-01",
@@ -6800,7 +6524,7 @@ var all12 = {
   },
   "11-02": {
     register: 2818 /* 11-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-02",
@@ -6813,7 +6537,7 @@ var all12 = {
   },
   "11-03": {
     register: 2819 /* 11-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-03",
@@ -6826,7 +6550,7 @@ var all12 = {
   },
   "11-04": {
     register: 2820 /* 11-04 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -6840,7 +6564,7 @@ var all12 = {
   },
   "11-05": {
     register: 2821 /* 11-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -6854,7 +6578,7 @@ var all12 = {
   },
   "11-06": {
     register: 2822 /* 11-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -6868,7 +6592,7 @@ var all12 = {
   },
   "11-07": {
     register: 2823 /* 11-07 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -6882,7 +6606,7 @@ var all12 = {
   },
   "11-08": {
     register: 2824 /* 11-08 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -6896,7 +6620,7 @@ var all12 = {
   },
   "11-09": {
     register: 2825 /* 11-09 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -6910,7 +6634,7 @@ var all12 = {
   },
   "11-10": {
     register: 2826 /* 11-10 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -6924,7 +6648,7 @@ var all12 = {
   },
   "11-11": {
     register: 2827 /* 11-11 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -6938,7 +6662,7 @@ var all12 = {
   },
   "11-12": {
     register: 2828 /* 11-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-12",
@@ -6951,7 +6675,7 @@ var all12 = {
   },
   "11-13": {
     register: 2829 /* 11-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-13",
@@ -6964,7 +6688,7 @@ var all12 = {
   },
   "11-18": {
     register: 2834 /* 11-18 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -6978,7 +6702,7 @@ var all12 = {
   },
   "11-19": {
     register: 2835 /* 11-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-19",
@@ -6991,7 +6715,7 @@ var all12 = {
   },
   "11-20": {
     register: 2836 /* 11-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-20",
@@ -7004,7 +6728,7 @@ var all12 = {
   },
   "11-21": {
     register: 2837 /* 11-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-21",
@@ -7017,7 +6741,7 @@ var all12 = {
   },
   "11-22": {
     register: 2838 /* 11-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-22",
@@ -7030,7 +6754,7 @@ var all12 = {
   },
   "11-23": {
     register: 2839 /* 11-23 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-23",
@@ -7043,7 +6767,7 @@ var all12 = {
   },
   "11-24": {
     register: 2840 /* 11-24 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -7057,7 +6781,7 @@ var all12 = {
   },
   "11-28": {
     register: 2844 /* 11-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-28",
@@ -7070,7 +6794,7 @@ var all12 = {
   },
   "11-29": {
     register: 2845 /* 11-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-29",
@@ -7083,7 +6807,7 @@ var all12 = {
   },
   "11-30": {
     register: 2846 /* 11-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-30",
@@ -7096,7 +6820,7 @@ var all12 = {
   },
   "11-31": {
     register: 2847 /* 11-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-31",
@@ -7109,7 +6833,7 @@ var all12 = {
   },
   "11-32": {
     register: 2848 /* 11-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-32",
@@ -7122,7 +6846,7 @@ var all12 = {
   },
   "11-33": {
     register: 2849 /* 11-33 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7136,7 +6860,7 @@ var all12 = {
   },
   "11-34": {
     register: 2850 /* 11-34 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7150,7 +6874,7 @@ var all12 = {
   },
   "11-35": {
     register: 2851 /* 11-35 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7164,7 +6888,7 @@ var all12 = {
   },
   "11-36": {
     register: 2852 /* 11-36 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.001,
     meta: {
       group: group12,
@@ -7178,7 +6902,7 @@ var all12 = {
   },
   "11-37": {
     register: 2853 /* 11-37 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -7192,7 +6916,7 @@ var all12 = {
   },
   "11-38": {
     register: 2854 /* 11-38 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-38",
@@ -7205,7 +6929,7 @@ var all12 = {
   },
   "11-39": {
     register: 2855 /* 11-39 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-39",
@@ -7218,7 +6942,7 @@ var all12 = {
   },
   "11-40": {
     register: 2856 /* 11-40 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-40",
@@ -7231,7 +6955,7 @@ var all12 = {
   },
   "11-41": {
     register: 2857 /* 11-41 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-41",
@@ -7244,7 +6968,7 @@ var all12 = {
   },
   "11-42": {
     register: 2858 /* 11-42 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7258,7 +6982,7 @@ var all12 = {
   },
   "11-43": {
     register: 2859 /* 11-43 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7272,7 +6996,7 @@ var all12 = {
   },
   "11-44": {
     register: 2860 /* 11-44 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7286,7 +7010,7 @@ var all12 = {
   },
   "11-45": {
     register: 2861 /* 11-45 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7300,7 +7024,7 @@ var all12 = {
   },
   "11-46": {
     register: 2862 /* 11-46 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7314,7 +7038,7 @@ var all12 = {
   },
   "11-47": {
     register: 2863 /* 11-47 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7328,7 +7052,7 @@ var all12 = {
   },
   "11-48": {
     register: 2864 /* 11-48 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-48",
@@ -7341,7 +7065,7 @@ var all12 = {
   },
   "11-49": {
     register: 2865 /* 11-49 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -7355,7 +7079,7 @@ var all12 = {
   },
   "11-50": {
     register: 2866 /* 11-50 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-50",
@@ -7368,7 +7092,7 @@ var all12 = {
   },
   "11-51": {
     register: 2867 /* 11-51 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-51",
@@ -7381,7 +7105,7 @@ var all12 = {
   },
   "11-52": {
     register: 2868 /* 11-52 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7395,7 +7119,7 @@ var all12 = {
   },
   "11-53": {
     register: 2869 /* 11-53 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -7409,7 +7133,7 @@ var all12 = {
   },
   "11-54": {
     register: 2870 /* 11-54 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-54",
@@ -7422,7 +7146,7 @@ var all12 = {
   },
   "11-55": {
     register: 2871 /* 11-55 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-55",
@@ -7435,7 +7159,7 @@ var all12 = {
   },
   "11-56": {
     register: 2872 /* 11-56 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-56",
@@ -7448,7 +7172,7 @@ var all12 = {
   },
   "11-58": {
     register: 2874 /* 11-58 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-58",
@@ -7461,7 +7185,7 @@ var all12 = {
   },
   "11-59": {
     register: 2875 /* 11-59 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: {
       group: group12,
@@ -7475,7 +7199,7 @@ var all12 = {
   },
   "11-60": {
     register: 2876 /* 11-60 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-60",
@@ -7488,7 +7212,7 @@ var all12 = {
   },
   "11-61": {
     register: 2877 /* 11-61 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-61",
@@ -7501,7 +7225,7 @@ var all12 = {
   },
   "11-62": {
     register: 2878 /* 11-62 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-62",
@@ -7514,7 +7238,7 @@ var all12 = {
   },
   "11-63": {
     register: 2879 /* 11-63 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-63",
@@ -7527,7 +7251,7 @@ var all12 = {
   },
   "11-64": {
     register: 2880 /* 11-64 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.1,
     meta: {
       group: group12,
@@ -7541,7 +7265,7 @@ var all12 = {
   },
   "11-65": {
     register: 2881 /* 11-65 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: {
       group: group12,
       code: "11-65",
@@ -7554,71 +7278,72 @@ var all12 = {
   },
   "11-66": {
     register: 2882 /* 11-66 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-66", name: "2 Phase/ 3 Phase PWM Switch Frequency", range: "6.00~60.00", default: "20", unit: "Hz", page: p459 }
   },
   "11-67": {
     register: 2883 /* 11-67 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: { group: group12, code: "11-67", name: "Soft PWM 2 Frequency Range", range: "0~12000", default: "0", unit: "Hz", page: p459 }
   },
   "11-68": {
     register: 2884 /* 11-68 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-68", name: "Soft PWM 2 Switch Frequency", range: "6.00~60.00", default: "20", unit: "Hz", page: p459 }
   },
   "11-69": {
     register: 2885 /* 11-69 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-69", name: "Gain of Preventing Oscillation 3", range: "0.00~200.00", default: "5.00", unit: "%", page: p459 }
   },
   "11-70": {
     register: 2886 /* 11-70 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-70", name: "Upper Limit of Preventing Oscillation 3", range: "0.01~100.00", default: "5.00", unit: "%", page: p459 }
   },
   "11-71": {
     register: 2887 /* 11-71 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind12.UInt16,
     meta: { group: group12, code: "11-71", name: "Time Parameter of Preventing Oscillation 3", range: "0~30000", default: "100", unit: "ms", page: p459 }
   },
   "11-72": {
     register: 2888 /* 11-72 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-72", name: "Gain of Preventing Oscillation for Switch Frequency 1", range: "0.01~300.00", default: "30.00", unit: "Hz", page: p459 }
   },
   "11-73": {
     register: 2889 /* 11-73 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-73", name: "Gain of Preventing Oscillation for Switch Frequency 2", range: "0.01~300.00", default: "50.00", unit: "Hz", page: p459 }
   },
   "11-76": {
     register: 2892 /* 11-76 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-76", name: "Droop Frequency Level 1", range: "0.00~599.00", default: "0.00", unit: "Hz", page: p459 }
   },
   "11-77": {
     register: 2893 /* 11-77 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-77", name: "Droop Frequency Level 2", range: "0.00~599.00", default: "0.00", unit: "Hz", page: p459 }
   },
   "11-78": {
     register: 2894 /* 11-78 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind12.Scaled,
     factor: 0.01,
     meta: { group: group12, code: "11-78", name: "Droop Torque Offset Value", range: "0.00~100.00", default: "0.00", unit: "%", page: p459 }
   }
 };
 var group11Params = all12;
 // src/parameters/group-12.ts
+import { ParamKind as ParamKind13 } from "modbus-schema";
 var group13 = 12;
 var p462 = 462;
 var p463 = 463;
@@ -7629,358 +7354,898 @@ var p467 = 467;
 var all13 = {
   "12-00": {
     register: 9488 /* 12-00 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-00", name: "Display Screen Selection (LED)", range: "00000~77777", default: "-", unit: "-", page: p462 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-00",
+      name: "Display Screen Selection (LED)",
+      range: "00000~77777",
+      default: "-",
+      unit: "-",
+      page: p462
+    }
   },
   "12-01": {
     register: 3073 /* 12-01 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-01", name: "PID Feedback Display Mode (LED)", range: "0-2 (0:Integer / 1:1 decimal / 2:2 decimals)", default: "0", unit: "-", page: p462 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-01",
+      name: "PID Feedback Display Mode (LED)",
+      range: "0-2 (0:Integer / 1:1 decimal / 2:2 decimals)",
+      default: "0",
+      unit: "-",
+      page: p462
+    }
   },
   "12-02": {
     register: 3074 /* 12-02 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-02", name: "PID Feedback Display Unit Setting (LED)", range: "0-2 (0:xxxxx / 1:xxxPb / 2:xxxFL)", default: "0", unit: "-", page: p462 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-02",
+      name: "PID Feedback Display Unit Setting (LED)",
+      range: "0-2 (0:xxxxx / 1:xxxPb / 2:xxxFL)",
+      default: "0",
+      unit: "-",
+      page: p462
+    }
   },
   "12-03": {
     register: 3075 /* 12-03 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-03", name: "Line Speed Display (LED)", range: "0~60000", default: "1500", unit: "RPM", page: p462 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-03",
+      name: "Line Speed Display (LED)",
+      range: "0~60000",
+      default: "1500",
+      unit: "RPM",
+      page: p462
+    }
   },
   "12-04": {
     register: 3076 /* 12-04 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-04", name: "Modes of Line Speed Display (LED)", range: "0-4 (0:Output Freq / 1:Integer / 2:1 dec / 3:2 dec / 4:3 dec)", default: "0", unit: "-", page: p462 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-04",
+      name: "Modes of Line Speed Display (LED)",
+      range: "0-4 (0:Output Freq / 1:Integer / 2:1 dec / 3:2 dec / 4:3 dec)",
+      default: "0",
+      unit: "-",
+      page: p462
+    }
   },
   "12-05": {
     register: 3077 /* 12-05 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-05", name: "Status Display of Digital Input & Output Terminal", range: "bit-field (see manual)", default: "-", unit: "-", page: p462 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-05",
+      name: "Status Display of Digital Input & Output Terminal",
+      range: "bit-field (see manual)",
+      default: "-",
+      unit: "-",
+      page: p462
+    }
   },
   "12-11": {
     register: 3083 /* 12-11 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-11", name: "Output Current of Current Fault", range: "read-only", default: "-", unit: "A", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-11",
+      name: "Output Current of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "A",
+      page: p463
+    }
   },
   "12-12": {
     register: 3084 /* 12-12 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-12", name: "Output Voltage of Current Fault", range: "read-only", default: "-", unit: "V", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-12",
+      name: "Output Voltage of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "V",
+      page: p463
+    }
   },
   "12-13": {
     register: 3085 /* 12-13 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-13", name: "Output Frequency of Current Fault", range: "read-only", default: "-", unit: "Hz", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-13",
+      name: "Output Frequency of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "Hz",
+      page: p463
+    }
   },
   "12-14": {
     register: 3086 /* 12-14 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-14", name: "DC Voltage of Current Fault", range: "read-only", default: "-", unit: "V", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-14",
+      name: "DC Voltage of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "V",
+      page: p463
+    }
   },
   "12-15": {
     register: 3087 /* 12-15 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-15", name: "Frequency Command of Current Fault", range: "read-only", default: "-", unit: "Hz", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-15",
+      name: "Frequency Command of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "Hz",
+      page: p463
+    }
   },
   "12-16": {
     register: 3088 /* 12-16 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-16", name: "Frequency Command", range: "read-only", default: "-", unit: "Hz", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-16",
+      name: "Frequency Command",
+      range: "read-only",
+      default: "-",
+      unit: "Hz",
+      page: p463
+    }
   },
   "12-17": {
     register: 3089 /* 12-17 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-17", name: "Output Frequency", range: "read-only", default: "-", unit: "Hz", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-17",
+      name: "Output Frequency",
+      range: "read-only",
+      default: "-",
+      unit: "Hz",
+      page: p463
+    }
   },
   "12-18": {
     register: 3090 /* 12-18 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-18", name: "Output Current", range: "read-only", default: "-", unit: "A", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-18",
+      name: "Output Current",
+      range: "read-only",
+      default: "-",
+      unit: "A",
+      page: p463
+    }
   },
   "12-19": {
     register: 3091 /* 12-19 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-19", name: "Output Voltage", range: "read-only", default: "-", unit: "V", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-19",
+      name: "Output Voltage",
+      range: "read-only",
+      default: "-",
+      unit: "V",
+      page: p463
+    }
   },
   "12-20": {
     register: 3092 /* 12-20 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-20", name: "DC Voltage (Vdc)", range: "read-only", default: "-", unit: "V", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-20",
+      name: "DC Voltage (Vdc)",
+      range: "read-only",
+      default: "-",
+      unit: "V",
+      page: p463
+    }
   },
   "12-21": {
     register: 3093 /* 12-21 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-21", name: "Output Power (kW)", range: "read-only", default: "-", unit: "kW", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-21",
+      name: "Output Power (kW)",
+      range: "read-only",
+      default: "-",
+      unit: "kW",
+      page: p463
+    }
   },
   "12-22": {
     register: 3094 /* 12-22 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-22", name: "Motor's Rotation Speed (rpm)", range: "read-only", default: "-", unit: "rpm", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-22",
+      name: "Motor's Rotation Speed (rpm)",
+      range: "read-only",
+      default: "-",
+      unit: "rpm",
+      page: p463
+    }
   },
   "12-23": {
     register: 3095 /* 12-23 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-23", name: "Output Power Factor (Pfo)", range: "read-only", default: "-", unit: "-", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-23",
+      name: "Output Power Factor (Pfo)",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p463
+    }
   },
   "12-24": {
     register: 3096 /* 12-24 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-24", name: "Control Mode", range: "Display only", default: "-", unit: "-", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-24",
+      name: "Control Mode",
+      range: "Display only",
+      default: "-",
+      unit: "-",
+      page: p463
+    }
   },
   "12-25": {
     register: 3097 /* 12-25 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-25", name: "AI1 Input", range: "read-only", default: "-", unit: "%", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-25",
+      name: "AI1 Input",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p463
+    }
   },
   "12-26": {
     register: 3098 /* 12-26 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-26", name: "AI2 Input", range: "read-only", default: "-", unit: "%", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-26",
+      name: "AI2 Input",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p463
+    }
   },
   "12-27": {
     register: 3099 /* 12-27 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-27", name: "Motor Torque", range: "read-only", default: "-", unit: "%", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-27",
+      name: "Motor Torque",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p463
+    }
   },
   "12-28": {
     register: 3100 /* 12-28 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-28", name: "Motor Torque Current (Iq)", range: "read-only", default: "-", unit: "%", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-28",
+      name: "Motor Torque Current (Iq)",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p463
+    }
   },
   "12-29": {
     register: 3101 /* 12-29 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-29", name: "Motor Excitation Current (Id)", range: "read-only", default: "-", unit: "%", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-29",
+      name: "Motor Excitation Current (Id)",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p463
+    }
   },
   "12-30": {
     register: 3102 /* 12-30 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-30", name: "ASR Deviation", range: "read-only", default: "-", unit: "%", page: p463 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-30",
+      name: "ASR Deviation",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p463
+    }
   },
   "12-32": {
     register: 3104 /* 12-32 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-32", name: "ASR Output", range: "read-only", default: "-", unit: "%", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-32",
+      name: "ASR Output",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p464
+    }
   },
   "12-33": {
     register: 3105 /* 12-33 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-33", name: "PG Feedback", range: "read-only", default: "-", unit: "%", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-33",
+      name: "PG Feedback",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p464
+    }
   },
   "12-34": {
     register: 3106 /* 12-34 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-34", name: "PG Pulse Number", range: "read-only", default: "-", unit: "Pulse", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-34",
+      name: "PG Pulse Number",
+      range: "read-only",
+      default: "-",
+      unit: "Pulse",
+      page: p464
+    }
   },
   "12-35": {
     register: 3107 /* 12-35 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-35", name: "Zero-servo Pulse Number", range: "read-only", default: "-", unit: "Pulse", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-35",
+      name: "Zero-servo Pulse Number",
+      range: "read-only",
+      default: "-",
+      unit: "Pulse",
+      page: p464
+    }
   },
   "12-36": {
     register: 3108 /* 12-36 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-36", name: "PID Input", range: "read-only", default: "-", unit: "%", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-36",
+      name: "PID Input",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p464
+    }
   },
   "12-37": {
     register: 3109 /* 12-37 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-37", name: "PID Output", range: "read-only", default: "-", unit: "%", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-37",
+      name: "PID Output",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p464
+    }
   },
   "12-38": {
     register: 3110 /* 12-38 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-38", name: "PID Setting", range: "read-only", default: "-", unit: "%", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-38",
+      name: "PID Setting",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p464
+    }
   },
   "12-39": {
     register: 3111 /* 12-39 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-39", name: "PID Feedback", range: "read-only", default: "-", unit: "%", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-39",
+      name: "PID Feedback",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p464
+    }
   },
   "12-41": {
     register: 3113 /* 12-41 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-41", name: "Heatsink Temperature", range: "read-only", default: "-", unit: "℃", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-41",
+      name: "Heatsink Temperature",
+      range: "read-only",
+      default: "-",
+      unit: "℃",
+      page: p464
+    }
   },
   "12-42": {
     register: 3114 /* 12-42 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-42", name: "RS-485 Error Code", range: "bit-field (CRC/Data len/Function/Parity/Overrun/Framing/Timeout)", default: "-", unit: "-", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-42",
+      name: "RS-485 Error Code",
+      range: "bit-field (CRC/Data len/Function/Parity/Overrun/Framing/Timeout)",
+      default: "-",
+      unit: "-",
+      page: p464
+    }
   },
   "12-43": {
     register: 3115 /* 12-43 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-43", name: "Inverter Status", range: "bit-field (Ready/Running/Zero speed/Speed agree/Fault minor/Fault major)", default: "-", unit: "-", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-43",
+      name: "Inverter Status",
+      range: "bit-field (Ready/Running/Zero speed/Speed agree/Fault minor/Fault major)",
+      default: "-",
+      unit: "-",
+      page: p464
+    }
   },
   "12-44": {
     register: 3116 /* 12-44 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-44", name: "Pulse Input Frequency", range: "read-only", default: "-", unit: "Hz", page: p464 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-44",
+      name: "Pulse Input Frequency",
+      range: "read-only",
+      default: "-",
+      unit: "Hz",
+      page: p464
+    }
   },
   "12-45": {
     register: 3117 /* 12-45 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-45", name: "Recent Fault Message", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-45",
+      name: "Recent Fault Message",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-46": {
     register: 3118 /* 12-46 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-46", name: "Previous Fault Message", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-46",
+      name: "Previous Fault Message",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-47": {
     register: 3119 /* 12-47 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-47", name: "Previous Two Fault Messages", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-47",
+      name: "Previous Two Fault Messages",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-48": {
     register: 3120 /* 12-48 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-48", name: "Previous Three Fault Messages", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-48",
+      name: "Previous Three Fault Messages",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-49": {
     register: 3121 /* 12-49 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-49", name: "Previous Four Fault Messages", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-49",
+      name: "Previous Four Fault Messages",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-50": {
     register: 3122 /* 12-50 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-50", name: "DIO Status of Current Fault", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-50",
+      name: "DIO Status of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-51": {
     register: 3123 /* 12-51 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-51", name: "Inverter Status of Current Fault", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-51",
+      name: "Inverter Status of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-52": {
     register: 3124 /* 12-52 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-52", name: "Trip Time 1 of Current Fault", range: "read-only", default: "-", unit: "Hr", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-52",
+      name: "Trip Time 1 of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "Hr",
+      page: p465
+    }
   },
   "12-53": {
     register: 3125 /* 12-53 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-53", name: "Trip Time 2 of Current Fault", range: "read-only", default: "-", unit: "day", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-53",
+      name: "Trip Time 2 of Current Fault",
+      range: "read-only",
+      default: "-",
+      unit: "day",
+      page: p465
+    }
   },
   "12-54": {
     register: 3126 /* 12-54 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-54", name: "Frequency Command of Previous Fault", range: "read-only", default: "-", unit: "Hz", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-54",
+      name: "Frequency Command of Previous Fault",
+      range: "read-only",
+      default: "-",
+      unit: "Hz",
+      page: p465
+    }
   },
   "12-55": {
     register: 3127 /* 12-55 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-55", name: "Output Frequency of Previous Fault", range: "read-only", default: "-", unit: "Hz", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-55",
+      name: "Output Frequency of Previous Fault",
+      range: "read-only",
+      default: "-",
+      unit: "Hz",
+      page: p465
+    }
   },
   "12-56": {
     register: 3128 /* 12-56 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-56", name: "Output Current of Previous Fault", range: "read-only", default: "-", unit: "A", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-56",
+      name: "Output Current of Previous Fault",
+      range: "read-only",
+      default: "-",
+      unit: "A",
+      page: p465
+    }
   },
   "12-57": {
     register: 3129 /* 12-57 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-57", name: "Output Voltage of Previous Fault", range: "read-only", default: "-", unit: "V", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-57",
+      name: "Output Voltage of Previous Fault",
+      range: "read-only",
+      default: "-",
+      unit: "V",
+      page: p465
+    }
   },
   "12-58": {
     register: 3130 /* 12-58 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-58", name: "DC Voltage of Previous Fault", range: "read-only", default: "-", unit: "V", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-58",
+      name: "DC Voltage of Previous Fault",
+      range: "read-only",
+      default: "-",
+      unit: "V",
+      page: p465
+    }
   },
   "12-59": {
     register: 3131 /* 12-59 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-59", name: "DIO Status of Previous Fault", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-59",
+      name: "DIO Status of Previous Fault",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-60": {
     register: 3132 /* 12-60 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-60", name: "Inverter Status of Previous Fault", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-60",
+      name: "Inverter Status of Previous Fault",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-61": {
     register: 3133 /* 12-61 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-61", name: "Trip Time 1 of Last Fault", range: "read-only", default: "-", unit: "Hr", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-61",
+      name: "Trip Time 1 of Last Fault",
+      range: "read-only",
+      default: "-",
+      unit: "Hr",
+      page: p465
+    }
   },
   "12-62": {
     register: 3134 /* 12-62 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-62", name: "Trip Time 2 of Last Fault", range: "read-only", default: "-", unit: "day", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-62",
+      name: "Trip Time 2 of Last Fault",
+      range: "read-only",
+      default: "-",
+      unit: "day",
+      page: p465
+    }
   },
   "12-63": {
     register: 3135 /* 12-63 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-63", name: "Recent Warning Messages", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-63",
+      name: "Recent Warning Messages",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-64": {
     register: 3136 /* 12-64 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-64", name: "Previous Warning Message", range: "read-only", default: "-", unit: "-", page: p465 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-64",
+      name: "Previous Warning Message",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p465
+    }
   },
   "12-65": {
     register: 3137 /* 12-65 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-65", name: "Motor Start Angle", range: "0~360", default: "-", unit: "-", page: p466 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-65",
+      name: "Motor Start Angle",
+      range: "0~360",
+      default: "-",
+      unit: "-",
+      page: p466
+    }
   },
   "12-66": {
     register: 3138 /* 12-66 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-66", name: "Encoder Angle", range: "0~360", default: "-", unit: "-", page: p466 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-66",
+      name: "Encoder Angle",
+      range: "0~360",
+      default: "-",
+      unit: "-",
+      page: p466
+    }
   },
   "12-67": {
     register: 3139 /* 12-67 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind13.Scaled,
     factor: 0.1,
-    meta: { group: group13, code: "12-67", name: "Cumulative Energy (kWHr)", range: "0.0~999.9", default: "-", unit: "kWHr", page: p466 }
+    meta: {
+      group: group13,
+      code: "12-67",
+      name: "Cumulative Energy (kWHr)",
+      range: "0.0~999.9",
+      default: "-",
+      unit: "kWHr",
+      page: p466
+    }
   },
   "12-68": {
     register: 3140 /* 12-68 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-68", name: "Cumulative Energy (MWHr)", range: "0~60000", default: "-", unit: "MWHr", page: p466 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-68",
+      name: "Cumulative Energy (MWHr)",
+      range: "0~60000",
+      default: "-",
+      unit: "MWHr",
+      page: p466
+    }
   },
   "12-76": {
     register: 3148 /* 12-76 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind13.Scaled,
     factor: 0.1,
-    meta: { group: group13, code: "12-76", name: "No-Load Voltage Output", range: "0.0~600.0", default: "-", unit: "V", page: p467 }
+    meta: {
+      group: group13,
+      code: "12-76",
+      name: "No-Load Voltage Output",
+      range: "0.0~600.0",
+      default: "-",
+      unit: "V",
+      page: p467
+    }
   },
   "12-78": {
     register: 3150 /* 12-78 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind13.SignedScaled,
     factor: 1,
-    meta: { group: group13, code: "12-78", name: "Z-Phase Bias Value", range: "-9999~9999", default: "-", unit: "Pulse", page: p467 }
+    meta: {
+      group: group13,
+      code: "12-78",
+      name: "Z-Phase Bias Value",
+      range: "-9999~9999",
+      default: "-",
+      unit: "Pulse",
+      page: p467
+    }
   },
   "12-79": {
     register: 3151 /* 12-79 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind13.Scaled,
     factor: 0.1,
-    meta: { group: group13, code: "12-79", name: "Pulse Input Percentage", range: "0.0~100.0", default: "-", unit: "%", page: p467 }
+    meta: {
+      group: group13,
+      code: "12-79",
+      name: "Pulse Input Percentage",
+      range: "0.0~100.0",
+      default: "-",
+      unit: "%",
+      page: p467
+    }
   },
   "12-80": {
     register: 3152 /* 12-80 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind13.Scaled,
     factor: 0.1,
-    meta: { group: group13, code: "12-80", name: "AI1 Frequency Command", range: "0.0~599.0", default: "0", unit: "Hz", page: p467 }
+    meta: {
+      group: group13,
+      code: "12-80",
+      name: "AI1 Frequency Command",
+      range: "0.0~599.0",
+      default: "0",
+      unit: "Hz",
+      page: p467
+    }
   },
   "12-82": {
     register: 3154 /* 12-82 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind13.Scaled,
     factor: 0.1,
-    meta: { group: group13, code: "12-82", name: "Motor Load", range: "0~200.0", default: "-", unit: "%", page: p467 }
+    meta: {
+      group: group13,
+      code: "12-82",
+      name: "Motor Load",
+      range: "0~200.0",
+      default: "-",
+      unit: "%",
+      page: p467
+    }
   },
   "12-85": {
     register: 3157 /* 12-85 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-85", name: "AI3 Input", range: "read-only", default: "-", unit: "%", page: p467 }
-  },
-  "12-81": {
-    register: 3153 /* 12-81 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group13, code: "12-81", name: "Reserved", range: "-", default: "-", unit: "-", page: p467 }
+    kind: ParamKind13.UInt16,
+    meta: {
+      group: group13,
+      code: "12-85",
+      name: "AI3 Input",
+      range: "read-only",
+      default: "-",
+      unit: "%",
+      page: p467
+    }
   }
 };
 var group12Params = all13;
 // src/parameters/group-13.ts
+import { ParamKind as ParamKind14 } from "modbus-schema";
 var group14 = 13;
 var p468 = 468;
 var p469 = 469;
@@ -7988,654 +8253,1012 @@ var p470 = 470;
 var all14 = {
   "13-00": {
     register: 3328 /* 13-00 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-00", name: "Inverter Capacity Selection", range: "read-only", default: "-", unit: "-", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-00",
+      name: "Inverter Capacity Selection",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p468
+    }
   },
   "13-01": {
     register: 3329 /* 13-01 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-01", name: "Software Version", range: "0.00~9.99", default: "-", unit: "-", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-01",
+      name: "Software Version",
+      range: "0.00~9.99",
+      default: "-",
+      unit: "-",
+      page: p468
+    }
   },
   "13-02": {
     register: 3330 /* 13-02 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-02", name: "Clear Cumulative Operation Hours", range: "0-1 (0:Disable / 1:Clear)", default: "0", unit: "-", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-02",
+      name: "Clear Cumulative Operation Hours",
+      range: "0-1 (0:Disable / 1:Clear)",
+      default: "0",
+      unit: "-",
+      page: p468
+    }
   },
   "13-03": {
     register: 3331 /* 13-03 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-03", name: "Cumulative Operation Hours 1", range: "0~23", default: "-", unit: "hr", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-03",
+      name: "Cumulative Operation Hours 1",
+      range: "0~23",
+      default: "-",
+      unit: "hr",
+      page: p468
+    }
   },
   "13-04": {
     register: 3332 /* 13-04 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-04", name: "Cumulative Operation Hours 2", range: "0~65534", default: "-", unit: "day", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-04",
+      name: "Cumulative Operation Hours 2",
+      range: "0~65534",
+      default: "-",
+      unit: "day",
+      page: p468
+    }
   },
   "13-05": {
     register: 3333 /* 13-05 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-05", name: "Selection of Cumulative Operation Time", range: "0-1 (0:Power on / 1:Operation)", default: "0", unit: "-", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-05",
+      name: "Selection of Cumulative Operation Time",
+      range: "0-1 (0:Power on / 1:Operation)",
+      default: "0",
+      unit: "-",
+      page: p468
+    }
   },
   "13-06": {
     register: 3334 /* 13-06 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-06", name: "Parameters Locked", range: "0-2 (0:Read-only / 1:User defined / 2:All writable)", default: "2", unit: "-", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-06",
+      name: "Parameters Locked",
+      range: "0-2 (0:Read-only / 1:User defined / 2:All writable)",
+      default: "2",
+      unit: "-",
+      page: p468
+    }
   },
   "13-07": {
     register: 3335 /* 13-07 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-07", name: "Parameter Password Function", range: "00000~65534", default: "00000", unit: "-", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-07",
+      name: "Parameter Password Function",
+      range: "00000~65534",
+      default: "00000",
+      unit: "-",
+      page: p468
+    }
   },
   "13-08": {
     register: 3336 /* 13-08 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-08", name: "Restore Factory Setting", range: "0-16 (0:No init / 2:2-wire 60Hz 230/460/690V / 4:2-wire 50Hz 220/380V / 6:3-wire 60Hz 230/460/690V / 8:3-wire 50Hz 220/380V / 10:Customized / 12:2-wire 50Hz 200/400V / 14:3-wire 50Hz 200/400V / 16:3-wire 50Hz 220/380V)", default: "0", unit: "-", page: p468 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-08",
+      name: "Restore Factory Setting",
+      range: "0-16 (0:No init / 2:2-wire 60Hz 230/460/690V / 4:2-wire 50Hz 220/380V / 6:3-wire 60Hz 230/460/690V / 8:3-wire 50Hz 220/380V / 10:Customized / 12:2-wire 50Hz 200/400V / 14:3-wire 50Hz 200/400V / 16:3-wire 50Hz 220/380V)",
+      default: "0",
+      unit: "-",
+      page: p468
+    }
   },
   "13-09": {
     register: 3337 /* 13-09 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-09", name: "Fault History Clearance Function", range: "0-1 (0:No clearing / 1:Clear)", default: "0", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-09",
+      name: "Fault History Clearance Function",
+      range: "0-1 (0:No clearing / 1:Clear)",
+      default: "0",
+      unit: "-",
+      page: p469
+    }
   },
   "13-10": {
     register: 3338 /* 13-10 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-10", name: "Parameter Password Function 2", range: "0~9999", default: "0", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-10",
+      name: "Parameter Password Function 2",
+      range: "0~9999",
+      default: "0",
+      unit: "-",
+      page: p469
+    }
   },
   "13-11": {
     register: 3339 /* 13-11 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-11", name: "C/B CPLD Ver.", range: "0.00~9.99", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-11",
+      name: "C/B CPLD Ver.",
+      range: "0.00~9.99",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-12": {
     register: 3340 /* 13-12 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-12", name: "PG Card Id", range: "0~255", default: "0", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-12",
+      name: "PG Card Id",
+      range: "0~255",
+      default: "0",
+      unit: "-",
+      page: p469
+    }
   },
   "13-13": {
     register: 3341 /* 13-13 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-13", name: "PG Card Ver.", range: "0.00~9.99", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-13",
+      name: "PG Card Ver.",
+      range: "0.00~9.99",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-14": {
     register: 3342 /* 13-14 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-14", name: "Fault Storage Selections", range: "0-1 (0:Auto restart not saved / 1:Auto restart saved)", default: "0", unit: "-", page: p469 }
-  },
-  "13-15": {
-    register: 3343 /* 13-15 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-15", name: "Reserved", range: "-", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-14",
+      name: "Fault Storage Selections",
+      range: "0-1 (0:Auto restart not saved / 1:Auto restart saved)",
+      default: "0",
+      unit: "-",
+      page: p469
+    }
   },
   "13-21": {
     register: 3349 /* 13-21 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-21", name: "Last time Fault History", range: "read-only", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-21",
+      name: "Last time Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-22": {
     register: 3350 /* 13-22 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-22", name: "Previous two Fault History", range: "read-only", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-22",
+      name: "Previous two Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-23": {
     register: 3351 /* 13-23 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-23", name: "Previous three Fault History", range: "read-only", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-23",
+      name: "Previous three Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-24": {
     register: 3352 /* 13-24 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-24", name: "Previous four Fault History", range: "read-only", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-24",
+      name: "Previous four Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-25": {
     register: 3353 /* 13-25 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-25", name: "Previous five Fault History", range: "read-only", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-25",
+      name: "Previous five Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-26": {
     register: 3354 /* 13-26 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-26", name: "Previous six Fault History", range: "read-only", default: "-", unit: "-", page: p469 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-26",
+      name: "Previous six Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p469
+    }
   },
   "13-27": {
     register: 3355 /* 13-27 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-27", name: "Previous seven Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-27",
+      name: "Previous seven Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-28": {
     register: 3356 /* 13-28 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-28", name: "Previous eight Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-28",
+      name: "Previous eight Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-29": {
     register: 3357 /* 13-29 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-29", name: "Previous nine Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-29",
+      name: "Previous nine Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-30": {
     register: 3358 /* 13-30 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-30", name: "Previous ten Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-30",
+      name: "Previous ten Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-31": {
     register: 3359 /* 13-31 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-31", name: "Previous eleven Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-31",
+      name: "Previous eleven Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-32": {
     register: 3360 /* 13-32 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-32", name: "Previous twelve Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-32",
+      name: "Previous twelve Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-33": {
     register: 3361 /* 13-33 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-33", name: "Previous thirteen Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-33",
+      name: "Previous thirteen Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-34": {
     register: 3362 /* 13-34 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-34", name: "Previous fourteen Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-34",
+      name: "Previous fourteen Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-35": {
     register: 3363 /* 13-35 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-35", name: "Previous fifteen Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-35",
+      name: "Previous fifteen Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-36": {
     register: 3364 /* 13-36 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-36", name: "Previous sixteen Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-36",
+      name: "Previous sixteen Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-37": {
     register: 3365 /* 13-37 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-37", name: "Previous seventeen Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-37",
+      name: "Previous seventeen Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-38": {
     register: 3366 /* 13-38 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-38", name: "Previous eighteen Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-38",
+      name: "Previous eighteen Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-39": {
     register: 3367 /* 13-39 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-39", name: "Previous nineteen Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-39",
+      name: "Previous nineteen Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-40": {
     register: 3368 /* 13-40 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-40", name: "Previous twenty Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-40",
+      name: "Previous twenty Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-41": {
     register: 3369 /* 13-41 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-41", name: "Previous twenty one Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-41",
+      name: "Previous twenty one Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-42": {
     register: 3370 /* 13-42 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-42", name: "Previous twenty two Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-42",
+      name: "Previous twenty two Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-43": {
     register: 3371 /* 13-43 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-43", name: "Previous twenty three Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-43",
+      name: "Previous twenty three Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-44": {
     register: 3372 /* 13-44 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-44", name: "Previous twenty four Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-44",
+      name: "Previous twenty four Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-45": {
     register: 3373 /* 13-45 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-45", name: "Previous twenty five Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-45",
+      name: "Previous twenty five Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-46": {
     register: 3374 /* 13-46 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-46", name: "Previous twenty six Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-46",
+      name: "Previous twenty six Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-47": {
     register: 3375 /* 13-47 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-47", name: "Previous twenty seven Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-47",
+      name: "Previous twenty seven Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-48": {
     register: 3376 /* 13-48 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-48", name: "Previous twenty eight Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-48",
+      name: "Previous twenty eight Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-49": {
     register: 3377 /* 13-49 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-49", name: "Previous twenty nine Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-49",
+      name: "Previous twenty nine Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   },
   "13-50": {
     register: 3378 /* 13-50 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group14, code: "13-50", name: "Previous thirty Fault History", range: "read-only", default: "-", unit: "-", page: p470 }
+    kind: ParamKind14.UInt16,
+    meta: {
+      group: group14,
+      code: "13-50",
+      name: "Previous thirty Fault History",
+      range: "read-only",
+      default: "-",
+      unit: "-",
+      page: p470
+    }
   }
 };
 var group13Params = all14;
 // src/parameters/group-14.ts
+import { ParamKind as ParamKind15 } from "modbus-schema";
 var group15 = 14;
 var p472 = 472;
 var all15 = {
   "14-00": {
     register: 3584 /* 14-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-00", name: "T1 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-01": {
     register: 3585 /* 14-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-01", name: "T1 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-02": {
     register: 3586 /* 14-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-02", name: "T2 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-03": {
     register: 3587 /* 14-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-03", name: "T2 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-04": {
     register: 3588 /* 14-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-04", name: "T3 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-05": {
     register: 3589 /* 14-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-05", name: "T3 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-06": {
     register: 3590 /* 14-06 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-06", name: "T4 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-07": {
     register: 3591 /* 14-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-07", name: "T4 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-08": {
     register: 3592 /* 14-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-08", name: "T5 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-09": {
     register: 3593 /* 14-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-09", name: "T5 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-10": {
     register: 3594 /* 14-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-10", name: "T6 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-11": {
     register: 3595 /* 14-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-11", name: "T6 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-12": {
     register: 3596 /* 14-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-12", name: "T7 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-13": {
     register: 3597 /* 14-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-13", name: "T7 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-14": {
     register: 3598 /* 14-14 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-14", name: "T8 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-15": {
     register: 3599 /* 14-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-15", name: "T8 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 }
   },
   "14-16": {
     register: 3600 /* 14-16 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-16", name: "C1 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-17": {
     register: 3601 /* 14-17 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-17", name: "C2 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-18": {
     register: 3602 /* 14-18 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-18", name: "C3 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-19": {
     register: 3603 /* 14-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-19", name: "C4 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-20": {
     register: 3604 /* 14-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-20", name: "C5 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-21": {
     register: 3605 /* 14-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-21", name: "C6 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-22": {
     register: 3606 /* 14-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-22", name: "C7 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-23": {
     register: 3607 /* 14-23 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-23", name: "C8 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-24": {
     register: 3608 /* 14-24 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-24", name: "AS1 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-25": {
     register: 3609 /* 14-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-25", name: "AS1 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-26": {
     register: 3610 /* 14-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-26", name: "AS1 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-27": {
     register: 3611 /* 14-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-27", name: "AS2 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-28": {
     register: 3612 /* 14-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-28", name: "AS2 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-29": {
     register: 3613 /* 14-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-29", name: "AS2 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-30": {
     register: 3614 /* 14-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-30", name: "AS3 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-31": {
     register: 3615 /* 14-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-31", name: "AS3 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-32": {
     register: 3616 /* 14-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-32", name: "AS3 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-33": {
     register: 3617 /* 14-33 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-33", name: "AS4 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-34": {
     register: 3618 /* 14-34 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-34", name: "AS4 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-35": {
     register: 3619 /* 14-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-35", name: "AS4 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 }
   },
   "14-36": {
     register: 3620 /* 14-36 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-36", name: "MD1 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-37": {
     register: 3621 /* 14-37 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-37", name: "MD1 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-38": {
     register: 3622 /* 14-38 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-38", name: "MD1 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-39": {
     register: 3623 /* 14-39 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-39", name: "MD2 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-40": {
     register: 3624 /* 14-40 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-40", name: "MD2 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-41": {
     register: 3625 /* 14-41 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-41", name: "MD2 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-42": {
     register: 3626 /* 14-42 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-42", name: "MD3 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-43": {
     register: 3627 /* 14-43 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-43", name: "MD3 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-44": {
     register: 3628 /* 14-44 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-44", name: "MD3 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-45": {
     register: 3629 /* 14-45 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-45", name: "MD4 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-46": {
     register: 3630 /* 14-46 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-46", name: "MD4 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 }
   },
   "14-47": {
     register: 3631 /* 14-47 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind15.UInt16,
     meta: { group: group15, code: "14-47", name: "MD4 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 }
   }
 };
 var group14Params = all15;
 // src/parameters/group-15.ts
+import { ParamKind as ParamKind16 } from "modbus-schema";
 var group16 = 15;
 var p473 = 473;
 var all16 = {
   "15-00": {
     register: 3840 /* 15-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-00", name: "T1 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-01": {
     register: 3841 /* 15-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-01", name: "T1 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-02": {
     register: 3842 /* 15-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-02", name: "T2 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-03": {
     register: 3843 /* 15-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-03", name: "T2 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-04": {
     register: 3844 /* 15-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-04", name: "T3 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-05": {
     register: 3845 /* 15-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-05", name: "T3 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-06": {
     register: 3846 /* 15-06 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-06", name: "T4 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-07": {
     register: 3847 /* 15-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-07", name: "T4 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-08": {
     register: 3848 /* 15-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-08", name: "T5 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-09": {
     register: 3849 /* 15-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-09", name: "T5 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-10": {
     register: 3850 /* 15-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-10", name: "T6 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-11": {
     register: 3851 /* 15-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-11", name: "T6 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-12": {
     register: 3852 /* 15-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-12", name: "T7 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-13": {
     register: 3853 /* 15-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-13", name: "T7 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-14": {
     register: 3854 /* 15-14 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-14", name: "T8 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-15": {
     register: 3855 /* 15-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-15", name: "T8 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 }
   },
   "15-16": {
     register: 3856 /* 15-16 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-16", name: "C1 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-17": {
     register: 3857 /* 15-17 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-17", name: "C2 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-18": {
     register: 3858 /* 15-18 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-18", name: "C3 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-19": {
     register: 3859 /* 15-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-19", name: "C4 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-20": {
     register: 3860 /* 15-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-20", name: "C5 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-21": {
     register: 3861 /* 15-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-21", name: "C6 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-22": {
     register: 3862 /* 15-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-22", name: "C7 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-23": {
     register: 3863 /* 15-23 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-23", name: "C8 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-24": {
     register: 3864 /* 15-24 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-24", name: "AS1 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-25": {
     register: 3865 /* 15-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-25", name: "AS2 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-26": {
     register: 3866 /* 15-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-26", name: "AS3 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-27": {
     register: 3867 /* 15-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-27", name: "AS4 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-28": {
     register: 3868 /* 15-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-28", name: "MD1 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-29": {
     register: 3869 /* 15-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-29", name: "MD2 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-30": {
     register: 3870 /* 15-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-30", name: "MD3 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-31": {
     register: 3871 /* 15-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-31", name: "MD4 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   },
   "15-32": {
     register: 3872 /* 15-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind16.UInt16,
     meta: { group: group16, code: "15-32", name: "TD Current Value", range: "0~65534", default: "0", unit: "-", page: p473 }
   }
 };
 var group15Params = all16;
 // src/parameters/group-16.ts
+import { ParamKind as ParamKind17 } from "modbus-schema";
 var group17 = 16;
 var p474 = 474;
 var p475 = 475;
@@ -8644,380 +9267,384 @@ var p477 = 477;
 var all17 = {
   "16-00": {
     register: 4096 /* 16-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-00", name: "Main Screen Monitoring", range: "5~82", default: "16", unit: "-", page: p474 }
   },
   "16-01": {
     register: 4097 /* 16-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-01", name: "Sub-Screen Monitoring 1", range: "5~82", default: "17", unit: "-", page: p474 }
   },
   "16-02": {
     register: 4098 /* 16-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-02", name: "Sub-Screen Monitoring 2", range: "5~82", default: "18", unit: "-", page: p474 }
   },
   "16-03": {
     register: 4099 /* 16-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-03", name: "Display Unit", range: "0~39999 (0:0.01Hz / 1:0.01% / 2:rpm / 40~9999:XXXX at 100% / 10001~19999:XXX.X / 20001~29999:XX.XX / 30001~39999:X.XXX)", default: "0", unit: "-", page: p474 }
   },
   "16-04": {
     register: 4100 /* 16-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-04", name: "Engineering Unit", range: "0~24 (0:none / 1:FPM / 2:CFM / 3:PSI / 4:GPH / 5:GPM / 6:IN / 7:FT / 8:/s / 9:/m / 10:/h / 11:°F / 12:inW / 13:HP / 14:m/s / 15:MPM / 16:CMM / 17:W / 18:KW / 19:m / 20:°C / 21:RPM / 22:Bar / 23:Pa / 24:KPa)", default: "0", unit: "-", page: p474 }
   },
   "16-05": {
     register: 4101 /* 16-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-05", name: "LCD Backlight", range: "0~7", default: "5", unit: "-", page: p475 }
   },
   "16-07": {
     register: 4103 /* 16-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-07", name: "Copy Function Selection", range: "0-3 (0:Do not copy / 1:Read to operator / 2:Write to inverter / 3:Compare)", default: "0", unit: "-", page: p475 }
   },
   "16-08": {
     register: 4104 /* 16-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-08", name: "Selection of Allowing Reading", range: "0-1 (0:Not allow / 1:Allow)", default: "0", unit: "-", page: p475 }
   },
   "16-09": {
     register: 4105 /* 16-09 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-09", name: "Selection of Operator Removed (LCD)", range: "0-1 (0:Keep operating / 1:Display fault)", default: "0", unit: "-", page: p475 }
   },
   "16-10": {
     register: 4106 /* 16-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-10", name: "RTC Time Display Setting", range: "0-1 (0:Hide / 1:Display)", default: "0", unit: "-", page: p475 }
   },
   "16-11": {
     register: 4107 /* 16-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-11", name: "RTC Date Setting", range: "12.01.01~99.12.31", default: "12.01.01", unit: "-", page: p475 }
   },
   "16-12": {
     register: 4108 /* 16-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-12", name: "RTC Time Setting", range: "00:00~23:59", default: "00:00", unit: "-", page: p475 }
   },
   "16-13": {
     register: 4109 /* 16-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-13", name: "RTC Timer Function", range: "0-2 (0:Disable / 1:Enable / 2:Set by DI)", default: "0", unit: "-", page: p475 }
   },
   "16-14": {
     register: 4110 /* 16-14 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-14", name: "P1 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p475 }
   },
   "16-15": {
     register: 4111 /* 16-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-15", name: "P1 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p475 }
   },
   "16-16": {
     register: 4112 /* 16-16 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-16", name: "P1 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p475 }
   },
   "16-17": {
     register: 4113 /* 16-17 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-17", name: "P1 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p475 }
   },
   "16-18": {
     register: 4114 /* 16-18 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-18", name: "P2 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p475 }
   },
   "16-19": {
     register: 4115 /* 16-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-19", name: "P2 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p475 }
   },
   "16-20": {
     register: 4116 /* 16-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-20", name: "P2 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p475 }
   },
   "16-21": {
     register: 4117 /* 16-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-21", name: "P2 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p476 }
   },
   "16-22": {
     register: 4118 /* 16-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-22", name: "P3 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p476 }
   },
   "16-23": {
     register: 4119 /* 16-23 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-23", name: "P3 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p476 }
   },
   "16-24": {
     register: 4120 /* 16-24 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-24", name: "P3 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p476 }
   },
   "16-25": {
     register: 4121 /* 16-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-25", name: "P3 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p476 }
   },
   "16-26": {
     register: 4122 /* 16-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-26", name: "P4 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p476 }
   },
   "16-27": {
     register: 4123 /* 16-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-27", name: "P4 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p476 }
   },
   "16-28": {
     register: 4124 /* 16-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-28", name: "P4 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p476 }
   },
   "16-29": {
     register: 4125 /* 16-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-29", name: "P4 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p476 }
   },
   "16-30": {
     register: 4126 /* 16-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-30", name: "Selection of RTC Offset", range: "0-2 (0:Disable / 1:Enable / 2:Set by DI)", default: "0", unit: "-", page: p476 }
   },
   "16-31": {
     register: 4127 /* 16-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-31", name: "RTC Offset Time Setting", range: "00:00~23:59", default: "00:00", unit: "-", page: p476 }
   },
   "16-32": {
     register: 4128 /* 16-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-32", name: "Source of Timer 1", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "1", unit: "-", page: p476 }
   },
   "16-33": {
     register: 4129 /* 16-33 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-33", name: "Source of Timer 2", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "2", unit: "-", page: p476 }
   },
   "16-34": {
     register: 4130 /* 16-34 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-34", name: "Source of Timer 3", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "4", unit: "-", page: p476 }
   },
   "16-35": {
     register: 4131 /* 16-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-35", name: "Source of Timer 4", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "8", unit: "-", page: p476 }
   },
   "16-36": {
     register: 4132 /* 16-36 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-36", name: "Selection of RTC Speed", range: "0-5 (0:Off / 1:Timer1 / 2:Timer2 / 3:Timer3 / 4:Timer4 / 5:Timer1+2)", default: "0", unit: "-", page: p477 }
   },
   "16-37": {
     register: 4133 /* 16-37 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind17.UInt16,
     meta: { group: group17, code: "16-37", name: "Selection of RTC Rotation Direction", range: "0~15 (bit-field for direction)", default: "0000b", unit: "-", page: p477 }
   }
 };
 var group16Params = all17;
 // src/parameters/group-17.ts
+import { ParamKind as ParamKind18 } from "modbus-schema";
 var group18 = 17;
 var p478 = 478;
 var p479 = 479;
 var all18 = {
   "17-00": {
     register: 4352 /* 17-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-00", name: "Mode Selection of Automatic Tuning", range: "0-6 (0:Rotation / 1:Static / 2:Stator R / 3:Reserved / 4:Loop / 5:Rot comb(4+2+0) / 6:Static comb(4+2+1))", default: "2 / 6", unit: "-", page: p478 }
   },
   "17-01": {
     register: 4353 /* 17-01 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind18.Scaled,
     factor: 0.01,
     meta: { group: group18, code: "17-01", name: "Motor Rated Output Power", range: "0.00~600.00", default: "*", unit: "kW", page: p478 }
   },
   "17-02": {
     register: 4354 /* 17-02 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind18.Scaled,
     factor: 0.1,
     meta: { group: group18, code: "17-02", name: "Motor Rated Current", range: "0.1~1200.0", default: "*", unit: "A", page: p478 }
   },
   "17-03": {
     register: 4355 /* 17-03 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind18.Scaled,
     factor: 0.1,
     meta: { group: group18, code: "17-03", name: "Motor Rated Voltage", range: "200V:50.0~240.0 / 400V:100.0~480.0 / 575V:150.0~670.0 / 690V:180.0~804.0", default: "220.0 / 440.0 / 575.0 / 690.0", unit: "V", page: p478 }
   },
   "17-04": {
     register: 4356 /* 17-04 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind18.Scaled,
     factor: 0.1,
     meta: { group: group18, code: "17-04", name: "Motor Rated Frequency", range: "4.8~599.0", default: "50.0 / 60.0", unit: "Hz", page: p478 }
   },
   "17-05": {
     register: 4357 /* 17-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-05", name: "Motor Rated Speed", range: "0~24000", default: "*", unit: "rpm", page: p478 }
   },
   "17-06": {
     register: 4358 /* 17-06 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-06", name: "Pole Number of Motor", range: "2~16 (Even)", default: "4", unit: "Pole", page: p478 }
   },
   "17-07": {
     register: 4359 /* 17-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-07", name: "PG Pulse Number", range: "0~60000", default: "1024", unit: "ppr", page: p478 }
   },
   "17-08": {
     register: 4360 /* 17-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-08", name: "Motor No-load Voltage", range: "200V:50~240 / 400V:100~480 / 575V:420~600 / 690V:504~720", default: "150 / 300 / 575 / 690", unit: "V", page: p478 }
   },
   "17-09": {
     register: 4361 /* 17-09 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind18.Scaled,
     factor: 0.01,
     meta: { group: group18, code: "17-09", name: "Motor Excitation Current", range: "0.01~600.00", default: "*", unit: "A", page: p478 }
   },
   "17-10": {
     register: 4362 /* 17-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-10", name: "Automatic Tuning Start", range: "0-1 (0:Disable / 1:Enable)", default: "0", unit: "-", page: p479 }
   },
   "17-11": {
     register: 4363 /* 17-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-11", name: "Error History of Automatic Tuning", range: "0-9 (0:No error / 1:Motor data / 2:Stator R / 3:Leakage L / 4:Rotor R / 5:Mutual L / 6:Encoder / 7:DT / 8:Accel / 9:Warning)", default: "0", unit: "-", page: p479 }
   },
   "17-12": {
     register: 4364 /* 17-12 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind18.Scaled,
     factor: 0.1,
     meta: { group: group18, code: "17-12", name: "Proportion of Motor Leakage Inductance", range: "0.1~15.0", default: "3.4", unit: "%", page: p479 }
   },
   "17-13": {
     register: 4365 /* 17-13 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind18.Scaled,
     factor: 0.01,
     meta: { group: group18, code: "17-13", name: "Motor Slip Frequency", range: "0.10~20.00", default: "1.00", unit: "Hz", page: p479 }
   },
   "17-14": {
     register: 4366 /* 17-14 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind18.UInt16,
     meta: { group: group18, code: "17-14", name: "Selection of Rotation Auto-tuning", range: "0-1 (0:VF Rotation / 1:Vector Rotation)", default: "0", unit: "-", page: p479 }
   }
 };
 var group17Params = all18;
 // src/parameters/group-18.ts
+import { ParamKind as ParamKind19 } from "modbus-schema";
 var group19 = 18;
 var p4792 = 479;
 var all19 = {
   "18-00": {
     register: 4608 /* 18-00 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind19.Scaled,
     factor: 0.01,
     meta: { group: group19, code: "18-00", name: "Slip Compensation Gain at Low Speed", range: "0.00~2.50", default: "0.00 / *", unit: "-", page: p4792 }
   },
   "18-01": {
     register: 4609 /* 18-01 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind19.SignedScaled,
     factor: 0.01,
     meta: { group: group19, code: "18-01", name: "Slip Compensation Gain at High Speed", range: "-1.00~1.00", default: "0.0", unit: "-", page: p4792 }
   },
   "18-02": {
     register: 4610 /* 18-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind19.UInt16,
     meta: { group: group19, code: "18-02", name: "Slip Compensation Limit", range: "0~250", default: "200", unit: "%", page: p4792 }
   },
   "18-03": {
     register: 4611 /* 18-03 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind19.Scaled,
     factor: 0.1,
     meta: { group: group19, code: "18-03", name: "Slip Compensation Filter Time", range: "0.0~10.0", default: "1.0", unit: "Sec", page: p4792 }
   },
   "18-04": {
     register: 4612 /* 18-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind19.UInt16,
     meta: { group: group19, code: "18-04", name: "Regenerative Slip Compensation Selection", range: "0-1 (0:Disable / 1:Enable)", default: "0", unit: "-", page: p4792 }
   },
   "18-05": {
     register: 4613 /* 18-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind19.UInt16,
     meta: { group: group19, code: "18-05", name: "FOC Delay Time", range: "1~1000", default: "100", unit: "ms", page: p4792 }
   },
   "18-06": {
     register: 4614 /* 18-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind19.Scaled,
     factor: 0.01,
     meta: { group: group19, code: "18-06", name: "FOC Gain", range: "0.00~2.00", default: "0.1", unit: "-", page: p4792 }
   }
 };
 var group18Params = all19;
 // src/parameters/group-19.ts
+import { ParamKind as ParamKind20 } from "modbus-schema";
 var group20 = 19;
 var p4793 = 479;
 var p480 = 480;
 var all20 = {
   "19-00": {
     register: 4864 /* 19-00 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind20.Scaled,
     factor: 0.01,
     meta: { group: group20, code: "19-00", name: "Center Frequency of Wobble Frequency", range: "5.00~100.00", default: "20.00", unit: "%", page: p4793 }
   },
   "19-01": {
     register: 4865 /* 19-01 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind20.Scaled,
     factor: 0.1,
     meta: { group: group20, code: "19-01", name: "Amplitude of Wobble Frequency", range: "0.1~20.0", default: "10.0", unit: "%", page: p4793 }
   },
   "19-02": {
     register: 4866 /* 19-02 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind20.Scaled,
     factor: 0.1,
     meta: { group: group20, code: "19-02", name: "Jump Frequency of Wobble Frequency", range: "0.0~50.0", default: "0.0", unit: "%", page: p4793 }
   },
   "19-03": {
     register: 4867 /* 19-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind20.UInt16,
     meta: { group: group20, code: "19-03", name: "Jump Time of Wobble Frequency", range: "0~50", default: "0", unit: "ms", page: p4793 }
   },
   "19-04": {
     register: 4868 /* 19-04 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind20.Scaled,
     factor: 0.1,
     meta: { group: group20, code: "19-04", name: "Wobble Frequency Cycle", range: "0.0~1000.0", default: "10.0", unit: "Sec", page: p4793 }
   },
   "19-05": {
     register: 4869 /* 19-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind20.Scaled,
     factor: 0.1,
     meta: { group: group20, code: "19-05", name: "Wobble Frequency Ratio", range: "0.1~10.0", default: "1.0", unit: "-", page: p4793 }
   },
   "19-06": {
     register: 4870 /* 19-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind20.Scaled,
     factor: 0.1,
     meta: { group: group20, code: "19-06", name: "Upper Offset Amplitude of Wobble Frequency", range: "0.0~20.0", default: "0.0", unit: "%", page: p4793 }
   },
   "19-07": {
     register: 4871 /* 19-07 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind20.Scaled,
     factor: 0.1,
     meta: { group: group20, code: "19-07", name: "Lower Offset Amplitude of Wobble Frequency", range: "0.0~20.0", default: "0.0", unit: "%", page: p480 }
   }
 };
 var group19Params = all20;
 // src/parameters/group-20.ts
+import { ParamKind as ParamKind21 } from "modbus-schema";
 var group21 = 20;
 var p4802 = 480;
 var p481 = 481;
@@ -9025,7 +9652,7 @@ var p482 = 482;
 var all21 = {
   "20-00": {
     register: 5120 /* 20-00 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.01,
     meta: {
       group: group21,
@@ -9039,7 +9666,7 @@ var all21 = {
   },
   "20-01": {
     register: 5121 /* 20-01 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.001,
     meta: {
       group: group21,
@@ -9053,7 +9680,7 @@ var all21 = {
   },
   "20-02": {
     register: 5122 /* 20-02 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.01,
     meta: {
       group: group21,
@@ -9067,7 +9694,7 @@ var all21 = {
   },
   "20-03": {
     register: 5123 /* 20-03 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.001,
     meta: {
       group: group21,
@@ -9081,7 +9708,7 @@ var all21 = {
   },
   "20-04": {
     register: 5124 /* 20-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-04",
@@ -9094,7 +9721,7 @@ var all21 = {
   },
   "20-05": {
     register: 5125 /* 20-05 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9108,7 +9735,7 @@ var all21 = {
   },
   "20-06": {
     register: 5126 /* 20-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9122,7 +9749,7 @@ var all21 = {
   },
   "20-07": {
     register: 5127 /* 20-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-07",
@@ -9135,7 +9762,7 @@ var all21 = {
   },
   "20-08": {
     register: 5128 /* 20-08 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.001,
     meta: {
       group: group21,
@@ -9149,7 +9776,7 @@ var all21 = {
   },
   "20-09": {
     register: 5129 /* 20-09 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.01,
     meta: {
       group: group21,
@@ -9163,7 +9790,7 @@ var all21 = {
   },
   "20-10": {
     register: 5130 /* 20-10 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.01,
     meta: {
       group: group21,
@@ -9177,7 +9804,7 @@ var all21 = {
   },
   "20-11": {
     register: 5131 /* 20-11 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.01,
     meta: {
       group: group21,
@@ -9191,7 +9818,7 @@ var all21 = {
   },
   "20-12": {
     register: 5132 /* 20-12 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.01,
     meta: {
       group: group21,
@@ -9205,7 +9832,7 @@ var all21 = {
   },
   "20-13": {
     register: 5133 /* 20-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-13",
@@ -9218,7 +9845,7 @@ var all21 = {
   },
   "20-14": {
     register: 5134 /* 20-14 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-14",
@@ -9231,7 +9858,7 @@ var all21 = {
   },
   "20-15": {
     register: 5135 /* 20-15 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9245,7 +9872,7 @@ var all21 = {
   },
   "20-16": {
     register: 5136 /* 20-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9259,7 +9886,7 @@ var all21 = {
   },
   "20-17": {
     register: 5137 /* 20-17 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.01,
     meta: {
       group: group21,
@@ -9273,7 +9900,7 @@ var all21 = {
   },
   "20-18": {
     register: 5138 /* 20-18 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-18",
@@ -9286,7 +9913,7 @@ var all21 = {
   },
   "20-19": {
     register: 5139 /* 20-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-19",
@@ -9299,7 +9926,7 @@ var all21 = {
   },
   "20-20": {
     register: 5140 /* 20-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-20",
@@ -9312,7 +9939,7 @@ var all21 = {
   },
   "20-21": {
     register: 5141 /* 20-21 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9326,7 +9953,7 @@ var all21 = {
   },
   "20-22": {
     register: 5142 /* 20-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-22",
@@ -9339,7 +9966,7 @@ var all21 = {
   },
   "20-23": {
     register: 5143 /* 20-23 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-23",
@@ -9352,7 +9979,7 @@ var all21 = {
   },
   "20-24": {
     register: 5144 /* 20-24 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9366,7 +9993,7 @@ var all21 = {
   },
   "20-25": {
     register: 5145 /* 20-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-25",
@@ -9379,7 +10006,7 @@ var all21 = {
   },
   "20-26": {
     register: 5146 /* 20-26 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9393,7 +10020,7 @@ var all21 = {
   },
   "20-27": {
     register: 5147 /* 20-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-27",
@@ -9406,7 +10033,7 @@ var all21 = {
   },
   "20-28": {
     register: 5148 /* 20-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-28",
@@ -9419,7 +10046,7 @@ var all21 = {
   },
   "20-29": {
     register: 5149 /* 20-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-29",
@@ -9432,7 +10059,7 @@ var all21 = {
   },
   "20-30": {
     register: 5150 /* 20-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-30",
@@ -9445,7 +10072,7 @@ var all21 = {
   },
   "20-31": {
     register: 5151 /* 20-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-31",
@@ -9458,7 +10085,7 @@ var all21 = {
   },
   "20-32": {
     register: 5152 /* 20-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-32",
@@ -9471,7 +10098,7 @@ var all21 = {
   },
   "20-33": {
     register: 5153 /* 20-33 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9485,7 +10112,7 @@ var all21 = {
   },
   "20-34": {
     register: 5154 /* 20-34 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-34",
@@ -9498,7 +10125,7 @@ var all21 = {
   },
   "20-35": {
     register: 5155 /* 20-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-35",
@@ -9511,7 +10138,7 @@ var all21 = {
   },
   "20-43": {
     register: 5163 /* 20-43 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind21.UInt16,
     meta: {
       group: group21,
       code: "20-43",
@@ -9524,7 +10151,7 @@ var all21 = {
   },
   "20-44": {
     register: 5164 /* 20-44 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind21.Scaled,
     factor: 0.1,
     meta: {
       group: group21,
@@ -9535,45 +10162,11 @@ var all21 = {
       unit: "Hz",
       page: p482
     }
-  },
-  "20-36": {
-    register: 5156 /* 20-36 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group21, code: "20-36", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 }
-  },
-  "20-37": {
-    register: 5157 /* 20-37 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group21, code: "20-37", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 }
-  },
-  "20-38": {
-    register: 5158 /* 20-38 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group21, code: "20-38", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 }
-  },
-  "20-39": {
-    register: 5159 /* 20-39 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group21, code: "20-39", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 }
-  },
-  "20-40": {
-    register: 5160 /* 20-40 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group21, code: "20-40", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 }
-  },
-  "20-41": {
-    register: 5161 /* 20-41 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group21, code: "20-41", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 }
-  },
-  "20-42": {
-    register: 5162 /* 20-42 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group21, code: "20-42", name: "Reserved", range: "-", default: "-", unit: "-", page: p482 }
   }
 };
 var group20Params = all21;
 // src/parameters/group-21.ts
+import { ParamKind as ParamKind22 } from "modbus-schema";
 var group22 = 21;
 var p4822 = 482;
 var p483 = 483;
@@ -9582,229 +10175,230 @@ var p485 = 485;
 var all22 = {
   "21-00": {
     register: 5376 /* 21-00 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-00", name: "Torque Control Selection", range: "0-1 (0:Speed Control / 1:Torque Control)", default: "0", unit: "-", page: p4822 }
   },
   "21-01": {
     register: 5377 /* 21-01 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-01", name: "Filter Time of Torque Reference", range: "0~1000", default: "0", unit: "ms", page: p4822 }
   },
   "21-02": {
     register: 5378 /* 21-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-02", name: "Speed Limit Selection", range: "0-2 (0:AI input / 1:21-03 value / 2:Comm 2502H)", default: "0", unit: "-", page: p4822 }
   },
   "21-03": {
     register: 5379 /* 21-03 */,
-    kind: "SignedScaled" /* SignedScaled */,
+    kind: ParamKind22.SignedScaled,
     factor: 0.1,
     meta: { group: group22, code: "21-03", name: "Speed Limit Value", range: "-120~120", default: "0", unit: "%", page: p4822 }
   },
   "21-04": {
     register: 5380 /* 21-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-04", name: "Speed Limit Bias", range: "0~120", default: "10", unit: "%", page: p4822 }
   },
   "21-05": {
     register: 5381 /* 21-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-05", name: "Positive Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p4822 }
   },
   "21-06": {
     register: 5382 /* 21-06 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-06", name: "Negative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p4822 }
   },
   "21-07": {
     register: 5383 /* 21-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-07", name: "Forward Regenerative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p4822 }
   },
   "21-08": {
     register: 5384 /* 21-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-08", name: "Reversal Regenerative Torque Limit", range: "0~300", default: "* (see Attachment 1 p.170)", unit: "%", page: p4822 }
   },
   "21-09": {
     register: 5385 /* 21-09 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind22.Scaled,
     factor: 0.1,
     meta: { group: group22, code: "21-09", name: "Maximum Frequency of Position Control", range: "0.1~100.0", default: "20.0", unit: "Hz", page: p4822 }
   },
   "21-10": {
     register: 5386 /* 21-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-10", name: "Command of Rotation Cycle Number of Section 0", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-11": {
     register: 5387 /* 21-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-11", name: "Command of the Pulse Number of Section 0", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-12": {
     register: 5388 /* 21-12 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-12", name: "Command of Rotation Cycle Number of Section 1", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-13": {
     register: 5389 /* 21-13 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-13", name: "Command of the Pulse Number of Section 1", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-14": {
     register: 5390 /* 21-14 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-14", name: "Command of Rotation Cycle Number of Section 2", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-15": {
     register: 5391 /* 21-15 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-15", name: "Command of the Pulse Number of Section 2", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-16": {
     register: 5392 /* 21-16 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-16", name: "Command of Rotation Cycle Number of Section 3", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-17": {
     register: 5393 /* 21-17 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-17", name: "Command of the Pulse Number of Section 3", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-18": {
     register: 5394 /* 21-18 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-18", name: "Command of Rotation Cycle Number of Section 4", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-19": {
     register: 5395 /* 21-19 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-19", name: "Command of the Pulse Number of Section 4", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-20": {
     register: 5396 /* 21-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-20", name: "Command of Rotation Cycle Number of Section 5", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-21": {
     register: 5397 /* 21-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-21", name: "Command of the Pulse Number of Section 5", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-22": {
     register: 5398 /* 21-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-22", name: "Command of Rotation Cycle Number of Section 6", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-23": {
     register: 5399 /* 21-23 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-23", name: "Command of the Pulse Number of Section 6", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-24": {
     register: 5400 /* 21-24 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-24", name: "Command of Rotation Cycle Number of Section 7", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-25": {
     register: 5401 /* 21-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-25", name: "Command of the Pulse Number of Section 7", range: "-9999~9999", default: "0", unit: "-", page: p483 }
   },
   "21-26": {
     register: 5402 /* 21-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-26", name: "Command of the Pulse Number of Section 8", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-27": {
     register: 5403 /* 21-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-27", name: "Command of Rotation Cycle Number of Section 8", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-28": {
     register: 5404 /* 21-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-28", name: "Command of the Pulse Number of Section 9", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-29": {
     register: 5405 /* 21-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-29", name: "Command of Rotation Cycle Number of Section 9", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-30": {
     register: 5406 /* 21-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-30", name: "Command of Rotation Cycle Number of Section 10", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-31": {
     register: 5407 /* 21-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-31", name: "Command of the Pulse Number of Section 10", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-32": {
     register: 5408 /* 21-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-32", name: "Command of Rotation Cycle Number of Section 11", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-33": {
     register: 5409 /* 21-33 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-33", name: "Command of the Pulse Number of Section 11", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-34": {
     register: 5410 /* 21-34 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-34", name: "Command of Rotation Cycle Number of Section 12", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-35": {
     register: 5411 /* 21-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-35", name: "Command of the Pulse Number of Section 12", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-36": {
     register: 5412 /* 21-36 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-36", name: "Command of Rotation Cycle Number of Section 13", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-37": {
     register: 5413 /* 21-37 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-37", name: "Command of the Pulse Number of Section 13", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-38": {
     register: 5414 /* 21-38 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-38", name: "Command of Rotation Cycle Number of Section 14", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-39": {
     register: 5415 /* 21-39 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-39", name: "Command of the Pulse Number of Section 14", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-40": {
     register: 5416 /* 21-40 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-40", name: "Command of Rotation Cycle Number of Section 15", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-41": {
     register: 5417 /* 21-41 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-41", name: "Command of the Pulse Number of Section 15", range: "-9999~9999", default: "0", unit: "-", page: p484 }
   },
   "21-42": {
     register: 5418 /* 21-42 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-42", name: "Pos. Mode Sel", range: "0-1 (0:Switch to pos mode when freq<01-08 / 1:Z Phase Locked)", default: "0", unit: "-", page: p485 }
   },
   "21-43": {
     register: 5419 /* 21-43 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind22.UInt16,
     meta: { group: group22, code: "21-43", name: "Offset Angle", range: "0~9999", default: "0", unit: "Pulse", page: p485 }
   }
 };
 var group21Params = all22;
 // src/parameters/group-22.ts
+import { ParamKind as ParamKind23 } from "modbus-schema";
 var group23 = 22;
 var p4852 = 485;
 var p486 = 486;
@@ -9813,7 +10407,7 @@ var p488 = 488;
 var all23 = {
   "22-00": {
     register: 5632 /* 22-00 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind23.Scaled,
     factor: 0.01,
     meta: {
       group: group23,
@@ -9827,7 +10421,7 @@ var all23 = {
   },
   "22-01": {
     register: 5633 /* 22-01 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind23.Scaled,
     factor: 0.1,
     meta: {
       group: group23,
@@ -9841,7 +10435,7 @@ var all23 = {
   },
   "22-02": {
     register: 5634 /* 22-02 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-02",
@@ -9854,7 +10448,7 @@ var all23 = {
   },
   "22-03": {
     register: 5635 /* 22-03 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-03",
@@ -9867,7 +10461,7 @@ var all23 = {
   },
   "22-04": {
     register: 5636 /* 22-04 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-04",
@@ -9880,7 +10474,7 @@ var all23 = {
   },
   "22-05": {
     register: 5637 /* 22-05 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-05",
@@ -9893,7 +10487,7 @@ var all23 = {
   },
   "22-06": {
     register: 5638 /* 22-06 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind23.Scaled,
     factor: 0.1,
     meta: {
       group: group23,
@@ -9907,7 +10501,7 @@ var all23 = {
   },
   "22-07": {
     register: 5639 /* 22-07 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-07",
@@ -9920,7 +10514,7 @@ var all23 = {
   },
   "22-08": {
     register: 5640 /* 22-08 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-08",
@@ -9933,7 +10527,7 @@ var all23 = {
   },
   "22-10": {
     register: 5642 /* 22-10 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-10",
@@ -9946,7 +10540,7 @@ var all23 = {
   },
   "22-11": {
     register: 5643 /* 22-11 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-11",
@@ -9959,7 +10553,7 @@ var all23 = {
   },
   "22-14": {
     register: 5646 /* 22-14 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind23.Scaled,
     factor: 0.001,
     meta: {
       group: group23,
@@ -9973,7 +10567,7 @@ var all23 = {
   },
   "22-15": {
     register: 5647 /* 22-15 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind23.Scaled,
     factor: 0.01,
     meta: {
       group: group23,
@@ -9987,7 +10581,7 @@ var all23 = {
   },
   "22-16": {
     register: 5648 /* 22-16 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind23.Scaled,
     factor: 0.01,
     meta: {
       group: group23,
@@ -10001,7 +10595,7 @@ var all23 = {
   },
   "22-17": {
     register: 5649 /* 22-17 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-17",
@@ -10014,7 +10608,7 @@ var all23 = {
   },
   "22-18": {
     register: 5650 /* 22-18 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-18",
@@ -10027,7 +10621,7 @@ var all23 = {
   },
   "22-20": {
     register: 5652 /* 22-20 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-20",
@@ -10040,7 +10634,7 @@ var all23 = {
   },
   "22-21": {
     register: 5653 /* 22-21 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-21",
@@ -10053,7 +10647,7 @@ var all23 = {
   },
   "22-22": {
     register: 5654 /* 22-22 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-22",
@@ -10066,7 +10660,7 @@ var all23 = {
   },
   "22-25": {
     register: 5657 /* 22-25 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-25",
@@ -10079,7 +10673,7 @@ var all23 = {
   },
   "22-26": {
     register: 5658 /* 22-26 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-26",
@@ -10092,7 +10686,7 @@ var all23 = {
   },
   "22-27": {
     register: 5659 /* 22-27 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-27",
@@ -10105,7 +10699,7 @@ var all23 = {
   },
   "22-28": {
     register: 5660 /* 22-28 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-28",
@@ -10118,7 +10712,7 @@ var all23 = {
   },
   "22-29": {
     register: 5661 /* 22-29 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-29",
@@ -10131,7 +10725,7 @@ var all23 = {
   },
   "22-30": {
     register: 5662 /* 22-30 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-30",
@@ -10144,7 +10738,7 @@ var all23 = {
   },
   "22-31": {
     register: 5663 /* 22-31 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-31",
@@ -10157,7 +10751,7 @@ var all23 = {
   },
   "22-32": {
     register: 5664 /* 22-32 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-32",
@@ -10170,7 +10764,7 @@ var all23 = {
   },
   "22-33": {
     register: 5665 /* 22-33 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-33",
@@ -10183,7 +10777,7 @@ var all23 = {
   },
   "22-34": {
     register: 5666 /* 22-34 */,
-    kind: "Scaled" /* Scaled */,
+    kind: ParamKind23.Scaled,
     factor: 0.1,
     meta: {
       group: group23,
@@ -10197,7 +10791,7 @@ var all23 = {
   },
   "22-35": {
     register: 5667 /* 22-35 */,
-    kind: "UInt16" /* UInt16 */,
+    kind: ParamKind23.UInt16,
     meta: {
       group: group23,
       code: "22-35",
@@ -10207,26 +10801,28 @@ var all23 = {
       unit: "%",
       page: p488
     }
-  },
-  "22-23": {
-    register: 5655 /* 22-23 */,
-    kind: "UInt16" /* UInt16 */,
-    meta: { group: group23, code: "22-23", name: "Reserved", range: "-", default: "-", unit: "-", page: p488 }
   }
 };
 var group22Params = all23;
 // src/TecoInverterService.ts
+import {
+  ParamKind as ParamKind24,
+  fromConfig
+} from "modbus-schema";
 var paramDefault = (config) => {
   const raw = Number(config.meta.default);
   if (Number.isNaN(raw))
     return 0;
   switch (config.kind) {
-    case "UInt16" /* UInt16 */:
-    case "Enum" /* Enum */:
+    case ParamKind24.UInt16:
+    case ParamKind24.Enum:
       return raw;
-    case "Scaled" /* Scaled */:
-    case "SignedScaled" /* SignedScaled */:
+    case ParamKind24.Scaled:
+    case ParamKind24.SignedScaled:
       return Math.round(raw / config.factor);
+    case ParamKind24.Bitfield:
+    case ParamKind24.Lookup:
+      return raw;
   }
 };
 var allParamGroups = [
@@ -10259,12 +10855,12 @@ var paramRegisterDefs = allParamGroups.flatMap((group24) => Object.values(group2
   default: paramDefault(config)
 })));
 
-class TecoInverterService extends Effect4.Service()("TecoInverterService", {
-  scoped: Effect4.fnUntraced(function* (safeShutdown = true) {
+class TecoInverterService extends Effect.Service()("TecoInverterService", {
+  scoped: Effect.fnUntraced(function* (safeShutdown = true) {
     const transport = yield* SerialTransportService;
     const deviceCache = new Set;
     const cacheDevice = (device) => deviceCache.add(device);
-    const readHolding = (address, decode) => Effect4.fnUntraced(function* (deviceId) {
+    const readHolding = (address, decode) => Effect.fnUntraced(function* (deviceId) {
       cacheDevice(deviceId);
       const client = yield* transport.withClient(deviceId);
       const [raw] = yield* client.readHoldingRegisters({
@@ -10275,7 +10871,7 @@ class TecoInverterService extends Effect4.Service()("TecoInverterService", {
     });
     const makeReadModifyWrite = (address, decode, encode, merge) => (deviceId) => {
       const read = () => readHolding(address, decode)(deviceId);
-      const update = Effect4.fnUntraced(function* (patch) {
+      const update = Effect.fnUntraced(function* (patch) {
         const current = yield* read();
         const merged = merge(current, patch);
         const encoded = yield* encode(merged);
@@ -10287,7 +10883,7 @@ class TecoInverterService extends Effect4.Service()("TecoInverterService", {
     };
     const makeReadWrite = (address, decode, encode) => (deviceId) => {
       const read = () => readHolding(address, decode)(deviceId);
-      const update = Effect4.fnUntraced(function* (value) {
+      const update = Effect.fnUntraced(function* (value) {
         cacheDevice(deviceId);
         const client = yield* transport.withClient(deviceId);
         const encoded = yield* encode(value);
@@ -10311,8 +10907,8 @@ class TecoInverterService extends Effect4.Service()("TecoInverterService", {
     };
     const operationCommand = makeReadModifyWrite(9473 /* OPERATION_COMMAND */, decodeCommandWord, encodeCommandWord, mergeCommandWordPatch);
     if (safeShutdown) {
-      yield* Effect4.addFinalizer(() => Effect4.forEach(deviceCache, (deviceId) => {
-        return operationCommand(deviceId).update(new CommandWordPatch({ run: false })).pipe(Effect4.catchAll((err) => Effect4.logWarning("Error while stopping fan on exit: ", err).pipe(Effect4.asVoid)));
+      yield* Effect.addFinalizer(() => Effect.forEach(deviceCache, (deviceId) => {
+        return operationCommand(deviceId).update(new CommandWordPatch({ run: false })).pipe(Effect.catchAll((err) => Effect.logWarning("Error while stopping fan on exit: ", err).pipe(Effect.asVoid)));
       }));
     }
     return {
@@ -10379,6 +10975,8 @@ class TecoInverterService extends Effect4.Service()("TecoInverterService", {
     };
   }
 }
+// src/utils.ts
+var bit = (n) => 1 << n;
 export {
   readOnlyEncodeFailure,
   mergeDigitalOutCommandPatch,

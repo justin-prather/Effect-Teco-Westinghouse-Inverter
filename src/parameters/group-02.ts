@@ -30,7 +30,7 @@
  * 02-37  Motor Mechanical Loss             | 0.0~10.0                    | 4.0           | %    | 4-26
  */
 
-import { ParamKind, type ParamConfig } from "./param-utils";
+import { ParamKind, type ParamConfig } from "modbus-schema";
 import { GROUP_02_IM_Motor_Parameters } from "../Registers";
 
 const group = 2 as const;

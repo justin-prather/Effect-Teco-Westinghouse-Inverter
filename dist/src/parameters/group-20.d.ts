@@ -2,7 +2,7 @@
  * Group 20: Speed Control Parameters
  * Manual pages 4-80 to 4-82 (p480, p481, p482)
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_20_Speed_Control_Parameters } from "../Registers";
 export declare const group20Params: {
     readonly "20-00": {
@@ -491,6 +491,12 @@ export declare const group20Params: {
             readonly page: 482;
         };
     };
+    /**
+     * @param 20-43 MPG Speed Magnification Calculation -- Range: 1~500, Default: 20, Manual p.4-82
+     * @remarks Not listed in the A510 communication addendum (Group 20 register map ends at 20-35).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "20-43": {
         readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-43"];
         readonly kind: ParamKind.UInt16;
@@ -504,6 +510,12 @@ export declare const group20Params: {
             readonly page: 482;
         };
     };
+    /**
+     * @param 20-44 MPG Speed Command Limit -- Range: 0.1~30.0, Default: 6.0, Unit: Hz, Manual p.4-82
+     * @remarks Not listed in the A510 communication addendum (Group 20 register map ends at 20-35).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "20-44": {
         readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-44"];
         readonly kind: ParamKind.Scaled;
@@ -515,97 +527,6 @@ export declare const group20Params: {
             readonly range: "0.1~30.0";
             readonly default: "6.0";
             readonly unit: "Hz";
-            readonly page: 482;
-        };
-    };
-    readonly "20-36": {
-        readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-36"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 20;
-            readonly code: "20-36";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 482;
-        };
-    };
-    readonly "20-37": {
-        readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-37"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 20;
-            readonly code: "20-37";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 482;
-        };
-    };
-    readonly "20-38": {
-        readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-38"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 20;
-            readonly code: "20-38";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 482;
-        };
-    };
-    readonly "20-39": {
-        readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-39"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 20;
-            readonly code: "20-39";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 482;
-        };
-    };
-    readonly "20-40": {
-        readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-40"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 20;
-            readonly code: "20-40";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 482;
-        };
-    };
-    readonly "20-41": {
-        readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-41"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 20;
-            readonly code: "20-41";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 482;
-        };
-    };
-    readonly "20-42": {
-        readonly register: (typeof GROUP_20_Speed_Control_Parameters)["20-42"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 20;
-            readonly code: "20-42";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
             readonly page: 482;
         };
     };

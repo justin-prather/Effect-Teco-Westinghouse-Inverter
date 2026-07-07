@@ -2,7 +2,7 @@
  * Group 11: Auxiliary Parameters
  * Manual pages 4-56 to 4-59
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_11_Auxiliary_Parameters } from "../Registers";
 export declare const group11Params: {
     readonly "11-00": {
@@ -895,6 +895,12 @@ export declare const group11Params: {
             readonly page: 459;
         };
     };
+    /**
+     * @param 11-76 Droop Frequency Level 1 -- Range: 0.00~599.00, Default: 0.00, Unit: Hz, Manual p.4-59
+     * @remarks Not listed in the A510 communication addendum (Group 11 register map ends at 11-65).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "11-76": {
         readonly register: (typeof GROUP_11_Auxiliary_Parameters)["11-76"];
         readonly kind: ParamKind.Scaled;
@@ -909,6 +915,12 @@ export declare const group11Params: {
             readonly page: 459;
         };
     };
+    /**
+     * @param 11-77 Droop Frequency Level 2 -- Range: 0.00~599.00, Default: 0.00, Unit: Hz, Manual p.4-59
+     * @remarks Not listed in the A510 communication addendum (Group 11 register map ends at 11-65).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "11-77": {
         readonly register: (typeof GROUP_11_Auxiliary_Parameters)["11-77"];
         readonly kind: ParamKind.Scaled;
@@ -923,6 +935,12 @@ export declare const group11Params: {
             readonly page: 459;
         };
     };
+    /**
+     * @param 11-78 Droop Torque Offset Value -- Range: 0.00~100.00, Default: 0.00, Unit: %, Manual p.4-59
+     * @remarks Not listed in the A510 communication addendum (Group 11 register map ends at 11-65).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "11-78": {
         readonly register: (typeof GROUP_11_Auxiliary_Parameters)["11-78"];
         readonly kind: ParamKind.Scaled;

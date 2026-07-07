@@ -29,7 +29,7 @@
  * 02-34  Motor 1 Slip Frequency            | 0.10~20.00                  | 2.48          | Hz   | 4-25
  * 02-37  Motor Mechanical Loss             | 0.0~10.0                    | 4.0           | %    | 4-26
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_02_IM_Motor_Parameters } from "../Registers";
 export declare const group02Params: {
     /** @param 02-00 No-Load Current of Motor 1 — Range: 0.01~600.00, Default: -, Unit: A, Manual p.4-25 */

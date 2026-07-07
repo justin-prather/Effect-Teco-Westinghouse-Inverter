@@ -14,20 +14,24 @@
     }
   },
   "scripts": {
-    "test": "bun test src/schemas src/parameters",
-    "test:coverage": "bun test --coverage src/schemas src/parameters",
+    "test": "bun test src/schemas.test.ts src/parameters/",
+    "test:coverage": "bun test --coverage src/schemas.test.ts src/parameters/",
     "typecheck": "tsc --noEmit",
-    "build": "rm -rf ./dist && bun build ./index.ts --outdir ./dist --target node --external effect --external effect-modbus-rs --external modbus-rs && tsc --noEmit false --emitDeclarationOnly --outDir ./dist --rootDir ."
+    "build": "rm -rf ./dist && bun build ./index.ts --outdir ./dist --target node --external effect --external effect-modbus-rs --external modbus-rs --external modbus-schema && tsc --noEmit false --emitDeclarationOnly --outDir ./dist --rootDir . --project tsconfig.build.json"
   },
   "devDependencies": {
     "@effect/language-service": "^0.86.3",
     "@effect/platform-bun": "^0.90.0",
     "@types/bun": "latest",
+    "effect": "^3.21.4",
     "fallow": "^2.104.0",
     "typescript": "^6.0.3"
   },
+  "peerDependencies": {
+    "effect": "^3.21.4"
+  },
   "dependencies": {
-    "effect": "^3.21.4",
-    "effect-modbus-rs": "github:justin-prather/Effect-modbus-rs"
+    "effect-modbus-rs": "github:justin-prather/Effect-modbus-rs",
+    "modbus-schema": "link:modbus-schema"
   }
 }

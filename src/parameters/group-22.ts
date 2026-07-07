@@ -3,7 +3,7 @@
  * Manual pages 4-85 to 4-88
  */
 
-import { ParamKind, type ParamConfig } from "./param-utils";
+import { ParamKind, type ParamConfig } from "modbus-schema";
 import { GROUP_22_PM_Motor_Parameters } from "../Registers";
 
 const group = 22 as const;

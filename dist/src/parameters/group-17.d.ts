@@ -2,7 +2,7 @@
  * Group 17: Automatic Tuning Parameters
  * Manual pages 4-78 to 4-79 (p478, p479)
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_17_Automatic_Tuning_Parameters } from "../Registers";
 export declare const group17Params: {
     readonly "17-00": {

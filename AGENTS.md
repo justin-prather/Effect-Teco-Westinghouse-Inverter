@@ -6,7 +6,7 @@ Bidirectional schema transformers for Teco/Westinghouse A510 inverter Modbus par
 
 - **Runtime**: Bun only — never use Node, npm, pnpm, yarn, or vite.
 - **Language**: TypeScript 6 (ESNext, `verbatimModuleSyntax`, bundler resolution, `module: "Preserve"`).
-- **Core libs**: `effect` (^3.21.4), `effect-modbus-rs` (linked).
+- **Core libs**: `effect` (^3.21.4), `effect-modbus-rs` (linked), `modbus-schema` (linked).
 - **LSP**: `@effect/language-service` plugin in `tsconfig.json` `compilerOptions.plugins`.
 - **License**: GPL-3.0.
 
@@ -34,8 +34,8 @@ src/
   utils.ts                   — Bit helpers (bit)
   parameters/
     index.ts                 — Re-exports all parameter groups
-    param-utils.ts           — Factory functions (makeParam, makeScaledParam, etc.)
-    group-00.ts … group-22.ts — Parameter schemas per group
+    operations.ts            — Inverter-specific operation types that couple modbus-schema with effect-modbus-rs
+    group-00.ts … group-22.ts — Parameter configs per group
 examples/
   readOpsRegister.ts         — Read/write operation command register
   readAllRegisters.ts        — Read all command + monitor registers
@@ -49,7 +49,8 @@ examples/
 - **Command registers** — Use read-modify-write semantics to update individual bitfields without affecting unchanged bits.
 - **Monitor registers** — Read-only; attempts to encode a monitor value fail with `readOnlyEncodeFailure`.
 - **Parameter groups** — Accessed via `inverter.parameters.group##`. Each parameter callable returns `{ read(), update(value) }` for a given `deviceId`.
-- **Schema factories** — `makeParam`, `makeScaledParam`, `makeSignedScaledParam`, `makeEnumParam` in `src/parameters/param-utils.ts` produce typed parameter configs with metadata.
+- **Schema engine** — The device-agnostic factories (`makeParam`, `makeScaledParam`, etc.) now live in the `modbus-schema` package. Parameter group files import `ParamKind` and `ParamConfig` from `modbus-schema` directly.
+- **Operation types** — `ParamOperationOfEntry`, `ParamCallableOfEntry`, and `GroupParamOps` in `src/parameters/operations.ts` couple the generic engine with the `effect-modbus-rs` `ModbusError` type.
 - **`mockDevice(deviceId)`** — Returns a `SlaveDeviceDefinition` with all A510 registers (command, monitor, and all parameter groups) defaulting to `0`.
 
 ## Conventions

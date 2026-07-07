@@ -1,9 +1,10 @@
 /**
- * @fileoverview Re-exports all parameter groups (Groups 00–22) and param-utils utilities.
+ * @fileoverview Re-exports all parameter groups (Groups 00–22).
  *
  * Each group is a record of {@link ParamConfig} objects keyed by parameter code
- * (e.g. `p00_01`, `p01_00`). The configs are converted into {@link ParamCallableOfEntry}
- * bundles by {@link TecoInverterService} at service construction time.
+ * (e.g. `p00_01`, `p01_00`). The schema engine lives in the `modbus-schema`
+ * package; configs are converted into {@link ParamCallableOfEntry} bundles by
+ * {@link TecoInverterService} at service construction time.
  *
  * @example
  * import { group00 } from "./parameters";
@@ -11,7 +12,6 @@
  *
  * @module
  */
-export * from "./param-utils";
 export { group00Params as group00 } from "./group-00";
 export { group01Params as group01 } from "./group-01";
 export { group02Params as group02 } from "./group-02";

@@ -2,7 +2,7 @@
  * Group 22: PM Motor Parameters
  * Manual pages 4-85 to 4-88
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_22_PM_Motor_Parameters } from "../Registers";
 export declare const group22Params: {
     readonly "22-00": {
@@ -258,6 +258,12 @@ export declare const group22Params: {
             readonly page: 487;
         };
     };
+    /**
+     * PM motor tuning registers 22-25 through 22-35.
+     * @remarks Not listed in the A510 communication addendum (Group 22 register map ends at 22-22).
+     *          All returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "22-25": {
         readonly register: (typeof GROUP_22_PM_Motor_Parameters)["22-25"];
         readonly kind: ParamKind.UInt16;
@@ -399,19 +405,6 @@ export declare const group22Params: {
             readonly range: "0~300";
             readonly default: "50";
             readonly unit: "%";
-            readonly page: 488;
-        };
-    };
-    readonly "22-23": {
-        readonly register: (typeof GROUP_22_PM_Motor_Parameters)["22-23"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 22;
-            readonly code: "22-23";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
             readonly page: 488;
         };
     };

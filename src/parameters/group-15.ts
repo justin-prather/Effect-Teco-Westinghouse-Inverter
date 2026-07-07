@@ -3,7 +3,7 @@
  * Manual page 4-73
  */
 
-import { ParamKind, type ParamConfig } from "./param-utils";
+import { ParamKind, type ParamConfig } from "modbus-schema";
 import { GROUP_15_PLC_Monitoring_Parameters } from "../Registers";
 
 const group = 15 as const;

@@ -2,7 +2,7 @@
  * Group 07: Start/Stop Parameters
  * Manual pages 4-44 to 4-46
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_07_Start_Stop_Parameters } from "../Registers";
 export declare const group07Params: {
     /** @param 07-00 Momentary Power Loss/Fault Restart Selection — Range: 0-1, Default: 0, Manual p.4-44 */
@@ -422,7 +422,12 @@ export declare const group07Params: {
             readonly page: 445;
         };
     };
-    /** @param 07-34 Short-circuit Braking Time at Start — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-45 */
+    /**
+     * @param 07-34 Short-circuit Braking Time at Start — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-45
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-34": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-34"];
         readonly kind: ParamKind.Scaled;
@@ -437,7 +442,12 @@ export declare const group07Params: {
             readonly page: 445;
         };
     };
-    /** @param 07-35 Short-circuit Braking Time at Stop — Range: 0.00~100.00, Default: 0.50, Unit: Sec, Manual p.4-45 */
+    /**
+     * @param 07-35 Short-circuit Braking Time at Stop — Range: 0.00~100.00, Default: 0.50, Unit: Sec, Manual p.4-45
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-35": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-35"];
         readonly kind: ParamKind.Scaled;
@@ -452,7 +462,12 @@ export declare const group07Params: {
             readonly page: 445;
         };
     };
-    /** @param 07-36 Short-circuit Braking Current — Range: 0.0~200.0, Default: 100.0, Unit: %, Manual p.4-45 */
+    /**
+     * @param 07-36 Short-circuit Braking Current — Range: 0.0~200.0, Default: 100.0, Unit: %, Manual p.4-45
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-36": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-36"];
         readonly kind: ParamKind.Scaled;
@@ -467,7 +482,12 @@ export declare const group07Params: {
             readonly page: 445;
         };
     };
-    /** @param 07-42 Voltage Limit Gain — Range: 0.0~50.0, Default: 0, Unit: %, Manual p.4-46 */
+    /**
+     * @param 07-42 Voltage Limit Gain — Range: 0.0~50.0, Default: 0, Unit: %, Manual p.4-46
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-42": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-42"];
         readonly kind: ParamKind.Scaled;
@@ -482,7 +502,12 @@ export declare const group07Params: {
             readonly page: 446;
         };
     };
-    /** @param 07-43 Short-circuit Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46 */
+    /**
+     * @param 07-43 Short-circuit Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-43": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-43"];
         readonly kind: ParamKind.Scaled;
@@ -497,7 +522,12 @@ export declare const group07Params: {
             readonly page: 446;
         };
     };
-    /** @param 07-44 DC Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46 */
+    /**
+     * @param 07-44 DC Braking Time of PM Speed Search — Range: 0.00~100.00, Default: 0.00, Unit: Sec, Manual p.4-46
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-44": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-44"];
         readonly kind: ParamKind.Scaled;
@@ -512,7 +542,12 @@ export declare const group07Params: {
             readonly page: 446;
         };
     };
-    /** @param 07-45 STP2 Function Selection — Range: 0-1, Default: 0, Manual p.4-46 */
+    /**
+     * @param 07-45 STP2 Function Selection — Range: 0-1, Default: 0, Manual p.4-46
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-45": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-45"];
         readonly kind: ParamKind.UInt16;
@@ -526,7 +561,12 @@ export declare const group07Params: {
             readonly page: 446;
         };
     };
-    /** @param 07-46 DC Injection Current Limit — Range: 0~150, Default: 100, Unit: %, Manual p.4-46 */
+    /**
+     * @param 07-46 DC Injection Current Limit — Range: 0~150, Default: 100, Unit: %, Manual p.4-46
+     * @remarks Not listed in the A510 communication addendum (Group 7 register map ends at 07-33).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "07-46": {
         readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-46"];
         readonly kind: ParamKind.UInt16;
@@ -537,71 +577,6 @@ export declare const group07Params: {
             readonly range: "0~150";
             readonly default: "100";
             readonly unit: "%";
-            readonly page: 446;
-        };
-    };
-    readonly "07-37": {
-        readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-37"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 7;
-            readonly code: "07-37";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 446;
-        };
-    };
-    readonly "07-38": {
-        readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-38"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 7;
-            readonly code: "07-38";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 446;
-        };
-    };
-    readonly "07-39": {
-        readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-39"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 7;
-            readonly code: "07-39";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 446;
-        };
-    };
-    readonly "07-40": {
-        readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-40"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 7;
-            readonly code: "07-40";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
-            readonly page: 446;
-        };
-    };
-    readonly "07-41": {
-        readonly register: (typeof GROUP_07_Start_Stop_Parameters)["07-41"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 7;
-            readonly code: "07-41";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
             readonly page: 446;
         };
     };

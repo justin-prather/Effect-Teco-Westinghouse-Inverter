@@ -2,7 +2,7 @@
  * Group 09: Communication Parameters
  * Manual pages 4-52
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_09_Communication_Parameters } from "../Registers";
 export declare const group09Params: {
     /** @param 09-00 INV Communication Station Address -- Range: 1~31, Default: 1, Manual p.4-52 */
@@ -143,19 +143,6 @@ export declare const group09Params: {
             readonly range: "5~65";
             readonly default: "5";
             readonly unit: "ms";
-            readonly page: 452;
-        };
-    };
-    readonly "09-10": {
-        readonly register: (typeof GROUP_09_Communication_Parameters)["09-10"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 9;
-            readonly code: "09-10";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
             readonly page: 452;
         };
     };

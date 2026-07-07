@@ -3,7 +3,7 @@
  * Manual pages 4-74 to 4-77
  */
 
-import { ParamKind, type ParamConfig } from "./param-utils";
+import { ParamKind, type ParamConfig } from "modbus-schema";
 import { GROUP_16_LCD_Parameters } from "../Registers";
 
 const group = 16 as const;

@@ -2,7 +2,7 @@
  * Group 12: Monitoring Parameters
  * Manual pages 4-62 to 4-67
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_12_Monitoring_Parameters } from "../Registers";
 export declare const group12Params: {
     readonly "12-00": {
@@ -854,6 +854,12 @@ export declare const group12Params: {
             readonly page: 467;
         };
     };
+    /**
+     * @param 12-80 AI1 Frequency Command -- Range: 0.0~599.0, Default: 0, Unit: Hz, Manual p.4-67
+     * @remarks Not listed in the A510 communication addendum (Group 12 register map ends at 12-79).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "12-80": {
         readonly register: (typeof GROUP_12_Monitoring_Parameters)["12-80"];
         readonly kind: ParamKind.Scaled;
@@ -868,6 +874,12 @@ export declare const group12Params: {
             readonly page: 467;
         };
     };
+    /**
+     * @param 12-82 Motor Load -- Range: 0~200.0, Default: -, Unit: %, Manual p.4-67
+     * @remarks Not listed in the A510 communication addendum (Group 12 register map ends at 12-79).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "12-82": {
         readonly register: (typeof GROUP_12_Monitoring_Parameters)["12-82"];
         readonly kind: ParamKind.Scaled;
@@ -882,6 +894,12 @@ export declare const group12Params: {
             readonly page: 467;
         };
     };
+    /**
+     * @param 12-85 AI3 Input -- Range: read-only, Default: -, Unit: %, Manual p.4-67
+     * @remarks Not listed in the A510 communication addendum (Group 12 register map ends at 12-79).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "12-85": {
         readonly register: (typeof GROUP_12_Monitoring_Parameters)["12-85"];
         readonly kind: ParamKind.UInt16;
@@ -892,19 +910,6 @@ export declare const group12Params: {
             readonly range: "read-only";
             readonly default: "-";
             readonly unit: "%";
-            readonly page: 467;
-        };
-    };
-    readonly "12-81": {
-        readonly register: (typeof GROUP_12_Monitoring_Parameters)["12-81"];
-        readonly kind: ParamKind.UInt16;
-        readonly meta: {
-            readonly group: 12;
-            readonly code: "12-81";
-            readonly name: "Reserved";
-            readonly range: "-";
-            readonly default: "-";
-            readonly unit: "-";
             readonly page: 467;
         };
     };

@@ -33,7 +33,8 @@
 import { Effect } from "effect";
 import { SerialTransportService, type SlaveDeviceDefinition } from "effect-modbus-rs";
 import * as S from "./schemas";
-import * as P from "./parameters";
+import { ParamKind } from "modbus-schema";
+import type { GroupParamOps } from "./parameters/operations";
 declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService, "TecoInverterService", {
     readonly scoped: (safeShutdown?: boolean | undefined) => Effect.Effect<{
         /**
@@ -53,7 +54,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          */
         operationCommand: (deviceId: number) => {
             read: () => Effect.Effect<S.CommandWordFlags, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (patch: S.CommandWordPatch) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            update: (patch: Readonly<Record<string, boolean | undefined>>) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Set the target output frequency in Hz.
@@ -64,8 +65,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const freq = yield* inverter.frequencyCommand(1).read(); // FrequencyHz
          */
         frequencyCommand: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"FrequencyHz">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: number & import("effect/Brand").Brand<"FrequencyHz">) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Set the torque limit / torque command as a percentage of rated torque.
@@ -76,8 +77,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const torque = yield* inverter.torqueCommand(1).read(); // TorquePercent
          */
         torqueCommand: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"TorquePercent">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: number & import("effect/Brand").Brand<"TorquePercent">) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Set the speed limit as a percentage of nominal speed.
@@ -87,8 +88,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.speedLimitCommand(1).update(100); // 100% speed limit
          */
         speedLimitCommand: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"SpeedLimitPercent">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: number & import("effect/Brand").Brand<"SpeedLimitPercent">) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Set analog output 1 target voltage.
@@ -98,8 +99,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.analogOut1Command(1).update(5.0); // 5.00 V
          */
         analogOut1Command: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"Voltage">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: number & import("effect/Brand").Brand<"Voltage">) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Set analog output 2 target voltage.
@@ -109,8 +110,8 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.analogOut2Command(1).update(7.5); // 7.50 V
          */
         analogOut2Command: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"Voltage">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (value: number & import("effect/Brand").Brand<"Voltage">) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            update: (value: any) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Control digital output terminals (RY1, RY2, pulse train).
@@ -124,7 +125,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          */
         digitalOutCommand: (deviceId: number) => {
             read: () => Effect.Effect<S.DigitalOutCommandFlags, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
-            update: (patch: S.DigitalOutCommandPatch) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            update: (patch: Readonly<Record<string, boolean | undefined>>) => Effect.Effect<void, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the current inverter operating state as individual flag fields.
@@ -137,7 +138,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * if (state.run && !state.reverse) { /* running forward *\/ }
          */
         stateMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<S.StateMonitorFlags, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the current fault/error code and get a human-readable description.
@@ -147,7 +148,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const err = yield* inverter.errorDescriptionMonitor(1).read(); // "OC (Over-current)"
          */
         errorDescriptionMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<string & import("effect/Brand").Brand<"ErrorDescriptionMonitor">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the state of the eight digital input terminals S1–S8.
@@ -158,7 +159,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * if (inputs.s1) { /* S1 is active *\/ }
          */
         digitalInStateMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<S.DigitalInStateMonitorFlags, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the frequency command currently in effect (after ramps, limits, etc.).
@@ -168,7 +169,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const freq = yield* inverter.frequencyCommandMonitor(1).read(); // FrequencyHz
          */
         frequencyCommandMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"FrequencyHz">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the actual inverter output frequency.
@@ -178,7 +179,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const outFreq = yield* inverter.outputFrequencyMonitor(1).read(); // FrequencyHz
          */
         outputFrequencyMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"FrequencyHz">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the DC bus voltage in volts.
@@ -188,7 +189,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const dcBus = yield* inverter.dcBusVoltageCommandMonitor(1).read(); // DCBusVoltage
          */
         dcBusVoltageCommandMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"DCBusVoltage">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the inverter output current in amps.
@@ -198,7 +199,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const current = yield* inverter.outputCurrentMonitor(1).read(); // CurrentAmps
          */
         outputCurrentMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"CurrentAmps">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the current warning/alarm code and get a human-readable description.
@@ -208,7 +209,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const warn = yield* inverter.warningDescriptionMonitor(1).read(); // "No alarm"
          */
         warningDescriptionMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<string & import("effect/Brand").Brand<"WarningDescriptionMonitor">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the state of the digital output terminals (RY1, RY2, pulse).
@@ -219,7 +220,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * if (outputs.ry1) { /* RY1 relay is energized *\/ }
          */
         digitalOutStateMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<S.DigitalOutStateMonitorFlags, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the actual voltage on analog output 1.
@@ -229,7 +230,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const voltage = yield* inverter.analogOut1Monitor(1).read(); // Voltage
          */
         analogOut1Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"Voltage">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the actual voltage on analog output 2.
@@ -239,7 +240,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const voltage = yield* inverter.analogOut2Monitor(1).read(); // Voltage
          */
         analogOut2Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"Voltage">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read analog input 1 as a percentage of full scale.
@@ -249,7 +250,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const ai1 = yield* inverter.analogIn1Monitor(1).read(); // AnalogInputPercent
          */
         analogIn1Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"AnalogInputPercent">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read analog input 2 as a percentage of full scale.
@@ -259,7 +260,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const ai2 = yield* inverter.analogIn2Monitor(1).read(); // AnalogInputPercent
          */
         analogIn2Monitor: (deviceId: number) => {
-            read: () => Effect.Effect<number & import("effect/Brand").Brand<"AnalogInputPercent">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Read the drive series/model identification.
@@ -269,7 +270,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * const model = yield* inverter.a510CheckMonitor(1).read(); // "A510(s)"
          */
         a510CheckMonitor: (deviceId: number) => {
-            read: () => Effect.Effect<string & import("effect/Brand").Brand<"A510CheckMonitor">, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
+            read: () => Effect.Effect<any, import("effect/ParseResult").ParseError | import("effect-modbus-rs").ModbusError, never>;
         };
         /**
          * Typed access to all parameter groups (Groups 00–22).
@@ -283,10 +284,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
          * yield* inverter.parameters.group00.p00_01(1).update(2);
          */
         parameters: {
-            group00: P.GroupParamOps<{
+            group00: GroupParamOps<{
                 readonly "00-00": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-00"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "V/F";
                         readonly 1: "V/F+PG";
@@ -308,7 +309,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-01": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-01"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Forward";
                         readonly 1: "Reverse";
@@ -325,7 +326,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-02": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-02"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Keypad";
                         readonly 1: "External Terminal";
@@ -344,7 +345,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-03": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-03"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Keypad";
                         readonly 1: "External Terminal";
@@ -363,7 +364,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-04": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-04"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "English";
                         readonly 1: "Simplified Chinese";
@@ -382,7 +383,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-05": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-05"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Keypad";
                         readonly 1: "External Terminal (Analog1)";
@@ -404,7 +405,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-06": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-06"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Keypad";
                         readonly 1: "External Terminal (Analog1)";
@@ -425,7 +426,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-07": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-07"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Main Frequency";
                         readonly 1: "Main frequency + Alternative Frequency";
@@ -442,7 +443,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-09": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-09"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Don't save when power supply is off (00-08)";
                         readonly 1: "Save when power is off (00-08)";
@@ -459,7 +460,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-10": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-10"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Show warning if lower than minimum frequency";
                         readonly 1: "Run as minimum frequency if lower than minimum frequency";
@@ -476,7 +477,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-11": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-11"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "PID Sleep Limit is Lower Limit of Frequency";
                         readonly 1: "PID Sleep Limit is 0Hz";
@@ -493,7 +494,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-27": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-27"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "HD (Heavy Duty Mode)";
                         readonly 1: "ND (Normal Duty Mode)";
@@ -510,7 +511,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-28": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-28"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Positive Characteristic (0~10V/4~20mA → 0~100%)";
                         readonly 1: "Negative Characteristic (0~10V/4~20mA → 100~0%)";
@@ -527,7 +528,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-29": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-29"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Operation Based on Frequency Command";
                         readonly 1: "Stop";
@@ -546,7 +547,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-32": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-32"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "General";
                         readonly 2: "Conveyor";
@@ -568,7 +569,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-33": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-33"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Disable";
                         readonly 1: "Enable";
@@ -585,7 +586,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-57": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-57"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "SV High Speed Mode 1";
                         readonly 1: "SV High Speed Mode 2";
@@ -602,7 +603,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-08": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 0;
@@ -616,7 +617,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-18": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 0;
@@ -630,7 +631,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-25": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-25"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 0;
@@ -644,7 +645,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-12": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-12"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -658,7 +659,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-13": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -672,7 +673,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-14": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -686,7 +687,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-15": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-15"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -700,7 +701,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-16": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -714,7 +715,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-17": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -728,7 +729,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-19": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-19"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -742,7 +743,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-20": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -756,7 +757,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-21": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-21"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -770,7 +771,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-22": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-22"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -784,7 +785,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-23": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-23"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -798,7 +799,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-24": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -812,7 +813,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-26": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-26"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 0;
@@ -826,7 +827,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-41": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-41";
@@ -839,7 +840,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-42": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-42"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-42";
@@ -852,7 +853,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-43": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-43";
@@ -865,7 +866,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-44": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-44"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-44";
@@ -878,7 +879,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-45": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-45"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-45";
@@ -891,7 +892,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-46": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-46"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-46";
@@ -904,7 +905,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-47": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-47"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-47";
@@ -917,7 +918,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-48": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-48"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-48";
@@ -930,7 +931,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-49": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-49"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-49";
@@ -943,7 +944,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-50": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-50"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-50";
@@ -956,7 +957,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-51": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-51"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-51";
@@ -969,7 +970,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-52": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-52"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-52";
@@ -982,7 +983,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-53": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-53"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-53";
@@ -995,7 +996,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-54": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-54"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-54";
@@ -1008,7 +1009,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-55": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-55"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-55";
@@ -1021,7 +1022,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "00-56": {
                     readonly register: typeof import("./Registers").GROUP_00_Basic_Parameters["00-56"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 0;
                         readonly code: "00-56";
@@ -1033,10 +1034,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group01: P.GroupParamOps<{
+            group01: GroupParamOps<{
                 readonly "01-00": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 1;
                         readonly code: "01-00";
@@ -1049,7 +1050,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-02": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1063,7 +1064,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-03": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-03"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1077,7 +1078,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-04": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1091,7 +1092,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-05": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1105,7 +1106,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-06": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1119,7 +1120,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-07": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-07"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1133,7 +1134,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-08": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1147,7 +1148,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-09": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-09"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1161,7 +1162,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-10": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-10"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1175,7 +1176,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-11": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-11"];
-                    readonly kind: P.ParamKind.Enum;
+                    readonly kind: ParamKind.Enum;
                     readonly labels: {
                         readonly 0: "Torque Compensation Mode 0";
                         readonly 1: "Torque Compensation Mode 1";
@@ -1192,7 +1193,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-12": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-12"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1206,7 +1207,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-13": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1220,7 +1221,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-14": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1234,7 +1235,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-15": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 1;
                         readonly code: "01-15";
@@ -1247,7 +1248,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-16": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1261,7 +1262,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-17": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1275,7 +1276,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-18": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1289,7 +1290,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-19": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-19"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1303,7 +1304,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-20": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1317,7 +1318,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-21": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-21"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1331,7 +1332,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-22": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-22"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1345,7 +1346,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-23": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-23"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1359,7 +1360,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-24": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1373,7 +1374,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-25": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-25"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 1;
@@ -1387,7 +1388,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "01-26": {
                     readonly register: typeof import("./Registers").GROUP_01_VF_Control_Parameters["01-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 1;
                         readonly code: "01-26";
@@ -1399,10 +1400,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group02: P.GroupParamOps<{
+            group02: GroupParamOps<{
                 readonly "02-00": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-00"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 2;
@@ -1416,7 +1417,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-01": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-01";
@@ -1429,7 +1430,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-03": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-03";
@@ -1442,7 +1443,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-04": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 2;
@@ -1456,7 +1457,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-05": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 2;
@@ -1470,7 +1471,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-06": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 2;
@@ -1484,7 +1485,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-07": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-07";
@@ -1497,7 +1498,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-09": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-09";
@@ -1510,7 +1511,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-10": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-10";
@@ -1523,7 +1524,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-11": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-11";
@@ -1536,7 +1537,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-12": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-12";
@@ -1549,7 +1550,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-13": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 2;
@@ -1563,7 +1564,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-15": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-15"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.001;
                     readonly meta: {
                         readonly group: 2;
@@ -1577,7 +1578,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-19": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-19";
@@ -1590,7 +1591,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-20": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 2;
@@ -1604,7 +1605,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-21": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-21";
@@ -1617,7 +1618,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-22": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-22";
@@ -1630,7 +1631,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-23": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-23"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 2;
@@ -1644,7 +1645,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-24": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 2;
@@ -1658,7 +1659,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-25": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-25"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 2;
@@ -1672,7 +1673,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-26": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 2;
                         readonly code: "02-26";
@@ -1685,7 +1686,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-32": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-32"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.001;
                     readonly meta: {
                         readonly group: 2;
@@ -1699,7 +1700,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-33": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-33"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 2;
@@ -1713,7 +1714,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-34": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-34"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 2;
@@ -1727,7 +1728,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "02-37": {
                     readonly register: typeof import("./Registers").GROUP_02_IM_Motor_Parameters["02-37"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 2;
@@ -1740,10 +1741,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group03: P.GroupParamOps<{
+            group03: GroupParamOps<{
                 readonly "03-00": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-00";
@@ -1756,7 +1757,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-01": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-01";
@@ -1769,7 +1770,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-02": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-02";
@@ -1782,7 +1783,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-03": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-03";
@@ -1795,7 +1796,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-04": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-04";
@@ -1808,7 +1809,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-05": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-05";
@@ -1821,7 +1822,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-06": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-06"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-06";
@@ -1834,7 +1835,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-07": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-07";
@@ -1847,7 +1848,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-08": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-08";
@@ -1860,7 +1861,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-09": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-09";
@@ -1873,7 +1874,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-10": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-10";
@@ -1886,7 +1887,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-11": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-11";
@@ -1899,7 +1900,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-12": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-12";
@@ -1912,7 +1913,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-13": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -1926,7 +1927,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-14": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -1940,7 +1941,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-15": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-15"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -1954,7 +1955,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-16": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -1968,7 +1969,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-17": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 3;
@@ -1982,7 +1983,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-18": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 3;
@@ -1996,7 +1997,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-19": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-19";
@@ -2009,7 +2010,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-20": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-20";
@@ -2022,7 +2023,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-21": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-21";
@@ -2035,7 +2036,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-27": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-27";
@@ -2048,7 +2049,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-28": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-28";
@@ -2061,7 +2062,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-29": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-29";
@@ -2074,7 +2075,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-30": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-30";
@@ -2087,7 +2088,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-31": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-31";
@@ -2100,7 +2101,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-32": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-32"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2114,7 +2115,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-33": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-33"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2128,7 +2129,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-34": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-34"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 3;
@@ -2142,7 +2143,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-35": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-35";
@@ -2155,7 +2156,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-36": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-36"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-36";
@@ -2168,7 +2169,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-37": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-37"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2182,7 +2183,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-38": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-38"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2196,7 +2197,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-40": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-40"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 3;
@@ -2210,7 +2211,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-41": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-41";
@@ -2223,7 +2224,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-42": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-42"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 3;
@@ -2237,7 +2238,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-43": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 3;
                         readonly code: "03-43";
@@ -2250,7 +2251,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-44": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-44"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2264,7 +2265,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-45": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-45"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2278,7 +2279,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-46": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-46"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2292,7 +2293,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-47": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-47"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2306,7 +2307,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-48": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-48"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2320,7 +2321,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-49": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-49"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 3;
@@ -2334,7 +2335,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-50": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-50"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2348,7 +2349,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-51": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-51"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2362,7 +2363,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-52": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-52"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2376,7 +2377,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "03-53": {
                     readonly register: typeof import("./Registers").GROUP_03_External_Digital_Input_and_Output_Parameters["03-53"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 3;
@@ -2389,10 +2390,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group04: P.GroupParamOps<{
+            group04: GroupParamOps<{
                 readonly "04-00": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-00";
@@ -2405,7 +2406,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-01": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-01"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 4;
@@ -2419,7 +2420,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-02": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2433,7 +2434,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-03": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-03"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2447,7 +2448,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-04": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-04";
@@ -2460,7 +2461,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-05": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-05";
@@ -2473,7 +2474,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-06": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 4;
@@ -2487,7 +2488,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-07": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-07"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2501,7 +2502,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-08": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-08"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2515,7 +2516,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-09": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-09";
@@ -2528,7 +2529,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-10": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-10";
@@ -2541,7 +2542,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-11": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-11";
@@ -2554,7 +2555,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-12": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-12"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2568,7 +2569,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-13": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-13"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2582,7 +2583,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-16": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-16"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-16";
@@ -2595,7 +2596,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-17": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2609,7 +2610,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-18": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-18"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2623,7 +2624,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-19": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 4;
                         readonly code: "04-19";
@@ -2636,7 +2637,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-20": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 4;
@@ -2650,7 +2651,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-21": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-21"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 4;
@@ -2664,7 +2665,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-22": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-22"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2678,7 +2679,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "04-23": {
                     readonly register: typeof import("./Registers").GROUP_04_External_Analog_Input_and_Output_Parameters["04-23"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 4;
@@ -2691,10 +2692,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group05: P.GroupParamOps<{
+            group05: GroupParamOps<{
                 readonly "05-00": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 5;
                         readonly code: "05-00";
@@ -2707,7 +2708,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-01": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-01"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2721,7 +2722,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-02": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2735,7 +2736,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-03": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-03"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2749,7 +2750,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-04": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2763,7 +2764,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-05": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2777,7 +2778,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-06": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2791,7 +2792,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-07": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-07"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2805,7 +2806,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-08": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2819,7 +2820,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-09": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-09"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2833,7 +2834,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-10": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-10"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2847,7 +2848,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-11": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-11"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2861,7 +2862,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-12": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-12"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2875,7 +2876,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-13": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2889,7 +2890,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-14": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2903,7 +2904,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-15": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-15"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2917,7 +2918,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-16": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 5;
@@ -2931,7 +2932,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-17": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -2945,7 +2946,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-18": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -2959,7 +2960,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-19": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-19"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -2973,7 +2974,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-20": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -2987,7 +2988,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-21": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-21"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3001,7 +3002,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-22": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-22"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3015,7 +3016,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-23": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-23"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3029,7 +3030,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-24": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3043,7 +3044,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-25": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-25"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3057,7 +3058,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-26": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-26"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3071,7 +3072,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-27": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-27"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3085,7 +3086,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-28": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-28"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3099,7 +3100,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-29": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-29"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3113,7 +3114,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-30": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-30"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3127,7 +3128,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-31": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-31"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3141,7 +3142,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-32": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-32"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3155,7 +3156,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-33": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-33"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3169,7 +3170,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-34": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-34"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3183,7 +3184,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-35": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-35"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3197,7 +3198,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-36": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-36"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3211,7 +3212,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-37": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-37"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3225,7 +3226,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-38": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-38"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3239,7 +3240,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-39": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-39"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3253,7 +3254,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-40": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-40"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3267,7 +3268,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-41": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-41"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3281,7 +3282,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-42": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-42"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3295,7 +3296,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-43": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-43"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3309,7 +3310,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-44": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-44"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3323,7 +3324,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-45": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-45"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3337,7 +3338,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-46": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-46"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3351,7 +3352,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-47": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-47"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3365,7 +3366,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "05-48": {
                     readonly register: typeof import("./Registers").GROUP_05_Multi_Speed_Parameters["05-48"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 5;
@@ -3378,10 +3379,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group06: P.GroupParamOps<{
+            group06: GroupParamOps<{
                 readonly "06-00": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 6;
                         readonly code: "06-00";
@@ -3394,7 +3395,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-32": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3407,7 +3408,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-33": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3420,7 +3421,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-34": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3433,7 +3434,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-35": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3446,7 +3447,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-36": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-36"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3459,7 +3460,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-37": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-37"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3472,7 +3473,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-38": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-38"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3485,7 +3486,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-39": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-39"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3498,7 +3499,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-40": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-40"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3511,7 +3512,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-41": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3524,7 +3525,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-42": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-42"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3537,7 +3538,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-43": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3550,7 +3551,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-44": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-44"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3563,7 +3564,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-45": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-45"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3576,7 +3577,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-46": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-46"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3589,7 +3590,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-47": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-47"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         group: 6;
                         code: string;
@@ -3602,7 +3603,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-01": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-01"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3616,7 +3617,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-02": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3630,7 +3631,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-03": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-03"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3644,7 +3645,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-04": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3658,7 +3659,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-05": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3672,7 +3673,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-06": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3686,7 +3687,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-07": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-07"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3700,7 +3701,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-08": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3714,7 +3715,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-09": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-09"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3728,7 +3729,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-10": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-10"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3742,7 +3743,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-11": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-11"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3756,7 +3757,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-12": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-12"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3770,7 +3771,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-13": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3784,7 +3785,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-14": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3798,7 +3799,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-15": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-15"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         group: 6;
@@ -3812,7 +3813,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-16": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3826,7 +3827,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-17": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3840,7 +3841,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-18": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3854,7 +3855,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-19": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-19"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3868,7 +3869,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-20": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3882,7 +3883,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-21": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-21"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3896,7 +3897,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-22": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-22"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3910,7 +3911,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-23": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-23"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3924,7 +3925,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-24": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3938,7 +3939,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-25": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-25"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3952,7 +3953,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-26": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-26"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3966,7 +3967,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-27": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-27"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3980,7 +3981,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-28": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-28"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -3994,7 +3995,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-29": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-29"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -4008,7 +4009,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-30": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-30"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -4022,7 +4023,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "06-31": {
                     readonly register: typeof import("./Registers").GROUP_06_Automatic_Program_Operation_Parameters["06-31"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         group: 6;
@@ -4035,10 +4036,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group07: P.GroupParamOps<{
+            group07: GroupParamOps<{
                 readonly "07-00": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-00";
@@ -4051,7 +4052,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-01": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-01";
@@ -4064,7 +4065,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-02": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-02";
@@ -4077,7 +4078,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-04": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-04";
@@ -4090,7 +4091,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-05": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4104,7 +4105,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-06": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4118,7 +4119,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-07": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-07";
@@ -4131,7 +4132,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-08": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4145,7 +4146,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-09": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-09";
@@ -4158,7 +4159,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-13": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-13";
@@ -4171,7 +4172,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-14": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4185,7 +4186,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-15": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-15";
@@ -4198,7 +4199,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-16": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4212,7 +4213,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-18": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4226,7 +4227,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-19": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-19";
@@ -4239,7 +4240,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-20": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-20";
@@ -4252,7 +4253,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-21": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-21"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4266,7 +4267,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-22": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-22"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4280,7 +4281,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-23": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-23"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4294,7 +4295,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-24": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-24";
@@ -4307,7 +4308,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-25": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-25"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4321,7 +4322,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-26": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-26";
@@ -4334,7 +4335,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-27": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-27";
@@ -4347,7 +4348,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-28": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-28";
@@ -4360,7 +4361,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-29": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-29";
@@ -4373,7 +4374,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-30": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-30";
@@ -4386,7 +4387,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-31": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-31"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4400,7 +4401,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-32": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-32";
@@ -4413,7 +4414,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-33": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-33";
@@ -4426,7 +4427,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-34": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-34"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4440,7 +4441,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-35": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-35"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4454,7 +4455,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-36": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-36"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4468,7 +4469,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-42": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-42"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 7;
@@ -4482,7 +4483,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-43": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-43"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4496,7 +4497,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-44": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-44"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 7;
@@ -4510,7 +4511,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-45": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-45"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-45";
@@ -4523,7 +4524,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "07-46": {
                     readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-46"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 7;
                         readonly code: "07-46";
@@ -4534,76 +4535,11 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                         readonly page: 446;
                     };
                 };
-                readonly "07-37": {
-                    readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-37"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 7;
-                        readonly code: "07-37";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 446;
-                    };
-                };
-                readonly "07-38": {
-                    readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-38"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 7;
-                        readonly code: "07-38";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 446;
-                    };
-                };
-                readonly "07-39": {
-                    readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-39"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 7;
-                        readonly code: "07-39";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 446;
-                    };
-                };
-                readonly "07-40": {
-                    readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-40"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 7;
-                        readonly code: "07-40";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 446;
-                    };
-                };
-                readonly "07-41": {
-                    readonly register: typeof import("./Registers").GROUP_07_Start_Stop_Parameters["07-41"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 7;
-                        readonly code: "07-41";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 446;
-                    };
-                };
             }>;
-            group08: P.GroupParamOps<{
+            group08: GroupParamOps<{
                 readonly "08-00": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-00";
@@ -4616,7 +4552,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-01": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-01";
@@ -4629,7 +4565,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-02": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-02";
@@ -4642,7 +4578,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-03": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-03";
@@ -4655,7 +4591,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-05": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-05";
@@ -4668,7 +4604,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-06": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-06"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-06";
@@ -4681,7 +4617,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-07": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-07";
@@ -4694,7 +4630,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-08": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-08";
@@ -4707,7 +4643,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-09": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-09";
@@ -4720,7 +4656,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-10": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-10";
@@ -4733,7 +4669,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-13": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-13";
@@ -4746,7 +4682,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-14": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-14";
@@ -4759,7 +4695,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-15": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-15";
@@ -4772,7 +4708,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-16": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -4786,7 +4722,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-17": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-17"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-17";
@@ -4799,7 +4735,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-18": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-18";
@@ -4812,7 +4748,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-19": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-19";
@@ -4825,7 +4761,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-20": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -4839,7 +4775,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-21": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-21";
@@ -4852,7 +4788,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-22": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-22";
@@ -4865,7 +4801,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-23": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-23";
@@ -4878,7 +4814,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-24": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-24";
@@ -4891,7 +4827,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-25": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-25";
@@ -4904,7 +4840,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-30": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-30";
@@ -4917,7 +4853,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-35": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-35";
@@ -4930,7 +4866,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-36": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-36"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 8;
@@ -4944,7 +4880,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-37": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-37"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-37";
@@ -4957,7 +4893,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-38": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-38"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-38";
@@ -4970,7 +4906,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-39": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-39"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-39";
@@ -4983,7 +4919,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-40": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-40"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-40";
@@ -4996,7 +4932,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-41": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-41";
@@ -5009,7 +4945,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-42": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-42"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -5023,7 +4959,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-43": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-43"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -5037,7 +4973,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-44": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-44"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -5051,7 +4987,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-46": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-46"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-46";
@@ -5064,7 +5000,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-47": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-47"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-47";
@@ -5077,7 +5013,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-48": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-48"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-48";
@@ -5090,7 +5026,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-49": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-49"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-49";
@@ -5103,7 +5039,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-50": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-50"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-50";
@@ -5116,7 +5052,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-51": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-51"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-51";
@@ -5129,7 +5065,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-52": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-52"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 8;
@@ -5143,7 +5079,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-53": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-53"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-53";
@@ -5156,7 +5092,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-54": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-54"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -5170,7 +5106,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-55": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-55"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-55";
@@ -5183,7 +5119,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-56": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-56"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -5197,7 +5133,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-57": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-57"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 8;
@@ -5211,7 +5147,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-58": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-58"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-58";
@@ -5224,7 +5160,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-59": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-59"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-59";
@@ -5237,7 +5173,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "08-60": {
                     readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-60"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 8;
                         readonly code: "08-60";
@@ -5248,24 +5184,11 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                         readonly page: 451;
                     };
                 };
-                readonly "08-45": {
-                    readonly register: typeof import("./Registers").GROUP_08_Protection_Parameters["08-45"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 8;
-                        readonly code: "08-45";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 447;
-                    };
-                };
             }>;
-            group09: P.GroupParamOps<{
+            group09: GroupParamOps<{
                 readonly "09-00": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-00";
@@ -5278,7 +5201,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-01": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-01";
@@ -5291,7 +5214,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-02": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-02";
@@ -5304,7 +5227,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-03": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-03";
@@ -5317,7 +5240,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-04": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-04";
@@ -5330,7 +5253,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-05": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-05";
@@ -5343,7 +5266,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-06": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 9;
@@ -5357,7 +5280,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-07": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-07";
@@ -5370,7 +5293,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-08": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-08";
@@ -5383,7 +5306,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "09-09": {
                     readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 9;
                         readonly code: "09-09";
@@ -5394,24 +5317,11 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                         readonly page: 452;
                     };
                 };
-                readonly "09-10": {
-                    readonly register: typeof import("./Registers").GROUP_09_Communication_Parameters["09-10"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 9;
-                        readonly code: "09-10";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 452;
-                    };
-                };
             }>;
-            group10: P.GroupParamOps<{
+            group10: GroupParamOps<{
                 readonly "10-00": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-00";
@@ -5424,7 +5334,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-01": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-01";
@@ -5437,7 +5347,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-02": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5451,7 +5361,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-03": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-03";
@@ -5464,7 +5374,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-04": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5478,7 +5388,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-05": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5492,7 +5402,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-06": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5506,7 +5416,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-07": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-07"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5520,7 +5430,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-08": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5534,7 +5444,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-09": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-09"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5548,7 +5458,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-10": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-10"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5562,7 +5472,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-11": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-11";
@@ -5575,7 +5485,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-12": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-12";
@@ -5588,7 +5498,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-13": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5602,7 +5512,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-14": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5616,7 +5526,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-15": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-15";
@@ -5629,7 +5539,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-16": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-16"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-16";
@@ -5642,7 +5552,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-17": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5656,7 +5566,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-18": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5670,7 +5580,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-19": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-19"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5684,7 +5594,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-20": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-20"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5698,7 +5608,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-23": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-23"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5712,7 +5622,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-24": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5726,7 +5636,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-25": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-25";
@@ -5739,7 +5649,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-26": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-26"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5753,7 +5663,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-27": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-27";
@@ -5766,7 +5676,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-29": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-29";
@@ -5779,7 +5689,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-30": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-30"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5793,7 +5703,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-31": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-31"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 10;
@@ -5807,7 +5717,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-33": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-33";
@@ -5820,7 +5730,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-34": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-34";
@@ -5833,7 +5743,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-35": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-35";
@@ -5846,7 +5756,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-36": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-36"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5860,7 +5770,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-37": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-37"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5874,7 +5784,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-38": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-38"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5888,7 +5798,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-39": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-39"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5902,7 +5812,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-40": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-40"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-40";
@@ -5915,7 +5825,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-41": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 10;
                         readonly code: "10-41";
@@ -5928,7 +5838,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-47": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-47"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5942,7 +5852,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-48": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-48"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5956,7 +5866,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "10-49": {
                     readonly register: typeof import("./Registers").GROUP_10_PID_Parameters["10-49"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 10;
@@ -5969,10 +5879,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group11: P.GroupParamOps<{
+            group11: GroupParamOps<{
                 readonly "11-00": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-00";
@@ -5985,7 +5895,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-01": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-01";
@@ -5998,7 +5908,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-02": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-02";
@@ -6011,7 +5921,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-03": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-03";
@@ -6024,7 +5934,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-04": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6038,7 +5948,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-05": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6052,7 +5962,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-06": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6066,7 +5976,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-07": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-07"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6080,7 +5990,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-08": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6094,7 +6004,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-09": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-09"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6108,7 +6018,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-10": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-10"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6122,7 +6032,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-11": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-11"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6136,7 +6046,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-12": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-12";
@@ -6149,7 +6059,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-13": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-13";
@@ -6162,7 +6072,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-18": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-18"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6176,7 +6086,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-19": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-19";
@@ -6189,7 +6099,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-20": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-20";
@@ -6202,7 +6112,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-21": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-21";
@@ -6215,7 +6125,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-22": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-22";
@@ -6228,7 +6138,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-23": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-23";
@@ -6241,7 +6151,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-24": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6255,7 +6165,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-28": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-28";
@@ -6268,7 +6178,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-29": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-29";
@@ -6281,7 +6191,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-30": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-30";
@@ -6294,7 +6204,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-31": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-31";
@@ -6307,7 +6217,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-32": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-32";
@@ -6320,7 +6230,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-33": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-33"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6334,7 +6244,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-34": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-34"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6348,7 +6258,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-35": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-35"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6362,7 +6272,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-36": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-36"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.001;
                     readonly meta: {
                         readonly group: 11;
@@ -6376,7 +6286,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-37": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-37"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6390,7 +6300,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-38": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-38"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-38";
@@ -6403,7 +6313,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-39": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-39"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-39";
@@ -6416,7 +6326,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-40": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-40"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-40";
@@ -6429,7 +6339,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-41": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-41";
@@ -6442,7 +6352,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-42": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-42"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6456,7 +6366,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-43": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-43"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6470,7 +6380,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-44": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-44"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6484,7 +6394,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-45": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-45"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6498,7 +6408,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-46": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-46"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6512,7 +6422,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-47": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-47"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6526,7 +6436,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-48": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-48"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-48";
@@ -6539,7 +6449,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-49": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-49"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6553,7 +6463,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-50": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-50"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-50";
@@ -6566,7 +6476,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-51": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-51"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-51";
@@ -6579,7 +6489,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-52": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-52"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6593,7 +6503,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-53": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-53"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6607,7 +6517,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-54": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-54"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-54";
@@ -6620,7 +6530,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-55": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-55"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-55";
@@ -6633,7 +6543,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-56": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-56"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-56";
@@ -6646,7 +6556,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-58": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-58"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-58";
@@ -6659,7 +6569,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-59": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-59"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6673,7 +6583,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-60": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-60"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-60";
@@ -6686,7 +6596,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-61": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-61"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-61";
@@ -6699,7 +6609,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-62": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-62"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-62";
@@ -6712,7 +6622,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-63": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-63"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-63";
@@ -6725,7 +6635,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-64": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-64"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 11;
@@ -6739,7 +6649,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-65": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-65"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-65";
@@ -6752,7 +6662,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-66": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-66"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6766,7 +6676,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-67": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-67"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-67";
@@ -6779,7 +6689,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-68": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-68"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6793,7 +6703,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-69": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-69"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6807,7 +6717,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-70": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-70"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6821,7 +6731,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-71": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-71"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 11;
                         readonly code: "11-71";
@@ -6834,7 +6744,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-72": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-72"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6848,7 +6758,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-73": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-73"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6862,7 +6772,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-76": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-76"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6876,7 +6786,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-77": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-77"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6890,7 +6800,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "11-78": {
                     readonly register: typeof import("./Registers").GROUP_11_Auxiliary_Parameters["11-78"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 11;
@@ -6903,10 +6813,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group12: P.GroupParamOps<{
+            group12: GroupParamOps<{
                 readonly "12-00": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-00";
@@ -6919,7 +6829,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-01": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-01";
@@ -6932,7 +6842,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-02": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-02";
@@ -6945,7 +6855,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-03": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-03";
@@ -6958,7 +6868,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-04": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-04";
@@ -6971,7 +6881,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-05": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-05";
@@ -6984,7 +6894,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-11": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-11";
@@ -6997,7 +6907,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-12": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-12";
@@ -7010,7 +6920,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-13": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-13";
@@ -7023,7 +6933,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-14": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-14";
@@ -7036,7 +6946,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-15": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-15";
@@ -7049,7 +6959,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-16": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-16"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-16";
@@ -7062,7 +6972,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-17": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-17"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-17";
@@ -7075,7 +6985,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-18": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-18";
@@ -7088,7 +6998,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-19": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-19";
@@ -7101,7 +7011,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-20": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-20";
@@ -7114,7 +7024,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-21": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-21";
@@ -7127,7 +7037,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-22": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-22";
@@ -7140,7 +7050,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-23": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-23";
@@ -7153,7 +7063,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-24": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-24";
@@ -7166,7 +7076,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-25": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-25";
@@ -7179,7 +7089,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-26": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-26";
@@ -7192,7 +7102,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-27": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-27";
@@ -7205,7 +7115,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-28": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-28";
@@ -7218,7 +7128,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-29": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-29";
@@ -7231,7 +7141,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-30": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-30";
@@ -7244,7 +7154,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-32": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-32";
@@ -7257,7 +7167,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-33": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-33";
@@ -7270,7 +7180,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-34": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-34";
@@ -7283,7 +7193,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-35": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-35";
@@ -7296,7 +7206,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-36": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-36"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-36";
@@ -7309,7 +7219,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-37": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-37"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-37";
@@ -7322,7 +7232,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-38": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-38"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-38";
@@ -7335,7 +7245,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-39": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-39"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-39";
@@ -7348,7 +7258,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-41": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-41";
@@ -7361,7 +7271,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-42": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-42"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-42";
@@ -7374,7 +7284,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-43": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-43";
@@ -7387,7 +7297,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-44": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-44"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-44";
@@ -7400,7 +7310,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-45": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-45"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-45";
@@ -7413,7 +7323,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-46": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-46"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-46";
@@ -7426,7 +7336,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-47": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-47"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-47";
@@ -7439,7 +7349,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-48": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-48"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-48";
@@ -7452,7 +7362,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-49": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-49"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-49";
@@ -7465,7 +7375,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-50": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-50"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-50";
@@ -7478,7 +7388,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-51": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-51"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-51";
@@ -7491,7 +7401,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-52": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-52"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-52";
@@ -7504,7 +7414,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-53": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-53"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-53";
@@ -7517,7 +7427,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-54": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-54"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-54";
@@ -7530,7 +7440,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-55": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-55"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-55";
@@ -7543,7 +7453,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-56": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-56"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-56";
@@ -7556,7 +7466,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-57": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-57"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-57";
@@ -7569,7 +7479,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-58": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-58"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-58";
@@ -7582,7 +7492,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-59": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-59"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-59";
@@ -7595,7 +7505,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-60": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-60"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-60";
@@ -7608,7 +7518,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-61": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-61"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-61";
@@ -7621,7 +7531,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-62": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-62"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-62";
@@ -7634,7 +7544,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-63": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-63"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-63";
@@ -7647,7 +7557,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-64": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-64"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-64";
@@ -7660,7 +7570,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-65": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-65"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-65";
@@ -7673,7 +7583,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-66": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-66"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-66";
@@ -7686,7 +7596,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-67": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-67"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 12;
@@ -7700,7 +7610,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-68": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-68"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-68";
@@ -7713,7 +7623,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-76": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-76"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 12;
@@ -7727,7 +7637,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-78": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-78"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 1;
                     readonly meta: {
                         readonly group: 12;
@@ -7741,7 +7651,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-79": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-79"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 12;
@@ -7755,7 +7665,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-80": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-80"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 12;
@@ -7769,7 +7679,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-82": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-82"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 12;
@@ -7783,7 +7693,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "12-85": {
                     readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-85"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 12;
                         readonly code: "12-85";
@@ -7794,24 +7704,11 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                         readonly page: 467;
                     };
                 };
-                readonly "12-81": {
-                    readonly register: typeof import("./Registers").GROUP_12_Monitoring_Parameters["12-81"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 12;
-                        readonly code: "12-81";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 467;
-                    };
-                };
             }>;
-            group13: P.GroupParamOps<{
+            group13: GroupParamOps<{
                 readonly "13-00": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-00";
@@ -7824,7 +7721,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-01": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-01";
@@ -7837,7 +7734,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-02": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-02";
@@ -7850,7 +7747,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-03": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-03";
@@ -7863,7 +7760,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-04": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-04";
@@ -7876,7 +7773,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-05": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-05";
@@ -7889,7 +7786,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-06": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-06"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-06";
@@ -7902,7 +7799,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-07": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-07";
@@ -7915,7 +7812,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-08": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-08";
@@ -7928,7 +7825,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-09": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-09";
@@ -7941,7 +7838,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-10": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-10";
@@ -7954,7 +7851,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-11": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-11";
@@ -7967,7 +7864,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-12": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-12";
@@ -7980,7 +7877,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-13": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-13";
@@ -7993,7 +7890,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-14": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-14";
@@ -8004,22 +7901,9 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                         readonly page: 469;
                     };
                 };
-                readonly "13-15": {
-                    readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-15"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 13;
-                        readonly code: "13-15";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 469;
-                    };
-                };
                 readonly "13-21": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-21";
@@ -8032,7 +7916,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-22": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-22";
@@ -8045,7 +7929,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-23": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-23";
@@ -8058,7 +7942,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-24": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-24";
@@ -8071,7 +7955,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-25": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-25";
@@ -8084,7 +7968,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-26": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-26";
@@ -8097,7 +7981,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-27": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-27";
@@ -8110,7 +7994,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-28": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-28";
@@ -8123,7 +8007,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-29": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-29";
@@ -8136,7 +8020,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-30": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-30";
@@ -8149,7 +8033,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-31": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-31";
@@ -8162,7 +8046,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-32": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-32";
@@ -8175,7 +8059,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-33": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-33";
@@ -8188,7 +8072,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-34": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-34";
@@ -8201,7 +8085,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-35": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-35";
@@ -8214,7 +8098,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-36": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-36"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-36";
@@ -8227,7 +8111,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-37": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-37"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-37";
@@ -8240,7 +8124,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-38": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-38"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-38";
@@ -8253,7 +8137,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-39": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-39"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-39";
@@ -8266,7 +8150,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-40": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-40"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-40";
@@ -8279,7 +8163,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-41": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-41";
@@ -8292,7 +8176,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-42": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-42"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-42";
@@ -8305,7 +8189,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-43": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-43";
@@ -8318,7 +8202,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-44": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-44"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-44";
@@ -8331,7 +8215,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-45": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-45"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-45";
@@ -8344,7 +8228,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-46": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-46"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-46";
@@ -8357,7 +8241,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-47": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-47"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-47";
@@ -8370,7 +8254,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-48": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-48"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-48";
@@ -8383,7 +8267,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-49": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-49"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-49";
@@ -8396,7 +8280,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "13-50": {
                     readonly register: typeof import("./Registers").GROUP_13_Maintenance_Parameters["13-50"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 13;
                         readonly code: "13-50";
@@ -8408,10 +8292,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group14: P.GroupParamOps<{
+            group14: GroupParamOps<{
                 readonly "14-00": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-00";
@@ -8424,7 +8308,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-01": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-01";
@@ -8437,7 +8321,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-02": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-02";
@@ -8450,7 +8334,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-03": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-03";
@@ -8463,7 +8347,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-04": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-04";
@@ -8476,7 +8360,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-05": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-05";
@@ -8489,7 +8373,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-06": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-06"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-06";
@@ -8502,7 +8386,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-07": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-07";
@@ -8515,7 +8399,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-08": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-08";
@@ -8528,7 +8412,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-09": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-09";
@@ -8541,7 +8425,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-10": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-10";
@@ -8554,7 +8438,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-11": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-11";
@@ -8567,7 +8451,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-12": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-12";
@@ -8580,7 +8464,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-13": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-13";
@@ -8593,7 +8477,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-14": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-14";
@@ -8606,7 +8490,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-15": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-15";
@@ -8619,7 +8503,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-16": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-16"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-16";
@@ -8632,7 +8516,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-17": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-17"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-17";
@@ -8645,7 +8529,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-18": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-18";
@@ -8658,7 +8542,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-19": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-19";
@@ -8671,7 +8555,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-20": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-20";
@@ -8684,7 +8568,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-21": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-21";
@@ -8697,7 +8581,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-22": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-22";
@@ -8710,7 +8594,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-23": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-23";
@@ -8723,7 +8607,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-24": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-24";
@@ -8736,7 +8620,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-25": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-25";
@@ -8749,7 +8633,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-26": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-26";
@@ -8762,7 +8646,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-27": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-27";
@@ -8775,7 +8659,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-28": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-28";
@@ -8788,7 +8672,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-29": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-29";
@@ -8801,7 +8685,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-30": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-30";
@@ -8814,7 +8698,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-31": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-31";
@@ -8827,7 +8711,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-32": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-32";
@@ -8840,7 +8724,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-33": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-33";
@@ -8853,7 +8737,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-34": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-34";
@@ -8866,7 +8750,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-35": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-35";
@@ -8879,7 +8763,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-36": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-36"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-36";
@@ -8892,7 +8776,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-37": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-37"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-37";
@@ -8905,7 +8789,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-38": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-38"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-38";
@@ -8918,7 +8802,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-39": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-39"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-39";
@@ -8931,7 +8815,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-40": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-40"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-40";
@@ -8944,7 +8828,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-41": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-41";
@@ -8957,7 +8841,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-42": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-42"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-42";
@@ -8970,7 +8854,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-43": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-43";
@@ -8983,7 +8867,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-44": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-44"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-44";
@@ -8996,7 +8880,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-45": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-45"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-45";
@@ -9009,7 +8893,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-46": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-46"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-46";
@@ -9022,7 +8906,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "14-47": {
                     readonly register: typeof import("./Registers").GROUP_14_PLC_Parameters["14-47"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 14;
                         readonly code: "14-47";
@@ -9034,10 +8918,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group15: P.GroupParamOps<{
+            group15: GroupParamOps<{
                 readonly "15-00": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-00";
@@ -9050,7 +8934,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-01": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-01";
@@ -9063,7 +8947,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-02": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-02";
@@ -9076,7 +8960,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-03": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-03";
@@ -9089,7 +8973,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-04": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-04";
@@ -9102,7 +8986,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-05": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-05";
@@ -9115,7 +8999,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-06": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-06"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-06";
@@ -9128,7 +9012,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-07": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-07";
@@ -9141,7 +9025,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-08": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-08";
@@ -9154,7 +9038,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-09": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-09";
@@ -9167,7 +9051,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-10": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-10";
@@ -9180,7 +9064,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-11": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-11";
@@ -9193,7 +9077,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-12": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-12";
@@ -9206,7 +9090,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-13": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-13";
@@ -9219,7 +9103,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-14": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-14";
@@ -9232,7 +9116,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-15": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-15";
@@ -9245,7 +9129,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-16": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-16"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-16";
@@ -9258,7 +9142,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-17": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-17"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-17";
@@ -9271,7 +9155,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-18": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-18";
@@ -9284,7 +9168,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-19": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-19";
@@ -9297,7 +9181,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-20": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-20";
@@ -9310,7 +9194,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-21": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-21";
@@ -9323,7 +9207,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-22": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-22";
@@ -9336,7 +9220,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-23": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-23";
@@ -9349,7 +9233,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-24": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-24";
@@ -9362,7 +9246,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-25": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-25";
@@ -9375,7 +9259,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-26": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-26";
@@ -9388,7 +9272,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-27": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-27";
@@ -9401,7 +9285,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-28": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-28";
@@ -9414,7 +9298,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-29": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-29";
@@ -9427,7 +9311,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-30": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-30";
@@ -9440,7 +9324,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-31": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-31";
@@ -9453,7 +9337,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "15-32": {
                     readonly register: typeof import("./Registers").GROUP_15_PLC_Monitoring_Parameters["15-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 15;
                         readonly code: "15-32";
@@ -9465,10 +9349,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group16: P.GroupParamOps<{
+            group16: GroupParamOps<{
                 readonly "16-00": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-00";
@@ -9481,7 +9365,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-01": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-01";
@@ -9494,7 +9378,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-02": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-02";
@@ -9507,7 +9391,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-03": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-03";
@@ -9520,7 +9404,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-04": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-04";
@@ -9533,7 +9417,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-05": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-05";
@@ -9546,7 +9430,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-07": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-07";
@@ -9559,7 +9443,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-08": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-08";
@@ -9572,7 +9456,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-09": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-09"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-09";
@@ -9585,7 +9469,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-10": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-10";
@@ -9598,7 +9482,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-11": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-11";
@@ -9611,7 +9495,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-12": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-12";
@@ -9624,7 +9508,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-13": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-13";
@@ -9637,7 +9521,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-14": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-14";
@@ -9650,7 +9534,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-15": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-15";
@@ -9663,7 +9547,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-16": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-16"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-16";
@@ -9676,7 +9560,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-17": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-17"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-17";
@@ -9689,7 +9573,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-18": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-18";
@@ -9702,7 +9586,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-19": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-19";
@@ -9715,7 +9599,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-20": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-20";
@@ -9728,7 +9612,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-21": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-21";
@@ -9741,7 +9625,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-22": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-22";
@@ -9754,7 +9638,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-23": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-23";
@@ -9767,7 +9651,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-24": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-24";
@@ -9780,7 +9664,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-25": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-25";
@@ -9793,7 +9677,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-26": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-26";
@@ -9806,7 +9690,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-27": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-27";
@@ -9819,7 +9703,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-28": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-28";
@@ -9832,7 +9716,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-29": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-29";
@@ -9845,7 +9729,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-30": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-30";
@@ -9858,7 +9742,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-31": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-31";
@@ -9871,7 +9755,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-32": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-32";
@@ -9884,7 +9768,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-33": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-33";
@@ -9897,7 +9781,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-34": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-34";
@@ -9910,7 +9794,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-35": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-35";
@@ -9923,7 +9807,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-36": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-36"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-36";
@@ -9936,7 +9820,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "16-37": {
                     readonly register: typeof import("./Registers").GROUP_16_LCD_Parameters["16-37"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 16;
                         readonly code: "16-37";
@@ -9948,10 +9832,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group17: P.GroupParamOps<{
+            group17: GroupParamOps<{
                 readonly "17-00": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-00";
@@ -9964,7 +9848,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-01": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-01"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 17;
@@ -9978,7 +9862,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-02": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 17;
@@ -9992,7 +9876,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-03": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-03"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 17;
@@ -10006,7 +9890,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-04": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 17;
@@ -10020,7 +9904,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-05": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-05";
@@ -10033,7 +9917,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-06": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-06"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-06";
@@ -10046,7 +9930,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-07": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-07";
@@ -10059,7 +9943,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-08": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-08";
@@ -10072,7 +9956,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-09": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-09"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 17;
@@ -10086,7 +9970,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-10": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-10";
@@ -10099,7 +9983,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-11": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-11";
@@ -10112,7 +9996,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-12": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-12"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 17;
@@ -10126,7 +10010,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-13": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-13"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 17;
@@ -10140,7 +10024,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "17-14": {
                     readonly register: typeof import("./Registers").GROUP_17_Automatic_Tuning_Parameters["17-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 17;
                         readonly code: "17-14";
@@ -10152,10 +10036,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group18: P.GroupParamOps<{
+            group18: GroupParamOps<{
                 readonly "18-00": {
                     readonly register: typeof import("./Registers").GROUP_18_Slip_Compensation_Parameters["18-00"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 18;
@@ -10169,7 +10053,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "18-01": {
                     readonly register: typeof import("./Registers").GROUP_18_Slip_Compensation_Parameters["18-01"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 18;
@@ -10183,7 +10067,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "18-02": {
                     readonly register: typeof import("./Registers").GROUP_18_Slip_Compensation_Parameters["18-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 18;
                         readonly code: "18-02";
@@ -10196,7 +10080,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "18-03": {
                     readonly register: typeof import("./Registers").GROUP_18_Slip_Compensation_Parameters["18-03"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 18;
@@ -10210,7 +10094,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "18-04": {
                     readonly register: typeof import("./Registers").GROUP_18_Slip_Compensation_Parameters["18-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 18;
                         readonly code: "18-04";
@@ -10223,7 +10107,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "18-05": {
                     readonly register: typeof import("./Registers").GROUP_18_Slip_Compensation_Parameters["18-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 18;
                         readonly code: "18-05";
@@ -10236,7 +10120,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "18-06": {
                     readonly register: typeof import("./Registers").GROUP_18_Slip_Compensation_Parameters["18-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 18;
@@ -10249,10 +10133,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group19: P.GroupParamOps<{
+            group19: GroupParamOps<{
                 readonly "19-00": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-00"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 19;
@@ -10266,7 +10150,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "19-01": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-01"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 19;
@@ -10280,7 +10164,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "19-02": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 19;
@@ -10294,7 +10178,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "19-03": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 19;
                         readonly code: "19-03";
@@ -10307,7 +10191,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "19-04": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-04"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 19;
@@ -10321,7 +10205,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "19-05": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 19;
@@ -10335,7 +10219,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "19-06": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 19;
@@ -10349,7 +10233,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "19-07": {
                     readonly register: typeof import("./Registers").GROUP_19_Wobble_Frequency_Parameters["19-07"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 19;
@@ -10362,10 +10246,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group20: P.GroupParamOps<{
+            group20: GroupParamOps<{
                 readonly "20-00": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-00"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 20;
@@ -10379,7 +10263,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-01": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-01"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.001;
                     readonly meta: {
                         readonly group: 20;
@@ -10393,7 +10277,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-02": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-02"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 20;
@@ -10407,7 +10291,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-03": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-03"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.001;
                     readonly meta: {
                         readonly group: 20;
@@ -10421,7 +10305,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-04": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-04";
@@ -10434,7 +10318,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-05": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-05"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10448,7 +10332,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-06": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10462,7 +10346,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-07": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-07";
@@ -10475,7 +10359,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-08": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-08"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.001;
                     readonly meta: {
                         readonly group: 20;
@@ -10489,7 +10373,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-09": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-09"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 20;
@@ -10503,7 +10387,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-10": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-10"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 20;
@@ -10517,7 +10401,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-11": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-11"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 20;
@@ -10531,7 +10415,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-12": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-12"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 20;
@@ -10545,7 +10429,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-13": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-13";
@@ -10558,7 +10442,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-14": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-14";
@@ -10571,7 +10455,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-15": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-15"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10585,7 +10469,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-16": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10599,7 +10483,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-17": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-17"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 20;
@@ -10613,7 +10497,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-18": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-18";
@@ -10626,7 +10510,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-19": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-19";
@@ -10639,7 +10523,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-20": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-20";
@@ -10652,7 +10536,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-21": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-21"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10666,7 +10550,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-22": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-22";
@@ -10679,7 +10563,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-23": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-23";
@@ -10692,7 +10576,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-24": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-24"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10706,7 +10590,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-25": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-25";
@@ -10719,7 +10603,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-26": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-26"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10733,7 +10617,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-27": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-27";
@@ -10746,7 +10630,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-28": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-28";
@@ -10759,7 +10643,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-29": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-29";
@@ -10772,7 +10656,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-30": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-30";
@@ -10785,7 +10669,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-31": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-31";
@@ -10798,7 +10682,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-32": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-32";
@@ -10811,7 +10695,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-33": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-33"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10825,7 +10709,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-34": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-34";
@@ -10838,7 +10722,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-35": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-35";
@@ -10851,7 +10735,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-43": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 20;
                         readonly code: "20-43";
@@ -10864,7 +10748,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "20-44": {
                     readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-44"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 20;
@@ -10876,102 +10760,11 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                         readonly page: 482;
                     };
                 };
-                readonly "20-36": {
-                    readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-36"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 20;
-                        readonly code: "20-36";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 482;
-                    };
-                };
-                readonly "20-37": {
-                    readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-37"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 20;
-                        readonly code: "20-37";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 482;
-                    };
-                };
-                readonly "20-38": {
-                    readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-38"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 20;
-                        readonly code: "20-38";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 482;
-                    };
-                };
-                readonly "20-39": {
-                    readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-39"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 20;
-                        readonly code: "20-39";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 482;
-                    };
-                };
-                readonly "20-40": {
-                    readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-40"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 20;
-                        readonly code: "20-40";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 482;
-                    };
-                };
-                readonly "20-41": {
-                    readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-41"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 20;
-                        readonly code: "20-41";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 482;
-                    };
-                };
-                readonly "20-42": {
-                    readonly register: typeof import("./Registers").GROUP_20_Speed_Control_Parameters["20-42"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 20;
-                        readonly code: "20-42";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
-                        readonly page: 482;
-                    };
-                };
             }>;
-            group21: P.GroupParamOps<{
+            group21: GroupParamOps<{
                 readonly "21-00": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-00"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-00";
@@ -10984,7 +10777,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-01": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-01"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-01";
@@ -10997,7 +10790,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-02": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-02";
@@ -11010,7 +10803,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-03": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-03"];
-                    readonly kind: P.ParamKind.SignedScaled;
+                    readonly kind: ParamKind.SignedScaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 21;
@@ -11024,7 +10817,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-04": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-04";
@@ -11037,7 +10830,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-05": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-05";
@@ -11050,7 +10843,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-06": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-06"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-06";
@@ -11063,7 +10856,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-07": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-07";
@@ -11076,7 +10869,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-08": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-08";
@@ -11089,7 +10882,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-09": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-09"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 21;
@@ -11103,7 +10896,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-10": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-10";
@@ -11116,7 +10909,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-11": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-11";
@@ -11129,7 +10922,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-12": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-12"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-12";
@@ -11142,7 +10935,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-13": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-13"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-13";
@@ -11155,7 +10948,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-14": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-14"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-14";
@@ -11168,7 +10961,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-15": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-15"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-15";
@@ -11181,7 +10974,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-16": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-16"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-16";
@@ -11194,7 +10987,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-17": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-17"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-17";
@@ -11207,7 +11000,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-18": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-18";
@@ -11220,7 +11013,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-19": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-19"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-19";
@@ -11233,7 +11026,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-20": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-20";
@@ -11246,7 +11039,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-21": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-21";
@@ -11259,7 +11052,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-22": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-22";
@@ -11272,7 +11065,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-23": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-23"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-23";
@@ -11285,7 +11078,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-24": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-24"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-24";
@@ -11298,7 +11091,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-25": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-25";
@@ -11311,7 +11104,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-26": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-26";
@@ -11324,7 +11117,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-27": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-27";
@@ -11337,7 +11130,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-28": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-28";
@@ -11350,7 +11143,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-29": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-29";
@@ -11363,7 +11156,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-30": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-30";
@@ -11376,7 +11169,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-31": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-31";
@@ -11389,7 +11182,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-32": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-32";
@@ -11402,7 +11195,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-33": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-33";
@@ -11415,7 +11208,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-34": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-34"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-34";
@@ -11428,7 +11221,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-35": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-35";
@@ -11441,7 +11234,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-36": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-36"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-36";
@@ -11454,7 +11247,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-37": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-37"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-37";
@@ -11467,7 +11260,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-38": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-38"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-38";
@@ -11480,7 +11273,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-39": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-39"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-39";
@@ -11493,7 +11286,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-40": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-40"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-40";
@@ -11506,7 +11299,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-41": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-41"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-41";
@@ -11519,7 +11312,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-42": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-42"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-42";
@@ -11532,7 +11325,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "21-43": {
                     readonly register: typeof import("./Registers").GROUP_21_Torque_And_Position_Control_Parameters["21-43"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 21;
                         readonly code: "21-43";
@@ -11544,10 +11337,10 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                     };
                 };
             }>;
-            group22: P.GroupParamOps<{
+            group22: GroupParamOps<{
                 readonly "22-00": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-00"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 22;
@@ -11561,7 +11354,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-01": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-01"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 22;
@@ -11575,7 +11368,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-02": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-02"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-02";
@@ -11588,7 +11381,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-03": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-03"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-03";
@@ -11601,7 +11394,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-04": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-04"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-04";
@@ -11614,7 +11407,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-05": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-05"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-05";
@@ -11627,7 +11420,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-06": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-06"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 22;
@@ -11641,7 +11434,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-07": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-07"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-07";
@@ -11654,7 +11447,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-08": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-08"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-08";
@@ -11667,7 +11460,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-10": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-10"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-10";
@@ -11680,7 +11473,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-11": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-11"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-11";
@@ -11693,7 +11486,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-14": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-14"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.001;
                     readonly meta: {
                         readonly group: 22;
@@ -11707,7 +11500,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-15": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-15"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 22;
@@ -11721,7 +11514,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-16": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-16"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.01;
                     readonly meta: {
                         readonly group: 22;
@@ -11735,7 +11528,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-17": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-17"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-17";
@@ -11748,7 +11541,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-18": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-18"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-18";
@@ -11761,7 +11554,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-20": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-20"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-20";
@@ -11774,7 +11567,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-21": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-21"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-21";
@@ -11787,7 +11580,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-22": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-22"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-22";
@@ -11800,7 +11593,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-25": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-25"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-25";
@@ -11813,7 +11606,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-26": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-26"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-26";
@@ -11826,7 +11619,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-27": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-27"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-27";
@@ -11839,7 +11632,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-28": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-28"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-28";
@@ -11852,7 +11645,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-29": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-29"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-29";
@@ -11865,7 +11658,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-30": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-30"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-30";
@@ -11878,7 +11671,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-31": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-31"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-31";
@@ -11891,7 +11684,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-32": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-32"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-32";
@@ -11904,7 +11697,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-33": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-33"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-33";
@@ -11917,7 +11710,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-34": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-34"];
-                    readonly kind: P.ParamKind.Scaled;
+                    readonly kind: ParamKind.Scaled;
                     readonly factor: 0.1;
                     readonly meta: {
                         readonly group: 22;
@@ -11931,7 +11724,7 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                 };
                 readonly "22-35": {
                     readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-35"];
-                    readonly kind: P.ParamKind.UInt16;
+                    readonly kind: ParamKind.UInt16;
                     readonly meta: {
                         readonly group: 22;
                         readonly code: "22-35";
@@ -11939,19 +11732,6 @@ declare const TecoInverterService_base: Effect.Service.Class<TecoInverterService
                         readonly range: "0~300";
                         readonly default: "50";
                         readonly unit: "%";
-                        readonly page: 488;
-                    };
-                };
-                readonly "22-23": {
-                    readonly register: typeof import("./Registers").GROUP_22_PM_Motor_Parameters["22-23"];
-                    readonly kind: P.ParamKind.UInt16;
-                    readonly meta: {
-                        readonly group: 22;
-                        readonly code: "22-23";
-                        readonly name: "Reserved";
-                        readonly range: "-";
-                        readonly default: "-";
-                        readonly unit: "-";
                         readonly page: 488;
                     };
                 };

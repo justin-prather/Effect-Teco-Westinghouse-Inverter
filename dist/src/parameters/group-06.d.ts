@@ -7,7 +7,7 @@
  *   06-16…06-31  operation times         ×0.1 s
  *   06-32…06-47  direction selections    0/1/2 (simple UInt16)
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_06_Automatic_Program_Operation_Parameters } from "../Registers";
 export declare const group06Params: {
     readonly "06-00": {

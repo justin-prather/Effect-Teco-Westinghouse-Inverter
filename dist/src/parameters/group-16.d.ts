@@ -2,7 +2,7 @@
  * Group 16: LCD Function Parameters
  * Manual pages 4-74 to 4-77
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_16_LCD_Parameters } from "../Registers";
 export declare const group16Params: {
     readonly "16-00": {

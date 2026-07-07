@@ -3,7 +3,7 @@
  * Manual page 4-79
  */
 
-import { ParamKind, type ParamConfig } from "./param-utils";
+import { ParamKind, type ParamConfig } from "modbus-schema";
 import { GROUP_18_Slip_Compensation_Parameters } from "../Registers";
 
 const group = 18 as const;

@@ -3,7 +3,7 @@
  * Manual pages 4-52
  */
 
-import { ParamKind, type ParamConfig } from "./param-utils";
+import { ParamKind, type ParamConfig } from "modbus-schema";
 import { GROUP_09_Communication_Parameters } from "../Registers";
 
 const group = 9 as const;

@@ -2,7 +2,7 @@
  * Group 14: PLC Setting Parameters
  * Manual page 4-72
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_14_PLC_Parameters } from "../Registers";
 export declare const group14Params: {
     readonly "14-00": {

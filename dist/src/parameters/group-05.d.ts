@@ -7,7 +7,7 @@
  * All 32 accel/decel times (05-17 through 05-48) share the same format:
  * ×0.1 s, range 0.1~6000.0 s, default 10.0.
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_05_Multi_Speed_Parameters } from "../Registers";
 export declare const group05Params: {
     readonly "05-00": {

@@ -2,7 +2,7 @@
  * Group 21: Torque And Position Control Parameters
  * Manual pages 4-82 to 4-85
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_21_Torque_And_Position_Control_Parameters } from "../Registers";
 export declare const group21Params: {
     readonly "21-00": {

@@ -402,8 +402,8 @@ describe("TorqueCommandSchema", () => {
     expect(decodeOk(decodeTorqueCommand, 8192)).toBeCloseTo(100, 1);
   });
 
-  test("decode -8192 → -100%", () => {
-    expect(decodeOk(decodeTorqueCommand, -8192)).toBeCloseTo(-100, 1);
+  test("decode 57344 (0xE000) → -100%", () => {
+    expect(decodeOk(decodeTorqueCommand, 57344)).toBeCloseTo(-100, 1);
   });
 
   test("encode 0% → 0", () => {
@@ -414,8 +414,8 @@ describe("TorqueCommandSchema", () => {
     expect(encodeOk(encodeTorqueCommand, 100 as TorquePercent)).toBe(8192);
   });
 
-  test("encode -100% → -8192", () => {
-    expect(encodeOk(encodeTorqueCommand, -100 as TorquePercent)).toBe(-8192);
+  test("encode -100% → 57344 (0xE000)", () => {
+    expect(encodeOk(encodeTorqueCommand, -100 as TorquePercent)).toBe(57344);
   });
 
   test("round-trip", () => {
@@ -441,8 +441,8 @@ describe("SpeedLimitCommandSchema", () => {
     expect(decodeOk(decodeSpeedLimitCommand, 120)).toBe(120);
   });
 
-  test("decode -120 → -120%", () => {
-    expect(decodeOk(decodeSpeedLimitCommand, -120)).toBe(-120);
+  test("decode 65416 (0xFF88) → -120%", () => {
+    expect(decodeOk(decodeSpeedLimitCommand, 65416)).toBe(-120);
   });
 
   test("encode round-trip identity", () => {

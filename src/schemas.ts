@@ -6,7 +6,7 @@
  * scaling factors. Monitor registers are decode-only; command registers support
  * both encode and decode.
  *
- * Schema factories from {@link ./parameters/param-utils} are reused:
+ * Schema factories from {@link modbus-schema} are reused:
  * - **Scaled commands/monitors** → {@link makeScaledParam} / {@link makeSignedScaledParam}
  * - **Bitfield commands/monitors** → {@link makeBitfieldParam} (generated Patch + merge)
  * - **Lookup monitors** → {@link makeLookupParam} (with fallback for unknown codes)
@@ -22,17 +22,17 @@
  * @module
  */
 
-import { Brand, Pretty, Schema } from "effect";
+import { Brand, Schema } from "effect";
 import {
   type RegisterMeta,
   makeBitfieldParam,
   makeLookupParam,
   makeScaledParam,
   makeSignedScaledParam,
-} from "./parameters/param-utils";
+} from "modbus-schema";
 
 // Re-export wire primitives (public surface preserved)
-export { Int16, UInt16 } from "./parameters/param-utils";
+export { Int16, UInt16 } from "modbus-schema";
 
 // ── Domain brands (device-side) ──────────────────────────
 
@@ -169,7 +169,7 @@ const _commandWordParam = makeBitfieldParam(
 export const CommandWordSchema = _commandWordParam.schema;
 export const decodeCommandWord = _commandWordParam.decode;
 export const encodeCommandWord = _commandWordParam.encode;
-export const formattedCommandWord = Pretty.make(CommandWordSchema);
+export const formattedCommandWord = _commandWordParam.formatted;
 export const CommandWordPatch = _commandWordParam.patch;
 export type CommandWordPatch = InstanceType<typeof CommandWordPatch>;
 export const mergeCommandWordPatch = _commandWordParam.merge;
@@ -190,67 +190,72 @@ export const commandWord = {
 //  FREQUENCY COMMAND (Register 0x2502)
 // ========================================================================
 
-export const FrequencyCommandSchema = makeScaledParam<FrequencyHz>(
+const _frequencyCommandEntry = makeScaledParam<FrequencyHz>(
   0x2502,
   0.01,
   meta("Frequency Command", "Hz", "0.00–599.00", "0.00"),
   { domain: FrequencyHz },
 );
-export const decodeFrequencyCommand = Schema.decodeUnknown(FrequencyCommandSchema);
-export const encodeFrequencyCommand = Schema.encode(FrequencyCommandSchema);
-export const formattedFrequencyCommand = Pretty.make(FrequencyCommandSchema);
+export const decodeFrequencyCommand = _frequencyCommandEntry.decode;
+export const encodeFrequencyCommand = _frequencyCommandEntry.encode;
+export const formattedFrequencyCommand = _frequencyCommandEntry.formatted;
+export const FrequencyCommandSchema = _frequencyCommandEntry.schema;
 
 // NOTE: ====================================================================
 //  TORQUE COMMAND (Register 0x2503)
 // ========================================================================
 
-export const TorqueCommandSchema = makeSignedScaledParam<TorquePercent>(
+const _torqueCommandEntry = makeSignedScaledParam<TorquePercent>(
   0x2503,
   1 / 81.92,
   meta("Torque Command", "%", "–100.0–100.0", "0.0"),
   { domain: TorquePercent },
 );
-export const decodeTorqueCommand = Schema.decodeUnknown(TorqueCommandSchema);
-export const encodeTorqueCommand = Schema.encode(TorqueCommandSchema);
-export const formattedTorqueCommand = Pretty.make(TorqueCommandSchema);
+export const decodeTorqueCommand = _torqueCommandEntry.decode;
+export const encodeTorqueCommand = _torqueCommandEntry.encode;
+export const formattedTorqueCommand = _torqueCommandEntry.formatted;
+export const TorqueCommandSchema = _torqueCommandEntry.schema;
 
 // NOTE: ====================================================================
 //  SPEED LIMIT COMMAND (Register 0x2504)
 // ========================================================================
 
-export const SpeedLimitCommandSchema = makeSignedScaledParam<SpeedLimitPercent>(
+const _speedLimitCommandEntry = makeSignedScaledParam<SpeedLimitPercent>(
   0x2504,
   1,
   meta("Speed Limit Command", "%", "–120–120", "0"),
   { domain: SpeedLimitPercent },
 );
-export const decodeSpeedLimitCommand = Schema.decodeUnknown(SpeedLimitCommandSchema);
-export const encodeSpeedLimitCommand = Schema.encode(SpeedLimitCommandSchema);
-export const formattedSpeedLimitCommand = Pretty.make(SpeedLimitCommandSchema);
+export const decodeSpeedLimitCommand = _speedLimitCommandEntry.decode;
+export const encodeSpeedLimitCommand = _speedLimitCommandEntry.encode;
+export const formattedSpeedLimitCommand = _speedLimitCommandEntry.formatted;
+export const SpeedLimitCommandSchema = _speedLimitCommandEntry.schema;
 
 // NOTE: ====================================================================
 //  ANALOG OUTPUT COMMANDS (Registers 0x2505-0x2506)
 // ========================================================================
 
-export const AnalogOut1CommandSchema = makeScaledParam<Voltage>(
+const _analogOut1CommandEntry = makeScaledParam<Voltage>(
   0x2505,
   0.01,
   meta("Analog Out 1 Command", "V", "0.00–10.00", "0.00"),
   { domain: Voltage },
 );
-export const decodeAnalogOut1Command = Schema.decodeUnknown(AnalogOut1CommandSchema);
-export const encodeAnalogOut1Command = Schema.encode(AnalogOut1CommandSchema);
-export const formattedAnalogOut1Command = Pretty.make(AnalogOut1CommandSchema);
+export const decodeAnalogOut1Command = _analogOut1CommandEntry.decode;
+export const encodeAnalogOut1Command = _analogOut1CommandEntry.encode;
+export const formattedAnalogOut1Command = _analogOut1CommandEntry.formatted;
+export const AnalogOut1CommandSchema = _analogOut1CommandEntry.schema;
 
-export const AnalogOut2CommandSchema = makeScaledParam<Voltage>(
+const _analogOut2CommandEntry = makeScaledParam<Voltage>(
   0x2506,
   0.01,
   meta("Analog Out 2 Command", "V", "0.00–10.00", "0.00"),
   { domain: Voltage },
 );
-export const decodeAnalogOut2Command = Schema.decodeUnknown(AnalogOut2CommandSchema);
-export const encodeAnalogOut2Command = Schema.encode(AnalogOut2CommandSchema);
-export const formattedAnalogOut2Command = Pretty.make(AnalogOut2CommandSchema);
+export const decodeAnalogOut2Command = _analogOut2CommandEntry.decode;
+export const encodeAnalogOut2Command = _analogOut2CommandEntry.encode;
+export const formattedAnalogOut2Command = _analogOut2CommandEntry.formatted;
+export const AnalogOut2CommandSchema = _analogOut2CommandEntry.schema;
 
 // NOTE: ====================================================================
 //  DIGITAL OUTPUT COMMAND (Register 0x2507)
@@ -281,7 +286,7 @@ const _digitalOutParam = makeBitfieldParam(
 export const DigitalOutCommandSchema = _digitalOutParam.schema;
 export const decodeDigitalOutCommand = _digitalOutParam.decode;
 export const encodeDigitalOutCommand = _digitalOutParam.encode;
-export const formattedDigitalOutCommand = Pretty.make(DigitalOutCommandSchema);
+export const formattedDigitalOutCommand = _digitalOutParam.formatted;
 export const DigitalOutCommandPatch = _digitalOutParam.patch;
 export type DigitalOutCommandPatch = InstanceType<typeof DigitalOutCommandPatch>;
 export const mergeDigitalOutCommandPatch = _digitalOutParam.merge;
@@ -337,7 +342,7 @@ const _stateMonitorParam = makeBitfieldParam(
 );
 export const StateMonitorSchema = _stateMonitorParam.schema;
 export const decodeStateMonitor = _stateMonitorParam.decode;
-export const formattedStateMonitor = Pretty.make(StateMonitorSchema);
+export const formattedStateMonitor = _stateMonitorParam.formatted;
 
 // NOTE: ====================================================================
 //  ERROR DESCRIPTION MONITOR (Register 0x2521)
@@ -359,19 +364,16 @@ const errorDescriptionLabels: Record<number, string> = {
   49: "RUN",
 };
 
-export const ErrorDescriptionMonitorSchema = makeLookupParam<ErrorDescriptionMonitor>(
+const _errorDescriptionMonitorEntry = makeLookupParam<ErrorDescriptionMonitor>(
   0x2521,
   errorDescriptionLabels as Record<number, ErrorDescriptionMonitor>,
   (raw) => `Unknown (${raw})` as ErrorDescriptionMonitor,
   meta("Error Description Monitor", "-", "0–49", "0"),
   { domain: ErrorDescriptionMonitor },
 );
-export const decodeErrorDescriptionMonitor = Schema.decodeUnknown(
-  ErrorDescriptionMonitorSchema,
-);
-export const formattedErrorDescriptionMonitor = Pretty.make(
-  ErrorDescriptionMonitorSchema,
-);
+export const decodeErrorDescriptionMonitor = _errorDescriptionMonitorEntry.decode;
+export const formattedErrorDescriptionMonitor = _errorDescriptionMonitorEntry.formatted;
+export const ErrorDescriptionMonitorSchema = _errorDescriptionMonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  DIGITAL INPUT STATE MONITOR (Register 0x2522)
@@ -404,75 +406,63 @@ const _digitalInParam = makeBitfieldParam(
 );
 export const DigitalInStateMonitorSchema = _digitalInParam.schema;
 export const decodeDigitalInStateMonitor = _digitalInParam.decode;
-export const formattedDigitalInStateMonitor = Pretty.make(DigitalInStateMonitorSchema);
+export const formattedDigitalInStateMonitor = _digitalInParam.formatted;
 
 // NOTE: ====================================================================
 //  FREQUENCY COMMAND MONITOR (Register 0x2523)
 // ========================================================================
 
-export const FrequencyCommandMonitorSchema = makeScaledParam<FrequencyHz>(
+const _frequencyCommandMonitorEntry = makeScaledParam<FrequencyHz>(
   0x2523,
   0.01,
   meta("Frequency Command Monitor", "Hz", "0.00–599.00", "0.00"),
   { domain: FrequencyHz, readOnly: true },
 );
-export const decodeFrequencyCommandMonitor = Schema.decodeUnknown(
-  FrequencyCommandMonitorSchema,
-);
-export const formattedFrequencyCommandMonitor = Pretty.make(
-  FrequencyCommandMonitorSchema,
-);
+export const decodeFrequencyCommandMonitor = _frequencyCommandMonitorEntry.decode;
+export const formattedFrequencyCommandMonitor = _frequencyCommandMonitorEntry.formatted;
+export const FrequencyCommandMonitorSchema = _frequencyCommandMonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  OUTPUT FREQUENCY MONITOR (Register 0x2524)
 // ========================================================================
 
-export const OutputFrequencyMonitorSchema = makeScaledParam<FrequencyHz>(
+const _outputFrequencyMonitorEntry = makeScaledParam<FrequencyHz>(
   0x2524,
   0.01,
   meta("Output Frequency Monitor", "Hz", "0.00–599.00", "0.00"),
   { domain: FrequencyHz, readOnly: true },
 );
-export const decodeOutputFrequencyMonitor = Schema.decodeUnknown(
-  OutputFrequencyMonitorSchema,
-);
-export const formattedOutputFrequencyMonitor = Pretty.make(
-  OutputFrequencyMonitorSchema,
-);
+export const decodeOutputFrequencyMonitor = _outputFrequencyMonitorEntry.decode;
+export const formattedOutputFrequencyMonitor = _outputFrequencyMonitorEntry.formatted;
+export const OutputFrequencyMonitorSchema = _outputFrequencyMonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  DC BUS VOLTAGE COMMAND MONITOR (Register 0x2526)
 // ========================================================================
 
-export const DCBusVoltageCommandMonitorSchema = makeScaledParam<DCBusVoltage>(
+const _dcBusVoltageCommandMonitorEntry = makeScaledParam<DCBusVoltage>(
   0x2526,
   0.1,
   meta("DC Bus Voltage Monitor", "V", "0.0–1000.0", "0.0"),
   { domain: DCBusVoltage, readOnly: true },
 );
-export const decodeDCBusVoltageCommandMonitor = Schema.decodeUnknown(
-  DCBusVoltageCommandMonitorSchema,
-);
-export const formattedDCBusVoltageCommandMonitor = Pretty.make(
-  DCBusVoltageCommandMonitorSchema,
-);
+export const decodeDCBusVoltageCommandMonitor = _dcBusVoltageCommandMonitorEntry.decode;
+export const formattedDCBusVoltageCommandMonitor = _dcBusVoltageCommandMonitorEntry.formatted;
+export const DCBusVoltageCommandMonitorSchema = _dcBusVoltageCommandMonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  OUTPUT CURRENT MONITOR (Register 0x2527)
 // ========================================================================
 
-export const OutputCurrentMonitorSchema = makeScaledParam<CurrentAmps>(
+const _outputCurrentMonitorEntry = makeScaledParam<CurrentAmps>(
   0x2527,
   0.1,
   meta("Output Current Monitor", "A", "0.0–6553.5", "0.0"),
   { domain: CurrentAmps, readOnly: true },
 );
-export const decodeOutputCurrentMonitor = Schema.decodeUnknown(
-  OutputCurrentMonitorSchema,
-);
-export const formattedOutputCurrentMonitor = Pretty.make(
-  OutputCurrentMonitorSchema,
-);
+export const decodeOutputCurrentMonitor = _outputCurrentMonitorEntry.decode;
+export const formattedOutputCurrentMonitor = _outputCurrentMonitorEntry.formatted;
+export const OutputCurrentMonitorSchema = _outputCurrentMonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  WARNING DESCRIPTION MONITOR (Register 0x2528)
@@ -500,19 +490,16 @@ const warningDescriptionLabels: Record<number, string> = {
   79: "Sys Init", 80: "FBLSS",
 };
 
-export const WarningDescriptionMonitorSchema = makeLookupParam<WarningDescriptionMonitor>(
+const _warningDescriptionMonitorEntry = makeLookupParam<WarningDescriptionMonitor>(
   0x2528,
   warningDescriptionLabels as Record<number, WarningDescriptionMonitor>,
   (raw) => `Unknown warning (${raw})` as WarningDescriptionMonitor,
   meta("Warning Description Monitor", "-", "0–80", "0"),
   { domain: WarningDescriptionMonitor },
 );
-export const decodeWarningDescriptionMonitor = Schema.decodeUnknown(
-  WarningDescriptionMonitorSchema,
-);
-export const formattedWarningDescriptionMonitor = Pretty.make(
-  WarningDescriptionMonitorSchema,
-);
+export const decodeWarningDescriptionMonitor = _warningDescriptionMonitorEntry.decode;
+export const formattedWarningDescriptionMonitor = _warningDescriptionMonitorEntry.formatted;
+export const WarningDescriptionMonitorSchema = _warningDescriptionMonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  DIGITAL OUTPUT STATE MONITOR (Register 0x2529)
@@ -539,59 +526,63 @@ const _digitalOutStateParam = makeBitfieldParam(
 );
 export const DigitalOutStateMonitorSchema = _digitalOutStateParam.schema;
 export const decodeDigitalOutStateMonitor = _digitalOutStateParam.decode;
-export const formattedDigitalOutStateMonitor = Pretty.make(DigitalOutStateMonitorSchema);
+export const formattedDigitalOutStateMonitor = _digitalOutStateParam.formatted;
 
 // NOTE: ====================================================================
 //  ANALOG OUT 1 MONITOR (Register 0x252A)
 // ========================================================================
 
-export const AnalogOut1MonitorSchema = makeScaledParam<Voltage>(
+const _analogOut1MonitorEntry = makeScaledParam<Voltage>(
   0x252a,
   0.01,
   meta("Analog Out 1 Monitor", "V", "0.00–10.00", "0.00"),
   { domain: Voltage, readOnly: true },
 );
-export const decodeAnalogOut1Monitor = Schema.decodeUnknown(AnalogOut1MonitorSchema);
-export const formattedAnalogOut1Monitor = Pretty.make(AnalogOut1MonitorSchema);
+export const decodeAnalogOut1Monitor = _analogOut1MonitorEntry.decode;
+export const formattedAnalogOut1Monitor = _analogOut1MonitorEntry.formatted;
+export const AnalogOut1MonitorSchema = _analogOut1MonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  ANALOG OUT 2 MONITOR (Register 0x252B)
 // ========================================================================
 
-export const AnalogOut2MonitorSchema = makeScaledParam<Voltage>(
+const _analogOut2MonitorEntry = makeScaledParam<Voltage>(
   0x252b,
   0.01,
   meta("Analog Out 2 Monitor", "V", "0.00–10.00", "0.00"),
   { domain: Voltage, readOnly: true },
 );
-export const decodeAnalogOut2Monitor = Schema.decodeUnknown(AnalogOut2MonitorSchema);
-export const formattedAnalogOut2Monitor = Pretty.make(AnalogOut2MonitorSchema);
+export const decodeAnalogOut2Monitor = _analogOut2MonitorEntry.decode;
+export const formattedAnalogOut2Monitor = _analogOut2MonitorEntry.formatted;
+export const AnalogOut2MonitorSchema = _analogOut2MonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  ANALOG IN 1 MONITOR (Register 0x252C)
 // ========================================================================
 
-export const AnalogIn1MonitorSchema = makeScaledParam<AnalogInputPercent>(
+const _analogIn1MonitorEntry = makeScaledParam<AnalogInputPercent>(
   0x252c,
   0.1,
   meta("Analog In 1 Monitor", "%", "0.0–100.0", "0.0"),
   { domain: AnalogInputPercent, readOnly: true },
 );
-export const decodeAnalogIn1Monitor = Schema.decodeUnknown(AnalogIn1MonitorSchema);
-export const formattedAnalogIn1Monitor = Pretty.make(AnalogIn1MonitorSchema);
+export const decodeAnalogIn1Monitor = _analogIn1MonitorEntry.decode;
+export const formattedAnalogIn1Monitor = _analogIn1MonitorEntry.formatted;
+export const AnalogIn1MonitorSchema = _analogIn1MonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  ANALOG IN 2 MONITOR (Register 0x252D)
 // ========================================================================
 
-export const AnalogIn2MonitorSchema = makeScaledParam<AnalogInputPercent>(
+const _analogIn2MonitorEntry = makeScaledParam<AnalogInputPercent>(
   0x252d,
   0.1,
   meta("Analog In 2 Monitor", "%", "0.0–100.0", "0.0"),
   { domain: AnalogInputPercent, readOnly: true },
 );
-export const decodeAnalogIn2Monitor = Schema.decodeUnknown(AnalogIn2MonitorSchema);
-export const formattedAnalogIn2Monitor = Pretty.make(AnalogIn2MonitorSchema);
+export const decodeAnalogIn2Monitor = _analogIn2MonitorEntry.decode;
+export const formattedAnalogIn2Monitor = _analogIn2MonitorEntry.formatted;
+export const AnalogIn2MonitorSchema = _analogIn2MonitorEntry.schema;
 
 // NOTE: ====================================================================
 //  A510 CHECK MONITOR (Register 0x252F)
@@ -601,12 +592,14 @@ const a510CheckLabels: Record<number, string> = {
   0x01: "L510(s)", 0x02: "E510(s)", 0x03: "A510(s)", 0x04: "F510",
 };
 
-export const A510CheckMonitorSchema = makeLookupParam<A510CheckMonitor>(
+const _a510CheckMonitorEntry = makeLookupParam<A510CheckMonitor>(
   0x252f,
   a510CheckLabels as Record<number, A510CheckMonitor>,
   (raw) => `Unknown (0x${raw.toString(16)})` as A510CheckMonitor,
   meta("A510 Check Monitor", "-", "0x01–0x04", "0"),
   { domain: A510CheckMonitor },
 );
-export const decodeA510CheckMonitor = Schema.decodeUnknown(A510CheckMonitorSchema);
-export const formattedA510CheckMonitor = Pretty.make(A510CheckMonitorSchema);
+export const decodeA510CheckMonitor = _a510CheckMonitorEntry.decode;
+export const formattedA510CheckMonitor = _a510CheckMonitorEntry.formatted;
+export const A510CheckMonitorSchema = _a510CheckMonitorEntry.schema;
+

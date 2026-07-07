@@ -2,7 +2,7 @@
  * Group 15: PLC Monitoring Parameters
  * Manual page 4-73
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_15_PLC_Monitoring_Parameters } from "../Registers";
 export declare const group15Params: {
     readonly "15-00": {

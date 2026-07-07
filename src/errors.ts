@@ -1,1 +1,1 @@
-export { readOnlyEncodeFailure } from "./parameters/param-utils";
+export { readOnlyEncodeFailure } from "modbus-schema";

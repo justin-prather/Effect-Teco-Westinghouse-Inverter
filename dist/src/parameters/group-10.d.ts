@@ -2,7 +2,7 @@
  * Group 10: PID Parameters
  * Manual pages 4-53 to 4-56
  */
-import { ParamKind } from "./param-utils";
+import { ParamKind } from "modbus-schema";
 import { GROUP_10_PID_Parameters } from "../Registers";
 export declare const group10Params: {
     /** @param 10-00 PID Target Value Source Setting -- Range: 1-4, Default: 1, Manual p.4-53 */
@@ -560,7 +560,12 @@ export declare const group10Params: {
             readonly page: 455;
         };
     };
-    /** @param 10-47 Proportional Gain 3 (P) -- Range: 0.00~10.00, Default: 1.00, Unit: -, Manual p.4-56 */
+    /**
+     * @param 10-47 Proportional Gain 3 (P) -- Range: 0.00~10.00, Default: 1.00, Unit: -, Manual p.4-56
+     * @remarks Not listed in the A510 communication addendum (Group 10 register map ends at 10-41).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "10-47": {
         readonly register: (typeof GROUP_10_PID_Parameters)["10-47"];
         readonly kind: ParamKind.Scaled;
@@ -575,7 +580,12 @@ export declare const group10Params: {
             readonly page: 456;
         };
     };
-    /** @param 10-48 Integral Time 3 (I) -- Range: 0.00~100.00, Default: 1.00, Unit: Sec, Manual p.4-56 */
+    /**
+     * @param 10-48 Integral Time 3 (I) -- Range: 0.00~100.00, Default: 1.00, Unit: Sec, Manual p.4-56
+     * @remarks Not listed in the A510 communication addendum (Group 10 register map ends at 10-41).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "10-48": {
         readonly register: (typeof GROUP_10_PID_Parameters)["10-48"];
         readonly kind: ParamKind.Scaled;
@@ -590,7 +600,12 @@ export declare const group10Params: {
             readonly page: 456;
         };
     };
-    /** @param 10-49 Differential Time 3 (D) -- Range: 0.00~10.00, Default: 0.00, Unit: Sec, Manual p.4-56 */
+    /**
+     * @param 10-49 Differential Time 3 (D) -- Range: 0.00~10.00, Default: 0.00, Unit: Sec, Manual p.4-56
+     * @remarks Not listed in the A510 communication addendum (Group 10 register map ends at 10-41).
+     *          Returned Modbus exception 2 (Illegal Data Address) on test device.
+     *          Retained for completeness per the instruction manual parameter table.
+     */
     readonly "10-49": {
         readonly register: (typeof GROUP_10_PID_Parameters)["10-49"];
         readonly kind: ParamKind.Scaled;
