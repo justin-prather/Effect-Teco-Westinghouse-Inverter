@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_11_Auxiliary_Parameters } from "../Registers";
 
 const group = 11 as const;
@@ -886,7 +887,7 @@ const all = {
     meta: { group, code: "11-78", name: "Droop Torque Offset Value", range: "0.00~100.00", default: "0.00", unit: "%", page: p459 },
   },
 
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 // ── Group-level lookup ─────────────────────────────────────
 

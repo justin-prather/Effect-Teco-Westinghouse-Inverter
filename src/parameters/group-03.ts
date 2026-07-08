@@ -54,6 +54,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_03_External_Digital_Input_and_Output_Parameters } from "../Registers";
 
 const group = 3 as const;
@@ -599,6 +600,6 @@ const all = {
       range: "0.0~999.9", default: "0.1", unit: "A", page: p433,
     },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 export const group03Params = all;

@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_12_Monitoring_Parameters } from "../Registers";
 
 const group = 12 as const;
@@ -924,7 +925,7 @@ const all = {
       page: p467,
     },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 // ── Group-level lookup ─────────────────────────────────────
 

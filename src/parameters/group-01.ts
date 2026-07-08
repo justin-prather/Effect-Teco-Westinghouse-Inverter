@@ -32,6 +32,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_01_VF_Control_Parameters } from "../Registers";
 
 const group = 1 as const;
@@ -325,6 +326,6 @@ const all = {
       range: "0~FF (hex)", default: "F (hex)", unit: "-", page: p424,
     },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 export const group01Params = all;

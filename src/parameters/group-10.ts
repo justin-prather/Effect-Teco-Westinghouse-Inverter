@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_10_PID_Parameters } from "../Registers";
 
 const group = 10 as const;
@@ -463,6 +464,6 @@ const all = {
       range: "0.00~10.00", default: "0.00", unit: "Sec", page: p456,
     },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 export const group10Params = all;

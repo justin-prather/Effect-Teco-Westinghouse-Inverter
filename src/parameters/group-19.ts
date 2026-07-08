@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_19_Wobble_Frequency_Parameters } from "../Registers";
 
 const group = 19 as const;
@@ -58,7 +59,7 @@ const all = {
     factor: 0.1,
     meta: { group, code: "19-07", name: "Lower Offset Amplitude of Wobble Frequency", range: "0.0~20.0", default: "0.0", unit: "%", page: p480 },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 // ── Static named exports ───────────────────────────────────
 

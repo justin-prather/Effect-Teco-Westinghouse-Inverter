@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_21_Torque_And_Position_Control_Parameters } from "../Registers";
 
 const group = 21 as const;
@@ -235,7 +236,7 @@ const all = {
     kind: ParamKind.UInt16,
     meta: { group, code: "21-43", name: "Offset Angle", range: "0~9999", default: "0", unit: "Pulse", page: p485 },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 // ── Static named exports ───────────────────────────────────
 

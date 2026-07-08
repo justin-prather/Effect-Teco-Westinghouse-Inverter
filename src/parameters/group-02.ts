@@ -31,6 +31,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_02_IM_Motor_Parameters } from "../Registers";
 
 const group = 2 as const;
@@ -301,6 +302,6 @@ const all = {
       range: "0.0~10.0", default: "4.0", unit: "%", page: p426,
     },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 export const group02Params = all;

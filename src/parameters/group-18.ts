@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_18_Slip_Compensation_Parameters } from "../Registers";
 
 const group = 18 as const;
@@ -49,7 +50,7 @@ const all = {
     factor: 0.01,
     meta: { group, code: "18-06", name: "FOC Gain", range: "0.00~2.00", default: "0.1", unit: "-", page: p479 },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 // ── Static named exports ───────────────────────────────────
 

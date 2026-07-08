@@ -41,6 +41,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_00_Basic_Parameters } from "../Registers";
 
 const group = 0 as const;
@@ -902,6 +903,6 @@ const all = {
       page: p421,
     },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 export const group00Params = all;

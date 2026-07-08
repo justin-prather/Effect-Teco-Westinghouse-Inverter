@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_22_PM_Motor_Parameters } from "../Registers";
 
 const group = 22 as const;
@@ -419,7 +420,7 @@ const all = {
       page: p488,
     },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 // ── Static named exports ───────────────────────────────────
 

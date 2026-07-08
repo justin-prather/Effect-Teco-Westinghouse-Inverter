@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_16_LCD_Parameters } from "../Registers";
 
 const group = 16 as const;
@@ -198,7 +199,7 @@ const all = {
     kind: ParamKind.UInt16,
     meta: { group, code: "16-37", name: "Selection of RTC Rotation Direction", range: "0~15 (bit-field for direction)", default: "0000b", unit: "-", page: p477 },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 
 

@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_14_PLC_Parameters } from "../Registers";
 
 const group = 14 as const;
@@ -250,7 +251,7 @@ const all = {
     kind: ParamKind.UInt16,
     meta: { group, code: "14-47", name: "MD4 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 
 

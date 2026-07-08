@@ -25,6 +25,17 @@ type EffectRequirementsOf<F> =
   F extends Effect.Effect<any, any, infer R> ? R : never;
 
 /**
+ * Device-specific register metadata used by all A510 parameter configs.
+ * Extends the base {@link RegisterMeta} with inverter-specific fields.
+ * These extra keys are rendered automatically by {@link formatExtraLines}.
+ */
+export interface InverterRegisterMeta extends RegisterMeta {
+  readonly group: number;
+  readonly code: string;
+  readonly page: number;
+}
+
+/**
  * Read/update operations for a single parameter entry. The error union includes
  * the transport's {@link ModbusError} because `read()` performs a Modbus read
  * and `update()` performs a Modbus write after encoding.

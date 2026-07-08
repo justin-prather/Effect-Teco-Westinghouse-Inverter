@@ -20,7 +20,7 @@
     "build": "rm -rf ./dist && bun build ./index.ts --outdir ./dist --target node --external effect --external effect-modbus-rs --external modbus-rs --external modbus-schema && tsc --noEmit false --emitDeclarationOnly --outDir ./dist --rootDir . --project tsconfig.build.json"
   },
   "devDependencies": {
-    "@effect/language-service": "^0.86.3",
+    "@effect/language-service": "^0.86.4",
     "@effect/platform-bun": "^0.90.0",
     "@types/bun": "latest",
     "effect": "^3.21.4",

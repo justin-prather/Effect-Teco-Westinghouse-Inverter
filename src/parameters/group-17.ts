@@ -4,6 +4,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_17_Automatic_Tuning_Parameters } from "../Registers";
 
 const group = 17 as const;
@@ -93,7 +94,7 @@ const all = {
     kind: ParamKind.UInt16,
     meta: { group, code: "17-14", name: "Selection of Rotation Auto-tuning", range: "0-1 (0:VF Rotation / 1:Vector Rotation)", default: "0", unit: "-", page: p479 },
   },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 // ── Group-level lookup ─────────────────────────────────────
 

@@ -9,7 +9,7 @@
         "modbus-schema": "github:justin-prather/modbus-schema",
       },
       "devDependencies": {
-        "@effect/language-service": "^0.86.3",
+        "@effect/language-service": "^0.86.4",
         "@effect/platform-bun": "^0.90.0",
         "@types/bun": "latest",
         "effect": "^3.21.4",
@@ -108,7 +108,7 @@
 
     "effect": ["effect@3.21.4", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "fast-check": "^3.23.1" } }, "sha512-B89v/xSgPbl1J2Ai2u18jxq3odpFauU1rC6/eSs4FeNHi72kwKdJp12VGigvRV2lK+kRnx+OOz41XV8guZd4gQ=="],
 
-    "effect-modbus-rs": ["effect-modbus-rs@github:justin-prather/Effect-modbus-rs#11c4127", { "dependencies": { "effect": "^3.21.4", "modbus-rs": "^0.15.3" } }, "justin-prather-Effect-modbus-rs-11c4127", "sha512-7hH6ssjPRxjfSzq1/d696SlSJoDMYKp0hoyeUZ9XCl5tn1DzOszqkaxfDE5Srh+eow6BtzLmgO5jbbld85V67Q=="],
+    "effect-modbus-rs": ["effect-modbus-rs@github:justin-prather/Effect-modbus-rs#a1e38b7", { "dependencies": { "modbus-rs": "^0.15.3" }, "peerDependencies": { "effect": "^3.21.4" } }, "justin-prather-Effect-modbus-rs-a1e38b7", "sha512-Is+vtm05Xd9egvagA5SwVDiHh5unqgXW7oONKzU42r94guR4sP0P7TpW6zfJLl3CYQuzIpqwT9u5Upy27DnZQQ=="],
 
     "fallow": ["fallow@2.104.0", "", { "dependencies": { "detect-libc": "2.1.2" }, "optionalDependencies": { "@fallow-cli/darwin-arm64": "2.104.0", "@fallow-cli/darwin-x64": "2.104.0", "@fallow-cli/linux-arm64-gnu": "2.104.0", "@fallow-cli/linux-arm64-musl": "2.104.0", "@fallow-cli/linux-x64-gnu": "2.104.0", "@fallow-cli/linux-x64-musl": "2.104.0", "@fallow-cli/win32-arm64-msvc": "2.104.0", "@fallow-cli/win32-x64-msvc": "2.104.0" }, "bin": { "fallow": "bin/fallow", "fallow-lsp": "bin/fallow-lsp", "fallow-mcp": "bin/fallow-mcp" } }, "sha512-UX6Q10Feyb7epe5tTI0sHCHPReOhuKOtxdVpkbqr1lLSZirv2PJiLTTrJr7gKeLHbztE9CHR1y7YARSe0rNYag=="],
 
@@ -132,7 +132,7 @@
 
     "modbus-rs-win32-x64-msvc": ["modbus-rs-win32-x64-msvc@0.15.3", "", { "os": "win32", "cpu": "x64" }, "sha512-279czpR0f2Fnrea9P3V/RmahNdOFFGqddXxx2bLu6YxxQXEbpEvBrT6zjGfy32JRKvBFjadbX9GAr//g1J482g=="],
 
-    "modbus-schema": ["modbus-schema@github:justin-prather/modbus-schema#97b3936", { "peerDependencies": { "effect": "^3.21.4" } }, "justin-prather-Modbus-Schema-97b3936", "sha512-OI5t5B/UieQ7ateAzxPVwaVAW5qC6r2C43oCfzL2YEiCIG4/qwr5hhKq/kJKWqnK97xn2zMjOaK2LWuV4TCXcg=="],
+    "modbus-schema": ["modbus-schema@github:justin-prather/modbus-schema#e7be6bf", { "peerDependencies": { "effect": "^3.21.4" } }, "justin-prather-Modbus-Schema-e7be6bf", "sha512-hnfGLAYFxp9tmcy+FiVNrNIUNg9vwa7YuUyzJW82NjU5Z0KrLQ8g7/2Np6MGOMPZUhEKVSy9q3o6oFB/8SH/mQ=="],
 
     "msgpackr": ["msgpackr@1.12.1", "", { "optionalDependencies": { "msgpackr-extract": "^3.0.2" } }, "sha512-4EUH9tQHnMmEgzW/MdAP0KIfa1T9AF+htl0ffe2n5vb2EKn9y2co8ccpgWko6S52Jy1PQZKwRnx5/KkYjtd9MQ=="],
 

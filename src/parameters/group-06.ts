@@ -9,6 +9,7 @@
  */
 
 import { ParamKind, type ParamConfig } from "modbus-schema";
+import type { InverterRegisterMeta } from "./operations";
 import { GROUP_06_Automatic_Program_Operation_Parameters } from "../Registers";
 
 const group = 6 as const;
@@ -109,6 +110,6 @@ const all = {
   "06-29": { register: GROUP_06_Automatic_Program_Operation_Parameters["06-29"], kind: ParamKind.Scaled, factor: 0.1, meta: timeMeta(13, p442) },
   "06-30": { register: GROUP_06_Automatic_Program_Operation_Parameters["06-30"], kind: ParamKind.Scaled, factor: 0.1, meta: timeMeta(14, p442) },
   "06-31": { register: GROUP_06_Automatic_Program_Operation_Parameters["06-31"], kind: ParamKind.Scaled, factor: 0.1, meta: timeMeta(15, p442) },
-} as const satisfies Record<string, ParamConfig>;
+} as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
 
 export const group06Params = all;
