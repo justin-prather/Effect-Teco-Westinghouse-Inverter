@@ -509,6 +509,11 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
          * @example
          * const value = yield* inverter.parameters.group00.p00_01(1).read();
          * yield* inverter.parameters.group00.p00_01(1).update(2);
+         *
+         * @internal Excluded from generated docs: the full per-register literal
+         * type here spans hundreds of parameters and renders as a multi-MB page.
+         * See the example above and the `parameters/group-*.ts` source for the
+         * full register list; IDE autocomplete surfaces the real type.
          */
         parameters: {
           group00: makeGroupParamOps(Parameters.group00),
