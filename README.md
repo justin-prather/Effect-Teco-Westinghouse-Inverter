@@ -20,9 +20,9 @@ Requires `effect`, `effect-modbus-rs`, and `modbus-schema` as peer dependencies.
 ## Quick start
 
 ```ts
-import { Console, Effect, Layer } from "effect";
-import { TecoInverterService } from "effect-teco-westinghouse-inverter";
-import { SerialTransportService } from "effect-modbus-rs";
+import { Console, Effect, Layer } from 'effect';
+import { TecoInverterService } from 'effect-teco-westinghouse-inverter';
+import { SerialTransportService } from 'effect-modbus-rs';
 
 const program = Effect.gen(function* () {
   const inverter = yield* TecoInverterService;
@@ -34,7 +34,7 @@ program.pipe(
   Effect.provide(
     Layer.provideMerge(
       TecoInverterService.Default(true),
-      SerialTransportService.fromRtu({ portPath: "/dev/ttyUSB0", baudRate: 19200 }),
+      SerialTransportService.fromRtu({ portPath: '/dev/ttyUSB0', baudRate: 19200 }),
     ),
   ),
   Effect.scoped,
@@ -48,64 +48,64 @@ program.pipe(
 
 ### Command registers (write)
 
-| Method | Register | Description |
-|--------|----------|-------------|
-| `operationCommand(deviceId)` | 0x2501 | Start/stop/reverse + fault reset |
-| `frequencyCommand(deviceId)` | 0x2502 | Target output frequency (Hz) |
-| `torqueCommand(deviceId)` | 0x2503 | Torque limit / command (%) |
-| `speedLimitCommand(deviceId)` | 0x2504 | Speed limit (%) |
-| `analogOut1Command(deviceId)` | 0x2505 | Analog output 1 (V) |
-| `analogOut2Command(deviceId)` | 0x2506 | Analog output 2 (V) |
-| `digitalOutCommand(deviceId)` | 0x2507 | Digital output terminals |
+| Method                        | Register | Description                      |
+| ----------------------------- | -------- | -------------------------------- |
+| `operationCommand(deviceId)`  | 0x2501   | Start/stop/reverse + fault reset |
+| `frequencyCommand(deviceId)`  | 0x2502   | Target output frequency (Hz)     |
+| `torqueCommand(deviceId)`     | 0x2503   | Torque limit / command (%)       |
+| `speedLimitCommand(deviceId)` | 0x2504   | Speed limit (%)                  |
+| `analogOut1Command(deviceId)` | 0x2505   | Analog output 1 (V)              |
+| `analogOut2Command(deviceId)` | 0x2506   | Analog output 2 (V)              |
+| `digitalOutCommand(deviceId)` | 0x2507   | Digital output terminals         |
 
 ### Monitor registers (read)
 
-| Method | Register | Description |
-|--------|----------|-------------|
-| `stateMonitor(deviceId)` | 0x2520 | Operating state flags |
-| `errorDescriptionMonitor(deviceId)` | 0x2521 | Fault code + description |
-| `digitalInStateMonitor(deviceId)` | 0x2522 | Digital input states |
-| `frequencyCommandMonitor(deviceId)` | 0x2523 | Active frequency command |
-| `outputFrequencyMonitor(deviceId)` | 0x2524 | Actual output frequency |
-| `dcBusVoltageCommandMonitor(deviceId)` | 0x2526 | DC bus voltage (V) |
-| `outputCurrentMonitor(deviceId)` | 0x2527 | Output current (A) |
-| `warningDescriptionMonitor(deviceId)` | 0x2528 | Warning code + description |
-| `digitalOutStateMonitor(deviceId)` | 0x2529 | Digital output states |
-| `analogOut1Monitor(deviceId)` | 0x252A | Analog output 1 voltage |
-| `analogOut2Monitor(deviceId)` | 0x252B | Analog output 2 voltage |
-| `analogIn1Monitor(deviceId)` | 0x252C | Analog input 1 (%) |
-| `analogIn2Monitor(deviceId)` | 0x252D | Analog input 2 (%) |
-| `a510CheckMonitor(deviceId)` | 0x252F | Drive series/model ID |
+| Method                                 | Register | Description                |
+| -------------------------------------- | -------- | -------------------------- |
+| `stateMonitor(deviceId)`               | 0x2520   | Operating state flags      |
+| `errorDescriptionMonitor(deviceId)`    | 0x2521   | Fault code + description   |
+| `digitalInStateMonitor(deviceId)`      | 0x2522   | Digital input states       |
+| `frequencyCommandMonitor(deviceId)`    | 0x2523   | Active frequency command   |
+| `outputFrequencyMonitor(deviceId)`     | 0x2524   | Actual output frequency    |
+| `dcBusVoltageCommandMonitor(deviceId)` | 0x2526   | DC bus voltage (V)         |
+| `outputCurrentMonitor(deviceId)`       | 0x2527   | Output current (A)         |
+| `warningDescriptionMonitor(deviceId)`  | 0x2528   | Warning code + description |
+| `digitalOutStateMonitor(deviceId)`     | 0x2529   | Digital output states      |
+| `analogOut1Monitor(deviceId)`          | 0x252A   | Analog output 1 voltage    |
+| `analogOut2Monitor(deviceId)`          | 0x252B   | Analog output 2 voltage    |
+| `analogIn1Monitor(deviceId)`           | 0x252C   | Analog input 1 (%)         |
+| `analogIn2Monitor(deviceId)`           | 0x252D   | Analog input 2 (%)         |
+| `a510CheckMonitor(deviceId)`           | 0x252F   | Drive series/model ID      |
 
 ## Parameter groups
 
 Typed access to all Groups 00–22 via `inverter.parameters.group##`:
 
-| Group | Name | Pages |
-|-------|------|-------|
-| 00 | Basic Parameters | 4-19 – 4-22 |
-| 01 | Frequency Parameters | 4-37 – 4-38 |
-| 02 | Accel/Decel Parameters | 4-39 – 4-43 |
-| 03 | Multi-Function Input | 4-44 – 4-52 |
-| 04 | Multi-Function Digital Output | 4-53 – 4-59 |
-| 05 | Multi-Step/Speed | 4-60 – 4-66 |
-| 06 | VFD Protection | 4-67 – 4-71 |
-| 07 | Start/Stop | 4-72 – 4-74 |
-| 08 | Protection | 4-75 – 4-79 |
-| 09 | Communication | 4-80 |
-| 10 | PID Control | 4-81 – 4-84 |
-| 11 | Auxiliary Functions | 4-85 – 4-88 |
-| 12 | Monitoring | 4-62 – 4-67 |
-| 13 | Maintenance | 4-68 – 4-71 |
-| 14 | PLC Setting | 4-72 |
-| 15 | PLC Monitoring | 4-73 |
-| 16 | LCD Function | 4-74 – 4-77 |
-| 17 | Automatic Tuning | 4-78 – 4-79 |
-| 18 | Slip Compensation | 4-79 |
-| 19 | Wobble Frequency | 4-79 – 4-80 |
-| 20 | Speed Control | 4-80 – 4-82 |
-| 21 | Torque & Position Control | 4-82 – 4-85 |
-| 22 | PM Motor | 4-85 – 4-88 |
+| Group | Name                          | Pages       |
+| ----- | ----------------------------- | ----------- |
+| 00    | Basic Parameters              | 4-19 – 4-22 |
+| 01    | Frequency Parameters          | 4-37 – 4-38 |
+| 02    | Accel/Decel Parameters        | 4-39 – 4-43 |
+| 03    | Multi-Function Input          | 4-44 – 4-52 |
+| 04    | Multi-Function Digital Output | 4-53 – 4-59 |
+| 05    | Multi-Step/Speed              | 4-60 – 4-66 |
+| 06    | VFD Protection                | 4-67 – 4-71 |
+| 07    | Start/Stop                    | 4-72 – 4-74 |
+| 08    | Protection                    | 4-75 – 4-79 |
+| 09    | Communication                 | 4-80        |
+| 10    | PID Control                   | 4-81 – 4-84 |
+| 11    | Auxiliary Functions           | 4-85 – 4-88 |
+| 12    | Monitoring                    | 4-62 – 4-67 |
+| 13    | Maintenance                   | 4-68 – 4-71 |
+| 14    | PLC Setting                   | 4-72        |
+| 15    | PLC Monitoring                | 4-73        |
+| 16    | LCD Function                  | 4-74 – 4-77 |
+| 17    | Automatic Tuning              | 4-78 – 4-79 |
+| 18    | Slip Compensation             | 4-79        |
+| 19    | Wobble Frequency              | 4-79 – 4-80 |
+| 20    | Speed Control                 | 4-80 – 4-82 |
+| 21    | Torque & Position Control     | 4-82 – 4-85 |
+| 22    | PM Motor                      | 4-85 – 4-88 |
 
 Each parameter callable returns `{ read(), update(value) }` for a given `deviceId`.
 
@@ -127,9 +127,9 @@ Each factory returns a `ParamEntry` with both Effect-native and synchronous deco
 Use `SerialTransportService.makeMockTransport` with `TecoInverterService.mockDevice()` — a built-in generator producing a full `SlaveDeviceDefinition` for the A510 with all registers defaulting to `0`.
 
 ```ts
-import { Console, Effect, Layer } from "effect";
-import { TecoInverterService } from "effect-teco-westinghouse-inverter";
-import { SerialTransportService } from "effect-modbus-rs";
+import { Console, Effect, Layer } from 'effect';
+import { TecoInverterService } from 'effect-teco-westinghouse-inverter';
+import { SerialTransportService } from 'effect-modbus-rs';
 
 const program = Effect.gen(function* () {
   const inverter = yield* TecoInverterService;
@@ -141,17 +141,13 @@ const program = Effect.gen(function* () {
   yield* Console.log(`Frequency: ${freq} -> ${freqAfter}`);
 });
 
-const mockLayer = SerialTransportService.makeMockTransport([
-  TecoInverterService.mockDevice(1),
-])({
-  portPath: "/dev/null",
+const mockLayer = SerialTransportService.makeMockTransport([TecoInverterService.mockDevice(1)])({
+  portPath: '/dev/null',
   baudRate: 9600,
 });
 
 program.pipe(
-  Effect.provide(
-    Layer.provideMerge(TecoInverterService.Default("Rtu"), mockLayer),
-  ),
+  Effect.provide(Layer.provideMerge(TecoInverterService.Default('Rtu'), mockLayer)),
   Effect.scoped,
   Effect.runPromise,
 );
@@ -171,21 +167,23 @@ const customRegisters = device.holdingRegisters.map((reg) => {
   return reg;
 });
 
-const mockLayer = SerialTransportService.makeMockTransport([{
-  ...device,
-  holdingRegisters: customRegisters,
-}]);
+const mockLayer = SerialTransportService.makeMockTransport([
+  {
+    ...device,
+    holdingRegisters: customRegisters,
+  },
+]);
 ```
 
 ### SlaveDeviceDefinition schema
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `unitId` | `number` | Modbus slave/unit ID (required) |
-| `coils` | `{ address, default }[]` | Coil registers |
-| `discreteInputs` | `{ address, default }[]` | Discrete input registers |
+| Property           | Type                     | Description                                    |
+| ------------------ | ------------------------ | ---------------------------------------------- |
+| `unitId`           | `number`                 | Modbus slave/unit ID (required)                |
+| `coils`            | `{ address, default }[]` | Coil registers                                 |
+| `discreteInputs`   | `{ address, default }[]` | Discrete input registers                       |
 | `holdingRegisters` | `{ address, default }[]` | Holding registers (command + monitor + params) |
-| `inputRegisters` | `{ address, default }[]` | Input registers |
+| `inputRegisters`   | `{ address, default }[]` | Input registers                                |
 
 ## Register map
 
@@ -197,11 +195,11 @@ Command and monitor registers are TypeScript enums in `src/Registers.ts`:
 
 ## Development
 
-| Action | Command |
-|--------|---------|
-| Install | `bun install` |
-| Type-check | `bun run typecheck` |
-| Test | `bun test` |
+| Action      | Command                      |
+| ----------- | ---------------------------- |
+| Install     | `bun install`                |
+| Type-check  | `bun run typecheck`          |
+| Test        | `bun test`                   |
 | Run example | `bun run examples/<name>.ts` |
 
 ## Source layout

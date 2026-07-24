@@ -1,12 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
-  "entry": [
-    "index.ts"
-  ],
-  "ignorePatterns": [
-    "examples/**",
-    "references/**"
-  ],
+  "entry": ["index.ts"],
+  "ignorePatterns": ["examples/**", "references/**"],
   "duplicates": {
     // Hide pair-only clones; focus on widespread copy-paste
     // worth refactoring. Lower to 2 to report every duplicate pair.

@@ -10,19 +10,18 @@
  * @module
  */
 
-import type { Effect } from "effect";
-import type { ModbusError } from "effect-modbus-rs";
+import type { Effect } from 'effect';
+import type { ModbusError } from 'effect-modbus-rs';
 import type {
   ParamConfig,
   ParamEntry,
   ParamEntryOfConfig,
   ParamValueOfEntry,
   RegisterMeta,
-} from "modbus-schema";
+} from 'modbus-schema';
 
 type EffectErrorOf<F> = F extends Effect.Effect<any, infer E, any> ? E : never;
-type EffectRequirementsOf<F> =
-  F extends Effect.Effect<any, any, infer R> ? R : never;
+type EffectRequirementsOf<F> = F extends Effect.Effect<any, any, infer R> ? R : never;
 
 /**
  * Device-specific register metadata used by all A510 parameter configs.
@@ -43,15 +42,15 @@ export interface InverterRegisterMeta extends RegisterMeta {
 export type ParamOperationOfEntry<E extends ParamEntry<any>> = {
   readonly read: () => Effect.Effect<
     ParamValueOfEntry<E>,
-    EffectErrorOf<ReturnType<E["decode"]>> | ModbusError,
-    EffectRequirementsOf<ReturnType<E["decode"]>>
+    EffectErrorOf<ReturnType<E['decode']>> | ModbusError,
+    EffectRequirementsOf<ReturnType<E['decode']>>
   >;
   readonly update: (
     value: ParamValueOfEntry<E>,
   ) => Effect.Effect<
     void,
-    EffectErrorOf<ReturnType<E["encode"]>> | ModbusError,
-    EffectRequirementsOf<ReturnType<E["encode"]>>
+    EffectErrorOf<ReturnType<E['encode']>> | ModbusError,
+    EffectRequirementsOf<ReturnType<E['encode']>>
   >;
 };
 

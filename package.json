@@ -2,23 +2,13 @@
   "name": "effect-teco-westinghouse-inverter",
   "version": "1.0.0",
   "description": "Bidirectional schema transformers for Teco/Westinghouse A510 inverter Modbus parameters.",
-  "type": "module",
+  "license": "GPL-3.0",
   "files": [
     "src/**/*.ts",
     "dist/**/*.js",
     "dist/**/*.d.ts"
   ],
-  "publishConfig": {
-    "access": "public",
-    "provenance": true,
-    "exports": {
-      "./package.json": "./package.json",
-      ".": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    }
-  },
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -26,12 +16,32 @@
       "default": "./index.ts"
     }
   },
+  "publishConfig": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
+    "build": "rm -rf ./dist && bun build ./index.ts --outdir ./dist --target node --external effect --external effect-modbus-rs --external modbus-rs --external modbus-schema && tsc --noEmit false --emitDeclarationOnly --outDir ./dist --rootDir . --project tsconfig.build.json",
+    "docs": "typedoc",
+    "format": "oxfmt --check",
+    "format:fix": "oxfmt",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "prepare": "husky",
     "test": "bun test src/schemas.test.ts src/parameters/",
     "test:coverage": "bun test --coverage src/schemas.test.ts src/parameters/",
-    "typecheck": "tsc --noEmit",
-    "build": "rm -rf ./dist && bun build ./index.ts --outdir ./dist --target node --external effect --external effect-modbus-rs --external modbus-rs --external modbus-schema && tsc --noEmit false --emitDeclarationOnly --outDir ./dist --rootDir . --project tsconfig.build.json",
-    "docs": "typedoc"
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "effect-modbus-rs": "github:flux-control-solutions/Effect-modbus-rs",
+    "modbus-schema": "github:flux-control-solutions/modbus-schema"
   },
   "devDependencies": {
     "@effect/language-service": "^0.86.4",
@@ -39,15 +49,13 @@
     "@types/bun": "latest",
     "effect": "^3.21.4",
     "fallow": "^2.104.0",
+    "husky": "^9.1.7",
+    "oxfmt": "^0.60.0",
+    "oxlint": "^1.75.0",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "effect": "^3.21.4"
-  },
-  "dependencies": {
-    "effect-modbus-rs": "github:flux-control-solutions/Effect-modbus-rs",
-    "modbus-schema": "github:flux-control-solutions/modbus-schema"
-  },
-  "license": "GPL-3.0"
+  }
 }

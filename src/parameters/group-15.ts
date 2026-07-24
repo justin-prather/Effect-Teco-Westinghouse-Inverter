@@ -3,182 +3,445 @@
  * Manual page 4-73
  */
 
-import { ParamKind, type ParamConfig } from "modbus-schema";
-import type { InverterRegisterMeta } from "./operations";
-import { GROUP_15_PLC_Monitoring_Parameters } from "../Registers";
+import { ParamKind, type ParamConfig } from 'modbus-schema';
+
+import { GROUP_15_PLC_Monitoring_Parameters } from '../Registers';
+import type { InverterRegisterMeta } from './operations';
 
 const group = 15 as const;
 const p473 = 473 as const;
 
 const all = {
-  "15-00": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-00"],
+  '15-00': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-00'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-00", name: "T1 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-00',
+      name: 'T1 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-01": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-01"],
+  '15-01': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-01'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-01", name: "T1 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-01',
+      name: 'T1 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-02": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-02"],
+  '15-02': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-02'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-02", name: "T2 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-02',
+      name: 'T2 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-03": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-03"],
+  '15-03': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-03'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-03", name: "T2 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-03',
+      name: 'T2 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-04": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-04"],
+  '15-04': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-04'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-04", name: "T3 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-04',
+      name: 'T3 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-05": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-05"],
+  '15-05': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-05'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-05", name: "T3 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-05',
+      name: 'T3 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-06": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-06"],
+  '15-06': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-06'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-06", name: "T4 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-06',
+      name: 'T4 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-07": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-07"],
+  '15-07': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-07'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-07", name: "T4 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-07',
+      name: 'T4 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-08": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-08"],
+  '15-08': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-08'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-08", name: "T5 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-08',
+      name: 'T5 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-09": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-09"],
+  '15-09': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-09'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-09", name: "T5 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-09',
+      name: 'T5 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-10": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-10"],
+  '15-10': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-10'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-10", name: "T6 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-10',
+      name: 'T6 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-11": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-11"],
+  '15-11': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-11'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-11", name: "T6 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-11',
+      name: 'T6 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-12": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-12"],
+  '15-12': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-12'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-12", name: "T7 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-12',
+      name: 'T7 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-13": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-13"],
+  '15-13': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-13'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-13", name: "T7 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-13',
+      name: 'T7 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-14": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-14"],
+  '15-14': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-14'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-14", name: "T8 Current Value 1", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-14',
+      name: 'T8 Current Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-15": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-15"],
+  '15-15': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-15'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-15", name: "T8 Current Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-15',
+      name: 'T8 Current Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-16": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-16"],
+  '15-16': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-16'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-16", name: "C1 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-16',
+      name: 'C1 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-17": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-17"],
+  '15-17': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-17'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-17", name: "C2 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-17',
+      name: 'C2 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-18": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-18"],
+  '15-18': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-18'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-18", name: "C3 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-18',
+      name: 'C3 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-19": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-19"],
+  '15-19': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-19'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-19", name: "C4 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-19',
+      name: 'C4 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-20": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-20"],
+  '15-20': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-20'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-20", name: "C5 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-20',
+      name: 'C5 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-21": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-21"],
+  '15-21': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-21'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-21", name: "C6 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-21',
+      name: 'C6 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-22": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-22"],
+  '15-22': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-22'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-22", name: "C7 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-22',
+      name: 'C7 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-23": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-23"],
+  '15-23': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-23'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-23", name: "C8 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-23',
+      name: 'C8 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-24": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-24"],
+  '15-24': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-24'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-24", name: "AS1 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-24',
+      name: 'AS1 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-25": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-25"],
+  '15-25': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-25'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-25", name: "AS2 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-25',
+      name: 'AS2 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-26": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-26"],
+  '15-26': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-26'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-26", name: "AS3 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-26',
+      name: 'AS3 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-27": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-27"],
+  '15-27': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-27'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-27", name: "AS4 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-27',
+      name: 'AS4 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-28": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-28"],
+  '15-28': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-28'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-28", name: "MD1 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-28',
+      name: 'MD1 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-29": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-29"],
+  '15-29': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-29'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-29", name: "MD2 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-29',
+      name: 'MD2 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-30": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-30"],
+  '15-30': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-30'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-30", name: "MD3 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-30',
+      name: 'MD3 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-31": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-31"],
+  '15-31': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-31'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-31", name: "MD4 Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-31',
+      name: 'MD4 Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
-  "15-32": {
-    register: GROUP_15_PLC_Monitoring_Parameters["15-32"],
+  '15-32': {
+    register: GROUP_15_PLC_Monitoring_Parameters['15-32'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "15-32", name: "TD Current Value", range: "0~65534", default: "0", unit: "-", page: p473 },
+    meta: {
+      group,
+      code: '15-32',
+      name: 'TD Current Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p473,
+    },
   },
 } as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
-
-
 
 // ── Group-level lookup ─────────────────────────────────────
 

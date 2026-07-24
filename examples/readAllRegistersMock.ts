@@ -8,16 +8,17 @@
  * @example bun run examples/readAllRegistersMock.ts
  */
 
-import { Console, Effect, Layer, Logger, LogLevel } from "effect";
-import { TecoInverterService } from "../src/TecoInverterService";
-import { SerialTransportService } from "effect-modbus-rs";
-import { BunRuntime } from "@effect/platform-bun";
+import { BunRuntime } from '@effect/platform-bun';
+import { Console, Effect, Layer, Logger, LogLevel } from 'effect';
+import { SerialTransportService } from 'effect-modbus-rs';
+
 import {
   formattedCommandWord,
   formattedFrequencyCommand,
   formattedStateMonitor,
   type FrequencyHz,
-} from "../src/schemas";
+} from '../src/schemas';
+import { TecoInverterService } from '../src/TecoInverterService';
 
 const deviceId = 1;
 
@@ -28,28 +29,22 @@ const program = Effect.gen(function* () {
   const opCmd = yield* inverter.operationCommand(deviceId).read();
   const freqCmd = yield* inverter.frequencyCommand(deviceId).read();
 
-  yield* Console.log("=== Initial (default) values ===");
+  yield* Console.log('=== Initial (default) values ===');
   yield* Console.log(`  Operation Command:  ${formattedCommandWord(opCmd)}`);
-  yield* Console.log(
-    `  Frequency Command:  ${formattedFrequencyCommand(freqCmd)}`,
-  );
+  yield* Console.log(`  Frequency Command:  ${formattedFrequencyCommand(freqCmd)}`);
 
   // Write a frequency command and verify the mock persists it
   yield* inverter.frequencyCommand(deviceId).update(50 as FrequencyHz);
   const freqCmdAfter = yield* inverter.frequencyCommand(deviceId).read();
-  yield* Console.log(
-    `  After write:        ${formattedFrequencyCommand(freqCmdAfter)}`,
-  );
+  yield* Console.log(`  After write:        ${formattedFrequencyCommand(freqCmdAfter)}`);
 
   // Read a parameter register (group 00, param 00-00: Control Mode Selection, default 0 -> "V/F")
-  const param00 = yield* inverter.parameters.group00["00-00"](deviceId).read();
+  const param00 = yield* inverter.parameters.group00['00-00'](deviceId).read();
   yield* Console.log(`  00-00 Control Mode: ${param00}`);
 
   // Read a monitor register (default 0)
   const stateMon = yield* inverter.stateMonitor(deviceId).read();
-  yield* Console.log(
-    `  State Monitor:      ${formattedStateMonitor(stateMon)}`,
-  );
+  yield* Console.log(`  State Monitor:      ${formattedStateMonitor(stateMon)}`);
 });
 
 const TecoLayer = TecoInverterService.Default(true);
@@ -57,11 +52,11 @@ const mockSerialLayer = SerialTransportService.makeMockTransport([
   TecoInverterService.mockDevice(1),
   TecoInverterService.mockDevice(2),
 ])({
-  portPath: "/dev/null",
+  portPath: '/dev/null',
   baudRate: 9600,
   stopBits: 1,
   dataBits: 8,
-  parity: "None",
+  parity: 'None',
 });
 
 const layerLive = Layer.provideMerge(TecoLayer, mockSerialLayer);

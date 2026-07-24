@@ -31,21 +31,14 @@
  * @module
  */
 
-import { Effect, Record } from "effect";
-import {
-  SerialTransportService,
-  type SlaveDeviceDefinition,
-} from "effect-modbus-rs";
-import { COMMAND_REGISTERS, MONITOR_REGISTERS } from "./Registers";
-import * as S from "./schemas";
-import * as Parameters from "./parameters";
-import {
-  type ParamConfig,
-  type ParamEntryOfConfig,
-  ParamKind,
-  fromConfig,
-} from "modbus-schema";
-import type { GroupParamOps, ParamCallableOfEntry } from "./parameters/operations";
+import { Effect, Record } from 'effect';
+import { SerialTransportService, type SlaveDeviceDefinition } from 'effect-modbus-rs';
+import { type ParamConfig, type ParamEntryOfConfig, ParamKind, fromConfig } from 'modbus-schema';
+
+import * as Parameters from './parameters';
+import type { GroupParamOps, ParamCallableOfEntry } from './parameters/operations';
+import { COMMAND_REGISTERS, MONITOR_REGISTERS } from './Registers';
+import * as S from './schemas';
 
 /**
  * Extracts the default wire-format value for a parameter config.
@@ -115,7 +108,7 @@ const paramRegisterDefs: ReadonlyArray<{
  * @see TecoInverterService.Default
  */
 export class TecoInverterService extends Effect.Service<TecoInverterService>()(
-  "TecoInverterService",
+  'TecoInverterService',
   {
     scoped: Effect.fnUntraced(function* (safeShutdown: boolean = true) {
       const transport = yield* SerialTransportService;
@@ -175,10 +168,7 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
         };
 
       const makeMonitor =
-        <T, E, R>(
-          address: number,
-          decode: (raw: unknown) => Effect.Effect<T, E, R>,
-        ) =>
+        <T, E, R>(address: number, decode: (raw: unknown) => Effect.Effect<T, E, R>) =>
         (deviceId: number) => ({
           read: () => readHolding(address, decode)(deviceId),
         });
@@ -191,12 +181,10 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
         }) as unknown as ParamCallableOfEntry<ParamEntryOfConfig<C>>;
       };
 
-      const makeGroupParamOps = <C extends Record<string, ParamConfig>>(
-        configs: C,
-      ) => {
-        const entries = (
-          Object.keys(configs) as Array<Extract<keyof C, string>>
-        ).map((key) => [key, makeParamOpsFromConfig(configs[key]!)] as const);
+      const makeGroupParamOps = <C extends Record<string, ParamConfig>>(configs: C) => {
+        const entries = (Object.keys(configs) as Array<Extract<keyof C, string>>).map(
+          (key) => [key, makeParamOpsFromConfig(configs[key]!)] as const,
+        );
 
         return Record.fromEntries(entries) as GroupParamOps<C>;
       };
@@ -238,10 +226,7 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
         S.encodeDigitalOutCommand,
         S.mergeDigitalOutCommandPatch,
       );
-      const stateMonitor = makeMonitor(
-        MONITOR_REGISTERS.STATE_MONITOR,
-        S.decodeStateMonitor,
-      );
+      const stateMonitor = makeMonitor(MONITOR_REGISTERS.STATE_MONITOR, S.decodeStateMonitor);
       const errorDescriptionMonitor = makeMonitor(
         MONITOR_REGISTERS.ERROR_DESCRIPTION_MONITOR,
         S.decodeErrorDescriptionMonitor,
@@ -302,10 +287,7 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
               .update(new S.CommandWordPatch({ run: false }))
               .pipe(
                 Effect.catchAll((err) =>
-                  Effect.logWarning(
-                    "Error while stopping fan on exit: ",
-                    err,
-                  ).pipe(Effect.asVoid),
+                  Effect.logWarning('Error while stopping fan on exit: ', err).pipe(Effect.asVoid),
                 ),
               );
           }),
@@ -566,10 +548,10 @@ export class TecoInverterService extends Effect.Service<TecoInverterService>()(
       discreteInputs: [],
       holdingRegisters: [
         ...Object.values(COMMAND_REGISTERS)
-          .filter((v): v is number => typeof v === "number")
+          .filter((v): v is number => typeof v === 'number')
           .map((address) => ({ address, default: 0 })),
         ...Object.values(MONITOR_REGISTERS)
-          .filter((v): v is number => typeof v === "number")
+          .filter((v): v is number => typeof v === 'number')
           .map((address) => ({ address, default: 0 })),
         ...paramRegisterDefs,
       ],

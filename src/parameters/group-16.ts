@@ -3,9 +3,10 @@
  * Manual pages 4-74 to 4-77
  */
 
-import { ParamKind, type ParamConfig } from "modbus-schema";
-import type { InverterRegisterMeta } from "./operations";
-import { GROUP_16_LCD_Parameters } from "../Registers";
+import { ParamKind, type ParamConfig } from 'modbus-schema';
+
+import { GROUP_16_LCD_Parameters } from '../Registers';
+import type { InverterRegisterMeta } from './operations';
 
 const group = 16 as const;
 const p474 = 474 as const;
@@ -14,194 +15,490 @@ const p476 = 476 as const;
 const p477 = 477 as const;
 
 const all = {
-  "16-00": {
-    register: GROUP_16_LCD_Parameters["16-00"],
+  '16-00': {
+    register: GROUP_16_LCD_Parameters['16-00'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-00", name: "Main Screen Monitoring", range: "5~82", default: "16", unit: "-", page: p474 },
+    meta: {
+      group,
+      code: '16-00',
+      name: 'Main Screen Monitoring',
+      range: '5~82',
+      default: '16',
+      unit: '-',
+      page: p474,
+    },
   },
-  "16-01": {
-    register: GROUP_16_LCD_Parameters["16-01"],
+  '16-01': {
+    register: GROUP_16_LCD_Parameters['16-01'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-01", name: "Sub-Screen Monitoring 1", range: "5~82", default: "17", unit: "-", page: p474 },
+    meta: {
+      group,
+      code: '16-01',
+      name: 'Sub-Screen Monitoring 1',
+      range: '5~82',
+      default: '17',
+      unit: '-',
+      page: p474,
+    },
   },
-  "16-02": {
-    register: GROUP_16_LCD_Parameters["16-02"],
+  '16-02': {
+    register: GROUP_16_LCD_Parameters['16-02'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-02", name: "Sub-Screen Monitoring 2", range: "5~82", default: "18", unit: "-", page: p474 },
+    meta: {
+      group,
+      code: '16-02',
+      name: 'Sub-Screen Monitoring 2',
+      range: '5~82',
+      default: '18',
+      unit: '-',
+      page: p474,
+    },
   },
-  "16-03": {
-    register: GROUP_16_LCD_Parameters["16-03"],
+  '16-03': {
+    register: GROUP_16_LCD_Parameters['16-03'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-03", name: "Display Unit", range: "0~39999 (0:0.01Hz / 1:0.01% / 2:rpm / 40~9999:XXXX at 100% / 10001~19999:XXX.X / 20001~29999:XX.XX / 30001~39999:X.XXX)", default: "0", unit: "-", page: p474 },
+    meta: {
+      group,
+      code: '16-03',
+      name: 'Display Unit',
+      range:
+        '0~39999 (0:0.01Hz / 1:0.01% / 2:rpm / 40~9999:XXXX at 100% / 10001~19999:XXX.X / 20001~29999:XX.XX / 30001~39999:X.XXX)',
+      default: '0',
+      unit: '-',
+      page: p474,
+    },
   },
-  "16-04": {
-    register: GROUP_16_LCD_Parameters["16-04"],
+  '16-04': {
+    register: GROUP_16_LCD_Parameters['16-04'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-04", name: "Engineering Unit", range: "0~24 (0:none / 1:FPM / 2:CFM / 3:PSI / 4:GPH / 5:GPM / 6:IN / 7:FT / 8:/s / 9:/m / 10:/h / 11:°F / 12:inW / 13:HP / 14:m/s / 15:MPM / 16:CMM / 17:W / 18:KW / 19:m / 20:°C / 21:RPM / 22:Bar / 23:Pa / 24:KPa)", default: "0", unit: "-", page: p474 },
+    meta: {
+      group,
+      code: '16-04',
+      name: 'Engineering Unit',
+      range:
+        '0~24 (0:none / 1:FPM / 2:CFM / 3:PSI / 4:GPH / 5:GPM / 6:IN / 7:FT / 8:/s / 9:/m / 10:/h / 11:°F / 12:inW / 13:HP / 14:m/s / 15:MPM / 16:CMM / 17:W / 18:KW / 19:m / 20:°C / 21:RPM / 22:Bar / 23:Pa / 24:KPa)',
+      default: '0',
+      unit: '-',
+      page: p474,
+    },
   },
-  "16-05": {
-    register: GROUP_16_LCD_Parameters["16-05"],
+  '16-05': {
+    register: GROUP_16_LCD_Parameters['16-05'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-05", name: "LCD Backlight", range: "0~7", default: "5", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-05',
+      name: 'LCD Backlight',
+      range: '0~7',
+      default: '5',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-07": {
-    register: GROUP_16_LCD_Parameters["16-07"],
+  '16-07': {
+    register: GROUP_16_LCD_Parameters['16-07'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-07", name: "Copy Function Selection", range: "0-3 (0:Do not copy / 1:Read to operator / 2:Write to inverter / 3:Compare)", default: "0", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-07',
+      name: 'Copy Function Selection',
+      range: '0-3 (0:Do not copy / 1:Read to operator / 2:Write to inverter / 3:Compare)',
+      default: '0',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-08": {
-    register: GROUP_16_LCD_Parameters["16-08"],
+  '16-08': {
+    register: GROUP_16_LCD_Parameters['16-08'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-08", name: "Selection of Allowing Reading", range: "0-1 (0:Not allow / 1:Allow)", default: "0", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-08',
+      name: 'Selection of Allowing Reading',
+      range: '0-1 (0:Not allow / 1:Allow)',
+      default: '0',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-09": {
-    register: GROUP_16_LCD_Parameters["16-09"],
+  '16-09': {
+    register: GROUP_16_LCD_Parameters['16-09'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-09", name: "Selection of Operator Removed (LCD)", range: "0-1 (0:Keep operating / 1:Display fault)", default: "0", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-09',
+      name: 'Selection of Operator Removed (LCD)',
+      range: '0-1 (0:Keep operating / 1:Display fault)',
+      default: '0',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-10": {
-    register: GROUP_16_LCD_Parameters["16-10"],
+  '16-10': {
+    register: GROUP_16_LCD_Parameters['16-10'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-10", name: "RTC Time Display Setting", range: "0-1 (0:Hide / 1:Display)", default: "0", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-10',
+      name: 'RTC Time Display Setting',
+      range: '0-1 (0:Hide / 1:Display)',
+      default: '0',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-11": {
-    register: GROUP_16_LCD_Parameters["16-11"],
+  '16-11': {
+    register: GROUP_16_LCD_Parameters['16-11'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-11", name: "RTC Date Setting", range: "12.01.01~99.12.31", default: "12.01.01", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-11',
+      name: 'RTC Date Setting',
+      range: '12.01.01~99.12.31',
+      default: '12.01.01',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-12": {
-    register: GROUP_16_LCD_Parameters["16-12"],
+  '16-12': {
+    register: GROUP_16_LCD_Parameters['16-12'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-12", name: "RTC Time Setting", range: "00:00~23:59", default: "00:00", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-12',
+      name: 'RTC Time Setting',
+      range: '00:00~23:59',
+      default: '00:00',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-13": {
-    register: GROUP_16_LCD_Parameters["16-13"],
+  '16-13': {
+    register: GROUP_16_LCD_Parameters['16-13'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-13", name: "RTC Timer Function", range: "0-2 (0:Disable / 1:Enable / 2:Set by DI)", default: "0", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-13',
+      name: 'RTC Timer Function',
+      range: '0-2 (0:Disable / 1:Enable / 2:Set by DI)',
+      default: '0',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-14": {
-    register: GROUP_16_LCD_Parameters["16-14"],
+  '16-14': {
+    register: GROUP_16_LCD_Parameters['16-14'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-14", name: "P1 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-14',
+      name: 'P1 Start Time',
+      range: '00:00~23:59',
+      default: '08:00',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-15": {
-    register: GROUP_16_LCD_Parameters["16-15"],
+  '16-15': {
+    register: GROUP_16_LCD_Parameters['16-15'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-15", name: "P1 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-15',
+      name: 'P1 Stop Time',
+      range: '00:00~23:59',
+      default: '18:00',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-16": {
-    register: GROUP_16_LCD_Parameters["16-16"],
+  '16-16': {
+    register: GROUP_16_LCD_Parameters['16-16'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-16", name: "P1 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-16',
+      name: 'P1 Start Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '1',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-17": {
-    register: GROUP_16_LCD_Parameters["16-17"],
+  '16-17': {
+    register: GROUP_16_LCD_Parameters['16-17'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-17", name: "P1 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-17',
+      name: 'P1 Stop Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '5',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-18": {
-    register: GROUP_16_LCD_Parameters["16-18"],
+  '16-18': {
+    register: GROUP_16_LCD_Parameters['16-18'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-18", name: "P2 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-18',
+      name: 'P2 Start Time',
+      range: '00:00~23:59',
+      default: '08:00',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-19": {
-    register: GROUP_16_LCD_Parameters["16-19"],
+  '16-19': {
+    register: GROUP_16_LCD_Parameters['16-19'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-19", name: "P2 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-19',
+      name: 'P2 Stop Time',
+      range: '00:00~23:59',
+      default: '18:00',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-20": {
-    register: GROUP_16_LCD_Parameters["16-20"],
+  '16-20': {
+    register: GROUP_16_LCD_Parameters['16-20'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-20", name: "P2 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p475 },
+    meta: {
+      group,
+      code: '16-20',
+      name: 'P2 Start Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '1',
+      unit: '-',
+      page: p475,
+    },
   },
-  "16-21": {
-    register: GROUP_16_LCD_Parameters["16-21"],
+  '16-21': {
+    register: GROUP_16_LCD_Parameters['16-21'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-21", name: "P2 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-21',
+      name: 'P2 Stop Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '5',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-22": {
-    register: GROUP_16_LCD_Parameters["16-22"],
+  '16-22': {
+    register: GROUP_16_LCD_Parameters['16-22'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-22", name: "P3 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-22',
+      name: 'P3 Start Time',
+      range: '00:00~23:59',
+      default: '08:00',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-23": {
-    register: GROUP_16_LCD_Parameters["16-23"],
+  '16-23': {
+    register: GROUP_16_LCD_Parameters['16-23'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-23", name: "P3 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-23',
+      name: 'P3 Stop Time',
+      range: '00:00~23:59',
+      default: '18:00',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-24": {
-    register: GROUP_16_LCD_Parameters["16-24"],
+  '16-24': {
+    register: GROUP_16_LCD_Parameters['16-24'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-24", name: "P3 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-24',
+      name: 'P3 Start Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '1',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-25": {
-    register: GROUP_16_LCD_Parameters["16-25"],
+  '16-25': {
+    register: GROUP_16_LCD_Parameters['16-25'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-25", name: "P3 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-25',
+      name: 'P3 Stop Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '5',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-26": {
-    register: GROUP_16_LCD_Parameters["16-26"],
+  '16-26': {
+    register: GROUP_16_LCD_Parameters['16-26'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-26", name: "P4 Start Time", range: "00:00~23:59", default: "08:00", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-26',
+      name: 'P4 Start Time',
+      range: '00:00~23:59',
+      default: '08:00',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-27": {
-    register: GROUP_16_LCD_Parameters["16-27"],
+  '16-27': {
+    register: GROUP_16_LCD_Parameters['16-27'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-27", name: "P4 Stop Time", range: "00:00~23:59", default: "18:00", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-27',
+      name: 'P4 Stop Time',
+      range: '00:00~23:59',
+      default: '18:00',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-28": {
-    register: GROUP_16_LCD_Parameters["16-28"],
+  '16-28': {
+    register: GROUP_16_LCD_Parameters['16-28'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-28", name: "P4 Start Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "1", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-28',
+      name: 'P4 Start Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '1',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-29": {
-    register: GROUP_16_LCD_Parameters["16-29"],
+  '16-29': {
+    register: GROUP_16_LCD_Parameters['16-29'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-29", name: "P4 Stop Date", range: "1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)", default: "5", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-29',
+      name: 'P4 Stop Date',
+      range: '1-7 (1:Mon 2:Tue 3:Wed 4:Thu 5:Fri 6:Sat 7:Sun)',
+      default: '5',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-30": {
-    register: GROUP_16_LCD_Parameters["16-30"],
+  '16-30': {
+    register: GROUP_16_LCD_Parameters['16-30'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-30", name: "Selection of RTC Offset", range: "0-2 (0:Disable / 1:Enable / 2:Set by DI)", default: "0", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-30',
+      name: 'Selection of RTC Offset',
+      range: '0-2 (0:Disable / 1:Enable / 2:Set by DI)',
+      default: '0',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-31": {
-    register: GROUP_16_LCD_Parameters["16-31"],
+  '16-31': {
+    register: GROUP_16_LCD_Parameters['16-31'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-31", name: "RTC Offset Time Setting", range: "00:00~23:59", default: "00:00", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-31',
+      name: 'RTC Offset Time Setting',
+      range: '00:00~23:59',
+      default: '00:00',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-32": {
-    register: GROUP_16_LCD_Parameters["16-32"],
+  '16-32': {
+    register: GROUP_16_LCD_Parameters['16-32'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-32", name: "Source of Timer 1", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "1", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-32',
+      name: 'Source of Timer 1',
+      range: '0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)',
+      default: '1',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-33": {
-    register: GROUP_16_LCD_Parameters["16-33"],
+  '16-33': {
+    register: GROUP_16_LCD_Parameters['16-33'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-33", name: "Source of Timer 2", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "2", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-33',
+      name: 'Source of Timer 2',
+      range: '0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)',
+      default: '2',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-34": {
-    register: GROUP_16_LCD_Parameters["16-34"],
+  '16-34': {
+    register: GROUP_16_LCD_Parameters['16-34'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-34", name: "Source of Timer 3", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "4", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-34',
+      name: 'Source of Timer 3',
+      range: '0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)',
+      default: '4',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-35": {
-    register: GROUP_16_LCD_Parameters["16-35"],
+  '16-35': {
+    register: GROUP_16_LCD_Parameters['16-35'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-35", name: "Source of Timer 4", range: "0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)", default: "8", unit: "-", page: p476 },
+    meta: {
+      group,
+      code: '16-35',
+      name: 'Source of Timer 4',
+      range: '0-31 (bit-field: 0:None / 1:P1 / 2:P2 / 4:P3 / 8:P4 / ... / 31:Off+P1+P2+P3+P4)',
+      default: '8',
+      unit: '-',
+      page: p476,
+    },
   },
-  "16-36": {
-    register: GROUP_16_LCD_Parameters["16-36"],
+  '16-36': {
+    register: GROUP_16_LCD_Parameters['16-36'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-36", name: "Selection of RTC Speed", range: "0-5 (0:Off / 1:Timer1 / 2:Timer2 / 3:Timer3 / 4:Timer4 / 5:Timer1+2)", default: "0", unit: "-", page: p477 },
+    meta: {
+      group,
+      code: '16-36',
+      name: 'Selection of RTC Speed',
+      range: '0-5 (0:Off / 1:Timer1 / 2:Timer2 / 3:Timer3 / 4:Timer4 / 5:Timer1+2)',
+      default: '0',
+      unit: '-',
+      page: p477,
+    },
   },
-  "16-37": {
-    register: GROUP_16_LCD_Parameters["16-37"],
+  '16-37': {
+    register: GROUP_16_LCD_Parameters['16-37'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "16-37", name: "Selection of RTC Rotation Direction", range: "0~15 (bit-field for direction)", default: "0000b", unit: "-", page: p477 },
+    meta: {
+      group,
+      code: '16-37',
+      name: 'Selection of RTC Rotation Direction',
+      range: '0~15 (bit-field for direction)',
+      default: '0000b',
+      unit: '-',
+      page: p477,
+    },
   },
 } as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
-
-
 
 // ── Group-level lookup ─────────────────────────────────────
 

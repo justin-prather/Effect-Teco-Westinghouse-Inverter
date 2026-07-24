@@ -7,10 +7,11 @@
  * @example bun run examples/readGroup02Params.ts
  */
 
-import { Console, Effect, Layer, Logger, LogLevel } from "effect";
-import { TecoInverterService } from "../src/TecoInverterService";
-import { SerialTransportService } from "effect-modbus-rs";
-import { BunRuntime } from "@effect/platform-bun";
+import { BunRuntime } from '@effect/platform-bun';
+import { Console, Effect, Layer, Logger, LogLevel } from 'effect';
+import { SerialTransportService } from 'effect-modbus-rs';
+
+import { TecoInverterService } from '../src/TecoInverterService';
 
 const deviceId = 1;
 
@@ -27,10 +28,8 @@ const program = Effect.gen(function* () {
   type Group02Params = typeof params;
   type Group02Row<K extends keyof Group02Params> = {
     readonly key: K;
-    readonly description: Group02Params[K]["meta"]["name"];
-    readonly value: EffectValue<
-      ReturnType<ReturnType<Group02Params[K]>["read"]>
-    >;
+    readonly description: Group02Params[K]['meta']['name'];
+    readonly value: EffectValue<ReturnType<ReturnType<Group02Params[K]>['read']>>;
   };
   type AnyGroup02Row = {
     [K in keyof Group02Params]: Group02Row<K>;
@@ -46,9 +45,9 @@ const program = Effect.gen(function* () {
     } as AnyGroup02Row);
   }
 
-  yield* Console.log("=== Group 02: IM Motor Parameters ===");
-  yield* Console.log("| Command Param | Description | Current Value |");
-  yield* Console.log("| --- | --- | --- |");
+  yield* Console.log('=== Group 02: IM Motor Parameters ===');
+  yield* Console.log('| Command Param | Description | Current Value |');
+  yield* Console.log('| --- | --- | --- |');
 
   for (const { key, description, value } of rows) {
     yield* Console.log(`| ${key} | ${description} | ${String(value)} |`);
@@ -57,11 +56,11 @@ const program = Effect.gen(function* () {
 
 const TecoLayer = TecoInverterService.Default(true);
 const SerialLayer = SerialTransportService.fromRtu({
-  portPath: "/dev/tty.usbserial-A10OFLK2",
+  portPath: '/dev/tty.usbserial-A10OFLK2',
   baudRate: 19200,
   stopBits: 1,
   dataBits: 8,
-  parity: "None",
+  parity: 'None',
 });
 
 const layerLive = Layer.provideMerge(TecoLayer, SerialLayer);

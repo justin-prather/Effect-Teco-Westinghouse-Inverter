@@ -3,257 +3,640 @@
  * Manual page 4-72
  */
 
-import { ParamKind, type ParamConfig } from "modbus-schema";
-import type { InverterRegisterMeta } from "./operations";
-import { GROUP_14_PLC_Parameters } from "../Registers";
+import { ParamKind, type ParamConfig } from 'modbus-schema';
+
+import { GROUP_14_PLC_Parameters } from '../Registers';
+import type { InverterRegisterMeta } from './operations';
 
 const group = 14 as const;
 const p472 = 472 as const;
 
 const all = {
-  "14-00": {
-    register: GROUP_14_PLC_Parameters["14-00"],
+  '14-00': {
+    register: GROUP_14_PLC_Parameters['14-00'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-00", name: "T1 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-00',
+      name: 'T1 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-01": {
-    register: GROUP_14_PLC_Parameters["14-01"],
+  '14-01': {
+    register: GROUP_14_PLC_Parameters['14-01'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-01", name: "T1 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-01',
+      name: 'T1 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-02": {
-    register: GROUP_14_PLC_Parameters["14-02"],
+  '14-02': {
+    register: GROUP_14_PLC_Parameters['14-02'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-02", name: "T2 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-02',
+      name: 'T2 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-03": {
-    register: GROUP_14_PLC_Parameters["14-03"],
+  '14-03': {
+    register: GROUP_14_PLC_Parameters['14-03'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-03", name: "T2 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-03',
+      name: 'T2 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-04": {
-    register: GROUP_14_PLC_Parameters["14-04"],
+  '14-04': {
+    register: GROUP_14_PLC_Parameters['14-04'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-04", name: "T3 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-04',
+      name: 'T3 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-05": {
-    register: GROUP_14_PLC_Parameters["14-05"],
+  '14-05': {
+    register: GROUP_14_PLC_Parameters['14-05'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-05", name: "T3 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-05',
+      name: 'T3 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-06": {
-    register: GROUP_14_PLC_Parameters["14-06"],
+  '14-06': {
+    register: GROUP_14_PLC_Parameters['14-06'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-06", name: "T4 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-06',
+      name: 'T4 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-07": {
-    register: GROUP_14_PLC_Parameters["14-07"],
+  '14-07': {
+    register: GROUP_14_PLC_Parameters['14-07'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-07", name: "T4 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-07',
+      name: 'T4 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-08": {
-    register: GROUP_14_PLC_Parameters["14-08"],
+  '14-08': {
+    register: GROUP_14_PLC_Parameters['14-08'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-08", name: "T5 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-08',
+      name: 'T5 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-09": {
-    register: GROUP_14_PLC_Parameters["14-09"],
+  '14-09': {
+    register: GROUP_14_PLC_Parameters['14-09'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-09", name: "T5 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-09',
+      name: 'T5 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-10": {
-    register: GROUP_14_PLC_Parameters["14-10"],
+  '14-10': {
+    register: GROUP_14_PLC_Parameters['14-10'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-10", name: "T6 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-10',
+      name: 'T6 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-11": {
-    register: GROUP_14_PLC_Parameters["14-11"],
+  '14-11': {
+    register: GROUP_14_PLC_Parameters['14-11'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-11", name: "T6 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-11',
+      name: 'T6 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-12": {
-    register: GROUP_14_PLC_Parameters["14-12"],
+  '14-12': {
+    register: GROUP_14_PLC_Parameters['14-12'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-12", name: "T7 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-12',
+      name: 'T7 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-13": {
-    register: GROUP_14_PLC_Parameters["14-13"],
+  '14-13': {
+    register: GROUP_14_PLC_Parameters['14-13'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-13", name: "T7 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-13',
+      name: 'T7 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-14": {
-    register: GROUP_14_PLC_Parameters["14-14"],
+  '14-14': {
+    register: GROUP_14_PLC_Parameters['14-14'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-14", name: "T8 Set Value 1", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-14',
+      name: 'T8 Set Value 1',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-15": {
-    register: GROUP_14_PLC_Parameters["14-15"],
+  '14-15': {
+    register: GROUP_14_PLC_Parameters['14-15'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-15", name: "T8 Set Value 2 (Mode 7)", range: "0~9999", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-15',
+      name: 'T8 Set Value 2 (Mode 7)',
+      range: '0~9999',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-16": {
-    register: GROUP_14_PLC_Parameters["14-16"],
+  '14-16': {
+    register: GROUP_14_PLC_Parameters['14-16'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-16", name: "C1 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-16',
+      name: 'C1 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-17": {
-    register: GROUP_14_PLC_Parameters["14-17"],
+  '14-17': {
+    register: GROUP_14_PLC_Parameters['14-17'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-17", name: "C2 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-17',
+      name: 'C2 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-18": {
-    register: GROUP_14_PLC_Parameters["14-18"],
+  '14-18': {
+    register: GROUP_14_PLC_Parameters['14-18'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-18", name: "C3 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-18',
+      name: 'C3 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-19": {
-    register: GROUP_14_PLC_Parameters["14-19"],
+  '14-19': {
+    register: GROUP_14_PLC_Parameters['14-19'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-19", name: "C4 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-19',
+      name: 'C4 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-20": {
-    register: GROUP_14_PLC_Parameters["14-20"],
+  '14-20': {
+    register: GROUP_14_PLC_Parameters['14-20'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-20", name: "C5 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-20',
+      name: 'C5 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-21": {
-    register: GROUP_14_PLC_Parameters["14-21"],
+  '14-21': {
+    register: GROUP_14_PLC_Parameters['14-21'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-21", name: "C6 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-21',
+      name: 'C6 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-22": {
-    register: GROUP_14_PLC_Parameters["14-22"],
+  '14-22': {
+    register: GROUP_14_PLC_Parameters['14-22'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-22", name: "C7 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-22',
+      name: 'C7 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-23": {
-    register: GROUP_14_PLC_Parameters["14-23"],
+  '14-23': {
+    register: GROUP_14_PLC_Parameters['14-23'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-23", name: "C8 Set Value", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-23',
+      name: 'C8 Set Value',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-24": {
-    register: GROUP_14_PLC_Parameters["14-24"],
+  '14-24': {
+    register: GROUP_14_PLC_Parameters['14-24'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-24", name: "AS1 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-24',
+      name: 'AS1 Set Value 1',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-25": {
-    register: GROUP_14_PLC_Parameters["14-25"],
+  '14-25': {
+    register: GROUP_14_PLC_Parameters['14-25'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-25", name: "AS1 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-25',
+      name: 'AS1 Set Value 2',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-26": {
-    register: GROUP_14_PLC_Parameters["14-26"],
+  '14-26': {
+    register: GROUP_14_PLC_Parameters['14-26'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-26", name: "AS1 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-26',
+      name: 'AS1 Set Value 3',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-27": {
-    register: GROUP_14_PLC_Parameters["14-27"],
+  '14-27': {
+    register: GROUP_14_PLC_Parameters['14-27'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-27", name: "AS2 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-27',
+      name: 'AS2 Set Value 1',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-28": {
-    register: GROUP_14_PLC_Parameters["14-28"],
+  '14-28': {
+    register: GROUP_14_PLC_Parameters['14-28'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-28", name: "AS2 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-28',
+      name: 'AS2 Set Value 2',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-29": {
-    register: GROUP_14_PLC_Parameters["14-29"],
+  '14-29': {
+    register: GROUP_14_PLC_Parameters['14-29'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-29", name: "AS2 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-29',
+      name: 'AS2 Set Value 3',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-30": {
-    register: GROUP_14_PLC_Parameters["14-30"],
+  '14-30': {
+    register: GROUP_14_PLC_Parameters['14-30'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-30", name: "AS3 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-30',
+      name: 'AS3 Set Value 1',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-31": {
-    register: GROUP_14_PLC_Parameters["14-31"],
+  '14-31': {
+    register: GROUP_14_PLC_Parameters['14-31'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-31", name: "AS3 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-31',
+      name: 'AS3 Set Value 2',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-32": {
-    register: GROUP_14_PLC_Parameters["14-32"],
+  '14-32': {
+    register: GROUP_14_PLC_Parameters['14-32'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-32", name: "AS3 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-32',
+      name: 'AS3 Set Value 3',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-33": {
-    register: GROUP_14_PLC_Parameters["14-33"],
+  '14-33': {
+    register: GROUP_14_PLC_Parameters['14-33'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-33", name: "AS4 Set Value 1", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-33',
+      name: 'AS4 Set Value 1',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-34": {
-    register: GROUP_14_PLC_Parameters["14-34"],
+  '14-34': {
+    register: GROUP_14_PLC_Parameters['14-34'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-34", name: "AS4 Set Value 2", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-34',
+      name: 'AS4 Set Value 2',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-35": {
-    register: GROUP_14_PLC_Parameters["14-35"],
+  '14-35': {
+    register: GROUP_14_PLC_Parameters['14-35'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-35", name: "AS4 Set Value 3", range: "0~65534", default: "0", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-35',
+      name: 'AS4 Set Value 3',
+      range: '0~65534',
+      default: '0',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-36": {
-    register: GROUP_14_PLC_Parameters["14-36"],
+  '14-36': {
+    register: GROUP_14_PLC_Parameters['14-36'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-36", name: "MD1 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-36',
+      name: 'MD1 Set Value 1',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-37": {
-    register: GROUP_14_PLC_Parameters["14-37"],
+  '14-37': {
+    register: GROUP_14_PLC_Parameters['14-37'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-37", name: "MD1 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-37',
+      name: 'MD1 Set Value 2',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-38": {
-    register: GROUP_14_PLC_Parameters["14-38"],
+  '14-38': {
+    register: GROUP_14_PLC_Parameters['14-38'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-38", name: "MD1 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-38',
+      name: 'MD1 Set Value 3',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-39": {
-    register: GROUP_14_PLC_Parameters["14-39"],
+  '14-39': {
+    register: GROUP_14_PLC_Parameters['14-39'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-39", name: "MD2 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-39',
+      name: 'MD2 Set Value 1',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-40": {
-    register: GROUP_14_PLC_Parameters["14-40"],
+  '14-40': {
+    register: GROUP_14_PLC_Parameters['14-40'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-40", name: "MD2 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-40',
+      name: 'MD2 Set Value 2',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-41": {
-    register: GROUP_14_PLC_Parameters["14-41"],
+  '14-41': {
+    register: GROUP_14_PLC_Parameters['14-41'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-41", name: "MD2 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-41',
+      name: 'MD2 Set Value 3',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-42": {
-    register: GROUP_14_PLC_Parameters["14-42"],
+  '14-42': {
+    register: GROUP_14_PLC_Parameters['14-42'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-42", name: "MD3 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-42',
+      name: 'MD3 Set Value 1',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-43": {
-    register: GROUP_14_PLC_Parameters["14-43"],
+  '14-43': {
+    register: GROUP_14_PLC_Parameters['14-43'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-43", name: "MD3 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-43',
+      name: 'MD3 Set Value 2',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-44": {
-    register: GROUP_14_PLC_Parameters["14-44"],
+  '14-44': {
+    register: GROUP_14_PLC_Parameters['14-44'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-44", name: "MD3 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-44',
+      name: 'MD3 Set Value 3',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-45": {
-    register: GROUP_14_PLC_Parameters["14-45"],
+  '14-45': {
+    register: GROUP_14_PLC_Parameters['14-45'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-45", name: "MD4 Set Value 1", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-45',
+      name: 'MD4 Set Value 1',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-46": {
-    register: GROUP_14_PLC_Parameters["14-46"],
+  '14-46': {
+    register: GROUP_14_PLC_Parameters['14-46'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-46", name: "MD4 Set Value 2", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-46',
+      name: 'MD4 Set Value 2',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
-  "14-47": {
-    register: GROUP_14_PLC_Parameters["14-47"],
+  '14-47': {
+    register: GROUP_14_PLC_Parameters['14-47'],
     kind: ParamKind.UInt16,
-    meta: { group, code: "14-47", name: "MD4 Set Value 3", range: "0~65534", default: "1", unit: "-", page: p472 },
+    meta: {
+      group,
+      code: '14-47',
+      name: 'MD4 Set Value 3',
+      range: '0~65534',
+      default: '1',
+      unit: '-',
+      page: p472,
+    },
   },
 } as const satisfies Record<string, ParamConfig<InverterRegisterMeta>>;
-
-
 
 // ── Group-level lookup ─────────────────────────────────────
 

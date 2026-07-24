@@ -7,10 +7,11 @@
  * @example bun run examples/readGroup06Params.ts
  */
 
-import { Console, Effect, Layer, Logger, LogLevel } from "effect";
-import { TecoInverterService } from "../src/TecoInverterService";
-import { SerialTransportService } from "effect-modbus-rs";
-import { BunRuntime } from "@effect/platform-bun";
+import { BunRuntime } from '@effect/platform-bun';
+import { Console, Effect, Layer, Logger, LogLevel } from 'effect';
+import { SerialTransportService } from 'effect-modbus-rs';
+
+import { TecoInverterService } from '../src/TecoInverterService';
 
 const deviceId = 1;
 
@@ -27,10 +28,8 @@ const program = Effect.gen(function* () {
   type Group06Params = typeof params;
   type Group06Row<K extends keyof Group06Params> = {
     readonly key: K;
-    readonly description: Group06Params[K]["meta"]["name"];
-    readonly value: EffectValue<
-      ReturnType<ReturnType<Group06Params[K]>["read"]>
-    >;
+    readonly description: Group06Params[K]['meta']['name'];
+    readonly value: EffectValue<ReturnType<ReturnType<Group06Params[K]>['read']>>;
   };
   type AnyGroup06Row = {
     [K in keyof Group06Params]: Group06Row<K>;
@@ -38,14 +37,16 @@ const program = Effect.gen(function* () {
 
   const rows: AnyGroup06Row[] = [];
   for (const [key, param] of typedEntries(params)) {
-    const value = yield* param(deviceId).read().pipe(
-      Effect.catchAll((err) =>
-        Effect.gen(function* () {
-          yield* Console.error(`FAILED reading ${key} (${param.meta.name}): ${String(err)}`);
-          return null as any;
-        }),
-      ),
-    );
+    const value = yield* param(deviceId)
+      .read()
+      .pipe(
+        Effect.catchAll((err) =>
+          Effect.gen(function* () {
+            yield* Console.error(`FAILED reading ${key} (${param.meta.name}): ${String(err)}`);
+            return null as any;
+          }),
+        ),
+      );
     if (value === null) continue;
     rows.push({
       key,
@@ -54,9 +55,9 @@ const program = Effect.gen(function* () {
     } as AnyGroup06Row);
   }
 
-  yield* Console.log("=== Group 06: Automatic Program Operation Parameters ===");
-  yield* Console.log("| Command Param | Description | Current Value |");
-  yield* Console.log("| --- | --- | --- |");
+  yield* Console.log('=== Group 06: Automatic Program Operation Parameters ===');
+  yield* Console.log('| Command Param | Description | Current Value |');
+  yield* Console.log('| --- | --- | --- |');
 
   for (const { key, description, value } of rows) {
     yield* Console.log(`| ${key} | ${description} | ${String(value)} |`);
@@ -65,11 +66,11 @@ const program = Effect.gen(function* () {
 
 const TecoLayer = TecoInverterService.Default(true);
 const SerialLayer = SerialTransportService.fromRtu({
-  portPath: "/dev/tty.usbserial-A10OFLK2",
+  portPath: '/dev/tty.usbserial-A10OFLK2',
   baudRate: 19200,
   stopBits: 1,
   dataBits: 8,
-  parity: "None",
+  parity: 'None',
 });
 
 const layerLive = Layer.provideMerge(TecoLayer, SerialLayer);

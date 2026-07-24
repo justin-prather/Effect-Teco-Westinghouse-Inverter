@@ -12,13 +12,13 @@ Bidirectional schema transformers for Teco/Westinghouse A510 inverter Modbus par
 
 ## Commands
 
-| Action | Command |
-|--------|---------|
-| Install | `bun install` |
-| Type-check | `bun run typecheck` |
-| Test | `bun test` |
+| Action      | Command                      |
+| ----------- | ---------------------------- |
+| Install     | `bun install`                |
+| Type-check  | `bun run typecheck`          |
+| Test        | `bun test`                   |
 | Run example | `bun run examples/<name>.ts` |
-| Build | `bun run build` |
+| Build       | `bun run build`              |
 
 No build step required for development — `noEmit` is on; Bun runs `.ts` directly.
 
@@ -70,9 +70,9 @@ examples/
 
 Shallow clones of key dependencies live in `references/` for offline browsing (gitignored; re-clone if stale):
 
-| Reference | Local path | Useful subdirectory |
-|-----------|-----------|-------------------|
-| effect | `references/effect` | `packages/effect/src/` for core types |
+| Reference        | Local path                    | Useful subdirectory                          |
+| ---------------- | ----------------------------- | -------------------------------------------- |
+| effect           | `references/effect`           | `packages/effect/src/` for core types        |
 | effect-modbus-rs | `references/effect-modbus-rs` | `src/` for transport service implementations |
 
 The skill at `.opencode/skills/reference-dependencies/SKILL.md` is the dedicated instruction for reference lookup.
